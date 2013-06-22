@@ -1,6 +1,19 @@
 <?php
+/**
+ * Bootstrap the project
+ *
+ * PHP version 5.5
+ *
+ * @author     Pieter Hordijk <info@pieterhordijk.com>
+ * @copyright  Copyright (c) 2013 Pieter Hordijk <https://github.com/PeeHaa>
+ * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
+ * @version    1.0.0
+ */
 
-namespace OpCacheGUI;
+/**
+ * Bootstrap the library
+ */
+require_once __DIR__ . '/src/OpCacheGUI/bootstrap.php';
 
 /**
  * Setup error reporting
