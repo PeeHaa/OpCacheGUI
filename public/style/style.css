@@ -1,0 +1,120 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #333333;
+}
+
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.content {
+    width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+header {
+    height: 36px;
+    background-color: #eeeeee;
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top, #f5f5f5 0%, #eeeeee 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f5f5f5), color-stop(100%,#eeeeee));
+    background-image: -webkit-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%);
+    background-image: -ms-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%);
+    background-image: -o-linear-gradient(top, #f5f5f5 0%,#eeeeee 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f5f5f5', endColorstr='#eeeeee',GradientType=0 );
+    background-image: linear-gradient(top, #f5f5f5 0%,#eeeeee 100%);
+    border: 1px solid #e5e5e5;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 20px;
+    position: absolute;
+    top: 9px;
+}
+
+header h1 a {
+    color: #333333;
+    text-decoration: none;
+}
+
+header nav ul {
+    position: absolute;
+    right: 0;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #f5f5f5;
+    border-right: 1px solid #e5e5e5;
+    float: left;
+}
+
+header nav ul li:hover, header nav ul li.active {
+    background-color: #eeeeee;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #0088cc;
+    line-height: 36px;
+    display: block;
+    padding: 0 15px;
+}
+
+footer ul {
+    width: 960px;
+    margin: 0 auto;
+    border-top: 1px solid #eeeeee;
+    margin-top: 10px;
+    text-align: center;
+}
+
+footer ul li {
+    display: inline;
+}
+
+footer ul li a {
+    color: #333333;
+}
+
+footer ul li a:hover {
+    text-decoration: none;
+}
