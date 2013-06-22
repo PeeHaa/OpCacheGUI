@@ -9,6 +9,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version    1.0.0
  */
+use OpCacheGUI\I18n\Translator;
 
 /**
  * Bootstrap the library
@@ -26,3 +27,8 @@ ini_set('log_errors', 0);
  * Setup timezone
  */
 ini_set('date.timezone', 'Europe/Amsterdam');
+
+/**
+ * Setup the translator
+ */
+$translator = new Translator('en');
