@@ -118,3 +118,62 @@ footer ul li a {
 footer ul li a:hover {
     text-decoration: none;
 }
+
+#body {
+    width: 960px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding-top: 10px;
+}
+
+article.cols-3.first {
+    margin-left: 0;
+}
+
+article.cols-3 {
+    width: 310px;
+    margin-left: 15px;
+    float: left;
+}
+
+article h2 {
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    line-height: 1.4;
+    position: relative;
+    padding: 5px 20px;
+    margin: 0;
+    color: #fff;
+    text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+    background-color: #6c8393;
+    background-image: -moz-linear-gradient(#7f95a5, #6c8393);
+    background-image: -webkit-linear-gradient(#7f95a5, #6c8393);
+    background-image: linear-gradient(#7f95a5, #6c8393);
+    background-repeat: repeat-x;
+    border: 1px solid #6e8290;
+    border-bottom-color: #586873;
+    border-radius: 4px 4px 0 0;
+}
+
+article table {
+    padding: 20px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #fff;
+    border: 1px solid #d8dee2;
+    border-top-color: white;
+    border-radius: 0 0 4px 4px;
+    width: 100%;
+}
+
+article th {
+    text-align: left;
+    padding-left: 20px;
+}
+
+article .odd {
+    background: #eeeeee;
+}

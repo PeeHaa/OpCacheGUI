@@ -2,8 +2,8 @@
 
 require __DIR__ . '/../bootstrap.php';
 
-$status = opcache_get_status();
-
+$status      = new \OpCacheGUI\OpCache\Status;
+$classCycler = new \OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 ?>
 
 <!DOCTYPE html>
@@ -30,6 +30,41 @@ $status = opcache_get_status();
             </div>
         </header>
         <div id="body">
+            <article class="cols-3 first">
+                <h2><?= $translator->translate('status.title'); ?></h2>
+                <table>
+                    <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
+                        <tr class="<?= $classCycler->next(); ?>">
+                            <th><?= $translator->translate('status.' . $key); ?></th>
+                            <td><img src="/style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </article>
+            <article class="cols-3">
+                <h2><?= $translator->translate('status.title'); ?></h2>
+                <table>
+                    <?php $classCycler->rewind(); ?>
+                    <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
+                        <tr class="<?= $classCycler->next(); ?>">
+                            <th><?= $translator->translate('status.' . $key); ?></th>
+                            <td><img src="/style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </article>
+            <article class="cols-3">
+                <h2><?= $translator->translate('status.title'); ?></h2>
+                <table>
+                    <?php $classCycler->rewind(); ?>
+                    <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
+                        <tr class="<?= $classCycler->next(); ?>">
+                            <th><?= $translator->translate('status.' . $key); ?></th>
+                            <td><img src="/style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </article>
         </div>
         <footer>
             <ul>
