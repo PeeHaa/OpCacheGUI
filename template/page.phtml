@@ -13,10 +13,10 @@
                 <h1><a href="/">PHP <?= phpversion(); ?> OpCache x</a></h1>
                 <nav>
                     <ul>
-                        <li class="active"><a href="/">Status</a></li>
-                        <li><a href="/">Configuration</a></li>
-                        <li><a href="/">Cached scripts</a></li>
-                        <li><a href="/">Graphs</a></li>
+                        <li<?= $active == 'status' ? ' class="active"' : null ?>><a href="/"><?= $translator->translate('menu.status'); ?></a></li>
+                        <li<?= $active == 'config' ? ' class="active"' : null ?>><a href="/configuration"><?= $translator->translate('menu.config'); ?></a></li>
+                        <li><a href="/"><?= $translator->translate('menu.scripts'); ?></a></li>
+                        <li><a href="/"><?= $translator->translate('menu.graphs'); ?></a></li>
                     </ul>
                 </nav>
             </div>
