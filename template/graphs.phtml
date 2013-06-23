@@ -15,11 +15,11 @@ $statsInfo  = $status->getStatsInfo();
         </li>
         <li>
             <div class="graph-legend red"></div>
-            <?= sprintf($translator->translate('graph.memory.used.%'), $memoryInfo['used_memory']); ?>
+            <?= sprintf($translator->translate('graph.memory.wasted.%'), $memoryInfo['wasted_memory']); ?>
         </li>
         <li>
             <div class="graph-legend blue"></div>
-            <?= sprintf($translator->translate('graph.memory.wasted.%'), $memoryInfo['wasted_memory']); ?>
+            <?= sprintf($translator->translate('graph.memory.used.%'), $memoryInfo['used_memory']); ?>
         </li>
     </ul>
     <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphMemoryInfo(); ?>'></canvas>
@@ -33,11 +33,11 @@ $statsInfo  = $status->getStatsInfo();
         </li>
         <li>
             <div class="graph-legend red"></div>
-            <?= sprintf($translator->translate('graph.keys.scripts.%'), $statsInfo['num_cached_keys'] - $statsInfo['num_cached_scripts']); ?>
+            <?= sprintf($translator->translate('graph.keys.wasted.%'), $statsInfo['num_cached_scripts']); ?>
         </li>
         <li>
             <div class="graph-legend blue"></div>
-            <?= sprintf($translator->translate('graph.keys.wasted.%'), $statsInfo['num_cached_scripts']); ?>
+            <?= sprintf($translator->translate('graph.keys.scripts.%'), $statsInfo['num_cached_keys'] - $statsInfo['num_cached_scripts']); ?>
         </li>
     </ul>
     <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphKeyStatsInfo(); ?>'></canvas>
