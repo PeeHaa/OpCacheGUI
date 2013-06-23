@@ -1,0 +1,36 @@
+<?php
+$status = new OpCacheGUI\OpCache\Status($byteFormatter);
+$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
+?>
+
+<article class="cols-1">
+    <h2><?= $translator->translate('scripts.title'); ?></h2>
+    <table>
+        <thead>
+            <tr>
+                <th><?= $translator->translate('scripts.full_path'); ?></th>
+                <th><?= $translator->translate('scripts.hits'); ?></th>
+                <th><?= $translator->translate('scripts.memory_consumption'); ?></th>
+                <th><?= $translator->translate('scripts.last_used_timestamp'); ?></th>
+                <th><?= $translator->translate('scripts.timestamp'); ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php if (!count($status->getCachedScripts())) { ?>
+                <tr class="<?= $classCycler->next(); ?>">
+                    <td class="empty" colspan="5"><?= $translator->translate('scripts.empty'); ?></td>
+                </tr>
+            <?php } else { ?>
+                <?php foreach ($status->getCachedScripts() as $key => $scriptItem) { ?>
+                    <tr class="<?= $classCycler->next(); ?>">
+                        <td><?= $scriptItem['full_path']; ?></td>
+                        <td><?= $scriptItem['hits']; ?></td>
+                        <td><?= $scriptItem['memory_consumption']; ?></td>
+                        <td><?= $scriptItem['last_used_timestamp']; ?></td>
+                        <td><?= $scriptItem['timestamp']; ?></td>
+                    </tr>
+                <?php } ?>
+            <?php } ?>
+        </tbody>
+    </table>
+</article>

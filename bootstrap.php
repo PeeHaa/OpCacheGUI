@@ -51,6 +51,14 @@ switch(trim($_SERVER['REQUEST_URI'], '/')) {
         ob_end_clean();
         break;
 
+    case 'cached-scripts':
+        ob_start();
+        require __DIR__ . '/template/cached.phtml';
+        $content = ob_get_contents();
+        $active = 'cached';
+        ob_end_clean();
+        break;
+
     default:
         ob_start();
         require __DIR__ . '/template/status.phtml';

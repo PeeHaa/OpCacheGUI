@@ -102,4 +102,25 @@ class Status
             'manual_restarts'      => $stats['manual_restarts'],
         ];
     }
+
+    /**
+     * Gets the cached scripts
+     *
+     * @return array List of the cached scripts
+     */
+    public function getCachedScripts()
+    {
+        $scripts = [];
+        foreach ($this->statusData['scripts'] as $script) {
+            $scripts[] = [
+                'full_path'           => $script['full_path'],
+                'hits'                => $script['hits'],
+                'memory_consumption'  => $this->byteFormatter->format($script['memory_consumption']),
+                'last_used_timestamp' => (new \DateTime('@' . $script['last_used_timestamp']))->format('H:i:s d-m-Y'),
+                'timestamp'           => (new \DateTime('@' . $script['timestamp']))->format('H:i:s d-m-Y'),
+            ];
+        }
+
+        return $scripts;
+    }
 }

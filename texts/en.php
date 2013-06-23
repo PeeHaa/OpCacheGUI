@@ -87,4 +87,12 @@ $texts = [
 
     'blacklist.title'                                       => 'Blacklist',
     'blacklist.empty'                                       => 'No scripts are blacklisted',
+
+    'scripts.title'                                         => 'Cached scripts',
+    'scripts.empty'                                         => 'No scripts are cached',
+    'scripts.full_path'                                     => 'Path',
+    'scripts.hits'                                          => 'Hits',
+    'scripts.memory_consumption'                            => 'Memory',
+    'scripts.last_used_timestamp'                           => 'Last used',
+    'scripts.timestamp'                                     => 'Created',
 ];
