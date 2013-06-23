@@ -38,3 +38,21 @@ $translator = new Translator('en');
  * Setup formatters
  */
 $byteFormatter = new ByteFormatter;
+
+/**
+ * Setup routing
+ */
+switch(trim('/', $_SERVER['REQUEST_URI'])) {
+    case 'configuration':
+        //
+        break;
+
+    default:
+        ob_start();
+        require __DIR__ . '/template/status.phtml';
+        $content = ob_get_contents();
+        ob_end_clean();
+        break;
+}
+
+require __DIR__ . '/template/page.phtml';
