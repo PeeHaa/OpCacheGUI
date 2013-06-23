@@ -8,7 +8,7 @@ If you are looking for a simple single file status GUI please see [Rasmus' one-p
 Status
 -
 
-Currently the Opcache status, statistics, cached files are implemented and shiny graphs are implemented.
+Currently the Opcache status, statistics, cached files and shiny graphs are implemented.
 
 Some features that will be implemented soon are:
 
