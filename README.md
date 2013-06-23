@@ -6,7 +6,7 @@ GUI for PHP's OpCache. I started this project to see what you can do with PHP's 
 If you are looking for a simple single file status GUI please see [Rasmus' one-page OpCache project][rasmus].
 
 Status
-=
+-
 
 Currently the Opcache status, statistics en cached files are implemented.
 
@@ -20,7 +20,7 @@ Some features that will be implemented soon are:
 If you would like to see a feature please add [an issue][issues]. If you want to contribute please feel free to send a PR.
 
 License
-=
+-
 
 [MIT License (`MIT`)][MIT]
 
