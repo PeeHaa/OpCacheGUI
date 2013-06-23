@@ -167,6 +167,7 @@ article table {
     border-top-color: white;
     border-radius: 0 0 4px 4px;
     width: 100%;
+    margin-bottom: 20px;
 }
 
 article th {
@@ -174,6 +175,10 @@ article th {
     padding-left: 20px;
     padding: 2px 20px;
     white-space: nowrap;
+}
+
+article td.empty {
+    text-align: center;
 }
 
 article .odd {

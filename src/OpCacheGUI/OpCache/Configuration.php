@@ -82,4 +82,9 @@ class Configuration
             'opcache.optimization_level'      => $directives['opcache.optimization_level'],
         ];
     }
+
+    public function getBlackList()
+    {
+        return $this->configData['blacklist'];
+    }
 }

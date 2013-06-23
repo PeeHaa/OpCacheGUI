@@ -19,3 +19,26 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
         <?php } ?>
     </table>
 </article>
+<article class="cols-1">
+    <h2><?= $translator->translate('blacklist.title'); ?></h2>
+    <table>
+        <?php $classCycler->rewind(); ?>
+        <?php if (!count($config->getBlackList())) { ?>
+            <tr class="<?= $classCycler->next(); ?>">
+                <td class="empty"><?= $translator->translate('blacklist.empty'); ?></td>
+            </tr>
+        <?php } else { ?>
+            <?php foreach ($config->getIniDirectives() as $key => $directiveItem) { ?>
+                <tr class="<?= $classCycler->next(); ?>">
+                    <th><?= $translator->translate('config.' . $key); ?></th>
+                    <?php if (in_array($key, ['opcache.enable', 'opcache.enable_cli', 'opcache.use_cwd', 'opcache.validate_timestamps', 'opcache.inherited_hack', 'opcache.dups_fix', 'opcache.revalidate_path', 'opcache.save_comments', 'opcache.load_comments', 'opcache.fast_shutdown', 'opcache.enable_file_override'])) { ?>
+                        <th><img src="/style/bullet-<?= $directiveItem ? 'green' : 'red'; ?>-icon.png"></th>
+                    <?php } else { ?>
+                        <th><?= $directiveItem; ?></th>
+                    <?php } ?>
+                    <td><?= $translator->translate('config.' . $key . '.description'); ?></td>
+                </tr>
+            <?php } ?>
+        <?php } ?>
+    </table>
+</article>
