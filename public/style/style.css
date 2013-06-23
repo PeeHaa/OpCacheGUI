@@ -126,6 +126,10 @@ footer ul li a:hover {
     padding-top: 10px;
 }
 
+article {
+    xposition: relative;
+}
+
 article.cols-3.first {
     margin-left: 0;
 }
@@ -157,7 +161,7 @@ article h2 {
     border-radius: 4px 4px 0 0;
 }
 
-article table {
+article table, article canvas {
     padding: 20px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -190,4 +194,34 @@ article td.empty {
 
 article .odd {
     background: #eeeeee;
+}
+
+article ul {
+    border-right: 1px solid #d8dee2;
+    border-bottom: 1px solid #d8dee2;
+    display: inline;
+    position: absolute;
+    border-bottom-right-radius: 5px;
+    padding: 5px 5px 5px 20px;
+    background: white;
+}
+
+article .graph-legend {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #d8dee2;
+    border-radius: 3px;
+    display: inline-block;
+}
+
+article .graph-legend.red {
+    background: #ff0000;
+}
+
+article .graph-legend.green {
+    background: #00ff00;
+}
+
+article .graph-legend.blue {
+    background: #0000ff;
 }

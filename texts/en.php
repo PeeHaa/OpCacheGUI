@@ -95,4 +95,9 @@ $texts = [
     'scripts.memory_consumption'                            => 'Memory',
     'scripts.last_used_timestamp'                           => 'Last used',
     'scripts.timestamp'                                     => 'Created',
+
+    'graph.memory.title'                                    => 'Memory',
+    'graph.memory.free.%'                                   => '%s free',
+    'graph.memory.used.%'                                   => '%s used',
+    'graph.memory.wasted.%'                                 => '%s wasted',
 ];

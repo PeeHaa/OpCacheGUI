@@ -78,6 +78,31 @@ class Status
     }
 
     /**
+     * Gets the memory info formatted to build a graph
+     *
+     * @return string JSON encoded memory info
+     */
+    public function getGraphMemoryInfo()
+    {
+        $memory = $this->statusData['memory_usage'];
+
+        return json_encode([
+            [
+                'value' => $memory['wasted_memory'],
+                'color' => '#ff0000',
+            ],
+            [
+                'value' => $memory['used_memory'],
+                'color' => '#0000ff',
+            ],
+            [
+                'value' => $memory['free_memory'],
+                'color' => '#00ff00',
+            ],
+        ]);
+    }
+
+    /**
      * Gets the statistics info
      *
      * @return array The statistics info

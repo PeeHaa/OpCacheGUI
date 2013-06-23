@@ -1,0 +1,25 @@
+<?php
+$status = new OpCacheGUI\OpCache\Status($byteFormatter);
+$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
+
+$memoryInfo = $status->getMemoryInfo();
+?>
+
+<article class="cols-3">
+    <h2><?= $translator->translate('graph.memory.title'); ?></h2>
+    <ul>
+        <li>
+            <div class="graph-legend green"></div>
+            <?= sprintf($translator->translate('graph.memory.free.%'), $memoryInfo['free_memory']); ?>
+        </li>
+        <li>
+            <div class="graph-legend red"></div>
+            <?= sprintf($translator->translate('graph.memory.used.%'), $memoryInfo['used_memory']); ?>
+        </li>
+        <li>
+            <div class="graph-legend blue"></div>
+            <?= sprintf($translator->translate('graph.memory.wasted.%'), $memoryInfo['wasted_memory']); ?>
+        </li>
+    </ul>
+    <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphMemoryInfo(); ?>'></canvas>
+</article>
