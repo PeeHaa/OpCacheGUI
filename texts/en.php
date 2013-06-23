@@ -100,4 +100,12 @@ $texts = [
     'graph.memory.free.%'                                   => '%s free',
     'graph.memory.used.%'                                   => '%s used',
     'graph.memory.wasted.%'                                 => '%s wasted',
+    'graph.keys.title'                                      => 'Keys',
+    'graph.keys.free.%'                                     => '%s free',
+    'graph.keys.scripts.%'                                  => '%s used',
+    'graph.keys.wasted.%'                                   => '%s wasted',
+    'graph.hits.title'                                      => 'Hits',
+    'graph.hits.hits.%'                                     => '%s hits',
+    'graph.hits.misses.%'                                   => '%s misses',
+    'graph.hits.blacklist.%'                                => '%s blacklist',
 ];

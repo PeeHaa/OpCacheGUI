@@ -129,6 +129,56 @@ class Status
     }
 
     /**
+     * Gets the key statistics formatted to build a graph
+     *
+     * @return string JSON encoded key statistics
+     */
+    public function getGraphKeyStatsInfo()
+    {
+        $stats = $this->statusData['opcache_statistics'];
+
+        return json_encode([
+            [
+                'value' => $stats['num_cached_keys'] - $stats['num_cached_scripts'],
+                'color' => '#ff0000',
+            ],
+            [
+                'value' => $stats['num_cached_scripts'],
+                'color' => '#0000ff',
+            ],
+            [
+                'value' => $stats['max_cached_keys'] - $stats['num_cached_keys'],
+                'color' => '#00ff00',
+            ],
+        ]);
+    }
+
+    /**
+     * Gets the hit statistics formatted to build a graph
+     *
+     * @return string JSON encoded hit statistics
+     */
+    public function getGraphHitStatsInfo()
+    {
+        $stats = $this->statusData['opcache_statistics'];
+
+        return json_encode([
+            [
+                'value' => $stats['misses'],
+                'color' => '#ff0000',
+            ],
+            [
+                'value' => $stats['blacklist_misses'],
+                'color' => '#0000ff',
+            ],
+            [
+                'value' => $stats['hits'],
+                'color' => '#00ff00',
+            ],
+        ]);
+    }
+
+    /**
      * Gets the cached scripts
      *
      * @return array List of the cached scripts

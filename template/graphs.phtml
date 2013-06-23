@@ -3,9 +3,10 @@ $status = new OpCacheGUI\OpCache\Status($byteFormatter);
 $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 
 $memoryInfo = $status->getMemoryInfo();
+$statsInfo  = $status->getStatsInfo();
 ?>
 
-<article class="cols-3">
+<article class="cols-3 first">
     <h2><?= $translator->translate('graph.memory.title'); ?></h2>
     <ul>
         <li>
@@ -22,4 +23,40 @@ $memoryInfo = $status->getMemoryInfo();
         </li>
     </ul>
     <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphMemoryInfo(); ?>'></canvas>
+</article>
+<article class="cols-3">
+    <h2><?= $translator->translate('graph.keys.title'); ?></h2>
+    <ul>
+        <li>
+            <div class="graph-legend green"></div>
+            <?= sprintf($translator->translate('graph.keys.free.%'), $statsInfo['max_cached_keys'] - $statsInfo['num_cached_keys']); ?>
+        </li>
+        <li>
+            <div class="graph-legend red"></div>
+            <?= sprintf($translator->translate('graph.keys.scripts.%'), $statsInfo['num_cached_keys'] - $statsInfo['num_cached_scripts']); ?>
+        </li>
+        <li>
+            <div class="graph-legend blue"></div>
+            <?= sprintf($translator->translate('graph.keys.wasted.%'), $statsInfo['num_cached_scripts']); ?>
+        </li>
+    </ul>
+    <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphKeyStatsInfo(); ?>'></canvas>
+</article>
+<article class="cols-3">
+    <h2><?= $translator->translate('graph.hits.title'); ?></h2>
+    <ul>
+        <li>
+            <div class="graph-legend green"></div>
+            <?= sprintf($translator->translate('graph.hits.hits.%'), $statsInfo['hits']); ?>
+        </li>
+        <li>
+            <div class="graph-legend red"></div>
+            <?= sprintf($translator->translate('graph.hits.misses.%'), $statsInfo['misses']); ?>
+        </li>
+        <li>
+            <div class="graph-legend blue"></div>
+            <?= sprintf($translator->translate('graph.hits.blacklist.%'), $statsInfo['blacklist_misses']); ?>
+        </li>
+    </ul>
+    <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphHitStatsInfo(); ?>'></canvas>
 </article>
