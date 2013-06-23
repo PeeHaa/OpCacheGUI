@@ -8,14 +8,14 @@ If you are looking for a simple single file status GUI please see [Rasmus' one-p
 Status
 -
 
-Currently the Opcache status, statistics en cached files are implemented.
+Currently the Opcache status, statistics, cached files are implemented and shiny graphs are implemented.
 
 Some features that will be implemented soon are:
 
 - Authentication
 - Cache invalidation
 - Auto refresh
-- Shiny graphs
+- Sorting of columns
 
 If you would like to see a feature please add [an issue][issues]. If you want to contribute please feel free to send a PR.
 
