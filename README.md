@@ -16,6 +16,7 @@ Some features that will be implemented soon are:
 - Cache invalidation
 - Auto refresh
 - Sorting of columns
+- Changing of graph types
 
 If you would like to see a feature please add [an issue][issues]. If you want to contribute please feel free to send a PR.
 
