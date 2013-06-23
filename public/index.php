@@ -2,8 +2,8 @@
 
 require __DIR__ . '/../bootstrap.php';
 
-$status      = new \OpCacheGUI\OpCache\Status;
-$classCycler = new \OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
+$status      = new OpCacheGUI\OpCache\Status($byteFormatter);
+$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 ?>
 
 <!DOCTYPE html>
@@ -42,13 +42,13 @@ $classCycler = new \OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
                 </table>
             </article>
             <article class="cols-3">
-                <h2><?= $translator->translate('status.title'); ?></h2>
+                <h2><?= $translator->translate('memory.title'); ?></h2>
                 <table>
                     <?php $classCycler->rewind(); ?>
-                    <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
+                    <?php foreach ($status->getMemoryInfo() as $key => $memoryItem) { ?>
                         <tr class="<?= $classCycler->next(); ?>">
-                            <th><?= $translator->translate('status.' . $key); ?></th>
-                            <td><img src="/style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
+                            <th><?= $translator->translate('memory.' . $key); ?></th>
+                            <td><?= $memoryItem; ?></td>
                         </tr>
                     <?php } ?>
                 </table>
