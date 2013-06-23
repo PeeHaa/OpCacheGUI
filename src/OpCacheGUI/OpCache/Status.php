@@ -89,15 +89,15 @@ class Status
         return json_encode([
             [
                 'value' => $memory['wasted_memory'],
-                'color' => '#ff0000',
+                'color' => '#e0642e',
             ],
             [
                 'value' => $memory['used_memory'],
-                'color' => '#0000ff',
+                'color' => '#2e97e0',
             ],
             [
                 'value' => $memory['free_memory'],
-                'color' => '#00ff00',
+                'color' => '#bce02e',
             ],
         ]);
     }
@@ -140,15 +140,15 @@ class Status
         return json_encode([
             [
                 'value' => $stats['num_cached_keys'] - $stats['num_cached_scripts'],
-                'color' => '#ff0000',
+                'color' => '#e0642e',
             ],
             [
                 'value' => $stats['num_cached_scripts'],
-                'color' => '#0000ff',
+                'color' => '#2e97e0',
             ],
             [
                 'value' => $stats['max_cached_keys'] - $stats['num_cached_keys'],
-                'color' => '#00ff00',
+                'color' => '#bce02e',
             ],
         ]);
     }
@@ -165,15 +165,15 @@ class Status
         return json_encode([
             [
                 'value' => $stats['misses'],
-                'color' => '#ff0000',
+                'color' => '#e0642e',
             ],
             [
                 'value' => $stats['blacklist_misses'],
-                'color' => '#0000ff',
+                'color' => '#2e97e0',
             ],
             [
                 'value' => $stats['hits'],
-                'color' => '#00ff00',
+                'color' => '#bce02e',
             ],
         ]);
     }

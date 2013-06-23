@@ -196,6 +196,10 @@ article table, article canvas {
     margin-bottom: 20px;
 }
 
+article tr.script {
+    display: none;
+}
+
 article th {
     text-align: left;
     padding: 2px 20px;
@@ -209,6 +213,16 @@ article th.full_path {
 article th.hits, article th.memory_consumption, article th.last_used_timestamp, article th.last_used_timestamp, article th.timestamp {
     padding-left: 0;
     font-weight: bold;
+}
+
+article td.directory {
+    padding: 0 20px;
+    cursor: pointer;
+}
+
+article td.directory img {
+    position: relative;
+    top: 3px;
 }
 
 article td.full_path {
@@ -251,13 +265,13 @@ article .graph-legend {
 }
 
 article .graph-legend.red {
-    background: #ff0000;
+    background: #e0642e;
 }
 
 article .graph-legend.green {
-    background: #00ff00;
+    background: #bce02e;
 }
 
 article .graph-legend.blue {
-    background: #0000ff;
+    background: #2e97e0;
 }
