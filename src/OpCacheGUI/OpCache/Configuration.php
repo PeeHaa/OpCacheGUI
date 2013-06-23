@@ -83,6 +83,11 @@ class Configuration
         ];
     }
 
+    /**
+     * Gets blacklisted files
+     *
+     * @return array List of blacklisted files
+     */
     public function getBlackList()
     {
         return $this->configData['blacklist'];
