@@ -172,9 +172,16 @@ article table {
 
 article th {
     text-align: left;
-    padding-left: 20px;
     padding: 2px 20px;
     white-space: nowrap;
+}
+
+article th.hits, article th.memory_consumption, article th.last_used_timestamp, article th.last_used_timestamp, article th.timestamp {
+    padding-left: 0;
+}
+
+article td.full_path {
+    padding-left: 20px;
 }
 
 article td.empty {

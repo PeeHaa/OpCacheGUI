@@ -8,11 +8,11 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
     <table>
         <thead>
             <tr>
-                <th><?= $translator->translate('scripts.full_path'); ?></th>
-                <th><?= $translator->translate('scripts.hits'); ?></th>
-                <th><?= $translator->translate('scripts.memory_consumption'); ?></th>
-                <th><?= $translator->translate('scripts.last_used_timestamp'); ?></th>
-                <th><?= $translator->translate('scripts.timestamp'); ?></th>
+                <th class="full_path"><?= $translator->translate('scripts.full_path'); ?></th>
+                <th class="hits"><?= $translator->translate('scripts.hits'); ?></th>
+                <th class="memory_consumption"><?= $translator->translate('scripts.memory_consumption'); ?></th>
+                <th class="last_used_timestamp"><?= $translator->translate('scripts.last_used_timestamp'); ?></th>
+                <th class="timestamp"><?= $translator->translate('scripts.timestamp'); ?></th>
             </tr>
         </thead>
         <tbody>
@@ -23,11 +23,11 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
             <?php } else { ?>
                 <?php foreach ($status->getCachedScripts() as $key => $scriptItem) { ?>
                     <tr class="<?= $classCycler->next(); ?>">
-                        <td><?= $scriptItem['full_path']; ?></td>
-                        <td><?= $scriptItem['hits']; ?></td>
-                        <td><?= $scriptItem['memory_consumption']; ?></td>
-                        <td><?= $scriptItem['last_used_timestamp']; ?></td>
-                        <td><?= $scriptItem['timestamp']; ?></td>
+                        <td class="full_path"><?= $scriptItem['full_path']; ?></td>
+                        <td class="hits"><?= $scriptItem['hits']; ?></td>
+                        <td class="memory_consumption"><?= $scriptItem['memory_consumption']; ?></td>
+                        <td class="last_used_timestamp"><?= $scriptItem['last_used_timestamp']; ?></td>
+                        <td class="timestamp"><?= $scriptItem['timestamp']; ?></td>
                     </tr>
                 <?php } ?>
             <?php } ?>
