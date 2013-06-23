@@ -10,7 +10,8 @@
  * @version    1.0.0
  */
 use OpCacheGUI\I18n\Translator,
-    OpCacheGUI\Format\Byte as ByteFormatter;
+    OpCacheGUI\Format\Byte as ByteFormatter,
+    OpCacheGUI\Security\CsrfToken;
 
 /**
  * Bootstrap the library
@@ -23,6 +24,11 @@ require_once __DIR__ . '/src/OpCacheGUI/bootstrap.php';
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('log_errors', 0);
+
+/**
+ * Start the session
+ */
+session_start();
 
 /**
  * Setup timezone
@@ -38,6 +44,11 @@ $translator = new Translator('en');
  * Setup formatters
  */
 $byteFormatter = new ByteFormatter;
+
+/**
+ * Setup CSRF token
+ */
+$csrfToken = new CsrfToken;
 
 /**
  * Setup routing
@@ -66,6 +77,11 @@ switch(trim($_SERVER['REQUEST_URI'], '/')) {
         $active = 'graphs';
         ob_end_clean();
         break;
+
+    case 'reset':
+        ob_start();
+        require __DIR__ . '/template/reset.pjson';
+        return;
 
     default:
         ob_start();

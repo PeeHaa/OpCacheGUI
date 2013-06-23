@@ -6,6 +6,11 @@ $texts = [
     'menu.scripts'                                          => 'Cached scripts',
     'menu.graphs'                                           => 'Graphs',
 
+    'reset.submit'                                          => 'Reset',
+    'confirmation.reset'                                    => 'Are you sure you want to reset the cache?',
+    'confirmation.yes'                                      => 'Yes',
+    'confirmation.no'                                       => 'No',
+
     'status.title'                                          => 'Status',
     'status.opcache_enabled'                                => 'Enabled',
     'status.cache_full'                                     => 'Cache full',
@@ -95,6 +100,8 @@ $texts = [
     'scripts.memory_consumption'                            => 'Memory',
     'scripts.last_used_timestamp'                           => 'Last used',
     'scripts.timestamp'                                     => 'Created',
+    'scripts.invalidate.alt'                                => 'x',
+    'scripts.invalidate.title'                              => 'Invalidate script',
 
     'graph.memory.title'                                    => 'Memory',
     'graph.memory.free.%'                                   => '%s free',

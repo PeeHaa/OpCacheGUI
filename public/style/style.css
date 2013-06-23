@@ -127,7 +127,7 @@ footer ul li a:hover {
 }
 
 article {
-    xposition: relative;
+    position: relative;
 }
 
 article.cols-3.first {
@@ -161,6 +161,28 @@ article h2 {
     border-radius: 4px 4px 0 0;
 }
 
+article h2 form {
+    display: inline;
+    position: absolute;
+    right: 0;
+    top: 1px;
+}
+
+article .confirmation {
+    background: white;
+    top: 31px;
+    position: absolute;
+    left: 1px;
+    width: 308px;
+    height: 89px;
+    text-align: center;
+}
+
+article .confirmation p {
+    margin: 20px;
+    text-align: center;
+}
+
 article table, article canvas {
     padding: 20px;
     -moz-box-sizing: border-box;
@@ -180,12 +202,26 @@ article th {
     white-space: nowrap;
 }
 
+article th.full_path {
+    font-weight: bold;
+}
+
 article th.hits, article th.memory_consumption, article th.last_used_timestamp, article th.last_used_timestamp, article th.timestamp {
     padding-left: 0;
+    font-weight: bold;
 }
 
 article td.full_path {
     padding-left: 20px;
+}
+
+article td.invalidate {
+    text-align: center;
+    vertical-align: middle;
+}
+
+article .invalidate {
+    width: 20px;
 }
 
 article td.empty {
