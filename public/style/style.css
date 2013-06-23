@@ -172,6 +172,7 @@ article table {
 article th {
     text-align: left;
     padding-left: 20px;
+    padding: 2px 20px;
 }
 
 article .odd {

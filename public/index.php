@@ -54,13 +54,13 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
                 </table>
             </article>
             <article class="cols-3">
-                <h2><?= $translator->translate('status.title'); ?></h2>
+                <h2><?= $translator->translate('stats.title'); ?></h2>
                 <table>
                     <?php $classCycler->rewind(); ?>
-                    <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
+                    <?php foreach ($status->getStatsInfo() as $key => $statisticItem) { ?>
                         <tr class="<?= $classCycler->next(); ?>">
-                            <th><?= $translator->translate('status.' . $key); ?></th>
-                            <td><img src="/style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
+                            <th><?= $translator->translate('stats.' . $key); ?></th>
+                            <td><?= $statisticItem; ?></td>
                         </tr>
                     <?php } ?>
                 </table>

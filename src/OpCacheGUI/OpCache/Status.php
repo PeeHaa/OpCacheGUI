@@ -67,11 +67,39 @@ class Status
      */
     public function getMemoryInfo()
     {
+        $memory = $this->statusData['memory_usage'];
+
         return [
-            'used_memory'               => $this->byteFormatter->format($this->statusData['memory_usage']['used_memory']),
-            'free_memory'               => $this->byteFormatter->format($this->statusData['memory_usage']['free_memory']),
-            'wasted_memory'             => $this->byteFormatter->format($this->statusData['memory_usage']['wasted_memory']),
-            'current_wasted_percentage' => round($this->statusData['memory_usage']['current_wasted_percentage'], 2) . '%',
+            'used_memory'               => $this->byteFormatter->format($memory['used_memory']),
+            'free_memory'               => $this->byteFormatter->format($memory['free_memory']),
+            'wasted_memory'             => $this->byteFormatter->format($memory['wasted_memory']),
+            'current_wasted_percentage' => round($memory['current_wasted_percentage'], 2) . '%',
+        ];
+    }
+
+    /**
+     * Gets the statistics info
+     *
+     * @return array The statistics info
+     */
+    public function getStatsInfo()
+    {
+        $stats = $this->statusData['opcache_statistics'];
+
+        return [
+            'num_cached_scripts'   => $stats['num_cached_scripts'],
+            'num_cached_keys'      => $stats['num_cached_keys'],
+            'max_cached_keys'      => $stats['max_cached_keys'],
+            'hits'                 => $stats['hits'],
+            'misses'               => $stats['misses'],
+            'blacklist_misses'     => $stats['blacklist_misses'],
+            'blacklist_miss_ratio' => round($stats['blacklist_miss_ratio'], 2),
+            'opcache_hit_rate'     => round($stats['opcache_hit_rate'], 2) . '%',
+            'start_time'           => (new \DateTime('@' . $stats['start_time']))->format('H:i:s d-m-Y'),
+            'last_restart_time'    => $stats['last_restart_time'] ? (new \DateTime('@' . $stats['last_restart_time']))->format('H:i:s d-m-Y') : null,
+            'oom_restarts'         => $stats['oom_restarts'],
+            'hash_restarts'        => $stats['hash_restarts'],
+            'manual_restarts'      => $stats['manual_restarts'],
         ];
     }
 }
