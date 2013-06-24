@@ -187,6 +187,10 @@ class Status
     {
         $scripts = [];
         foreach ($this->statusData['scripts'] as $script) {
+            if ($script['timestamp'] === 0) {
+                continue;
+            }
+
             $scripts[] = [
                 'full_path'           => $script['full_path'],
                 'hits'                => $script['hits'],

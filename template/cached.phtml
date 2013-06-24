@@ -38,9 +38,9 @@ foreach($status->getCachedScripts() as $data) {
                             <td class="last_used_timestamp"><?= $script['last_used_timestamp']; ?></td>
                             <td class="timestamp"><?= $script['timestamp']; ?></td>
                             <td class="invalidate">
-                                <form action="/" method="post">
+                                <form action="/invalidate" method="post">
                                     <input type="hidden" name="csrfToken" value="<?= $csrfToken->get(); ?>">
-                                    <input type="hidden" name="key" value="<?= $filename; ?>">
+                                    <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
                                     <input type="submit" name="submit" value="<?= $translator->translate('script.invalidate'); ?>">
                                 </form>
                             </td>

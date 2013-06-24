@@ -63,6 +63,39 @@
         });
     }
 
+
+    // invalidate script
+    var cachedTable = document.getElementById('cached');
+    if (cachedTable) {
+        $(cachedTable).on('submit', function(e) {
+            e.preventDefault();
+            var invalidateForm = $(e.target).closestByTagName('form');
+
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState < 4 || xhr.status !== 200) {
+                    return;
+                }
+
+                if (xhr.readyState === 4) {
+                    var data = JSON.parse(xhr.responseText);
+
+                    if (typeof data.result === 'undefined' || data.result !== 'success') {
+                        // I should really handle the error here
+                    } else {
+                        $($(invalidateForm).closestByTagName('tr')).fadeOut(function() {
+                            $(invalidateForm).closestByTagName('tr').parentNode.removeChild($(invalidateForm).closestByTagName('tr'));
+                        }, 20);
+                    }
+                }
+            }.bind(this);
+
+            xhr.open(invalidateForm.method, invalidateForm.action, true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.send('csrfToken=' + invalidateForm.querySelector('input[name="csrfToken"]').value + '&key=' + encodeURIComponent(invalidateForm.querySelector('input[name="key"]').value));
+        });
+    }
+
     // toggle display cached scripts
     var cachedTable = document.getElementById('cached');
     if (cachedTable) {
