@@ -133,6 +133,10 @@ DomHandler.prototype.closestByTagName = function(tagName) {
     var element = this.domElement;
     tagName = tagName.toUpperCase();
 
+    if (element.tagName == tagName) {
+        return element;
+    }
+
     while(element.parentNode) {
         element = element.parentNode;
 

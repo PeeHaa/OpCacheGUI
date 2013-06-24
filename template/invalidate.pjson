@@ -1,0 +1,7 @@
+<?php
+
+if (!$csrfToken->validate($_POST['csrfToken']) || !opcache_invalidate($_POST['script'])) {
+    echo json_encode(['result' => 'failed']);
+} else {
+    echo json_encode(['result' => 'success']);
+}

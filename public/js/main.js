@@ -9,7 +9,7 @@
     // reset cache
     var resetForm = document.getElementById('reset');
     if (resetForm) {
-        resetForm.addEventListener('submit', function(e) {
+        $(resetForm).on('submit', function(e) {
             e.preventDefault();
 
             var confirmationBox = document.createElement('div'),
@@ -60,6 +60,44 @@
                 xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
                 xhr.send('csrfToken=' + resetForm.querySelector('input[type=hidden]').value);
             });
+        });
+    }
+
+    // toggle display cached scripts
+    var cachedTable = document.getElementById('cached');
+    if (cachedTable) {
+        $(cachedTable).on('click', function(e) {
+            var td = $(e.target).closestByTagName('td');
+
+            if (!td || !$(td).hasClass('directory')) {
+                return;
+            }
+
+            if ($(td).hasClass('active')) {
+                $(td).removeClass('active');
+                td.querySelector('img').src = '/style/toggle-expand.png';
+                td.querySelector('img').setAttribute('alt', '+');
+                var rows = document.querySelectorAll('.script');
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    if (rows[i].getAttribute('data-directoryid') != td.getAttribute('data-directoryid')) {
+                        continue;
+                    }
+
+                    $(rows[i]).removeClass('active');
+                }
+            } else {
+                $(td).addClass('active');
+                td.querySelector('img').src = '/style/toggle-collapse.png';
+                td.querySelector('img').setAttribute('alt', '-');
+                var rows = document.querySelectorAll('.script');
+                for (var i = 0, l = rows.length; i < l; i++) {
+                    if (rows[i].getAttribute('data-directoryid') != td.getAttribute('data-directoryid')) {
+                        continue;
+                    }
+
+                    $(rows[i]).addClass('active');
+                }
+            }
         });
     }
 }());

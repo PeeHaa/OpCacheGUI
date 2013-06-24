@@ -95,13 +95,13 @@ $texts = [
 
     'scripts.title'                                         => 'Cached scripts',
     'scripts.empty'                                         => 'No scripts are cached',
-    'scripts.full_path'                                     => 'Path',
+    'scripts.directory.script_count'                        => ' (%s files)',
+    'scripts.full_path'                                     => 'Filename',
     'scripts.hits'                                          => 'Hits',
     'scripts.memory_consumption'                            => 'Memory',
     'scripts.last_used_timestamp'                           => 'Last used',
     'scripts.timestamp'                                     => 'Created',
-    'scripts.invalidate.alt'                                => 'x',
-    'scripts.invalidate.title'                              => 'Invalidate script',
+    'script.invalidate'                                     => 'Invalidate',
 
     'graph.memory.title'                                    => 'Memory',
     'graph.memory.free.%'                                   => '%s free',

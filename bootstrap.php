@@ -83,6 +83,11 @@ switch(trim($_SERVER['REQUEST_URI'], '/')) {
         require __DIR__ . '/template/reset.pjson';
         return;
 
+    case 'invalidate':
+        ob_start();
+        require __DIR__ . '/template/invalidate.pjson';
+        return;
+
     default:
         ob_start();
         require __DIR__ . '/template/status.phtml';

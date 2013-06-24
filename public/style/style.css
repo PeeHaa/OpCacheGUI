@@ -200,6 +200,10 @@ article tr.script {
     display: none;
 }
 
+article tr.script.active {
+    display: table-row;
+}
+
 article th {
     text-align: left;
     padding: 2px 20px;
