@@ -25,6 +25,14 @@ License
 
 [MIT License (`MIT`)][MIT]
 
+Screenshots
+-
+
+[![OpCacheGUI status][1]][1][![OpCacheGUI graphs][2]][2]
+
 [rasmus]: https://github.com/rlerdorf/opcache-status
 [issues]: https://github.com/PeeHaa/OpCacheGUI/issues
 [MIT]: http://spdx.org/licenses/MIT
+
+[1]: https://opcachegui.pieterhordijk.com/style/opcachegui-home.png
+[2]: https://opcachegui.pieterhordijk.com/style/opcachegui-graphs.png
