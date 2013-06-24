@@ -1,6 +1,6 @@
 <?php
 
-if (!opcache_reset() || !$csrfToken->validate($_POST['csrfToken'])) {
+if (!$csrfToken->validate($_POST['csrfToken']) || !opcache_reset()) {
     echo json_encode(['result' => 'failed']);
 } else {
     echo json_encode(['result' => 'success']);
