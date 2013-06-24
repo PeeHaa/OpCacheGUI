@@ -8,15 +8,21 @@ If you are looking for a simple single file status GUI please see [Rasmus' one-p
 Status
 -
 
-Currently the Opcache status, statistics, cached files and shiny graphs are implemented.
+###Implemented
+
+- OpCache status
+- OpCache statistics
+- Cached scripts overview
+- Cached scripts invalidation
+- Shiny graphs
 
 Some features that will be implemented soon are:
 
 - Authentication
-- Cache invalidation
 - Auto refresh
 - Sorting of columns
 - Changing of graph types
+- Fix design of cached scripts and config pages
 
 If you would like to see a feature please add [an issue][issues]. If you want to contribute please feel free to send a PR.
 
