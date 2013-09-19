@@ -5,6 +5,26 @@ GUI for PHP's OpCache. I started this project to see what you can do with PHP's 
 
 If you are looking for a simple single file status GUI please see [Rasmus' one-page OpCache project][rasmus].
 
+Installation
+-
+
+OpCacheGUI currently is designed to under an own vhost.
+
+###Installation Steps
+
+1. Get the code, eg. `git clone https://github.com/PeeHaa/OpCacheGUI.git` or download [the zip](https://github.com/PeeHaa/OpCacheGUI/archive/master.zip)
+2. Set the vhost's document root to the `public` folder
+3. In case of using apache create an `.htaccess` file in the `public/` directory with the following content:
+
+```
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !=/favicon.ico
+RewriteRule ^ /index.php [L]
+```
+
+
 Status
 -
 
