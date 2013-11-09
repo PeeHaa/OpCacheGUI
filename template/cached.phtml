@@ -20,7 +20,7 @@ foreach($status->getCachedScripts() as $data) {
                 <?php $i = 0; ?>
                 <?php foreach ($directories as $directory => $scripts) { ?>
                     <tr class="<?= $classCycler->next(); ?>">
-                        <td colspan="6" class="directory" data-directoryid="<?= ++$i; ?>"><img src="/style/toggle-expand.png" alt="+"><?= $directory . sprintf($translator->translate('scripts.directory.script_count'), count($scripts)); ?></td>
+                        <td colspan="6" class="directory" data-directoryid="<?= ++$i; ?>"><img src="style/toggle-expand.png" alt="+"><?= $directory . sprintf($translator->translate('scripts.directory.script_count'), count($scripts)); ?></td>
                     </tr>
                     <tr class="script heading" data-directoryid="<?= $i; ?>">
                         <th class="full_path"><?= $translator->translate('scripts.full_path'); ?></th>
@@ -38,7 +38,7 @@ foreach($status->getCachedScripts() as $data) {
                             <td class="last_used_timestamp"><?= $script['last_used_timestamp']; ?></td>
                             <td class="timestamp"><?= $script['timestamp']; ?></td>
                             <td class="invalidate">
-                                <form action="/invalidate" method="post">
+                                <form action="invalidate" method="post">
                                     <input type="hidden" name="csrfToken" value="<?= $csrfToken->get(); ?>">
                                     <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
                                     <input type="submit" name="submit" value="<?= $translator->translate('script.invalidate'); ?>">

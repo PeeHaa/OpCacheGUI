@@ -6,7 +6,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 <article class="cols-3 first">
     <h2>
         <?= $translator->translate('status.title'); ?>
-        <form action="/reset" method="post" id="reset" data-confirmation="<?= $translator->translate('confirmation.reset'); ?>" data-yes="<?= $translator->translate('confirmation.yes'); ?>" data-no="<?= $translator->translate('confirmation.no'); ?>">
+        <form action="reset" method="post" id="reset" data-confirmation="<?= $translator->translate('confirmation.reset'); ?>" data-yes="<?= $translator->translate('confirmation.yes'); ?>" data-no="<?= $translator->translate('confirmation.no'); ?>">
             <input type="hidden" name="csrfToken" value="<?= $csrfToken->get(); ?>">
             <input type="submit" name="submit" value="<?= $translator->translate('reset.submit'); ?>">
         </form>
@@ -15,7 +15,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
         <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
             <tr class="<?= $classCycler->next(); ?>">
                 <th><?= $translator->translate('status.' . $key); ?></th>
-                <td><img src="/style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
+                <td><img src="style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
             </tr>
         <?php } ?>
     </table>

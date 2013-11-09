@@ -10,7 +10,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
             <tr class="<?= $classCycler->next(); ?>">
                 <th><?= $translator->translate('config.' . $key); ?></th>
                 <?php if (in_array($key, ['opcache.enable', 'opcache.enable_cli', 'opcache.use_cwd', 'opcache.validate_timestamps', 'opcache.inherited_hack', 'opcache.dups_fix', 'opcache.revalidate_path', 'opcache.save_comments', 'opcache.load_comments', 'opcache.fast_shutdown', 'opcache.enable_file_override'])) { ?>
-                    <th><img src="/style/bullet-<?= $directiveItem ? 'green' : 'red'; ?>-icon.png"></th>
+                    <th><img src="style/bullet-<?= $directiveItem ? 'green' : 'red'; ?>-icon.png"></th>
                 <?php } else { ?>
                     <th><?= $directiveItem; ?></th>
                 <?php } ?>
