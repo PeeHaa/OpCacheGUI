@@ -3,20 +3,20 @@
     <head>
         <title>OpCacheGUI 1.0</title>
         <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="/style/style.css">
-        <link rel="shortcut icon" href="/favicon.ico">
+        <link rel="stylesheet" type="text/css" href="style/style.css">
+        <link rel="shortcut icon" href="favicon.ico">
         <script>'article aside footer header nav section time'.replace(/\w+/g,function(n){document.createElement(n)})</script>
     </head>
     <body>
         <header>
             <div class="content">
-                <h1><a href="/">PHP <?= phpversion(); ?> OpCache x</a></h1>
+                <h1><a href="">PHP <?= phpversion(); ?> OpCache x</a></h1>
                 <nav>
                     <ul>
-                        <li<?= $active == 'status' ? ' class="active"' : null ?>><a href="/"><?= $translator->translate('menu.status'); ?></a></li>
-                        <li<?= $active == 'config' ? ' class="active"' : null ?>><a href="/configuration"><?= $translator->translate('menu.config'); ?></a></li>
-                        <li<?= $active == 'cached' ? ' class="active"' : null ?>><a href="/cached-scripts"><?= $translator->translate('menu.scripts'); ?></a></li>
-                        <li<?= $active == 'graphs' ? ' class="active"' : null ?>><a href="/graphs"><?= $translator->translate('menu.graphs'); ?></a></li>
+                        <li<?= $active == 'status' ? ' class="active"' : null ?>><a href="status"><?= $translator->translate('menu.status'); ?></a></li>
+                        <li<?= $active == 'config' ? ' class="active"' : null ?>><a href="configuration"><?= $translator->translate('menu.config'); ?></a></li>
+                        <li<?= $active == 'cached' ? ' class="active"' : null ?>><a href="cached-scripts"><?= $translator->translate('menu.scripts'); ?></a></li>
+                        <li<?= $active == 'graphs' ? ' class="active"' : null ?>><a href="graphs"><?= $translator->translate('menu.graphs'); ?></a></li>
                     </ul>
                 </nav>
             </div>
@@ -33,8 +33,8 @@
                 <li>Maintained by <a href="https://github.com/PeeHaa" target="_blank">Pieter Hordijk</a></li>
             </ul>
         </footer>
-        <script src="/js/Chart.js"></script>
-        <script src="/js/DomHandler.js"></script>
-        <script src="/js/main.js"></script>
+        <script src="js/Chart.js"></script>
+        <script src="js/DomHandler.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>

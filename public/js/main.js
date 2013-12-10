@@ -108,7 +108,7 @@
 
             if ($(td).hasClass('active')) {
                 $(td).removeClass('active');
-                td.querySelector('img').src = '/style/toggle-expand.png';
+                td.querySelector('img').src = 'style/toggle-expand.png';
                 td.querySelector('img').setAttribute('alt', '+');
                 var rows = document.querySelectorAll('.script');
                 for (var i = 0, l = rows.length; i < l; i++) {
@@ -120,7 +120,7 @@
                 }
             } else {
                 $(td).addClass('active');
-                td.querySelector('img').src = '/style/toggle-collapse.png';
+                td.querySelector('img').src = 'style/toggle-collapse.png';
                 td.querySelector('img').setAttribute('alt', '-');
                 var rows = document.querySelectorAll('.script');
                 for (var i = 0, l = rows.length; i < l; i++) {
