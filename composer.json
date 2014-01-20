@@ -1,0 +1,18 @@
+{
+    "name": "peehaa/opcachegui",
+    "description": "GUI for PHP's OpCache",
+    "keywords": ["opcache", "gui", "graphs", "opcodes", "cache"],
+    "homepage": "https://github.com/PeeHaa/OpCacheGUI",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pieter Hordijk",
+            "email": "info@pieterhordijk.com",
+            "homepage": "https://pieterhordijk.com",
+            "role": "developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.5"
+    }
+}
