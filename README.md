@@ -8,13 +8,26 @@ If you are looking for a simple single file status GUI please see [Rasmus' one-p
 Installation
 -
 
-OpCacheGUI currently is designed to under an own vhost.
-
 ###Installation Steps
 
-1. Get the code, eg. `git clone https://github.com/PeeHaa/OpCacheGUI.git` or download [the zip](https://github.com/PeeHaa/OpCacheGUI/archive/master.zip)
-2. Set the vhost's document root to the `public` folder
-3. In case of using apache create an `.htaccess` file in the `public/` directory with the following content:
+####Get the source
+
+######Git clone
+
+    git clone https://github.com/PeeHaa/OpCacheGUI.git
+
+######Manual download a release
+
+Download the latest tagged [release][releases].
+
+######Composer
+
+    php composer.phar require peehaa/opcachegui:0.0.*
+
+####Setting up the project
+
+1. Set the vhost's document root to the `public` folder
+2. In case of using apache create an `.htaccess` file in the `public/` directory with the following content:
 
 ```
 RewriteEngine on
@@ -23,7 +36,6 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !=/favicon.ico
 RewriteRule ^ index.php [L]
 ```
-
 
 Status
 -
@@ -57,6 +69,7 @@ Screenshots
 [![OpCacheGUI status][1]][1][![OpCacheGUI graphs][2]][2]
 
 [rasmus]: https://github.com/rlerdorf/opcache-status
+[releases]: https://github.com/PeeHaa/OpCacheGUI/releases
 [issues]: https://github.com/PeeHaa/OpCacheGUI/issues
 [MIT]: http://spdx.org/licenses/MIT
 
