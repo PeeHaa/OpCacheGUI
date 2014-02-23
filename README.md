@@ -75,3 +75,7 @@ Screenshots
 
 [1]: https://opcachegui.pieterhordijk.com/style/opcachegui-home.png
 [2]: https://opcachegui.pieterhordijk.com/style/opcachegui-graphs.png
+
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/PeeHaa/opcachegui/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
