@@ -5,6 +5,8 @@ GUI for PHP's OpCache. I started this project to see what you can do with PHP's 
 
 If you are looking for a simple single file status GUI please see [Rasmus' one-page OpCache project][rasmus].
 
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/PeeHaa/opcachegui/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
 Installation
 -
 
@@ -75,7 +77,3 @@ Screenshots
 
 [1]: https://opcachegui.pieterhordijk.com/style/opcachegui-home.png
 [2]: https://opcachegui.pieterhordijk.com/style/opcachegui-graphs.png
-
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/PeeHaa/opcachegui/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-
