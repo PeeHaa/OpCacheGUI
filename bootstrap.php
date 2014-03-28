@@ -54,8 +54,16 @@ $csrfToken = new CsrfToken;
  * Setup routing
  */
 
-$request = explode('/', $_SERVER['REQUEST_URI']);
-switch(end($request)) {
+if (isset($_GET['p']))
+    $request = $_GET['p'];
+else {
+    $request = explode('/', $_SERVER['REQUEST_URI']);
+    $request = end($request);
+    $request = explode('?', $request);
+    $request = $request[0];
+}
+
+switch($request) {
     case 'configuration':
         ob_start();
         require __DIR__ . '/template/configuration.phtml';
