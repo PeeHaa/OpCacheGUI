@@ -41,7 +41,7 @@ ini_set('date.timezone', 'Europe/Amsterdam');
  * True  = use ReWrite
  * False = use $_GET
  */
-define('useRW', true);
+define('useRW', false);
 
 /**
  * Setup the translator
@@ -62,14 +62,16 @@ $csrfToken = new CsrfToken;
  * Setup routing
  */
 
-if (isset($_GET['p']))
-    $request = $_GET['p'];
-else {
+if (useRW) {
     $request = explode('/', $_SERVER['REQUEST_URI']);
     $request = end($request);
-    $request = explode('?', $request);
+    $request = explode('_', $request);
+    if (isset($request[1]))
+      $_GET['s'] = $request[1];
     $request = $request[0];
 }
+else
+    $request = isset($_GET['p']) ? $_GET['p'] : '';
 
 switch($request) {
     case 'configuration':

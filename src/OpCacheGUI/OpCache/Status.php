@@ -291,9 +291,9 @@ class Status
     public function sortURI($column)
     {
        if (isset($_GET['p']))
-          return '?p=cached-scripts' . (($this->sortOrder() == 'a') ? '&s=' . $column . 'd' : '&s=' . $column . 'a');
+          return '?p=cached-scripts&s=' . $column . (($this->sortOrder() == 'a') ? 'd' : 'a');
        else
-          return 'cached-scripts' .    (($this->sortOrder() == 'a') ? '?s=' . $column . 'd' : '?s=' . $column . 'a');
+          return 'cached-scripts_' . $column . (($this->sortOrder() == 'a') ? 'd' : 'a');
     }
 
     /**

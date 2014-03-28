@@ -63,7 +63,7 @@ $directories = $status->sortColumn($directorystats, $directories);
                             <td class="memory_consumption"><?= $byteFormatter->format($script['memory_consumption']); ?></td>
                             <td class="hits"><?= $script['hits']; ?></td>
                             <td class="invalidate">
-                              <form id="invalidate" action="<?= isset($_GET['p']) ? '?p=invalidate' : 'invalidate'; ?>" method="post">
+                              <form id="invalidate" action="<?= useRW ? 'invalidate' : '?p=invalidate'; ?>" method="post">
                                   <input type="hidden" name="csrfToken" value="<?= $csrfToken->get(); ?>">
                                   <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
                                   <input type="submit" name="submit" value="<?= $translator->translate('script.invalidate'); ?>">
