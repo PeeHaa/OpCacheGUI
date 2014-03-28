@@ -36,6 +36,14 @@ session_start();
 ini_set('date.timezone', 'Europe/Amsterdam');
 
 /**
+ * Setup Rewrite or $_GET
+ *
+ * True  = use ReWrite
+ * False = use $_GET
+ */
+define('useRW', true);
+
+/**
  * Setup the translator
  */
 $translator = new Translator('en');
