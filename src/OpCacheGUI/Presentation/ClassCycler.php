@@ -49,7 +49,7 @@ class ClassCycler
      */
     public function next()
     {
-        if ($this->position === count($this->classes)) {
+        if ($this->position >= count($this->classes)) {
             $this->rewind();
         }
 
@@ -63,4 +63,21 @@ class ClassCycler
     {
         $this->position = 0;
     }
+    
+    /**
+     * Return the current position
+     */
+    public function get_position()
+    {
+        return $this->position;
+    }
+    
+    /**
+     * Set the current position
+     */
+    public function set_position($pos)
+    {
+        $this->position = $pos;
+    }
+        
 }
