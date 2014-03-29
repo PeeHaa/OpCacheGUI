@@ -28,16 +28,7 @@ Download the latest tagged [release][releases].
 
 ####Setting up the project
 
-1. Set the vhost's document root to the `public` folder
-2. In case of using apache create an `.htaccess` file in the `public/` directory with the following content:
-
-```
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !=/favicon.ico
-RewriteRule ^ index.php [L]
-```
+Set the vhost's document root to the `public` folder
 
 Status
 -
