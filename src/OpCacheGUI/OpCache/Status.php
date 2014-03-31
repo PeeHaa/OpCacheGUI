@@ -35,6 +35,11 @@ class Status
     private $byteFormatter;
 
     /**
+     * @var variable to hold output of `setValidTimestamp()`
+     */
+    public $ValidTimestamp;
+
+    /**
      * Creates instance
      *
      * @param \OpCacheGUI\Format\Byte $byteFormatter Formatter of byte values
@@ -206,7 +211,16 @@ class Status
                 'timestamp'           => isset($script['timestamp']) ? (new \DateTime())->setTimestamp($script['timestamp'])->format('H:i:s d-m-Y') : null,
             ];
         }
+        $this->ValidTimestamp = isset($scripts[0]['timestamp']) ? 1 : 0;
         return $scripts;
+    }
+
+    /**
+     * Return value of `ValidTimestamp` (used for `Files - Created` date display)
+     */
+    public function getValidTimestamp()
+    {
+        return $this->ValidTimestamp;
     }
     
     /**
@@ -225,17 +239,17 @@ class Status
      */
     public function sortName()
     {
-        return substr($_GET['s'],0,1);
+        return $_GET['s'][0];
     }
     
     /**
-     * Gets the sort order (ascending, descending)
+     * Is sort order ascending?
      *
-     * @return sort order
+     * @return 1 or 0
      */
-    public function sortOrder()
+    public function sortOrderUp()
     {
-        return substr($_GET['s'],1,1);
+        return $_GET['s'][1] == 'a' ? 1 : 0;
     }
     
     /**
@@ -243,44 +257,36 @@ class Status
      *
      * @return sort name
      */
-    public function sortCol()
+    public function sortCol($index)
     {
-        switch ($this->sortName()) {
-           case 'h' :
-               $col = 'hits';
-               break;
-           case 'm' :
-               $col = 'memory_consumption';
-               break;
-           case 'f' :
-               $col = 'files';
-               break;
-           default:
-               $col = 'name';
-        }
-        return $col;
+        static $colArray = [
+            'h' => 'hits',
+            'm' => 'memory_consumption',
+            'f' => 'files',
+            'n' => 'name',
+            'l' => 'last_used_timestamp',
+            'c' => 'timestamp',
+        ];
+        return $colArray[$index];
     }
 
     /**
      * Sorts the array
-     *
-     * @return sorted array
      */
-    public function sortColumn($sort_array, $to_sort_array)
+    public function sortColumn(&$sort_array, $group = 'stats')
     {
         $this->sortInit();
-        $column = $this->sortCol();
-        foreach($sort_array as $key=>$val) {
-            $sortColumn[$key] = strtolower($val[$column]);
+        $column = $this->sortCol($this->sortName());
+        if ($column == 'name') {
+            $this->sortOrderUp() ? ksort($sort_array) : krsort($sort_array);
+            return;
         }
-        if ($this->sortOrder() == 'a')
-            asort($sortColumn);
-        else
-            arsort($sortColumn);
-        foreach($sortColumn as $key=>$val) {
-            $sortFinal[$key] = $to_sort_array[$key];
+        $sort_col = [];
+        $sort_key = array_keys($sort_array);
+        foreach ($sort_key as $key) {
+            $sort_col[$key] = $sort_array[$key][$group][$column];
         }
-        return $sortFinal;
+        array_multisort($sort_col, $this->sortOrderUp() ? SORT_ASC : SORT_DESC, $sort_array);
     }
 
     /**
@@ -290,10 +296,11 @@ class Status
      */
     public function sortURI($column)
     {
-       if (isset($_GET['p']))
-          return '?p=cached-scripts&s=' . $column . (($this->sortOrder() == 'a') ? 'd' : 'a');
-       else
-          return 'cached-scripts_' . $column . (($this->sortOrder() == 'a') ? 'd' : 'a');
+        $order = $column . ($this->sortName() == $column ? ($this->sortOrderUp() ? 'd' : 'a') : 'a');
+        if (useRW)
+            return 'cached-scripts_' . $order;
+        else
+            return '?p=cached-scripts&s=' . $order;
     }
 
     /**
@@ -303,7 +310,35 @@ class Status
      */
     public function sortHeader($column)
     {
-          return ($this->sortName() == $column ? (substr($_GET['s'], 1, 1) == 'a' ? '&uarr;' : '&darr;') : '');
+          return $this->sortName() == $column ? $this->sortOrderUp() ? '&uarr;' : '&darr;' : '';
     }
 
+    /**
+     * Create sort anchor for column headers
+     *
+     * @return anchor
+     */
+    public function sortAnchor($column, $text, $tag = null)
+    {
+        return ('<a href="' . $this->sortURI($column) . '">' . (isset($tag) ? '<' . $tag . '>' : '') . $text . $this->sortHeader($column) . (isset($tag) ? '</' . $tag . '>' : '') . '</a>');
+    }
+    
+    /**
+     * Populate the `directories` array
+     */
+    public function populateDirectories(&$dirs, &$data)
+    {
+      $dirname = dirname($data['full_path']);
+      $dirs[$dirname]['scripts'][basename($data['full_path'])] = $data;
+      if (empty($dirs[$dirname]['stats'])) {
+          $dirs[$dirname]['stats']['name'] = $dirname;
+          $dirs[$dirname]['stats']['hits'] = $data['hits'];
+          $dirs[$dirname]['stats']['memory_consumption'] = $data['memory_consumption'];
+          $dirs[$dirname]['stats']['files'] = 1;
+      } else {
+          $dirs[$dirname]['stats']['hits'] += $data['hits'];
+          $dirs[$dirname]['stats']['memory_consumption'] += $data['memory_consumption'];
+          $dirs[$dirname]['stats']['files']++;
+      }
+    }
 }
