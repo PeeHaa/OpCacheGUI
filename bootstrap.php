@@ -34,6 +34,27 @@ session_start();
  * Setup timezone
  */
 ini_set('date.timezone', 'Europe/Amsterdam');
+define('ADMIN_USERNAME','admin'); // <<-- change it
+define('ADMIN_PASSWORD','admin1'); // <<-- change it
+
+
+if (!isset($_SERVER['PHP_AUTH_USER']) ||
+      !isset($_SERVER['PHP_AUTH_PW']) ||
+      $_SERVER['PHP_AUTH_USER'] != ADMIN_USERNAME ||
+      $_SERVER['PHP_AUTH_PW'] != ADMIN_PASSWORD) {
+      Header("WWW-Authenticate: Basic realm=\"Opcache Login\"");
+      Header("HTTP/1.0 401 Unauthorized");
+      echo <<<EOB
+        <html><body>
+        <h1>Rejected!</h1>
+        <big>Wrong Username or Password!</big><br/>&nbsp;<br/>&nbsp;
+        </body></html>
+EOB;
+      exit;
+    }
+
+
+
 
 /**
  * Setup the translator
