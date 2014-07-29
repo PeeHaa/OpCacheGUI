@@ -87,8 +87,12 @@ header nav ul li {
     float: left;
 }
 
-header nav ul li:hover, header nav ul li.active {
-    background-color: #eeeeee;
+header nav ul li:hover {
+    background-color: #fdfdfd;
+}
+
+header nav ul li.active {
+    background-color: #d5d5d5;
 }
 
 header nav ul li a {
@@ -141,7 +145,7 @@ article.cols-3 {
 }
 
 article h2 {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     color: #fff;
     text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
@@ -187,7 +191,7 @@ article table, article canvas {
     padding: 20px;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 12px;
     background-color: #fff;
     border: 1px solid #d8dee2;
     border-top-color: white;
@@ -212,11 +216,48 @@ article th {
 
 article th.full_path {
     font-weight: bold;
+    padding-left: 35px;
 }
 
-article th.hits, article th.memory_consumption, article th.last_used_timestamp, article th.last_used_timestamp, article th.timestamp {
-    padding-left: 0;
+.hits, .memory_consumption, .last_used_timestamp, .last_used_timestamp, .timestamp, .dir-mem, .dir-hits, .dir-files {
+    padding-right: 10px;
+    text-align: right
+}
+
+th.hits, th.memory_consumption, th.last_used_timestamp, th.timestamp {
     font-weight: bold;
+}
+
+th.last_used_timestamp, th.timestamp {
+    padding-left: 15px;
+    text-align: center;
+    width: 14%;
+}
+
+#cached th h2 {
+    padding: 5px 10px;
+}
+
+#cached th a {
+  color : #ffffff;
+  text-decoration : none;
+}
+
+th.dir-path {
+    padding: 0;
+}
+
+th.dir-mem {
+    padding: 0;
+    width: 9%;
+}
+th.dir-hits {
+    padding: 0;
+    width: 9%;
+}
+th.dir-files {
+    padding: 0;
+    width: 7%;
 }
 
 article td.directory {
@@ -230,7 +271,7 @@ article td.directory img {
 }
 
 article td.full_path {
-    padding-left: 20px;
+    padding-left: 35px;
 }
 
 article td.invalidate {
