@@ -138,8 +138,8 @@ class Status
             'blacklist_misses'     => $stats['blacklist_misses'],
             'blacklist_miss_ratio' => round($stats['blacklist_miss_ratio'], 2),
             'opcache_hit_rate'     => round($stats['opcache_hit_rate'], 2) . '%',
-            'start_time'           => (new \DateTime('@' . $stats['start_time']))->format('H:i:s d-m-Y'),
-            'last_restart_time'    => $stats['last_restart_time'] ? (new \DateTime('@' . $stats['last_restart_time']))->format('H:i:s d-m-Y') : null,
+            'start_time'           => (new \DateTime())->setTimestamp($stats['start_time'])->format('H:i:s d-m-Y'),
+            'last_restart_time'    => $stats['last_restart_time'] ? (new \DateTime())->setTimestamp($stats['last_restart_time'])->format('H:i:s d-m-Y') : null,
             'oom_restarts'         => $stats['oom_restarts'],
             'hash_restarts'        => $stats['hash_restarts'],
             'manual_restarts'      => $stats['manual_restarts'],
@@ -218,8 +218,8 @@ class Status
                 'full_path'           => $script['full_path'],
                 'hits'                => $script['hits'],
                 'memory_consumption'  => $this->byteFormatter->format($script['memory_consumption']),
-                'last_used_timestamp' => (new \DateTime('@' . $script['last_used_timestamp']))->format('H:i:s d-m-Y'),
-                'timestamp'           => (new \DateTime('@' . $script['timestamp']))->format('H:i:s d-m-Y'),
+                'last_used_timestamp' => (new \DateTime())->setTimestamp($script['last_used_timestamp'])->format('H:i:s d-m-Y'),
+                'timestamp'           => (new \DateTime())->setTimestamp($script['timestamp'])->format('H:i:s d-m-Y'),
             ];
         }
 
