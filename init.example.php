@@ -18,7 +18,7 @@
  */
 namespace OpCacheGUI;
 
-use OpCacheGUI\I18n\Translator;
+use OpCacheGUI\I18n\FileTranslator;
 
 /**
  * Setup error reporting
@@ -35,4 +35,4 @@ ini_set('date.timezone', 'Europe/Amsterdam');
 /**
  * Setup the translator
  */
-$translator = new Translator('en');
+$translator = new FileTranslator('en');

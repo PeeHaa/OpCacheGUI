@@ -1,5 +1,5 @@
 <?php
-$status = new OpCacheGUI\OpCache\Status($byteFormatter);
+$status = new OpCacheGUI\OpCache\Status($this->byteFormatter);
 $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 
 $directories = [];
@@ -9,25 +9,25 @@ foreach($status->getCachedScripts() as $data) {
 ?>
 
 <article class="cols-1">
-    <h2><?= $translator->translate('scripts.title'); ?></h2>
+    <h2><?= $this->translator->translate('scripts.title'); ?></h2>
     <table id="cached">
         <tbody>
             <?php if (!count($status->getCachedScripts())) { ?>
                 <tr class="<?= $classCycler->next(); ?>">
-                    <td class="empty" colspan="5"><?= $translator->translate('scripts.empty'); ?></td>
+                    <td class="empty" colspan="5"><?= $this->translator->translate('scripts.empty'); ?></td>
                 </tr>
             <?php } else { ?>
                 <?php $i = 0; ?>
                 <?php foreach ($directories as $directory => $scripts) { ?>
                     <tr class="<?= $classCycler->next(); ?>">
-                        <td colspan="6" class="directory" data-directoryid="<?= ++$i; ?>"><img src="style/toggle-expand.png" alt="+"><?= $directory . sprintf($translator->translate('scripts.directory.script_count'), count($scripts)); ?></td>
+                        <td colspan="6" class="directory" data-directoryid="<?= ++$i; ?>"><img src="style/toggle-expand.png" alt="+"><?= $directory . sprintf($this->translator->translate('scripts.directory.script_count'), count($scripts)); ?></td>
                     </tr>
                     <tr class="script heading" data-directoryid="<?= $i; ?>">
-                        <th class="full_path"><?= $translator->translate('scripts.full_path'); ?></th>
-                        <th class="hits"><?= $translator->translate('scripts.hits'); ?></th>
-                        <th class="memory_consumption"><?= $translator->translate('scripts.memory_consumption'); ?></th>
-                        <th class="last_used_timestamp"><?= $translator->translate('scripts.last_used_timestamp'); ?></th>
-                        <th class="timestamp"><?= $translator->translate('scripts.timestamp'); ?></th>
+                        <th class="full_path"><?= $this->translator->translate('scripts.full_path'); ?></th>
+                        <th class="hits"><?= $this->translator->translate('scripts.hits'); ?></th>
+                        <th class="memory_consumption"><?= $this->translator->translate('scripts.memory_consumption'); ?></th>
+                        <th class="last_used_timestamp"><?= $this->translator->translate('scripts.last_used_timestamp'); ?></th>
+                        <th class="timestamp"><?= $this->translator->translate('scripts.timestamp'); ?></th>
                         <th class="invalidate"></th>
                     </tr>
                     <?php foreach ($scripts as $filename => $script) { ?>
@@ -39,9 +39,9 @@ foreach($status->getCachedScripts() as $data) {
                             <td class="timestamp"><?= $script['timestamp']; ?></td>
                             <td class="invalidate">
                                 <form action="invalidate" method="post">
-                                    <input type="hidden" name="csrfToken" value="<?= $csrfToken->get(); ?>">
+                                    <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
                                     <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
-                                    <input type="submit" name="submit" value="<?= $translator->translate('script.invalidate'); ?>">
+                                    <input type="submit" name="submit" value="<?= $this->translator->translate('script.invalidate'); ?>">
                                 </form>
                             </td>
                         </tr>

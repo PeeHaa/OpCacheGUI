@@ -11,6 +11,7 @@
  */
 use OpCacheGUI\Format\Byte as ByteFormatter;
 use OpCacheGUI\Security\CsrfToken;
+use OpCacheGUI\Presentation\Html;
 
 /**
  * Bootstrap the library
@@ -38,32 +39,35 @@ $byteFormatter = new ByteFormatter;
 $csrfToken = new CsrfToken;
 
 /**
+ * Setup the HTML template renderer
+ */
+$htmlTemplate = new Html(__DIR__ . '/template', 'page.phtml', $translator);
+
+/**
  * Setup routing
  */
 $request = explode('/', $_SERVER['REQUEST_URI']);
 switch(end($request)) {
     case 'configuration':
-        ob_start();
-        require __DIR__ . '/template/configuration.phtml';
-        $content = ob_get_contents();
-        $active = 'config';
-        ob_end_clean();
+        $content = $htmlTemplate->render('configuration.phtml', [
+            'byteFormatter' => $byteFormatter,
+            'active'        => 'config',
+        ]);
         break;
 
     case 'cached-scripts':
-        ob_start();
-        require __DIR__ . '/template/cached.phtml';
-        $content = ob_get_contents();
-        $active = 'cached';
-        ob_end_clean();
+        $content = $htmlTemplate->render('cached.phtml', [
+            'byteFormatter' => $byteFormatter,
+            'csrfToken'     => $csrfToken,
+            'active'        => 'cached',
+        ]);
         break;
 
     case 'graphs':
-        ob_start();
-        require __DIR__ . '/template/graphs.phtml';
-        $content = ob_get_contents();
-        $active = 'graphs';
-        ob_end_clean();
+        $content = $htmlTemplate->render('graphs.phtml', [
+            'byteFormatter' => $byteFormatter,
+            'active'        => 'graphs',
+        ]);
         break;
 
     case 'reset':
@@ -77,12 +81,12 @@ switch(end($request)) {
         return;
 
     default:
-        ob_start();
-        require __DIR__ . '/template/status.phtml';
-        $content = ob_get_contents();
-        $active = 'status';
-        ob_end_clean();
+        $content = $htmlTemplate->render('status.phtml', [
+            'byteFormatter' => $byteFormatter,
+            'csrfToken'     => $csrfToken,
+            'active'        => 'status',
+        ]);
         break;
 }
 
-require __DIR__ . '/template/page.phtml';
+echo $content;
