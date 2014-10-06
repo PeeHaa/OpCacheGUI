@@ -7,10 +7,10 @@
  * @author     Pieter Hordijk <info@pieterhordijk.com>
  * @copyright  Copyright (c) 2013 Pieter Hordijk <https://github.com/PeeHaa>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    1.0.0
+ * @version    2.0.0
  */
-use OpCacheGUI\Format\Byte as ByteFormatter,
-    OpCacheGUI\Security\CsrfToken;
+use OpCacheGUI\Format\Byte as ByteFormatter;
+use OpCacheGUI\Security\CsrfToken;
 
 /**
  * Bootstrap the library
