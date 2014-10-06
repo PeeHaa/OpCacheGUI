@@ -1,44 +1,44 @@
 <?php
-$status      = new OpCacheGUI\OpCache\Status($byteFormatter);
+$status      = new OpCacheGUI\OpCache\Status($this->byteFormatter);
 $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 ?>
 
 <article class="cols-3 first">
     <h2>
-        <?= $translator->translate('status.title'); ?>
-        <form action="reset" method="post" id="reset" data-confirmation="<?= $translator->translate('confirmation.reset'); ?>" data-yes="<?= $translator->translate('confirmation.yes'); ?>" data-no="<?= $translator->translate('confirmation.no'); ?>">
-            <input type="hidden" name="csrfToken" value="<?= $csrfToken->get(); ?>">
-            <input type="submit" name="submit" value="<?= $translator->translate('reset.submit'); ?>">
+        <?= $this->translator->translate('status.title'); ?>
+        <form action="reset" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
+            <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
+            <input type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>">
         </form>
     </h2>
     <table>
         <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
             <tr class="<?= $classCycler->next(); ?>">
-                <th><?= $translator->translate('status.' . $key); ?></th>
+                <th><?= $this->translator->translate('status.' . $key); ?></th>
                 <td><img src="style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
             </tr>
         <?php } ?>
     </table>
 </article>
 <article class="cols-3">
-    <h2><?= $translator->translate('memory.title'); ?></h2>
+    <h2><?= $this->translator->translate('memory.title'); ?></h2>
     <table>
         <?php $classCycler->rewind(); ?>
         <?php foreach ($status->getMemoryInfo() as $key => $memoryItem) { ?>
             <tr class="<?= $classCycler->next(); ?>">
-                <th><?= $translator->translate('memory.' . $key); ?></th>
+                <th><?= $this->translator->translate('memory.' . $key); ?></th>
                 <td><?= $memoryItem; ?></td>
             </tr>
         <?php } ?>
     </table>
 </article>
 <article class="cols-3">
-    <h2><?= $translator->translate('stats.title'); ?></h2>
+    <h2><?= $this->translator->translate('stats.title'); ?></h2>
     <table>
         <?php $classCycler->rewind(); ?>
         <?php foreach ($status->getStatsInfo() as $key => $statisticItem) { ?>
             <tr class="<?= $classCycler->next(); ?>">
-                <th><?= $translator->translate('stats.' . $key); ?></th>
+                <th><?= $this->translator->translate('stats.' . $key); ?></th>
                 <td><?= $statisticItem; ?></td>
             </tr>
         <?php } ?>
