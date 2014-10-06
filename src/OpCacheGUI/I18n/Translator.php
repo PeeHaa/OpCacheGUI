@@ -1,6 +1,6 @@
 <?php
 /**
- * Translator based on translation files containing an array with texts
+ * Interface for translators
  *
  * PHP version 5.5
  *
@@ -14,46 +14,14 @@
 namespace OpCacheGUI\I18n;
 
 /**
- * Translator based on translation files containing an array with texts
+ * Interface for translators
  *
  * @category   OpCacheGUI
  * @package    I18n
  * @author     Pieter Hordijk <info@pieterhordijk.com>
  */
-class Translator
+interface Translator
 {
-    /**
-     * @var array The translations
-     */
-    private $texts;
-
-    /**
-     * Creates instance
-     *
-     * @param string $languageCode The language code of which to get the translations
-     *
-     * @throws \Exception When the language is not supported (i.e. no translation file can be found for the language)
-     * @throws \Exception When the translation file is invalid (i.e. no `$texts` array present)
-     */
-    public function __construct($languageCode)
-    {
-        $translationFile = __DIR__ . '/../../../texts/' . $languageCode . '.php';
-
-        if (!file_exists($translationFile)) {
-            throw new \Exception('Unsupported language (`' . $languageCode . '`).');
-        }
-
-        require $translationFile;
-
-        if (!isset($texts)) {
-            throw new \Exception(
-                'The translation file (`' . $translationFile . '`) has an invalid format.'
-            );
-        }
-
-        $this->texts = $texts;
-    }
-
     /**
      * Gets the translation by key if any or a placeholder otherwise
      *
@@ -61,12 +29,5 @@ class Translator
      *
      * @return string The translation or a placeholder when no translation is available
      */
-    public function translate($key)
-    {
-        if (array_key_exists($key, $this->texts)) {
-            return $this->texts[$key];
-        }
-
-        return '{{' . $key . '}}';
-    }
+    public function translate($key);
 }
