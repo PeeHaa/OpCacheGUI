@@ -12,6 +12,7 @@
 use OpCacheGUI\Format\Byte as ByteFormatter;
 use OpCacheGUI\Security\CsrfToken;
 use OpCacheGUI\Presentation\Html;
+use OpCacheGUI\Presentation\Json;
 
 /**
  * Bootstrap the library
@@ -44,6 +45,11 @@ $csrfToken = new CsrfToken;
 $htmlTemplate = new Html(__DIR__ . '/template', 'page.phtml', $translator);
 
 /**
+ * Setup the JSON template renderer
+ */
+$jsonTemplate = new Json(__DIR__ . '/template', $translator);
+
+/**
  * Setup routing
  */
 $request = explode('/', $_SERVER['REQUEST_URI']);
@@ -71,14 +77,16 @@ switch(end($request)) {
         break;
 
     case 'reset':
-        ob_start();
-        require __DIR__ . '/template/reset.pjson';
-        return;
+        $content = $jsonTemplate->render('reset.pjson', [
+            'csrfToken' => $csrfToken,
+        ]);
+        break;
 
     case 'invalidate':
-        ob_start();
-        require __DIR__ . '/template/invalidate.pjson';
-        return;
+        $content = $jsonTemplate->render('invalidate.pjson', [
+            'csrfToken' => $csrfToken,
+        ]);
+        break;
 
     default:
         $content = $htmlTemplate->render('status.phtml', [
