@@ -74,19 +74,4 @@ class Html extends Template
 
         return $content;
     }
-
-    /**
-     * Magically get template variables, because magic that's why
-     *
-     * Disclaimer: I am fully aware this kinda sucks and will bite me in the arse
-     *             at some point, so don't bother bugging me about this :-)
-     *
-     * @param mixed The key of which to get the data
-     *
-     * @return mixed The value which belongs to the key provided
-     */
-    public function __get($key)
-    {
-        return $this->variables[$key];
-    }
 }
