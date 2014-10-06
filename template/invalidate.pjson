@@ -1,7 +1,7 @@
 <?php
 
-if (!$csrfToken->validate($_POST['csrfToken']) || !opcache_invalidate($_POST['key'], true)) {
-    echo json_encode(['result' => 'failed']);
-} else {
-    echo json_encode(['result' => 'success']);
+if (!$this->csrfToken->validate($_POST['csrfToken']) || !opcache_invalidate($_POST['key'], true)) {
+    return json_encode(['result' => 'failed']);
 }
+
+return json_encode(['result' => 'success']);
