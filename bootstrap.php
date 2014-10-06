@@ -9,8 +9,7 @@
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
  * @version    1.0.0
  */
-use OpCacheGUI\I18n\Translator,
-    OpCacheGUI\Format\Byte as ByteFormatter,
+use OpCacheGUI\Format\Byte as ByteFormatter,
     OpCacheGUI\Security\CsrfToken;
 
 /**
@@ -19,26 +18,14 @@ use OpCacheGUI\I18n\Translator,
 require_once __DIR__ . '/src/OpCacheGUI/bootstrap.php';
 
 /**
- * Setup error reporting
+ * Setup the environment
  */
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-ini_set('log_errors', 0);
+require_once __DIR__ . '/init.deployment.php';
 
 /**
  * Start the session
  */
 session_start();
-
-/**
- * Setup timezone
- */
-ini_set('date.timezone', 'Europe/Amsterdam');
-
-/**
- * Setup the translator
- */
-$translator = new Translator('en');
 
 /**
  * Setup formatters
@@ -53,7 +40,6 @@ $csrfToken = new CsrfToken;
 /**
  * Setup routing
  */
-
 $request = explode('/', $_SERVER['REQUEST_URI']);
 switch(end($request)) {
     case 'configuration':
