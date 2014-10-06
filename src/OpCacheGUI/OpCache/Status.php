@@ -9,7 +9,7 @@
  * @author     Pieter Hordijk <info@pieterhordijk.com>
  * @copyright  Copyright (c) 2013 Pieter Hordijk <https://github.com/PeeHaa>
  * @license    http://www.opensource.org/licenses/mit-license.html  MIT License
- * @version    1.0.0
+ * @version    2.0.0
  */
 namespace OpCacheGUI\OpCache;
 
@@ -128,7 +128,7 @@ class Status
         } else {
             $stats = $this->statusData['opcache_statistics'];
         }
-         
+
         return [
             'num_cached_scripts'   => $stats['num_cached_scripts'],
             'num_cached_keys'      => $stats['num_cached_keys'],
