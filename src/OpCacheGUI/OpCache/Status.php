@@ -210,7 +210,7 @@ class Status
         $scripts = [];
 
         foreach ($this->statusData['scripts'] as $script) {
-            if ($script['timestamp'] === 0) {
+            if (isset($script['timestamp']) && $script['timestamp'] === 0) {
                 continue;
             }
 
@@ -219,7 +219,7 @@ class Status
                 'hits'                => $script['hits'],
                 'memory_consumption'  => $this->byteFormatter->format($script['memory_consumption']),
                 'last_used_timestamp' => (new \DateTime('@' . $script['last_used_timestamp']))->format('H:i:s d-m-Y'),
-                'timestamp'           => (new \DateTime('@' . $script['timestamp']))->format('H:i:s d-m-Y'),
+                'timestamp'           => isset($script['timestamp']) ? (new \DateTime('@' . $script['timestamp']))->format('H:i:s d-m-Y') : 'N/A',
             ];
         }
 
