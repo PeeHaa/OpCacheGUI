@@ -1,0 +1,15 @@
+server {
+    listen      80;
+    server_name opcachegui.example.com;
+    root        /var/www/OpCacheGUI/public;
+
+    auth_basic "OpCacheGUI Login";
+    auth_basic_user_file /var/www/OpCacheGUI/.htpasswd;
+
+    try_files $uri $uri/ /index.php;
+
+    location ~* \.php$ {
+        include fastcgi_params;
+        fastcgi_pass /var/run/php5-fpm.sock;
+    }
+}
