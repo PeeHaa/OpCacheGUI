@@ -104,7 +104,7 @@ class Router
      *
      * @return string The identifier of the current request
      */
-    private function getIdentifier()
+    public function getIdentifier()
     {
         if ($this->identifierType === self::URL_REWRITE) {
             return $this->request->path();

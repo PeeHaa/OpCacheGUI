@@ -44,9 +44,14 @@ $byteFormatter = new ByteFormatter;
 $csrfToken = new CsrfToken;
 
 /**
+ * Setup URL renderer
+ */
+$urlRenderer = new Url($uriScheme);
+
+/**
  * Setup the HTML template renderer
  */
-$htmlTemplate = new Html(__DIR__ . '/template', 'page.phtml', $translator, new Url($uriScheme));
+$htmlTemplate = new Html(__DIR__ . '/template', 'page.phtml', $translator, $urlRenderer);
 
 /**
  * Setup the JSON template renderer
@@ -67,7 +72,18 @@ $router       = new Router($request, $routeFactory, $uriScheme);
 /**
  * Load the routes
  */
-require_once __DIR__ . '/routes.php';
+if (!extension_loaded('Zend OPcache')) {
+    if ($router->getIdentifier() !== 'error') {
+        header('Location: ' . $urlRenderer->get('error'));
+        exit;
+    }
+
+    $router->get('error', function() use ($htmlTemplate) {
+        return $htmlTemplate->render('error.phtml');
+    });
+} else {
+    require_once __DIR__ . '/routes.php';
+}
 
 /**
  * Dispatch the request
