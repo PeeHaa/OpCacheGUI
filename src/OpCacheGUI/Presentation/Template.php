@@ -63,6 +63,10 @@ abstract class Template implements Renderer
      */
     public function __get($key)
     {
+        if (!array_key_exists($key, $this->variables)) {
+            return null;
+        }
+
         return $this->variables[$key];
     }
 }
