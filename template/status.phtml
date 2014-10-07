@@ -6,7 +6,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 <article class="cols-3 first">
     <h2>
         <?= $this->translator->translate('status.title'); ?>
-        <form action="reset" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
+        <form action="<?= $this->url->get('reset'); ?>" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
             <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
             <input type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>">
         </form>
