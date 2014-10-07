@@ -8,21 +8,24 @@
         <script>'article aside footer header nav section time'.replace(/\w+/g,function(n){document.createElement(n)})</script>
     </head>
     <body>
-        <header>
-            <div class="content">
-                <h1><a href="">PHP <?= phpversion(); ?> OpCache <?= opcache_get_configuration()['version']['version']; ?></a></h1>
-                <nav>
-                    <ul>
-                        <li<?= $this->active == 'status' ? ' class="active"' : null ?>><a href="<?= $this->url->get('status'); ?>"><?= $this->translator->translate('menu.status'); ?></a></li>
-                        <li<?= $this->active == 'config' ? ' class="active"' : null ?>><a href="<?= $this->url->get('configuration'); ?>"><?= $this->translator->translate('menu.config'); ?></a></li>
-                        <li<?= $this->active == 'cached' ? ' class="active"' : null ?>><a href="<?= $this->url->get('cached-scripts'); ?>"><?= $this->translator->translate('menu.scripts'); ?></a></li>
-                        <li<?= $this->active == 'graphs' ? ' class="active"' : null ?>><a href="<?= $this->url->get('graphs'); ?>"><?= $this->translator->translate('menu.graphs'); ?></a></li>
-                    </ul>
-                </nav>
+        <div id="wrapper">
+            <header>
+                <div class="content">
+                    <h1><a href="">PHP <?= phpversion(); ?> OpCache <?= opcache_get_configuration()['version']['version']; ?></a></h1>
+                    <nav>
+                        <ul>
+                            <li<?= $this->active == 'status' ? ' class="active"' : null ?>><a href="<?= $this->url->get('status'); ?>"><?= $this->translator->translate('menu.status'); ?></a></li>
+                            <li<?= $this->active == 'config' ? ' class="active"' : null ?>><a href="<?= $this->url->get('configuration'); ?>"><?= $this->translator->translate('menu.config'); ?></a></li>
+                            <li<?= $this->active == 'cached' ? ' class="active"' : null ?>><a href="<?= $this->url->get('cached-scripts'); ?>"><?= $this->translator->translate('menu.scripts'); ?></a></li>
+                            <li<?= $this->active == 'graphs' ? ' class="active"' : null ?>><a href="<?= $this->url->get('graphs'); ?>"><?= $this->translator->translate('menu.graphs'); ?></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+            <div id="body">
+                <?= $this->content; ?>
             </div>
-        </header>
-        <div id="body">
-            <?= $this->content; ?>
+            <div class="push"></div>
         </div>
         <footer>
             <ul>
