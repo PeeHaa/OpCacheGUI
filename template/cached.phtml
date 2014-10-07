@@ -20,7 +20,7 @@ foreach($status->getCachedScripts() as $data) {
                 <?php $i = 0; ?>
                 <?php foreach ($directories as $directory => $scripts) { ?>
                     <tr class="<?= $classCycler->next(); ?>">
-                        <td colspan="6" class="directory" data-directoryid="<?= ++$i; ?>"><img src="style/toggle-expand.png" alt="+"><?= $directory . sprintf($this->translator->translate('scripts.directory.script_count'), count($scripts)); ?></td>
+                        <td colspan="6" class="directory" data-directoryid="<?= ++$i; ?>"><div class='sprite toggle-expand'></div><?= $directory . sprintf($this->translator->translate('scripts.directory.script_count'), count($scripts)); ?></td>
                     </tr>
                     <tr class="script heading" data-directoryid="<?= $i; ?>">
                         <th class="full_path"><?= $this->translator->translate('scripts.full_path'); ?></th>

@@ -311,3 +311,9 @@ article .graph-legend.green {
 article .graph-legend.blue {
     background: #2e97e0;
 }
+
+.sprite { background: url('sprite.png') no-repeat top left; width: 16px; height: 16px; }
+.sprite.bullet-green-icon { background-position: 0px 0px; }
+.sprite.bullet-red-icon { background-position: 0px -17px; }
+.sprite.toggle-collapse { background-position: 0px -34px; display: inline-block; position: relative; top: 3px;}
+.sprite.toggle-expand { background-position: 0px -51px; display: inline-block; position: relative; top: 3px;}
