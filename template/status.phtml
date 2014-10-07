@@ -15,7 +15,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
         <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
             <tr class="<?= $classCycler->next(); ?>">
                 <th><?= $this->translator->translate('status.' . $key); ?></th>
-                <td><img src="style/bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon.png"></td>
+                <td><div class='sprite bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon'></div></td>
             </tr>
         <?php } ?>
     </table>

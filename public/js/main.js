@@ -106,10 +106,12 @@
                 return;
             }
 
+            var plusminusIcon = $(td.querySelector('div'));
+
             if ($(td).hasClass('active')) {
                 $(td).removeClass('active');
-                td.querySelector('img').src = 'style/toggle-expand.png';
-                td.querySelector('img').setAttribute('alt', '+');
+                plusminusIcon.removeClass('toggle-collapse');
+                plusminusIcon.addClass('toggle-expand');
                 var rows = document.querySelectorAll('.script');
                 for (var i = 0, l = rows.length; i < l; i++) {
                     if (rows[i].getAttribute('data-directoryid') != td.getAttribute('data-directoryid')) {
@@ -120,8 +122,8 @@
                 }
             } else {
                 $(td).addClass('active');
-                td.querySelector('img').src = 'style/toggle-collapse.png';
-                td.querySelector('img').setAttribute('alt', '-');
+                plusminusIcon.removeClass('toggle-expand');
+                plusminusIcon.addClass('toggle-collapse');
                 var rows = document.querySelectorAll('.script');
                 for (var i = 0, l = rows.length; i < l; i++) {
                     if (rows[i].getAttribute('data-directoryid') != td.getAttribute('data-directoryid')) {
