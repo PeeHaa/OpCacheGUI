@@ -123,6 +123,8 @@ footer ul {
 
 footer ul li {
     display: inline;
+    position: relative;
+    top: 6px;
 }
 
 footer ul li a {
