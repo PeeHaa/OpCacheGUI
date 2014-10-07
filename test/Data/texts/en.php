@@ -1,0 +1,5 @@
+<?php
+
+$texts = [
+    'foo' => 'bar',
+];

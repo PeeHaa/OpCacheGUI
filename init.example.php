@@ -36,7 +36,7 @@ ini_set('date.timezone', 'Europe/Amsterdam');
 /**
  * Setup the translator
  */
-$translator = new FileTranslator('en');
+$translator = new FileTranslator(__DIR__ . '/texts', 'en');
 
 /**
  * Setup URI scheme (url rewrites [Router::URL_REWRITE] / query strings [Router::QUERY_STRING])
