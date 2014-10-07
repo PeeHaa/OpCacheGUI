@@ -11,8 +11,12 @@
  */
 use OpCacheGUI\Format\Byte as ByteFormatter;
 use OpCacheGUI\Security\CsrfToken;
+use OpCacheGUI\Network\Request;
+use OpCacheGUI\Presentation\Url;
 use OpCacheGUI\Presentation\Html;
 use OpCacheGUI\Presentation\Json;
+use OpCacheGUI\Network\Router;
+use OpCacheGUI\Network\RouteFactory;
 
 /**
  * Bootstrap the library
@@ -42,7 +46,7 @@ $csrfToken = new CsrfToken;
 /**
  * Setup the HTML template renderer
  */
-$htmlTemplate = new Html(__DIR__ . '/template', 'page.phtml', $translator);
+$htmlTemplate = new Html(__DIR__ . '/template', 'page.phtml', $translator, new Url($uriScheme));
 
 /**
  * Setup the JSON template renderer
@@ -50,51 +54,22 @@ $htmlTemplate = new Html(__DIR__ . '/template', 'page.phtml', $translator);
 $jsonTemplate = new Json(__DIR__ . '/template', $translator);
 
 /**
- * Setup routing
+ * Setup the request object
  */
-$request = explode('/', $_SERVER['REQUEST_URI']);
-switch(end($request)) {
-    case 'configuration':
-        $content = $htmlTemplate->render('configuration.phtml', [
-            'byteFormatter' => $byteFormatter,
-            'active'        => 'config',
-        ]);
-        break;
+$request = new Request($_GET, $_POST, $_SERVER);
 
-    case 'cached-scripts':
-        $content = $htmlTemplate->render('cached.phtml', [
-            'byteFormatter' => $byteFormatter,
-            'csrfToken'     => $csrfToken,
-            'active'        => 'cached',
-        ]);
-        break;
+/**
+ * Setup the router
+ */
+$routeFactory = new RouteFactory();
+$router       = new Router($request, $routeFactory, $uriScheme);
 
-    case 'graphs':
-        $content = $htmlTemplate->render('graphs.phtml', [
-            'byteFormatter' => $byteFormatter,
-            'active'        => 'graphs',
-        ]);
-        break;
+/**
+ * Load the routes
+ */
+require_once __DIR__ . '/routes.php';
 
-    case 'reset':
-        $content = $jsonTemplate->render('reset.pjson', [
-            'csrfToken' => $csrfToken,
-        ]);
-        break;
-
-    case 'invalidate':
-        $content = $jsonTemplate->render('invalidate.pjson', [
-            'csrfToken' => $csrfToken,
-        ]);
-        break;
-
-    default:
-        $content = $htmlTemplate->render('status.phtml', [
-            'byteFormatter' => $byteFormatter,
-            'csrfToken'     => $csrfToken,
-            'active'        => 'status',
-        ]);
-        break;
-}
-
-echo $content;
+/**
+ * Dispatch the request
+ */
+echo $router->run();
