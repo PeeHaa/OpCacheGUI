@@ -13,10 +13,10 @@
                 <h1><a href="">PHP <?= phpversion(); ?> OpCache x</a></h1>
                 <nav>
                     <ul>
-                        <li<?= $this->active == 'status' ? ' class="active"' : null ?>><a href="status"><?= $this->translator->translate('menu.status'); ?></a></li>
-                        <li<?= $this->active == 'config' ? ' class="active"' : null ?>><a href="configuration"><?= $this->translator->translate('menu.config'); ?></a></li>
-                        <li<?= $this->active == 'cached' ? ' class="active"' : null ?>><a href="cached-scripts"><?= $this->translator->translate('menu.scripts'); ?></a></li>
-                        <li<?= $this->active == 'graphs' ? ' class="active"' : null ?>><a href="graphs"><?= $this->translator->translate('menu.graphs'); ?></a></li>
+                        <li<?= $this->active == 'status' ? ' class="active"' : null ?>><a href="<?= $this->url->get('status'); ?>"><?= $this->translator->translate('menu.status'); ?></a></li>
+                        <li<?= $this->active == 'config' ? ' class="active"' : null ?>><a href="<?= $this->url->get('configuration'); ?>"><?= $this->translator->translate('menu.config'); ?></a></li>
+                        <li<?= $this->active == 'cached' ? ' class="active"' : null ?>><a href="<?= $this->url->get('cached-scripts'); ?>"><?= $this->translator->translate('menu.scripts'); ?></a></li>
+                        <li<?= $this->active == 'graphs' ? ' class="active"' : null ?>><a href="<?= $this->url->get('graphs'); ?>"><?= $this->translator->translate('menu.graphs'); ?></a></li>
                     </ul>
                 </nav>
             </div>

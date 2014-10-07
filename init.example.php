@@ -19,6 +19,7 @@
 namespace OpCacheGUI;
 
 use OpCacheGUI\I18n\FileTranslator;
+use OpCacheGUI\Network\Router;
 
 /**
  * Setup error reporting
@@ -36,3 +37,8 @@ ini_set('date.timezone', 'Europe/Amsterdam');
  * Setup the translator
  */
 $translator = new FileTranslator('en');
+
+/**
+ * Setup URI scheme (url rewrites [Router::URL_REWRITE] / query strings [Router::QUERY_STRING])
+ */
+$uriScheme = Router::URL_REWRITE;
