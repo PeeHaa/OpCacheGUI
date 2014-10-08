@@ -1,6 +1,6 @@
 <?php
 
-namespace OpCacheGUITest\I18n;
+namespace OpCacheGUITest\Unit\I18n;
 
 use OpCacheGUI\I18n\FileTranslator;
 

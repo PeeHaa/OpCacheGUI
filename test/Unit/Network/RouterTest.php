@@ -1,6 +1,6 @@
 <?php
 
-namespace OpCacheGUITest\Network;
+namespace OpCacheGUITest\Unit\Network;
 
 use OpCacheGUI\Network\Router;
 

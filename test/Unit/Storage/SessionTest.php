@@ -1,6 +1,6 @@
 <?php
 
-namespace OpCacheGUITest\Storage;
+namespace OpCacheGUITest\Unit\Storage;
 
 use OpCacheGUI\Storage\Session;
 
