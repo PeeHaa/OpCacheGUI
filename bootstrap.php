@@ -11,6 +11,7 @@
  */
 use OpCacheGUI\Format\Byte as ByteFormatter;
 use OpCacheGUI\Storage\Session;
+use OpCacheGUI\Security\Generator\Factory;
 use OpCacheGUI\Security\CsrfToken;
 use OpCacheGUI\Network\Request;
 use OpCacheGUI\Presentation\Url;
@@ -43,7 +44,7 @@ $byteFormatter = new ByteFormatter;
  * Setup CSRF token
  */
 $sessionStorage = new Session();
-$csrfToken      = new CsrfToken($sessionStorage);
+$csrfToken      = new CsrfToken($sessionStorage, new Factory());
 
 /**
  * Setup URL renderer
