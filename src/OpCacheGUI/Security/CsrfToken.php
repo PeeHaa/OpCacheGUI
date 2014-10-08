@@ -65,6 +65,19 @@ class CsrfToken
     }
 
     /**
+     * Adds an algorithm to the list of supported algo's
+     *
+     * Note: this method will add the new algorithm at teh top of the stack meaning it will be presumed to be stronger
+     *       than the default ones!
+     *
+     * @param string $algo The algo to add to the stack
+     */
+    public function addAlgo($algo)
+    {
+        array_unshift($this->algos, $algo);
+    }
+
+    /**
      * Gets the stored CSRF token
      *
      * @return string The stored CSRF token

@@ -125,4 +125,31 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
 
         $this->assertFalse($token->validate('notvalid'));
     }
+
+    /**
+     * @covers OpCacheGUI\Security\CsrfToken::__construct
+     * @covers OpCacheGUI\Security\CsrfToken::addAlgo
+     * @covers OpCacheGUI\Security\CsrfToken::get
+     * @covers OpCacheGUI\Security\CsrfToken::generate
+     */
+    public function testGetWhenNotStoredAddedCustomAlgo()
+    {
+        $storage = $this->getMock('\\OpCacheGUI\\Storage\\KeyValuePair');
+        $storage->method('isKeyValid')->willReturn(false);
+        $storage->method('get')->will($this->returnArgument(0));
+        $storage->method('set')->will($this->returnCallback(function($key, $value) {
+            $this->assertSame('csrfToken', $key);
+            $this->assertSame('12345678901234567890123456789012345678901234567890123456', $value);
+        }));
+
+        $generator = $this->getMock('\\OpCacheGUI\\Security\\Generator');
+        $generator->method('generate')->willReturn('12345678901234567890123456789012345678901234567890123456');
+
+        $factory = $this->getMock('\\OpCacheGUI\\Security\\Generator\\Builder');
+        $factory->method('build')->willReturn($generator);
+
+        $token = new CsrfToken($storage, $factory);
+
+        $token->addAlgo('\\Foo');
+    }
 }
