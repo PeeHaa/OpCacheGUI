@@ -38,6 +38,12 @@ class Factory implements Builder
             throw new InvalidGeneratorException('Invalid random string generator (`' . $class . '`).');
         }
 
-        return new $class();
+        $generator = new $class;
+
+        if (!($generator instanceof \OpCacheGUI\Security\Generator)) {
+            throw new InvalidGeneratorException($class . ' does not implement generator.');
+        }
+
+        return $generator;
     }
 }

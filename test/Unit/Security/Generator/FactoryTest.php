@@ -39,4 +39,16 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
 
         $factory->build('\\OpCacheGUIUnknown\\UnknownGenerator');
     }
+
+    /**
+     * @covers OpCacheGUI\Security\Generator\Factory::build
+     */
+    public function testBuildThrowsUpOnNotImplementingGenerator()
+    {
+        $factory = new Factory();
+
+        $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\InvalidGeneratorException');
+
+        $factory->build('\\OpCacheGUITest\\Mocks\\Security\\Generator\\Invalid');
+    }
 }
