@@ -13,8 +13,6 @@
  */
 namespace OpCacheGUI\Presentation;
 
-use OpCacheGUI\I18n\Translator;
-
 /**
  * The class is responsible for rendering JSON templates
  *
