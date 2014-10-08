@@ -11,7 +11,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInterface()
     {
-        $json = new Json(__DIR__, $this->getMock('\\OpCacheGui\\I18n\\Translator'));
+        $json = new Json(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
 
         $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Renderer', $json);
     }
@@ -21,7 +21,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $json = new Json(__DIR__, $this->getMock('\\OpCacheGui\\I18n\\Translator'));
+        $json = new Json(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
 
         $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Template', $json);
     }
@@ -32,7 +32,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
      */
     public function testRender()
     {
-        $json = new Json(__DIR__ . '/../../Data/templates', $this->getMock('\\OpCacheGui\\I18n\\Translator'));
+        $json = new Json(__DIR__ . '/../../Data/templates', $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
 
         $this->assertSame('content', $json->render('example.pjson'));
     }
