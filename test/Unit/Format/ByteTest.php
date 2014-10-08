@@ -1,6 +1,6 @@
 <?php
 
-namespace OpCacheGUITest\Format;
+namespace OpCacheGUITest\Unit\Format;
 
 use OpCacheGUI\Format\Byte;
 

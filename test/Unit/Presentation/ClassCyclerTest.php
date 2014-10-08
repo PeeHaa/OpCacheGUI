@@ -1,6 +1,6 @@
 <?php
 
-namespace OpCacheGUITest\Presentation;
+namespace OpCacheGUITest\Unit\Presentation;
 
 use OpCacheGUI\Presentation\ClassCycler;
 

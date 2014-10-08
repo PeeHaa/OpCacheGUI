@@ -1,6 +1,6 @@
 <?php
 
-namespace OpCacheGUI\Security;
+namespace OpCacheGUI\Unit\Security;
 
 use OpCacheGUI\Security\CsrfToken;
 
