@@ -14,6 +14,9 @@
 namespace OpCacheGUI\Security;
 
 use OpCacheGUI\Storage\KeyValuePair;
+use OpCacheGUI\Security\Generator\Builder;
+use OpCacheGUI\Security\Generator\UnsupportedAlgorithmException;
+use OpCacheGUI\Security\Generator\InvalidLengthException;
 
 /**
  * CSRF token
@@ -25,18 +28,40 @@ use OpCacheGUI\Storage\KeyValuePair;
 class CsrfToken
 {
     /**
+     * The length of the tokens
+     */
+    const LENGTH = 56;
+
+    /**
      * @var \OpCacheGUI\Storage\keyValuePair Instance of a key value storage
      */
     private $storage;
 
     /**
+     * @var \OpCacheGUI\Security\Generator\Builder Instance of a generator builder
+     */
+    private $factory;
+
+    /**
+     * @var array List of supported algorithms sorted by strength (strongest first)
+     */
+    private $algos = [
+        '\\OpCacheGUI\\Security\\Generator\\Mcrypt',
+        '\\OpCacheGUI\\Security\\Generator\\OpenSsl',
+        '\\OpCacheGUI\\Security\\Generator\\Urandom',
+        '\\OpCacheGUI\\Security\\Generator\\MtRand',
+    ];
+
+    /**
      * Create sinstance
      *
-     * @param \OpCacheGUI\Storage\KeyValuePair $storage Instance of a key value storage
+     * @param \OpCacheGUI\Storage\KeyValuePair       $storage Instance of a key value storage
+     * @param \OpCacheGUI\Security\Generator\Builder $factory Instance of a generator builder
      */
-    public function __construct(KeyValuePair $storage)
+    public function __construct(KeyValuePair $storage, Builder $factory)
     {
         $this->storage = $storage;
+        $this->factory = $factory;
     }
 
     /**
@@ -66,34 +91,37 @@ class CsrfToken
     /**
      * Generates a new secure CSRF token
      *
-     * @param int $rawLength The (raw) length of the token to be generated
-     *
      * @return string The generated CSRF token
      */
     private function generate()
     {
-        $length = 56;
-        $token = '';
-        if (function_exists('mcrypt_create_iv')) {
-            $token = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
-        } elseif (function_exists('openssl_random_pseudo_bytes')) {
-            $token = openssl_random_pseudo_bytes($length);
-        } elseif (file_exists('/dev/urandom')) {
-            $fileHandle = @fopen('/dev/urandom', 'r');
-            if ($fileHandle) {
-                $read = 0;
-                while ($read < $length) {
-                    $token .= fread($fileHandle, $length - $read);
-                    $read = strlen($token);
-                }
-                fclose($fileHandle);
+        $length = (int) (self::LENGTH * 3 / 4 + 1);
+        $buffer = '';
+
+        foreach ($this->algos as $algo) {
+            try {
+                $generator = $this->factory->build($algo);
+            } catch (UnsupportedAlgorithmException $e) {
+                continue;
             }
-        } elseif (strlen($token) < $length) {
-            for ($i = strlen($token); $i < $length; $i++) {
-                $token .= chr(mt_rand(0, 255));
+
+            $buffer .= $generator->generate($length);
+
+            if (strlen($buffer) >= $length) {
+                break;
             }
         }
 
-        return str_replace(array('+', '"', '\'', '\\', '/', '=', '?', '&'), '', base64_encode($token));
+        if (strlen($buffer) < $length) {
+            throw new InvalidLengthException(
+                'The generated token didn\'t met the required length (`'
+                . $length
+                . '`). Actual length is: `'
+                . strlen($buffer)
+                . '`.'
+            );
+        }
+
+        return str_replace(array('+', '"', '\'', '\\', '/', '=', '?', '&'), '', base64_encode($buffer));
     }
 }
