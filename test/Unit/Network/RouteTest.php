@@ -60,6 +60,6 @@ class RouteTest extends \PHPUnit_Framework_TestCase
             return 'foo';
         });
 
-        $this->assertSame($route->run(), 'foo');
+        $this->assertSame('foo', $route->run());
     }
 }

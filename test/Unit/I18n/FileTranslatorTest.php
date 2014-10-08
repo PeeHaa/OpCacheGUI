@@ -44,7 +44,7 @@ class FileTranslatorTest extends \PHPUnit_Framework_TestCase
     {
         $translator = new FileTranslator(__DIR__ . '/../../Data/texts', 'en');
 
-        $this->assertSame($translator->translate('invalidkey'), '{{invalidkey}}');
+        $this->assertSame('{{invalidkey}}', $translator->translate('invalidkey'));
     }
 
     /**
@@ -55,6 +55,6 @@ class FileTranslatorTest extends \PHPUnit_Framework_TestCase
     {
         $translator = new FileTranslator(__DIR__ . '/../../Data/texts', 'en');
 
-        $this->assertSame($translator->translate('foo'), 'bar');
+        $this->assertSame('bar', $translator->translate('foo'));
     }
 }
