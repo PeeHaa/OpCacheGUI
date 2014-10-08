@@ -24,7 +24,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '']);
 
-        $this->assertSame($request->get(), '');
+        $this->assertSame('', $request->get());
     }
 
     /**
@@ -35,7 +35,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request(['foo' => '', 'bar' => ''], [], ['REQUEST_URI' => '']);
 
-        $this->assertSame($request->get(), 'foo');
+        $this->assertSame('foo', $request->get());
     }
 
     /**
@@ -46,7 +46,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '']);
 
-        $this->assertSame($request->path(), '');
+        $this->assertSame('', $request->path());
     }
 
     /**
@@ -57,7 +57,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '/']);
 
-        $this->assertSame($request->path(), '');
+        $this->assertSame('', $request->path());
     }
 
     /**
@@ -68,7 +68,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '/foo']);
 
-        $this->assertSame($request->path(), 'foo');
+        $this->assertSame('foo', $request->path());
     }
 
     /**
@@ -79,7 +79,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '/foo/bar']);
 
-        $this->assertSame($request->path(), 'bar');
+        $this->assertSame('bar', $request->path());
     }
 
     /**
@@ -90,7 +90,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '/foo/bar/']);
 
-        $this->assertSame($request->path(), 'bar');
+        $this->assertSame('bar', $request->path());
     }
 
     /**
@@ -101,6 +101,6 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '', 'REQUEST_METHOD' => 'POST']);
 
-        $this->assertSame($request->getVerb(), 'POST');
+        $this->assertSame('POST', $request->getVerb());
     }
 }
