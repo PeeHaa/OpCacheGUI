@@ -13,6 +13,8 @@
  */
 namespace OpCacheGUI\Security;
 
+use OpCacheGUI\Storage\KeyValuePair;
+
 /**
  * CSRF token
  *
@@ -23,17 +25,32 @@ namespace OpCacheGUI\Security;
 class CsrfToken
 {
     /**
+     * @var \OpCacheGUI\Storage\keyValuePair Instance of a key value storage
+     */
+    private $storage;
+
+    /**
+     * Create sinstance
+     *
+     * @param \OpCacheGUI\Storage\KeyValuePair $storage Instance of a key value storage
+     */
+    public function __construct(KeyValuePair $storage)
+    {
+        $this->storage = $storage;
+    }
+
+    /**
      * Gets the stored CSRF token
      *
      * @return string The stored CSRF token
      */
     public function get()
     {
-        if (!array_key_exists('csrfToken', $_SESSION)) {
-            $_SESSION['csrfToken'] = $this->generate();
+        if (!$this->storage->isKeyValid('csrfToken')) {
+           $this->storage->set('csrfToken', $this->generate());
         }
 
-        return $_SESSION['csrfToken'];
+        return $this->storage->get('csrfToken');
     }
 
     /**
