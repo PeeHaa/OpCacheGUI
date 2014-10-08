@@ -38,11 +38,12 @@ class Configuration
      * Creates instance
      *
      * @param \OpCacheGUI\Format\Byte $byteFormatter Formatter of byte values
+     * @param array                   $configData    The configuration data from opcache
      */
-    public function __construct(Byte $byteFormatter)
+    public function __construct(Byte $byteFormatter, array $configData)
     {
         $this->byteFormatter = $byteFormatter;
-        $this->configData    = opcache_get_configuration();
+        $this->configData    = $configData;
     }
 
     /**

@@ -1,5 +1,5 @@
 <?php
-$config = new OpCacheGUI\OpCache\Configuration($this->byteFormatter);
+$config = new OpCacheGUI\OpCache\Configuration($this->byteFormatter, opcache_get_configuration());
 $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 ?>
 
