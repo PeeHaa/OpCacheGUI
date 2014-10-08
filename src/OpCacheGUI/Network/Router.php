@@ -36,7 +36,7 @@ class Router
     private $request;
 
     /**
-     * @var \OpCacheGui\Network\RouteBuilder The route factory
+     * @var \OpCacheGUI\Network\RouteBuilder The route factory
      */
     private $routeFactory;
 
@@ -49,7 +49,7 @@ class Router
      * Creates instance
      *
      * @param \OpCacheGUI\Network\RequestData  $request        Instance of a request class
-     * @param \OpCacheGui\Network\RouteBuilder $routeFactory   Instance of a route builder
+     * @param \OpCacheGUI\Network\RouteBuilder $routeFactory   Instance of a route builder
      * @param int                              $identifierType The type of URIs used by the system
      */
     public function __construct(RequestData $request, RouteBuilder $routeFactory, $identifierType = self::URL_REWRITE)

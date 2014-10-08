@@ -30,7 +30,7 @@ class Html extends Template
     private $baseTemplate;
 
     /**
-     * @var \OpCacheGui\Prsentation\UrlRenderer Instance of an URI renderer
+     * @var \OpCacheGUI\Prsentation\UrlRenderer Instance of an URI renderer
      */
     private $url;
 
@@ -39,8 +39,8 @@ class Html extends Template
      *
      * @param string                              $templateDirectory The directory where all the templates are stored
      * @param string                              $baseTemplate      The base (skeleton) page in which all templates will get rendered
-     * @param \OpCacheGui\I18n\Translator         $translator        The translation service
-     * @param \OpCacheGui\Prsentation\UrlRenderer $url               Instance of an URI renderer
+     * @param \OpCacheGUI\I18n\Translator         $translator        The translation service
+     * @param \OpCacheGUI\Prsentation\UrlRenderer $url               Instance of an URI renderer
      */
     public function __construct($templateDirectory, $baseTemplate, Translator $translator, UrlRenderer $url)
     {

@@ -14,8 +14,8 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__,
             'page.phtml',
-            $this->getMock('\\OpCacheGui\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGui\\Presentation\\UrlRenderer')
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
         );
 
         $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Renderer', $html);
@@ -29,8 +29,8 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__,
             'page.phtml',
-            $this->getMock('\\OpCacheGui\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGui\\Presentation\\UrlRenderer')
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
         );
 
         $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Template', $html);
@@ -46,8 +46,8 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__ . '/../../Data/templates/',
             'skeleton.phtml',
-            $this->getMock('\\OpCacheGui\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGui\\Presentation\\UrlRenderer')
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
         );
 
         $this->assertSame('<skeleton>content</skeleton>', $html->render('example.phtml'));
