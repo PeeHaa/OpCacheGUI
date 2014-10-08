@@ -11,15 +11,27 @@ class UrandomTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInterface()
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $this->setExpectedException('\\OpCacheGUI\\Security\Generator\\UnsupportedAlgorithmException');
+        if ($this->onWindows()) {
+            $this->markTestSkipped('The current operating system does not support /dev/urandom');
         }
 
         $generator = new Urandom();
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
-            $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator', $generator);
+        $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator', $generator);
+    }
+
+    /**
+     * @covers OpCacheGUI\Security\Generator\Urandom::__construct
+     */
+    public function testConstructThrowsUpWhenOnWindows()
+    {
+        if (!$this->onWindows()) {
+            $this->markTestSkipped('The current operating system does support /dev/urandom');
         }
+
+        $this->setExpectedException('\\OpCacheGUI\\Security\Generator\\UnsupportedAlgorithmException');
+
+        $generator = new Urandom();
     }
 
     /**
@@ -28,15 +40,13 @@ class UrandomTest extends \PHPUnit_Framework_TestCase
      */
     public function testGenerate()
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $this->setExpectedException('\\OpCacheGUI\\Security\Generator\\UnsupportedAlgorithmException');
+        if ($this->onWindows()) {
+            $this->markTestSkipped('The current operating system does not support /dev/urandom');
         }
 
         $generator = new Urandom();
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
-            $this->assertSame(128, strlen($generator->generate(128)));
-        }
+        $this->assertSame(128, strlen($generator->generate(128)));
     }
 
     /**
@@ -45,19 +55,27 @@ class UrandomTest extends \PHPUnit_Framework_TestCase
      */
     public function testGenerateRandomTheStupidWay()
     {
-        if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
-            $this->setExpectedException('\\OpCacheGUI\\Security\Generator\\UnsupportedAlgorithmException');
+        if ($this->onWindows()) {
+            $this->markTestSkipped('The current operating system does not support /dev/urandom');
         }
 
         $generator = new Urandom();
 
-        if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN') {
-            $strings = [];
-            for ($i = 0; $i < 10; $i++) {
-                $strings[] = $generator->generate(56);
-            }
-
-            $this->assertSame($strings, array_unique($strings));
+        $strings = [];
+        for ($i = 0; $i < 10; $i++) {
+            $strings[] = $generator->generate(56);
         }
+
+        $this->assertSame($strings, array_unique($strings));
+    }
+
+    /**
+     * Simple method which checks whether these tests should be run
+     *
+     * @return boolean True when on windows
+     */
+    private function onWindows()
+    {
+        return strtoupper(substr(PHP_OS, 0, 3)) === 'WIN';
     }
 }

@@ -11,9 +11,27 @@ class OpenSslTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInterface()
     {
+        if (!$this->openSslEnabled()) {
+            $this->markTestSkipped('The OpenSSL extension is not available.');
+        }
+
         $generator = new OpenSsl();
 
         $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator', $generator);
+    }
+
+    /**
+     * @covers OpCacheGUI\Security\Generator\OpenSsl::__construct
+     */
+    public function testConstructThrowsUpWhenOpenSslIsNotInstalled()
+    {
+        if ($this->openSslEnabled()) {
+            $this->markTestSkipped('The OpenSSL extension is available.');
+        }
+
+        $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\UnsupportedAlgorithmException');
+
+        $generator = new OpenSsl();
     }
 
     /**
@@ -22,6 +40,10 @@ class OpenSslTest extends \PHPUnit_Framework_TestCase
      */
     public function testGenerate()
     {
+        if (!$this->openSslEnabled()) {
+            $this->markTestSkipped('The OpenSSL extension is not available.');
+        }
+
         $generator = new OpenSsl();
 
         $this->assertSame(128, strlen($generator->generate(128)));
@@ -33,6 +55,10 @@ class OpenSslTest extends \PHPUnit_Framework_TestCase
      */
     public function testGenerateRandomTheStupidWay()
     {
+        if (!$this->openSslEnabled()) {
+            $this->markTestSkipped('The OpenSSL extension is not available.');
+        }
+
         $generator = new OpenSsl();
 
         $strings = [];
@@ -41,5 +67,15 @@ class OpenSslTest extends \PHPUnit_Framework_TestCase
         }
 
         $this->assertSame($strings, array_unique($strings));
+    }
+
+    /**
+     * Simple method which checks whether these tests should be run
+     *
+     * @return boolean True when mcrypt is installed on the current system
+     */
+    private function openSslEnabled()
+    {
+        return function_exists('openssl_random_pseudo_bytes');
     }
 }
