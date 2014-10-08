@@ -25,24 +25,25 @@ use OpCacheGUI\Format\Byte;
 class Status
 {
     /**
-     * @var array The (unfiltered) output of `opcache_get_status()`
-     */
-    private $statusData;
-
-    /**
      * @var \OpCacheGUI\Format\Byte Formatter of byte values
      */
     private $byteFormatter;
 
     /**
+     * @var array The (unfiltered) output of opcache_get_status()
+     */
+    private $statusData;
+
+    /**
      * Creates instance
      *
      * @param \OpCacheGUI\Format\Byte $byteFormatter Formatter of byte values
+     * @param array                   $statusData    The (unfiltered) output of opcache_get_status()
      */
-    public function __construct(Byte $byteFormatter)
+    public function __construct(Byte $byteFormatter, array $statusData)
     {
         $this->byteFormatter = $byteFormatter;
-        $this->statusData    = opcache_get_status();
+        $this->statusData    = $statusData;
     }
 
     /**
