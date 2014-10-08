@@ -1,5 +1,5 @@
 tools:
-    php_code_coverage: true
+    external_code_coverage: true
     php_code_sniffer:
         enabled: true
         config:
