@@ -26,6 +26,7 @@
             <directory suffix=".php">src/</directory>
             <exclude>
                 <file>src/OpCacheGUI/bootstrap.php</file>
+                <file>src/OpCacheGUI/Storage/InvalidKeyException.php</file>
                 <directory>demo</directory>
             </exclude>
         </whitelist>
