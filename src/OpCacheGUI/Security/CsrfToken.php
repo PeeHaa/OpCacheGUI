@@ -85,7 +85,7 @@ class CsrfToken
     public function get()
     {
         if (!$this->storage->isKeyValid('csrfToken')) {
-           $this->storage->set('csrfToken', $this->generate());
+            $this->storage->set('csrfToken', $this->generate());
         }
 
         return $this->storage->get('csrfToken');
