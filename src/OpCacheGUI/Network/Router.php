@@ -41,6 +41,11 @@ class Router
     private $routeFactory;
 
     /**
+     * @var int The type of the identifiers in URLs
+     */
+    private $identifierType;
+
+    /**
      * @var array List of available routes
      */
     private $routes = [];
