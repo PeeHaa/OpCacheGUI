@@ -236,7 +236,7 @@ article tr.script.active {
     display: table-row;
 }
 
-article th {
+article th, table.blacklist td {
     text-align: left;
     padding: 2px 20px;
     white-space: nowrap;
