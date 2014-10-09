@@ -42,6 +42,8 @@ class Urandom implements Generator
      * Generates a random string
      *
      * @param int $length The length of the random string to be generated
+     *
+     * @return string The generated token
      */
     public function generate($length)
     {

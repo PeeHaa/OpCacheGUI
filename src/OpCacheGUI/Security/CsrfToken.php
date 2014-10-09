@@ -94,6 +94,8 @@ class CsrfToken
     /**
      * Validates the supplied token against the stored token
      *
+     * @param string $token The token to validate
+     *
      * @return boolean True when the supplied token matches the stored token
      */
     public function validate($token)

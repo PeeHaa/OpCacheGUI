@@ -26,7 +26,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $factoryMock->method('build')->willReturn($routeMock);
 
         $router = new Router($requestMock, $factoryMock);
-        $router->post('id', function() {});
+        $router->post('id', function () {});
 
         $this->assertSame('foo', $router->run());
     }
@@ -51,7 +51,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $factoryMock->method('build')->willReturn($routeMock);
 
         $router = new Router($requestMock, $factoryMock);
-        $router->get('id', function() {});
+        $router->get('id', function () {});
 
         $this->assertSame('foo', $router->run());
     }
@@ -97,7 +97,7 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $factoryMock->method('build')->will($this->onConsecutiveCalls($routeMockMatch, $routeMockNoMatch));
 
         $router = new Router($requestMock, $factoryMock);
-        $router->post('id', function() {});
+        $router->post('id', function () {});
 
         $this->assertSame('match', $router->run());
     }
@@ -126,8 +126,8 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $factoryMock->method('build')->will($this->onConsecutiveCalls($routeMockNoMatch, $routeMockMatch));
 
         $router = new Router($requestMock, $factoryMock);
-        $router->post('id', function() {});
-        $router->post('id', function() {});
+        $router->post('id', function () {});
+        $router->post('id', function () {});
 
         $this->assertSame('match', $router->run());
     }

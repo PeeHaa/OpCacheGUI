@@ -36,7 +36,7 @@ class Autoloader
      * Build the instance of the autoloader
      *
      * @param string $namespace The prefixed namespace this instance will load
-     * @param string $path The filesystem path to the root of the namespace
+     * @param string $path      The filesystem path to the root of the namespace
      */
     public function __construct($namespace, $path)
     {
@@ -62,9 +62,11 @@ class Autoloader
             $path     .= str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
             if (file_exists($path)) {
                 require $path;
+
                 return true;
             }
         }
+
         return false;
     }
 

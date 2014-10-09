@@ -35,7 +35,7 @@ class ClassCycler
     /**
      * Creates instance
      *
-     * @param array $classes List of classes to cycle through
+     * @param string[] $classes List of classes to cycle through
      */
     public function __construct(array $classes)
     {

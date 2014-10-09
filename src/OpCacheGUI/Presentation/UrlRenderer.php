@@ -13,8 +13,6 @@
  */
 namespace OpCacheGUI\Presentation;
 
-use OpCacheGUI\Network\Router;
-
 /**
  * Interface for URI renderers
  *

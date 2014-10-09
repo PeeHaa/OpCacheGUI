@@ -30,7 +30,8 @@ class FileTranslator implements Translator
     /**
      * Creates instance
      *
-     * @param string $languageCode The language code of which to get the translations
+     * @param string $translationDirectory The directory containing the translation files
+     * @param string $languageCode         The language code of which to get the translations
      *
      * @throws \Exception When the language is not supported (i.e. no translation file can be found for the language)
      * @throws \Exception When the translation file is invalid (i.e. no `$texts` array present)
