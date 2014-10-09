@@ -55,6 +55,8 @@ class Configuration
     {
         $directives = $this->configData['directives'];
 
+        $memory_consumption = $this->byteFormatter->format($directives['opcache.memory_consumption']);
+
         return [
             'opcache.enable'                  => $directives['opcache.enable'],
             'opcache.enable_cli'              => $directives['opcache.enable_cli'],
@@ -64,7 +66,7 @@ class Configuration
             'opcache.dups_fix'                => $directives['opcache.dups_fix'],
             'opcache.revalidate_path'         => $directives['opcache.revalidate_path'],
             'opcache.log_verbosity_level'     => $directives['opcache.log_verbosity_level'],
-            'opcache.memory_consumption'      => $this->byteFormatter->format($directives['opcache.memory_consumption']),
+            'opcache.memory_consumption'      => $memory_consumption,
             'opcache.interned_strings_buffer' => $directives['opcache.interned_strings_buffer'],
             'opcache.max_accelerated_files'   => $directives['opcache.max_accelerated_files'],
             'opcache.max_wasted_percentage'   => $directives['opcache.max_wasted_percentage'],

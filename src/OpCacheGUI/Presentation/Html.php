@@ -38,7 +38,8 @@ class Html extends Template
      * Creates instance
      *
      * @param string                               $templateDirectory The directory where all the templates are stored
-     * @param string                               $baseTemplate      The base (skeleton) page in which all templates will get rendered
+     * @param string                               $baseTemplate      The base (skeleton) page in which all templates
+     *                                                                will get rendered
      * @param \OpCacheGUI\I18n\Translator          $translator        The translation service
      * @param \OpCacheGUI\Presentation\UrlRenderer $url               Instance of an URI renderer
      */
