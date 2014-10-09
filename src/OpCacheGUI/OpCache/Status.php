@@ -110,7 +110,7 @@ class Status
      */
     public function getStatsInfo()
     {
-        if(!$this->statusData['opcache_enabled']) {
+        if (!$this->statusData['opcache_enabled']) {
              return [
                 'num_cached_scripts'   => 0,
                 'num_cached_keys'      => 0,
