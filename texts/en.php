@@ -5,6 +5,8 @@ $texts = [
     'menu.config'                                           => 'Configuration',
     'menu.scripts'                                          => 'Cached Scripts',
     'menu.graphs'                                           => 'Graphs',
+    'menu.apcstatus'                                        => 'APCU Status',
+    'menu.apcvars'                                          => 'APCU Variables',
 
     'reset.submit'                                          => 'Reset',
     'confirmation.reset'                                    => 'Are you sure you want to reset the cache?',
@@ -117,4 +119,29 @@ $texts = [
     'graph.hits.hits.%'                                     => '%s hits',
     'graph.hits.misses.%'                                   => '%s misses',
     'graph.hits.blacklist.%'                                => '%s blacklist',
+
+    'apcu.generalinfo' => 'General APCu Information',
+    'apcu.apcversion' => 'APCu Version',
+    'apcu.phpversion' => 'PHP Version',
+    'apcu.server_name' => 'APCu Host',
+    'apcu.server_software' => 'Server Software',
+    'apcu.sharedmemory' => 'Shared Memory',
+    'apcu.start_time' => 'Start Time',
+    'apcu.uptime' => 'Uptime',
+    'apcu.file_upload_progress' => 'File Upload Support',
+
+    'apcu.cacheinfo' => 'APCu Cache Information',
+    'apcu.cached_vars'=> 'Cached Variables',
+    'apcu.num_hits'=> 'Hits',
+    'apcu.num_misses'=> 'Misses',
+    'apcu.req_rate_user'=> 'Request Rate (hits, misses)',
+    'apcu.hit_rate_user'=> 'Hit Rate',
+    'apcu.miss_rate_user'=> 'Miss Rate',
+    'apcu.insert_rate_user'=> 'Insert Rate',
+    'apcu.num_expunges'=> 'Cache full count',
+
+    'apcu.runtimesettings' => 'APCu Runtime Settings',
+    
+    'apcu.hoststatusdiagrams'=>'APCu Host Status Diagrams',
+    'apcu.detailedmemoryusage'=>'APCu Detailed Memory Usage and Fragmentation',
 ];

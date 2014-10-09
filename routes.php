@@ -105,6 +105,13 @@ $router->get('graphs', function() use ($htmlTemplate, $byteFormatter, $translato
 });
 
 $router->post('reset', function() use ($jsonTemplate, $csrfToken, $request) {
+    return $htmlTemplate->render('apcstatus.phtml', [
+        'byteFormatter' => $byteFormatter,
+        'csrfToken'     => $csrfToken,
+        'active'        => 'graphs',
+    ]);
+});
+
     return $jsonTemplate->render('reset.pjson', [
         'csrfToken' => $csrfToken,
         'result'    => ($csrfToken->validate($request->post('csrfToken')) && opcache_reset()) ? 'success' : 'failed',
@@ -112,8 +119,27 @@ $router->post('reset', function() use ($jsonTemplate, $csrfToken, $request) {
 });
 
 $router->post('invalidate', function() use ($jsonTemplate, $csrfToken, $request) {
+    return $jsonTemplate->render('resetapcu.pjson', [
+        'csrfToken' => $csrfToken,
+    ]);
+});
+
     return $jsonTemplate->render('invalidate.pjson', [
         'csrfToken' => $csrfToken,
         'result'    => ($csrfToken->validate($request->post('csrfToken')) && opcache_invalidate($request->post('key'), true)) ? 'success' : 'failed',
     ]);
 });
+
+$router->get('apcuimg1', function() {
+    OpCacheGUI\Addons\APCUHelper::createimg(1);
+});
+
+$router->get('apcuimg2', function() {
+    OpCacheGUI\Addons\APCUHelper::createimg(2);
+});
+
+
+$router->get('apcuimg3', function() {
+    OpCacheGUI\Addons\APCUHelper::createimg(3);
+});
+
