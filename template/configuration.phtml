@@ -21,7 +21,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 </article>
 <article class="cols-1">
     <h2><?= $this->translator->translate('blacklist.title'); ?></h2>
-    <table>
+    <table class="blacklist">
         <?php $classCycler->rewind(); ?>
         <?php if (!count($config->getBlackList())) { ?>
             <tr class="<?= $classCycler->next(); ?>">
@@ -30,6 +30,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
         <?php } else { ?>
             <?php foreach ($config->getBlackList() as $key => $blacklistedItem) { ?>
                 <tr class="<?= $classCycler->next(); ?>">
+                    <td><?= htmlspecialchars($blacklistedItem); ?></td>
                 </tr>
             <?php } ?>
         <?php } ?>
