@@ -37,6 +37,53 @@ class StatusTest extends \PHPUnit_Framework_TestCase
                 'manual_restarts'      => 0,
             ],
             'scripts'             => [
+                [
+                    'full_path'           => '/var/www/vhosts/OpcacheGUI/src/OpCacheGUI/Network/Request.php',
+                    'hits'                => 1,
+                    'memory_consumption'  => 6608,
+                    'last_used'           => 'Thu Oct 09 16:08:35 2014',
+                    'last_used_timestamp' => 1412863715,
+                    'timestamp'           => 1412698853,
+                ],
+                [
+                    'full_path'           => '/var/www/vhosts/OpcacheGUI/template/cached.phtml',
+                    'hits'                => 4,
+                    'memory_consumption'  => 3213,
+                    'last_used'           => 'Thu Oct 09 16:06:35 2014',
+                    'last_used_timestamp' => 1412863715,
+                    'timestamp'           => 1412698853,
+                ],
+                [
+                    'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Foo.php',
+                    'hits'                => 19,
+                    'memory_consumption'  => 204,
+                    'last_used'           => 'Thu Oct 09 16:04:35 2014',
+                    'last_used_timestamp' => 1412868715,
+                    'timestamp'           => 1412798853,
+                ],
+                [
+                    'full_path'           => '/var/www/vhosts/RedTube/template/humiliation/germany-vs-brazil.phtml',
+                    'hits'                => 71,
+                    'memory_consumption'  => 7001,
+                    'last_used'           => 'Thu Jul 09 21:20:10 2014',
+                    'last_used_timestamp' => 1412864715,
+                    'timestamp'           => 1412798475,
+                ],
+                [
+                    'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Psr/Autoloader.php',
+                    'hits'                => 32,
+                    'memory_consumption'  => 4678,
+                    'last_used'           => 'Thu Oct 10 15:04:35 2014',
+                    'last_used_timestamp' => 1412864715,
+                    'timestamp'           => 1412798475,
+                ],
+                [
+                    'full_path'           => '/var/www/vhosts/NoTimeStamp/src/Psr/Autoloader.php',
+                    'hits'                => 12876,
+                    'memory_consumption'  => 2048,
+                    'last_used'           => 'Thu Oct 10 15:04:35 2014',
+                    'last_used_timestamp' => 1412864715,
+                ],
             ],
         ];
     }
@@ -252,8 +299,56 @@ class StatusTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetCachedScriptsFilled()
     {
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->statusData);
+        $formatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+        $formatter->method('format')->will($this->onConsecutiveCalls('1KB', '2KB', '3KB', '4KB', '5KB', '6KB'));
 
-        $this->markTestIncomplete('Couldn\'t be arsed to test it yet.');
+        $status = new Status($formatter, $this->statusData);
+
+        $data = [
+            [
+                'full_path'           => '/var/www/vhosts/OpcacheGUI/src/OpCacheGUI/Network/Request.php',
+                'hits'                => 1,
+                'memory_consumption'  => '1KB',
+                'last_used_timestamp' => '14:08:35 09-10-2014',
+                'timestamp'           => '16:20:53 07-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/OpcacheGUI/template/cached.phtml',
+                'hits'                => 4,
+                'memory_consumption'  => '2KB',
+                'last_used_timestamp' => '14:08:35 09-10-2014',
+                'timestamp'           => '16:20:53 07-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Foo.php',
+                'hits'                => 19,
+                'memory_consumption'  => '3KB',
+                'last_used_timestamp' => '15:31:55 09-10-2014',
+                'timestamp'           => '20:07:33 08-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/RedTube/template/humiliation/germany-vs-brazil.phtml',
+                'hits'                => 71,
+                'memory_consumption'  => '4KB',
+                'last_used_timestamp' => '14:25:15 09-10-2014',
+                'timestamp'           => '20:01:15 08-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Psr/Autoloader.php',
+                'hits'                => 32,
+                'memory_consumption'  => '5KB',
+                'last_used_timestamp' => '14:25:15 09-10-2014',
+                'timestamp'           => '20:01:15 08-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/NoTimeStamp/src/Psr/Autoloader.php',
+                'hits'                => 12876,
+                'memory_consumption'  => '6KB',
+                'last_used_timestamp' => '14:25:15 09-10-2014',
+                'timestamp'           => 'N/A',
+            ],
+        ];
+
+        $this->assertSame($data, $status->getCachedScripts());
     }
 }
