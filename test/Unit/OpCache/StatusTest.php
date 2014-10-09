@@ -351,4 +351,28 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($data, $status->getCachedScripts());
     }
+
+    /**
+     * @covers OpCacheGUI\OpCache\Status::__construct
+     * @covers OpCacheGUI\OpCache\Status::getCachedScripts
+     */
+    public function testGetCachedScriptsZeroedTimestamp()
+    {
+        $statusData = $this->statusData;
+
+        $statusData['scripts'] = [
+            [
+                'full_path'           => '/var/www/vhosts/OpcacheGUI/src/OpCacheGUI/Network/Request.php',
+                'hits'                => 1,
+                'memory_consumption'  => 6608,
+                'last_used'           => 'Thu Oct 09 16:08:35 2014',
+                'last_used_timestamp' => 1412863715,
+                'timestamp'           => 0,
+            ],
+        ];
+
+        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $statusData);
+
+        $this->assertSame([], $status->getCachedScripts());
+    }
 }
