@@ -22,6 +22,6 @@ class RouteFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new RouteFactory;
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Route', $factory->build('id', 'GET', function() {}));
+        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Route', $factory->build('id', 'GET', function () {}));
     }
 }
