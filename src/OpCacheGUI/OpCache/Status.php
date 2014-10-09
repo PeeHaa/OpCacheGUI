@@ -130,6 +130,12 @@ class Status
 
         $stats = $this->statusData['opcache_statistics'];
 
+        $lastRestartTime = null;
+
+        if ($stats['last_restart_time']) {
+            $lastRestartTime = (new \DateTime('@' . $stats['last_restart_time']))->format('H:i:s d-m-Y');
+        }
+
         return [
             'num_cached_scripts'   => $stats['num_cached_scripts'],
             'num_cached_keys'      => $stats['num_cached_keys'],
@@ -140,7 +146,7 @@ class Status
             'blacklist_miss_ratio' => round($stats['blacklist_miss_ratio'], 2),
             'opcache_hit_rate'     => round($stats['opcache_hit_rate'], 2) . '%',
             'start_time'           => (new \DateTime('@' . $stats['start_time']))->format('H:i:s d-m-Y'),
-            'last_restart_time'    => $stats['last_restart_time'] ? (new \DateTime('@' . $stats['last_restart_time']))->format('H:i:s d-m-Y') : null,
+            'last_restart_time'    => $lastRestartTime,
             'oom_restarts'         => $stats['oom_restarts'],
             'hash_restarts'        => $stats['hash_restarts'],
             'manual_restarts'      => $stats['manual_restarts'],
@@ -215,12 +221,18 @@ class Status
                 continue;
             }
 
+            $timestamp = 'N/A';
+
+            if (isset($script['timestamp'])) {
+                $timestamp = (new \DateTime('@' . $script['timestamp']))->format('H:i:s d-m-Y');
+            }
+
             $scripts[] = [
                 'full_path'           => $script['full_path'],
                 'hits'                => $script['hits'],
                 'memory_consumption'  => $this->byteFormatter->format($script['memory_consumption']),
                 'last_used_timestamp' => (new \DateTime('@' . $script['last_used_timestamp']))->format('H:i:s d-m-Y'),
-                'timestamp'           => isset($script['timestamp']) ? (new \DateTime('@' . $script['timestamp']))->format('H:i:s d-m-Y') : 'N/A',
+                'timestamp'           => $timestamp,
             ];
         }
 
