@@ -111,24 +111,24 @@ class Status
     public function getStatsInfo()
     {
         if(!$this->statusData['opcache_enabled']) {
-           $stats = array(
-            'num_cached_scripts'   => 0,
-            'num_cached_keys'      => 0,
-            'max_cached_keys'      => 0,
-            'hits'                 => 0,
-            'misses'               => 0,
-            'blacklist_misses'     => 0,
-            'blacklist_miss_ratio' => 'n/a',
-            'opcache_hit_rate'     => 'n/a',
-            'start_time'           => time(),
-            'last_restart_time'    => time(),
-            'oom_restarts'         => 'n/a',
-            'hash_restarts'        => 'n/a',
-            'manual_restarts'      => 'n/a');
-
-        } else {
-            $stats = $this->statusData['opcache_statistics'];
+             return [
+                'num_cached_scripts'   => 0,
+                'num_cached_keys'      => 0,
+                'max_cached_keys'      => 0,
+                'hits'                 => 0,
+                'misses'               => 0,
+                'blacklist_misses'     => 0,
+                'blacklist_miss_ratio' => 'n/a',
+                'opcache_hit_rate'     => 'n/a',
+                'start_time'           => 'n/a',
+                'last_restart_time'    => 'n/a',
+                'oom_restarts'         => 'n/a',
+                'hash_restarts'        => 'n/a',
+                'manual_restarts'      => 'n/a',
+            ];
         }
+
+        $stats = $this->statusData['opcache_statistics'];
 
         return [
             'num_cached_scripts'   => $stats['num_cached_scripts'],
