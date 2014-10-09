@@ -31,7 +31,7 @@ class McryptTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\UnsupportedAlgorithmException');
 
-        $generator = new Mcrypt();
+        new Mcrypt();
     }
 
     /**

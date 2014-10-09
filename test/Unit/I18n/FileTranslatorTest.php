@@ -23,7 +23,7 @@ class FileTranslatorTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Exception', 'Unsupported language (`abcdef`).');
 
-        $translator = new FileTranslator(__DIR__ . '/../../Data/texts', 'abcdef');
+        new FileTranslator(__DIR__ . '/../../Data/texts', 'abcdef');
     }
 
     /**
@@ -33,7 +33,7 @@ class FileTranslatorTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('Exception', 'The translation file (`' . __DIR__ . '/../../Data/texts/invalid.php`) has an invalid format.');
 
-        $translator = new FileTranslator(__DIR__ . '/../../Data/texts', 'invalid');
+        new FileTranslator(__DIR__ . '/../../Data/texts', 'invalid');
     }
 
     /**

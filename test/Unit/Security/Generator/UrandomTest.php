@@ -31,7 +31,7 @@ class UrandomTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\\OpCacheGUI\\Security\Generator\\UnsupportedAlgorithmException');
 
-        $generator = new Urandom();
+        new Urandom();
     }
 
     /**
