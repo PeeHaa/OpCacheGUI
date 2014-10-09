@@ -38,6 +38,13 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                 'opcache.enable_file_override'    => true,
                 'opcache.optimization_level'      => 2147483647,
             ],
+            'version' => [
+                'version'              => '7.0.2-dev',
+                'opcache_product_name' => 'Zend OPcache',
+            ],
+            'blacklist' => [
+                '/var/www/vhosts/OpCacheGUI/src/OpCacheGUI/Presentation/Html.php'
+            ],
         ];
     }
 
@@ -63,8 +70,8 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetBlackList()
     {
-        $config = new Configuration($this->getMock('\\OpCacheGUI\\Format\\Byte'), []);
+        $config = new Configuration($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->configData);
 
-        $this->markTestIncomplete('Need to find out what blacklisted files / directories look like.');
+        $this->assertSame($this->configData['blacklist'], $config->getBlackList());
     }
 }
