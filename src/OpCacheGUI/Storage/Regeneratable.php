@@ -26,6 +26,8 @@ interface Regeneratable
 {
     /**
      * Regenerates a new session id and initializes the session superglobal
+     *
+     * @return void
      */
     public function regenerate();
 }

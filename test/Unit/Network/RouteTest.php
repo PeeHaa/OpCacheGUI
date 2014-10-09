@@ -12,7 +12,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
      */
     public function testMatchesRequestNoMatch()
     {
-        $route = new Route('id', 'GET', function(){});
+        $route = new Route('id', 'GET', function() {});
 
         $this->assertFalse($route->matchesRequest('notid', 'notGET'));
     }
@@ -23,7 +23,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
      */
     public function testMatchesRequestNoMatchIdentifier()
     {
-        $route = new Route('id', 'GET', function(){});
+        $route = new Route('id', 'GET', function() {});
 
         $this->assertFalse($route->matchesRequest('notid', 'GET'));
     }
@@ -34,7 +34,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
      */
     public function testMatchesRequestNoMatchVerb()
     {
-        $route = new Route('id', 'GET', function(){});
+        $route = new Route('id', 'GET', function() {});
 
         $this->assertFalse($route->matchesRequest('id', 'notGET'));
     }
@@ -45,7 +45,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
      */
     public function testMatchesRequestValid()
     {
-        $route = new Route('id', 'GET', function(){});
+        $route = new Route('id', 'GET', function() {});
 
         $this->assertTrue($route->matchesRequest('id', 'GET'));
     }
@@ -56,7 +56,7 @@ class RouteTest extends \PHPUnit_Framework_TestCase
      */
     public function testRun()
     {
-        $route = new Route('id', 'GET', function(){
+        $route = new Route('id', 'GET', function() {
             return 'foo';
         });
 

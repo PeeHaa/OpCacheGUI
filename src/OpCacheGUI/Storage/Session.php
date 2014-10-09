@@ -36,7 +36,7 @@ class Session implements KeyValuePair, Regeneratable
     /**
      * Gets a value from the session superglobal
      *
-     * @param mixed $key The key of which to retrieve the value
+     * @param string $key The key of which to retrieve the value
      *
      * @return mixed                                   The value
      * @throws \OpCacheGUI\Storage\InvalidKeyException When the key is not found

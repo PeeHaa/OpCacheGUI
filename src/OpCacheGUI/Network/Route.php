@@ -54,8 +54,8 @@ class Route
     /**
      * Checks whether the current request matches the route
      *
-     * @param string   $identifier The identifier of this route
-     * @param string   $verb       The verb of this route
+     * @param string $identifier The identifier of this route
+     * @param string $verb       The verb of this route
      */
     public function matchesRequest($identifier, $verb)
     {

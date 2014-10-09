@@ -10,6 +10,11 @@ class TemplateMock extends Template
     {
     }
 
+
+    /**
+     * @param string $key
+     * @param string $value
+     */
     public function set($key, $value)
     {
         $this->variables[$key] = $value;

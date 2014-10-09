@@ -59,7 +59,7 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
 
         $factory = $this->getMock('\\OpCacheGUI\\Security\\Generator\\Builder');
         $factory->method('build')->will($this->onConsecutiveCalls(
-            $this->returnCallback(function() {
+            $this->returnCallback(function () {
                 return new \OpCacheGUITest\Mocks\Security\Generator\Unsupported();
             }),
             $generator
@@ -137,7 +137,7 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
         $storage = $this->getMock('\\OpCacheGUI\\Storage\\KeyValuePair');
         $storage->method('isKeyValid')->willReturn(false);
         $storage->method('get')->will($this->returnArgument(0));
-        $storage->method('set')->will($this->returnCallback(function($key, $value) {
+        $storage->method('set')->will($this->returnCallback(function ($key, $value) {
             $this->assertSame('csrfToken', $key);
             $this->assertSame('12345678901234567890123456789012345678901234567890123456', $value);
         }));

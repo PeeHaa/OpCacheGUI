@@ -13,8 +13,6 @@
  */
 namespace OpCacheGUI\Network;
 
-use OpCacheGUI\Network\RequestData;
-
 /**
  * All requests are directed through this class and runs to correct route
  *
