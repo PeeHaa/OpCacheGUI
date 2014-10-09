@@ -10,7 +10,6 @@ class TemplateMock extends Template
     {
     }
 
-
     /**
      * @param string $key
      * @param string $value
