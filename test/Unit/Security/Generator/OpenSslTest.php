@@ -31,7 +31,7 @@ class OpenSslTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\UnsupportedAlgorithmException');
 
-        $generator = new OpenSsl();
+        new OpenSsl();
     }
 
     /**

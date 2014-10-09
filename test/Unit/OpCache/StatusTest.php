@@ -147,22 +147,6 @@ class StatusTest extends \PHPUnit_Framework_TestCase
     {
         $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->statusData);
 
-        $data = [
-            'num_cached_scripts'   => 0,
-            'num_cached_keys'      => 0,
-            'max_cached_keys'      => 0,
-            'hits'                 => 0,
-            'misses'               => 0,
-            'blacklist_misses'     => 0,
-            'blacklist_miss_ratio' => 'n/a',
-            'opcache_hit_rate'     => 'n/a',
-            'start_time'           => 'n/a',
-            'last_restart_time'    => 'n/a',
-            'oom_restarts'         => 'n/a',
-            'hash_restarts'        => 'n/a',
-            'manual_restarts'      => 'n/a',
-        ];
-
         $data = $this->statusData['opcache_statistics'];
 
         $data['blacklist_miss_ratio'] = 0.0;
@@ -184,22 +168,6 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $statusData['opcache_statistics']['last_restart_time'] = 0;
 
         $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $statusData);
-
-        $data = [
-            'num_cached_scripts'   => 0,
-            'num_cached_keys'      => 0,
-            'max_cached_keys'      => 0,
-            'hits'                 => 0,
-            'misses'               => 0,
-            'blacklist_misses'     => 0,
-            'blacklist_miss_ratio' => 'n/a',
-            'opcache_hit_rate'     => 'n/a',
-            'start_time'           => 'n/a',
-            'last_restart_time'    => 'n/a',
-            'oom_restarts'         => 'n/a',
-            'hash_restarts'        => 'n/a',
-            'manual_restarts'      => 'n/a',
-        ];
 
         $data = $this->statusData['opcache_statistics'];
 
