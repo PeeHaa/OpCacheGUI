@@ -140,16 +140,19 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $data = [
             [
-                'value' => $this->statusData['memory_usage']['wasted_memory'],
-                'color' => '#e0642e',
-            ],
-            [
                 'value' => $this->statusData['memory_usage']['used_memory'],
-                'color' => '#2e97e0',
+                'color' => '#e74c3c',
+                'label' => 'Used',
             ],
             [
                 'value' => $this->statusData['memory_usage']['free_memory'],
-                'color' => '#bce02e',
+                'color' => '#2ecc71',
+                'label' => 'Free',
+            ],
+            [
+                'value' => $this->statusData['memory_usage']['wasted_memory'],
+                'color' => '#16a085',
+                'label' => 'Wasted',
             ],
         ];
 
@@ -168,19 +171,23 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $statusData);
 
         $data = [
-            'num_cached_scripts'   => 0,
-            'num_cached_keys'      => 0,
-            'max_cached_keys'      => 0,
-            'hits'                 => 0,
-            'misses'               => 0,
-            'blacklist_misses'     => 0,
-            'blacklist_miss_ratio' => 'n/a',
-            'opcache_hit_rate'     => 'n/a',
-            'start_time'           => 'n/a',
-            'last_restart_time'    => 'n/a',
-            'oom_restarts'         => 'n/a',
-            'hash_restarts'        => 'n/a',
-            'manual_restarts'      => 'n/a',
+            [
+                'num_cached_scripts'   => 0,
+                'num_cached_keys'      => 0,
+                'max_cached_keys'      => 0,
+                'hits'                 => 0,
+                'misses'               => 0,
+                'blacklist_misses'     => 0,
+                'blacklist_miss_ratio' => 'n/a',
+            ],
+            [
+                'opcache_hit_rate'     => 'n/a',
+                'start_time'           => 'n/a',
+                'last_restart_time'    => 'n/a',
+                'oom_restarts'         => 'n/a',
+                'hash_restarts'        => 'n/a',
+                'manual_restarts'      => 'n/a',
+            ]
         ];
 
         $this->assertSame($data, $status->getStatsInfo());
@@ -201,7 +208,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $data['start_time']           = '13:41:33 08-10-2014';
         $data['last_restart_time']    = '17:40:00 08-10-2014';
 
-        $this->assertSame($data, $status->getStatsInfo());
+        $formattedData = [
+            array_slice($data, 0, 7, true),
+            array_slice($data, 7, null, true),
+        ];
+
+        $this->assertSame($formattedData, $status->getStatsInfo());
     }
 
     /**
@@ -223,7 +235,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $data['start_time']           = '13:41:33 08-10-2014';
         $data['last_restart_time']    = null;
 
-        $this->assertSame($data, $status->getStatsInfo());
+        $formattedData = [
+            array_slice($data, 0, 7, true),
+            array_slice($data, 7, null, true),
+        ];
+
+        $this->assertSame($formattedData, $status->getStatsInfo());
     }
 
     /**
@@ -236,16 +253,19 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $data = [
             [
-                'value' => 14,
-                'color' => '#e0642e',
-            ],
-            [
                 'value' => 38,
-                'color' => '#2e97e0',
+                'color' => '#e74c3c',
+                'label' => 'Used',
             ],
             [
                 'value' => 7911,
-                'color' => '#bce02e',
+                'color' => '#2ecc71',
+                'label' => 'Free',
+            ],
+            [
+                'value' => 14,
+                'color' => '#16a085',
+                'label' => 'Wasted',
             ],
         ];
 
@@ -262,16 +282,19 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $data = [
             [
+                'value' => 1160,
+                'color' => '#e74c3c',
+                'label' => 'Hits',
+            ],
+            [
                 'value' => 59,
-                'color' => '#e0642e',
+                'color' => '#2ecc71',
+                'label' => 'Misses',
             ],
             [
                 'value' => 0,
-                'color' => '#2e97e0',
-            ],
-            [
-                'value' => 1160,
-                'color' => '#bce02e',
+                'color' => '#16a085',
+                'label' => 'Blacklisted',
             ],
         ];
 
