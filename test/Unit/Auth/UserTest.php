@@ -15,7 +15,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
         $session->method('isKeyValid')->willReturn(true);
 
-        $user = new User($session, 'user', 'pass');
+        $user = new User($session, 'user', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
         $this->assertTrue($user->isLoggedIn());
     }
@@ -29,7 +29,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
         $session->method('isKeyValid')->willReturn(false);
 
-        $user = new User($session, 'user', 'pass');
+        $user = new User($session, 'user', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
         $this->assertFalse($user->isLoggedIn());
     }
@@ -55,7 +55,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
         $session->method('isKeyValid')->willReturn(false);
 
-        $user = new User($session, 'foo', 'bar');
+        $user = new User($session, 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
         $this->assertTrue($user->requiresLogin());
     }
@@ -70,7 +70,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
         $session->method('isKeyValid')->willReturn(true);
 
-        $user = new User($session, 'foo', 'bar');
+        $user = new User($session, 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
         $this->assertFalse($user->requiresLogin());
     }
@@ -81,7 +81,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginFailedIncorrectPassword()
     {
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', 'bar');
+        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
         $this->assertFalse($user->login('foo', 'nothashedbar'));
     }
@@ -92,9 +92,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginFailedIncorrectUsername()
     {
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', 'bar');
+        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
-        $this->assertFalse($user->login('incorrect', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q'));
+        $this->assertFalse($user->login('incorrect', 'bar'));
     }
 
     /**
@@ -103,7 +103,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginFailedIncorrectPasswordAndUsername()
     {
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', 'bar');
+        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
         $this->assertFalse($user->login('incorrect', 'incorrect'));
     }
@@ -114,8 +114,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginSuccess()
     {
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', 'bar');
+        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q');
 
-        $this->assertFalse($user->login('foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q'));
+        $this->assertTrue($user->login('foo', 'bar'));
     }
 }
