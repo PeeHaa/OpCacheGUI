@@ -28,7 +28,7 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
     <section data-content="blacklist">
         <?php if (!count($config->getBlackList())) { ?>
             <br />
-            <p>No scripts are blacklisted</p>
+            <p><?= $this->translator->translate('blacklist.empty'); ?></p>
         <?php } else { ?>
             <table>
                 <?php foreach ($config->getBlackList() as $key => $blacklistedItem) { ?>
