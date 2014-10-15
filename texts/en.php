@@ -3,7 +3,7 @@
 $texts = [
     'menu.status'                                           => 'Status',
     'menu.config'                                           => 'Configuration',
-    'menu.scripts'                                          => 'Cached scripts',
+    'menu.scripts'                                          => 'Cached Scripts',
     'menu.graphs'                                           => 'Graphs',
 
     'reset.submit'                                          => 'Reset',
@@ -24,7 +24,7 @@ $texts = [
     'memory.current_wasted_percentage'                      => 'Currently wasted',
 
     'stats.title'                                           => 'Statistics',
-    'stats.num_cached_scripts'                              => 'Cached scripts',
+    'stats.num_cached_scripts'                              => 'Cached Scripts',
     'stats.num_cached_keys'                                 => 'Cached keys',
     'stats.max_cached_keys'                                 => 'Max cached keys',
     'stats.hits'                                            => 'Hits',
@@ -93,16 +93,18 @@ $texts = [
     'blacklist.title'                                       => 'Blacklist',
     'blacklist.empty'                                       => 'No scripts are blacklisted',
 
-    'scripts.title'                                         => 'Cached scripts',
+    'scripts.title'                                         => 'Cached Scripts',
     'scripts.empty'                                         => 'No scripts are cached',
-    'scripts.directory.script_count'                        => ' (%s files)',
+    'scripts.directory.script_count'                        => ' (<i class="count">%s</i> files)',
     'scripts.full_path'                                     => 'Filename',
     'scripts.hits'                                          => 'Hits',
     'scripts.memory_consumption'                            => 'Memory',
     'scripts.last_used_timestamp'                           => 'Last used',
     'scripts.timestamp'                                     => 'Created',
+    'scripts.actions'                                       => 'Actions',
     'script.invalidate'                                     => 'Invalidate',
 
+    'graph.title'                                           => 'Graphs',
     'graph.memory.title'                                    => 'Memory',
     'graph.memory.free.%'                                   => '%s free',
     'graph.memory.used.%'                                   => '%s used',

@@ -92,4 +92,16 @@ class Request implements RequestData
     {
         return $this->serverVariables['REQUEST_METHOD'];
     }
+
+    /**
+     * Gets a post variable
+     *
+     * @param string $name The name of the post variable to get
+     *
+     * @return mixed The value
+     */
+    public function post($name)
+    {
+        return $this->postVariables[$name];
+    }
 }

@@ -6,57 +6,34 @@ $memoryInfo = $status->getMemoryInfo();
 $statsInfo  = $status->getStatsInfo();
 ?>
 
-<article class="cols-3 first">
-    <h2><?= $this->translator->translate('graph.memory.title'); ?></h2>
+<section id="graphs" class="tabs">
     <ul>
         <li>
-            <div class="graph-legend green"></div>
-            <?= sprintf($this->translator->translate('graph.memory.free.%'), $memoryInfo['free_memory']); ?>
+            <div class="chart-wrapper">
+                <h2><?= $this->translator->translate('graph.memory.title'); ?></h2>
+                <canvas id="memory" width="230" height="230"></canvas>
+                <div id="memDataChartLegend"></div>
+            </div>
         </li>
         <li>
-            <div class="graph-legend red"></div>
-            <?= sprintf($this->translator->translate('graph.memory.wasted.%'), $memoryInfo['wasted_memory']); ?>
+            <div class="chart-wrapper">
+                <h2><?= $this->translator->translate('graph.keys.title'); ?></h2>
+                <canvas id="keys" width="230" height="230"></canvas>
+                <div id="keysDataChartLegend"></div>
+            </div>
         </li>
         <li>
-            <div class="graph-legend blue"></div>
-            <?= sprintf($this->translator->translate('graph.memory.used.%'), $memoryInfo['used_memory']); ?>
+            <div class="chart-wrapper">
+                <h2><?= $this->translator->translate('graph.hits.title'); ?></h2>
+                <canvas id="hits" width="230" height="230"></canvas>
+                <div id="hitsDataChartLegend"></div>
+            </div>
         </li>
     </ul>
-    <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphMemoryInfo(); ?>'></canvas>
-</article>
-<article class="cols-3">
-    <h2><?= $this->translator->translate('graph.keys.title'); ?></h2>
-    <ul>
-        <li>
-            <div class="graph-legend green"></div>
-            <?= sprintf($this->translator->translate('graph.keys.free.%'), $statsInfo['max_cached_keys'] - $statsInfo['num_cached_keys']); ?>
-        </li>
-        <li>
-            <div class="graph-legend red"></div>
-            <?= sprintf($this->translator->translate('graph.keys.wasted.%'), $statsInfo['num_cached_scripts']); ?>
-        </li>
-        <li>
-            <div class="graph-legend blue"></div>
-            <?= sprintf($this->translator->translate('graph.keys.scripts.%'), $statsInfo['num_cached_keys'] - $statsInfo['num_cached_scripts']); ?>
-        </li>
-    </ul>
-    <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphKeyStatsInfo(); ?>'></canvas>
-</article>
-<article class="cols-3">
-    <h2><?= $this->translator->translate('graph.hits.title'); ?></h2>
-    <ul>
-        <li>
-            <div class="graph-legend green"></div>
-            <?= sprintf($this->translator->translate('graph.hits.hits.%'), $statsInfo['hits']); ?>
-        </li>
-        <li>
-            <div class="graph-legend red"></div>
-            <?= sprintf($this->translator->translate('graph.hits.misses.%'), $statsInfo['misses']); ?>
-        </li>
-        <li>
-            <div class="graph-legend blue"></div>
-            <?= sprintf($this->translator->translate('graph.hits.blacklist.%'), $statsInfo['blacklist_misses']); ?>
-        </li>
-    </ul>
-    <canvas id="memory" width="310" height="310" class="graph" data-data='<?= $status->getGraphHitStatsInfo(); ?>'></canvas>
-</article>
+</section>
+
+<script>
+    var memData  = <?= $status->getGraphMemoryInfo(); ?>;
+    var keysData = <?= $status->getGraphKeyStatsInfo(); ?>;
+    var hitsData = <?= $status->getGraphHitStatsInfo(); ?>;
+</script>
