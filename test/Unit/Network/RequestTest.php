@@ -103,4 +103,15 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('POST', $request->getVerb());
     }
+
+    /**
+     * @covers OpCacheGUI\Network\Request::__construct
+     * @covers OpCacheGUI\Network\Request::post
+     */
+    public function testPost()
+    {
+        $request = new Request([], ['foo' => 'bar'], ['REQUEST_URI' => '']);
+
+        $this->assertSame('bar', $request->post('foo'));
+    }
 }
