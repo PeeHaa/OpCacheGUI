@@ -39,4 +39,28 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($template->foo);
     }
+
+    /**
+     * @covers OpCacheGUI\Presentation\Template::__construct
+     * @covers OpCacheGUI\Presentation\Template::__isset
+     */
+    public function testMagicIssetExists()
+    {
+        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+
+        $template->set('foo', 'bar');
+
+        $this->assertTrue(isset($template->foo));
+    }
+
+    /**
+     * @covers OpCacheGUI\Presentation\Template::__construct
+     * @covers OpCacheGUI\Presentation\Template::__isset
+     */
+    public function testMagicIssetDoesNotExist()
+    {
+        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+
+        $this->assertFalse(isset($template->foo));
+    }
 }
