@@ -49,7 +49,7 @@ foreach($status->getCachedScripts() as $data) {
                                                     <form action="<?= $this->url->get('invalidate'); ?>" method="post">
                                                         <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
                                                         <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
-                                                        <button type="submit" name="submit" value="<?= $this->translator->translate('script.invalidate'); ?>" class="cnfbtn cnfbtn--fn js-confirm inv" title="Invalidate">Invalidate</button>
+                                                        <button type="submit" name="submit" value="<?= $this->translator->translate('script.invalidate'); ?>" class="cnfbtn cnfbtn--fn js-confirm inv" title="Invalidate"><?= $this->translator->translate('script.invalidate'); ?></button>
                                                     </form>
                                                 </td>
                                             </tr>
