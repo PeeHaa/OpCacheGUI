@@ -1,43 +1,70 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
-        <title>OpCacheGUI 1.0</title>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="style/style.css">
-        <link rel="shortcut icon" href="favicon.ico">
-        <script>'article aside footer header nav section time'.replace(/\w+/g,function(n){document.createElement(n)})</script>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no">
+        <title><?= ucfirst($this->active).' - '; ?>OpCache <?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?></title>
+        <link rel="stylesheet" href="style/main.css">
     </head>
     <body>
-        <div id="wrapper">
+        <div id="wrap">
             <header>
-                <div class="content">
-                    <h1><a href="">PHP <?= phpversion(); ?> OpCache <?= opcache_get_configuration()['version']['version']; ?></a></h1>
-                    <nav>
-                        <ul>
-                            <li<?= $this->active == 'status' ? ' class="active"' : null ?>><a href="<?= $this->url->get('status'); ?>"><?= $this->translator->translate('menu.status'); ?></a></li>
-                            <li<?= $this->active == 'config' ? ' class="active"' : null ?>><a href="<?= $this->url->get('configuration'); ?>"><?= $this->translator->translate('menu.config'); ?></a></li>
-                            <li<?= $this->active == 'cached' ? ' class="active"' : null ?>><a href="<?= $this->url->get('cached-scripts'); ?>"><?= $this->translator->translate('menu.scripts'); ?></a></li>
-                            <li<?= $this->active == 'graphs' ? ' class="active"' : null ?>><a href="<?= $this->url->get('graphs'); ?>"><?= $this->translator->translate('menu.graphs'); ?></a></li>
-                        </ul>
-                    </nav>
-                </div>
+                <nav class="clear">
+                    <ul>
+                        <li title="OpCache <?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?>" id="logo">
+                            <a href="#">Op<span>Cache</span><sup><?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?></sup></a>
+                        </li>
+                        <li><?= $this->title; ?></li>
+                        <li>
+                            <a href="https://github.com/PeeHaa/OpCacheGUI" target="_blank" title="Project on GitHub">
+                                <span class="fa fa-github"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </header>
-            <div id="body">
-                <?= $this->content; ?>
-            </div>
-            <div class="push"></div>
+            <?php if (!isset($this->login)) { ?>
+                <section id="main-wrap" class="clear">
+                    <aside>
+                        <nav class="clear">
+                            <ul>
+                                <li<?= $this->active === 'status' ? ' class="lna"' : null ?>>
+                                    <a href="<?= $this->url->get('status'); ?>"><span class="fa fa-dashboard"></span><?= $this->translator->translate('menu.status'); ?></a>
+                                </li>
+                                <li<?= $this->active === 'config' ? ' class="lna"' : null ?>>
+                                    <a href="<?= $this->url->get('configuration'); ?>"><span class="fa fa-wrench"></span><?= $this->translator->translate('menu.config'); ?></a>
+                                </li>
+                                <li<?= $this->active === 'cached' ? ' class="lna"' : null ?>>
+                                    <a href="<?= $this->url->get('cached-scripts'); ?>"><span class="fa fa-file-text-o"></span><?= $this->translator->translate('menu.scripts'); ?></a>
+                                </li>
+                                <li<?= $this->active === 'graphs' ? ' class="lna"' : null ?>>
+                                    <a href="<?= $this->url->get('graphs'); ?>"><span class="fa fa-pie-chart"></span><?= $this->translator->translate('menu.graphs'); ?></a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </aside>
+                    <div id="left-responsive-nav">
+                        <select onchange="location = this.options[this.selectedIndex].value;">
+                            <option value="<?= $this->url->get('status'); ?>"<?php if ($this->active === 'status') echo ' selected="selected"' ?>>
+                                <?= $this->translator->translate('menu.status'); ?>
+                            </option>
+                            <option value="<?= $this->url->get('configuration'); ?>"<?php if ($this->active === 'config') echo ' selected="selected"' ?>>
+                                <?= $this->translator->translate('menu.config'); ?>
+                            </option>
+                            <option value="<?= $this->url->get('cached-scripts'); ?>"<?php if ($this->active === 'cached') echo ' selected="selected"' ?>>
+                                <?= $this->translator->translate('menu.scripts'); ?>
+                            </option>
+                            <option value="<?= $this->url->get('graphs'); ?>"<?php if ($this->active === 'graphs') echo ' selected="selected"' ?>>
+                                <?= $this->translator->translate('menu.graphs'); ?>
+                            </option>
+                        </select>
+                    </div>
+                <?php } ?>
+                <section id="content">
+                    <?= $this->content; ?>
+                </section>
+            </section>
         </div>
-        <footer>
-            <ul>
-                <li>OpCacheGUI <?= (new DateTime())->format('Y'); ?></li>
-                <li class="divider">-</li>
-                <li><a href="https://github.com/PeeHaa/OpCacheGUI" target="_blank">Projectpage on GitHub</a></li>
-                <li class="divider">-</li>
-                <li>Maintained by <a href="https://github.com/PeeHaa" target="_blank">Pieter Hordijk</a></li>
-            </ul>
-        </footer>
-        <script src="js/Chart.js"></script>
-        <script src="js/DomHandler.js"></script>
         <script src="js/main.js"></script>
     </body>
 </html>

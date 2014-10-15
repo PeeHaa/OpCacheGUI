@@ -25,6 +25,13 @@ use OpCacheGUI\Format\Byte;
 class Status
 {
     /**
+     * @var string The colors of the graphs
+     */
+    const DARK_GREEN = '#16a085';
+    const RED        = '#e74c3c';
+    const GREEN      = '#2ecc71';
+
+    /**
      * @var \OpCacheGUI\Format\Byte Formatter of byte values
      */
     private $byteFormatter;
@@ -89,16 +96,19 @@ class Status
 
         return json_encode([
             [
-                'value' => $memory['wasted_memory'],
-                'color' => '#e0642e',
-            ],
-            [
                 'value' => $memory['used_memory'],
-                'color' => '#2e97e0',
+                'color' => self::RED,
+                'label' => 'Used',
             ],
             [
                 'value' => $memory['free_memory'],
-                'color' => '#bce02e',
+                'color' => self::GREEN,
+                'label' => 'Free',
+            ],
+            [
+                'value' => $memory['wasted_memory'],
+                'color' => self::DARK_GREEN,
+                'label' => 'Wasted',
             ],
         ]);
     }
@@ -112,19 +122,23 @@ class Status
     {
         if (!$this->statusData['opcache_enabled']) {
              return [
-                'num_cached_scripts'   => 0,
-                'num_cached_keys'      => 0,
-                'max_cached_keys'      => 0,
-                'hits'                 => 0,
-                'misses'               => 0,
-                'blacklist_misses'     => 0,
-                'blacklist_miss_ratio' => 'n/a',
-                'opcache_hit_rate'     => 'n/a',
-                'start_time'           => 'n/a',
-                'last_restart_time'    => 'n/a',
-                'oom_restarts'         => 'n/a',
-                'hash_restarts'        => 'n/a',
-                'manual_restarts'      => 'n/a',
+                 [
+                    'num_cached_scripts'   => 0,
+                    'num_cached_keys'      => 0,
+                    'max_cached_keys'      => 0,
+                    'hits'                 => 0,
+                    'misses'               => 0,
+                    'blacklist_misses'     => 0,
+                    'blacklist_miss_ratio' => 'n/a',
+                 ],
+                 [
+                    'opcache_hit_rate'     => 'n/a',
+                    'start_time'           => 'n/a',
+                    'last_restart_time'    => 'n/a',
+                    'oom_restarts'         => 'n/a',
+                    'hash_restarts'        => 'n/a',
+                    'manual_restarts'      => 'n/a',
+                 ],
             ];
         }
 
@@ -137,19 +151,23 @@ class Status
         }
 
         return [
-            'num_cached_scripts'   => $stats['num_cached_scripts'],
-            'num_cached_keys'      => $stats['num_cached_keys'],
-            'max_cached_keys'      => $stats['max_cached_keys'],
-            'hits'                 => $stats['hits'],
-            'misses'               => $stats['misses'],
-            'blacklist_misses'     => $stats['blacklist_misses'],
-            'blacklist_miss_ratio' => round($stats['blacklist_miss_ratio'], 2),
-            'opcache_hit_rate'     => round($stats['opcache_hit_rate'], 2) . '%',
-            'start_time'           => (new \DateTime('@' . $stats['start_time']))->format('H:i:s d-m-Y'),
-            'last_restart_time'    => $lastRestartTime,
-            'oom_restarts'         => $stats['oom_restarts'],
-            'hash_restarts'        => $stats['hash_restarts'],
-            'manual_restarts'      => $stats['manual_restarts'],
+            [
+                'num_cached_scripts'   => $stats['num_cached_scripts'],
+                'num_cached_keys'      => $stats['num_cached_keys'],
+                'max_cached_keys'      => $stats['max_cached_keys'],
+                'hits'                 => $stats['hits'],
+                'misses'               => $stats['misses'],
+                'blacklist_misses'     => $stats['blacklist_misses'],
+                'blacklist_miss_ratio' => round($stats['blacklist_miss_ratio'], 2),
+            ],
+            [
+                'opcache_hit_rate'     => round($stats['opcache_hit_rate'], 2) . '%',
+                'start_time'           => (new \DateTime('@' . $stats['start_time']))->format('H:i:s d-m-Y'),
+                'last_restart_time'    => $lastRestartTime,
+                'oom_restarts'         => $stats['oom_restarts'],
+                'hash_restarts'        => $stats['hash_restarts'],
+                'manual_restarts'      => $stats['manual_restarts'],
+            ],
         ];
     }
 
@@ -164,16 +182,19 @@ class Status
 
         return json_encode([
             [
-                'value' => $stats['num_cached_keys'] - $stats['num_cached_scripts'],
-                'color' => '#e0642e',
-            ],
-            [
                 'value' => $stats['num_cached_scripts'],
-                'color' => '#2e97e0',
+                'color' => self::RED,
+                'label' => 'Used',
             ],
             [
                 'value' => $stats['max_cached_keys'] - $stats['num_cached_keys'],
-                'color' => '#bce02e',
+                'color' => self::GREEN,
+                'label' => 'Free',
+            ],
+            [
+                'value' => $stats['num_cached_keys'] - $stats['num_cached_scripts'],
+                'color' => self::DARK_GREEN,
+                'label' => 'Wasted',
             ],
         ]);
     }
@@ -189,16 +210,19 @@ class Status
 
         return json_encode([
             [
+                'value' => $stats['hits'],
+                'color' => self::RED,
+                'label' => 'Hits',
+            ],
+            [
                 'value' => $stats['misses'],
-                'color' => '#e0642e',
+                'color' => self::GREEN,
+                'label' => 'Misses',
             ],
             [
                 'value' => $stats['blacklist_misses'],
-                'color' => '#2e97e0',
-            ],
-            [
-                'value' => $stats['hits'],
-                'color' => '#bce02e',
+                'color' => self::DARK_GREEN,
+                'label' => 'Blacklisted',
             ],
         ]);
     }
