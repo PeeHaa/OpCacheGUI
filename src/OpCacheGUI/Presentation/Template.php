@@ -69,4 +69,16 @@ abstract class Template implements Renderer
 
         return $this->variables[$key];
     }
+
+    /**
+     * Magically check whether magic variables exist in a magical way using magic
+     *
+     * @param mixed The key to check
+     *
+     * @return boolean true when tha magical thing is set
+     */
+    public function __isset($key)
+    {
+        return isset($this->variables[$key]);
+    }
 }

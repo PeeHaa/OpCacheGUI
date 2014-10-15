@@ -13,6 +13,7 @@ use OpCacheGUI\Format\Byte as ByteFormatter;
 use OpCacheGUI\Storage\Session;
 use OpCacheGUI\Security\Generator\Factory;
 use OpCacheGUI\Security\CsrfToken;
+use OpCacheGUI\Auth\User;
 use OpCacheGUI\Network\Request;
 use OpCacheGUI\Presentation\Url;
 use OpCacheGUI\Presentation\Html;
@@ -45,6 +46,11 @@ $byteFormatter = new ByteFormatter;
  */
 $sessionStorage = new Session();
 $csrfToken      = new CsrfToken($sessionStorage, new Factory());
+
+/**
+ * Setup the authentication object
+ */
+$user = new User($sessionStorage, $login['username'], $login['password']);
 
 /**
  * Setup URL renderer

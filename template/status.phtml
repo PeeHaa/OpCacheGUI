@@ -3,44 +3,48 @@ $status      = new OpCacheGUI\OpCache\Status($this->byteFormatter, opcache_get_s
 $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 ?>
 
-<article class="cols-3 first">
-    <h2>
-        <?= $this->translator->translate('status.title'); ?>
+<section id="status-tabs" class="tabs">
+    <div class="data-block clear">
+        <h2><?= $this->translator->translate('status.title'); ?></h2>
+        <table>
+            <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
+                <tr>
+                    <td><?= $this->translator->translate('status.' . $key); ?></td>
+                    <td><span class="<?= $statusItem ? 'g' : 'r'; ?>s"></span></td>
+                </tr>
+            <?php } ?>
+        </table>
         <form action="<?= $this->url->get('reset'); ?>" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
             <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
-            <input type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>">
+            <button type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>" class="cnfbtn cnfbtn--fn js-confirm reset-btn">Reset</button>
         </form>
-    </h2>
-    <table>
-        <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
-            <tr class="<?= $classCycler->next(); ?>">
-                <th><?= $this->translator->translate('status.' . $key); ?></th>
-                <td><div class='sprite bullet-<?= $statusItem ? 'green' : 'red'; ?>-icon'></div></td>
-            </tr>
+    </div>
+
+    <div class="data-block">
+        <h2><?= $this->translator->translate('memory.title'); ?></h2>
+        <table>
+            <?php foreach ($status->getMemoryInfo() as $key => $memoryItem) { ?>
+                <tr>
+                    <td><?= $this->translator->translate('memory.' . $key); ?></td>
+                    <td><?= $memoryItem; ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
+
+    <div class="data-block">
+        <h2><?= $this->translator->translate('stats.title'); ?></h2>
+        <?php foreach ($status->getStatsInfo() as $statisticList) { ?>
+            <div>
+                <table>
+                    <?php foreach ($statisticList as $key => $statisticItem) { ?>
+                        <tr>
+                            <td><?= $this->translator->translate('stats.' . $key); ?></td>
+                            <td><?= $statisticItem; ?></td>
+                        </tr>
+                    <?php } ?>
+                </table>
+            </div>
         <?php } ?>
-    </table>
-</article>
-<article class="cols-3">
-    <h2><?= $this->translator->translate('memory.title'); ?></h2>
-    <table>
-        <?php $classCycler->rewind(); ?>
-        <?php foreach ($status->getMemoryInfo() as $key => $memoryItem) { ?>
-            <tr class="<?= $classCycler->next(); ?>">
-                <th><?= $this->translator->translate('memory.' . $key); ?></th>
-                <td><?= $memoryItem; ?></td>
-            </tr>
-        <?php } ?>
-    </table>
-</article>
-<article class="cols-3">
-    <h2><?= $this->translator->translate('stats.title'); ?></h2>
-    <table>
-        <?php $classCycler->rewind(); ?>
-        <?php foreach ($status->getStatsInfo() as $key => $statisticItem) { ?>
-            <tr class="<?= $classCycler->next(); ?>">
-                <th><?= $this->translator->translate('stats.' . $key); ?></th>
-                <td><?= $statisticItem; ?></td>
-            </tr>
-        <?php } ?>
-    </table>
-</article>
+    </div>
+</section>
