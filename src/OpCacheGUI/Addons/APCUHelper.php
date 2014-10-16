@@ -79,8 +79,12 @@ class APCUHelper
         
         $this->generalinfo['apcversion'] = phpversion('apcu');
         $this->generalinfo['phpversion'] = phpversion();
-        if (!empty($_SERVER['SERVER_NAME'])) $this->generalinfo['server_name'] = $_SERVER['SERVER_NAME'];
-        if (!empty($_SERVER['SERVER_SOFTWARE'])) $this->generalinfo['server_software'] = $_SERVER['SERVER_SOFTWARE'];
+        if (!empty($_SERVER['SERVER_NAME'])) {
+            $this->generalinfo['server_name'] = $_SERVER['SERVER_NAME'];
+        }
+        if (!empty($_SERVER['SERVER_SOFTWARE'])) {
+            $this->generalinfo['server_software'] = $_SERVER['SERVER_SOFTWARE'];
+        }
         $this->generalinfo['sharedmemory'] = "{$mem['num_seg']} Segment(s) with $seg_size ({$cache['memory_type']} memory)";
         $this->generalinfo['start_time'] = date('Y/m/d H:i:s', $cache['start_time']);
         $this->generalinfo['uptime'] = self::duration($cache['start_time']);
@@ -117,9 +121,6 @@ class APCUHelper
         } else {
             $frag = "0%";
         }
-
-        
-    
         
         $this->diagram[1]['image'] = $mem_note . '<img alt="" width="250" height="210" src="/apcuimg1">';
         $this->diagram[1]['free_memory'] = self::bsize($mem_avail);
@@ -344,9 +345,10 @@ EOB;
         }
     }
     
-    public static function createimg($imgid,$output='img') {
+    public static function createimg($imgid, $output = 'img') {
         define('GRAPH_SIZE', 200);
-         // Image size
+        
+        // Image size
         $size = GRAPH_SIZE;
         $mem = self::getMem();
         $cache = self::getCache();
@@ -367,7 +369,8 @@ EOB;
                 $a = $mem['avail_mem'];
                 $x = $y = $size / 2;
                 $fuzz = 0.000001;
-                $json_array=[];
+                $json_array = [];
+                
                 // This block of code creates the pie chart.  It is a lot more complex than you
                 // would expect because we try to visualize any memory fragmentation as well.
                 $angle_from = 0;
@@ -376,10 +379,10 @@ EOB;
                     $ptr = 0;
                     $free = $mem['block_lists'][$i];
                     uasort($free, 'self::block_sort');
-                   
+                    
                     foreach ($free as $block) {
                         if ($block['offset'] != $ptr) {
-
+                            
                             // Used block
                             $angle_to = $angle_from + ($block['offset'] - $ptr) / $s;
                             if (($angle_to + $fuzz) > 1) $angle_to = 1;
@@ -391,7 +394,7 @@ EOB;
                                         $angle_to
                                     ));
                                 }
-                                $json_array[]=['value' => $block['size'],    'color' => '#D06030'];
+                                $json_array[] = ['value' => $block['size'], 'color' => '#D06030'];
                             }
                             $angle_from = $angle_to;
                         }
@@ -405,7 +408,7 @@ EOB;
                                     $angle_to
                                 ));
                             }
-                            $json_array[]=['value' => $block['size'],    'color' => '#60F060'];
+                            $json_array[] = ['value' => $block['size'], 'color' => '#60F060'];
                         }
                         $angle_from = $angle_to;
                         $ptr = $block['offset'] + $block['size'];
@@ -422,7 +425,7 @@ EOB;
                                 $angle_to
                             ));
                         }
-                        $json_array[]=['value' => $block['size'],    'color' => '#D06030'];
+                        $json_array[] = ['value' => $block['size'], 'color' => '#D06030'];
                     }
                 }
                 
@@ -494,40 +497,24 @@ EOB;
                 self::fill_box($image, 130, $size, 50, $s ? -max(4, ($s - $a) * ($size - 21) / $s) : 0, $col_black, $col_red, sprintf("%.1f%%", $s ? $cache['num_misses'] * 100 / $s : 0));
                 break;
             }
-            if($output=='img') {
+            if ($output == 'img') {
                 header("Content-type: image/png");
                 imagepng($image);
                 exit;
             } else {
                 return json_encode($json_array);
             }
-            
-          
         }
-
-                /**
+        
+        /**
          * Gets the memory info formatted to build a graph
          *
          * @return string JSON encoded memory info
          */
-        public function getGraphMemoryInfo()
-        {
+        public function getGraphMemoryInfo() {
             $memory = $this->statusData['memory_usage'];
-
-            return json_encode([
-                [
-                    'value' => $memory['wasted_memory'],
-                    'color' => '#e0642e',
-                ],
-                [
-                    'value' => $memory['used_memory'],
-                    'color' => '#2e97e0',
-                ],
-                [
-                    'value' => $memory['free_memory'],
-                    'color' => '#bce02e',
-                ],
-            ]);
+            
+            return json_encode([['value' => $memory['wasted_memory'], 'color' => '#e0642e', ], ['value' => $memory['used_memory'], 'color' => '#2e97e0', ], ['value' => $memory['free_memory'], 'color' => '#bce02e', ], ]);
         }
     }
     
