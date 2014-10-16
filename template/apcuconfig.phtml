@@ -1,0 +1,21 @@
+<?php
+$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
+$apcuHelper=new OpCacheGUI\Addons\APCUHelper();
+?>
+
+<section id="apcuconfig-tabs" class="tabs">
+    <section data-content="Runtime Settings">
+        <table class="apcu">
+            <?php $classCycler->rewind(); ?>
+            <?php foreach ($apcuHelper->getRuntimeSettings() as $key => $settingItem) { ?>
+            <tr class="<?= $classCycler->next(); ?>">
+                <td><?= $key; ?></td>
+                <td><?php print_r($settingItem); ?></td>
+                <td><?= $this->translator->translate($key); ?></td>
+            </tr>
+            <?php } ?>
+            <tr><td>&nbsp;</td></tr>
+        </table>
+    </section>
+
+</section>

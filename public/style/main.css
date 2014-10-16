@@ -338,11 +338,16 @@ aside nav ul li a:hover {
 }
 
 .tabs > section > table tr > td,
+#apcustatus-tabs .data-block td,
 #status-tabs .data-block td {
 	padding: 15px 0;
 	border-bottom: 1px solid #eee;
 }
 
+#apcustatus-tabs .data-block td {
+	padding: 10px 0;
+	border-bottom: 1px solid #eee;
+}
 /* Page Specific Table Styles */
 
 /* Status Page */
@@ -352,6 +357,7 @@ aside nav ul li a:hover {
 	padding-right: 40px;
 }
 
+#apcustatus-tabs form,
 #status-tabs form {
 	float: right;
 	margin-top: 10px;
@@ -364,7 +370,7 @@ aside nav ul li a:hover {
 #status-tabs .data-block td:nth-child(2) {
 	text-align: right;
 }
-
+#apcustatus-tabs .data-block h2,
 #status-tabs .data-block h2,
 #graphs h2 {
 	font-size: 14px;
@@ -376,10 +382,12 @@ aside nav ul li a:hover {
 }
 
 /* Configuration Page */
+#apcuconfig-tabs table tr td:nth-child(1),
 #configuration-tabs table tr td:nth-child(1) {
 	width: 30%;
 }
 
+#apcuconfig-tabs table tr td:nth-child(2),
 #configuration-tabs table tr td:nth-child(2) {
 	width: 20%;
 	padding: 0 10px;
@@ -421,7 +429,8 @@ aside nav ul li a:hover {
 }
 
 #cached-scripts-tabs table,
-#configuration-tabs table {
+#configuration-tabs table,
+#apcuconfig-tabs table, {
 	word-wrap: break-word;
 }
 
@@ -829,3 +838,85 @@ aside nav ul li a:hover {
 		font-size: 20px;
 	}
 }
+
+#apcustatus-tabs .data-block:first-child {
+width: 40%;
+float: left;
+padding-right: 40px;
+}
+
+#apcustatus-tabs .data-block:last-of-type {
+width: 60%;
+float: left;
+padding-left: 40px;
+}
+
+
+.apcu_cachedscripts a {
+    color: #0088cc;
+}
+
+.apcu_cachedscripts td {
+    padding:5px 4px;
+    border:1px solid #EEE;
+}
+
+.apcu_cachedscripts tr th:first-child {
+	white-space: nowrap;
+}
+
+
+.apcu_cachedscripts td.td-n {
+    font-size:0.75em;
+}
+
+.apcu_cachedscripts td.td-0 {
+    font-size:0.9em;
+    text-decoration: none;
+    padding-left: 5px;
+}
+
+.apcu_cachedscripts td.td-last a {
+    font-size:0.9em;
+    text-decoration: none;
+}
+
+
+.apcu_cachedscripts td.td-0 a {
+    text-decoration: none;
+}
+
+.apcu_cachedscripts tr.script {
+    display:none;
+}
+
+.apcu_cachedscripts th a {
+    text-decoration:none;
+    font-size:0.9em;
+    font-weight:bold;
+}
+
+.apcu_cachedscripts th.thin {
+    padding:2px 1px;
+    width:58px;
+}
+.fragmentationgraph {
+    width:565px;
+    overflow:hidden;
+}
+
+table.apcu {
+    font-size: 0.95em;
+}
+
+span.box {
+    border: black solid 1px;
+    border-right:solid black 2px;
+    border-bottom:solid black 2px;
+    padding:0 0.5em 0 0.5em;
+    margin-right:1em;
+}
+span.green { background:#60F060; padding:0 0.5em 0 0.5em}
+span.red { background:#D06030; padding:0 0.5em 0 0.5em }
+
+#apcustatus-tabs .data-block h2 {margin-top:20px;}
