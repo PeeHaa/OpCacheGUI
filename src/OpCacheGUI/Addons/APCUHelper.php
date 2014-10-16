@@ -49,7 +49,6 @@ class APCUHelper
         $cache = self::getCache();
         $mem = self::getMem();
         $time = time();
-        $host = php_uname('n');
         $cache['num_hits'] = isset($cache['num_hits']) ? $cache['num_hits'] : $cache['nhits'];
         $cache['num_misses'] = isset($cache['num_misses']) ? $cache['num_misses'] : $cache['nmisses'];
         $cache['start_time'] = isset($cache['start_time']) ? $cache['start_time'] : $cache['stime'];
@@ -155,7 +154,7 @@ class APCUHelper
         $this->diagram[3]['image'] .=
         $this->diagram[3]['fragmentation'] = "Fragmentation: $frag";
     }
-    public static function getScopeList()
+    public function getScopeList()
     {
         return $this->scope_list;
     }
@@ -383,6 +382,7 @@ class APCUHelper
     //
     public static function bsize($s)
     {
+        $k='';
         foreach (array('','K','M','G') as $i => $k) {
             if ($s < 1024) {
                 break;
@@ -452,17 +452,17 @@ class APCUHelper
         $col_green = imagecolorallocate($image, 0x60, 0xF0, 0x60);
         $col_black = imagecolorallocate($image, 0, 0, 0);
         imagecolortransparent($image, $col_white);
+        $json_array = [];
         switch ($imgid) {
             case 1:
                 $s = $mem['num_seg'] * $mem['seg_size'];
-                $a = $mem['avail_mem'];
                 $x = $y = $size / 2;
                 $fuzz = 0.000001;
-                $json_array = [];
                 // This block of code creates the pie chart.  It is a lot more complex than you
                 // would expect because we try to visualize any memory fragmentation as well.
                 $angle_from = 0;
                 $string_placement = array();
+                $block=[];
                 for ($i = 0; $i < $mem['num_seg']; $i++) {
                     $ptr = 0;
                     $free = $mem['block_lists'][$i];
@@ -564,7 +564,6 @@ class APCUHelper
                 break;
             case 3:
                 $s = $mem['num_seg'] * $mem['seg_size'];
-                $a = $mem['avail_mem'];
                 $x = 130;
                 $y = 1;
                 $j = 1;
@@ -648,19 +647,5 @@ class APCUHelper
             return json_encode($json_array);
         }
     }
-    /**
-     * Gets the memory info formatted to build a graph
-     *
-     * @return string JSON encoded memory info
-     */
-    public function getGraphMemoryInfo()
-    {
-        $memory = $this->statusData['memory_usage'];
-        $memory_info=[
-            ['value' => $memory['wasted_memory'], 'color' => '#e0642e', ],
-            ['value' => $memory['used_memory'], 'color' => '#2e97e0', ],
-            ['value' => $memory['free_memory'], 'color' => '#bce02e', ], ];
 
-        return json_encode($memory_info);
-    }
 }
