@@ -49,8 +49,10 @@ $apcuHelper=new OpCacheGUI\Addons\APCUHelper();
     <tr class="even">
         <td style="text-align:center;"><?= $apcuHelper->getDiagrams(1)['image'] ?></td>
         <td style="text-align:center;"><?= $apcuHelper->getDiagrams(2)['image'] ?></td>
-    </tr>
+            
 
+    </tr>
+    
     <tr class="<?= $classCycler->next(); ?>">
         <td ><?= $apcuHelper->getDiagrams(1)['free'] ?></td>
         <td ><?= $apcuHelper->getDiagrams(2)['hits'] ?></td>
