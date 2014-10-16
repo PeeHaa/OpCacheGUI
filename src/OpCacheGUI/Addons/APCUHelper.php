@@ -48,7 +48,8 @@ class APCUHelper
         'D' => 'deleted_list'
     );
     
-    public function __construct() {
+    public function __construct() 
+    {
         $cache = self::getCache();
         $mem = self::getMem();
         
@@ -79,10 +80,12 @@ class APCUHelper
         
         $this->generalinfo['apcversion'] = phpversion('apcu');
         $this->generalinfo['phpversion'] = phpversion();
-        if (!empty($_SERVER['SERVER_NAME'])) {
+        if (!empty($_SERVER['SERVER_NAME'])) 
+        {
             $this->generalinfo['server_name'] = $_SERVER['SERVER_NAME'];
         }
-        if (!empty($_SERVER['SERVER_SOFTWARE'])) {
+        if (!empty($_SERVER['SERVER_SOFTWARE'])) 
+        {
             $this->generalinfo['server_software'] = $_SERVER['SERVER_SOFTWARE'];
         }
         $this->generalinfo['sharedmemory'] = "{$mem['num_seg']} Segment(s) with $seg_size ({$cache['memory_type']} memory)";
@@ -90,21 +93,27 @@ class APCUHelper
         $this->generalinfo['uptime'] = self::duration($cache['start_time']);
         $this->generalinfo['file_upload_progress'] = $cache['file_upload_progress'];
         
-        $this->runtimesettings = array_map(function ($setting) {
+        $this->runtimesettings = array_map(function ($setting) 
+        {
             return $setting['local_value'];
         }
         , ini_get_all('apcu'));
-        if ($mem['num_seg'] > 1 || $mem['num_seg'] == 1 && count($mem['block_lists'][0]) > 1) {
+        if ($mem['num_seg'] > 1 || $mem['num_seg'] == 1 && count($mem['block_lists'][0]) > 1) 
+        {
             $mem_note = "Memory Usage<br /><font size=-2>(multiple slices indicate fragments)</font>";
-        } else {
+        } else
+        {
             $mem_note = "Memory Usage";
         }
         
         $nseg = $freeseg = $fragsize = $freetotal = 0;
-        for ($i = 0; $i < $mem['num_seg']; $i++) {
+        for ($i = 0; $i < $mem['num_seg']; $i++) 
+        {
             $ptr = 0;
-            foreach ($mem['block_lists'][$i] as $block) {
-                if ($block['offset'] != $ptr) {
+            foreach ($mem['block_lists'][$i] as $block) 
+            {
+                if ($block['offset'] != $ptr) 
+                {
                     ++$nseg;
                 }
                 $ptr = $block['offset'] + $block['size'];
@@ -116,9 +125,11 @@ class APCUHelper
             $freeseg+= count($mem['block_lists'][$i]);
         }
         
-        if ($freeseg > 1) {
+        if ($freeseg > 1) 
+        {
             $frag = sprintf("%.2f%% (%s out of %s in %d fragments)", ($fragsize / $freetotal) * 100, self::bsize($fragsize) , self::bsize($freetotal) , $freeseg);
-        } else {
+        } else
+        {
             $frag = "0%";
         }
         
@@ -134,34 +145,42 @@ class APCUHelper
         $this->diagram[3]['fragmentation'] = "Fragmentation: $frag";
     }
     
-    public static function getScopeList() {
+    public static function getScopeList() 
+    {
         return $this->scope_list;
     }
-    public function getDiagrams($diagramid) {
+    public function getDiagrams($diagramid) 
+    {
         return $this->diagram[$diagramid];
     }
     
-    public function getCacheInfo() {
+    public function getCacheInfo() 
+    {
         return $this->cacheinfo;
     }
     
-    public function getGeneralInfo() {
+    public function getGeneralInfo() 
+    {
         return $this->generalinfo;
     }
     
-    public function getRuntimeSettings() {
+    public function getRuntimeSettings() 
+    {
         return $this->runtimesettings;
     }
     
-    public static function getCache() {
+    public static function getCache() 
+    {
         return apcu_cache_info();
     }
     
-    public static function getMem() {
+    public static function getMem() 
+    {
         return apcu_sma_info();
     }
     
-    public static function duration($ts) {
+    public static function duration($ts) 
+    {
         global $time;
         $years = (int)((($time - $ts) / (7 * 86400)) / 52.177457);
         $rem = (int)(($time - $ts) - ($years * 52.177457 * 7 * 86400));
@@ -183,18 +202,21 @@ class APCUHelper
         return $str;
     }
     
-    public static function fill_arc($im, $centerX, $centerY, $diameter, $start, $end, $color1, $color2, $text = '', $placeindex = 0) {
+    public static function fill_arc($im, $centerX, $centerY, $diameter, $start, $end, $color1, $color2, $text = '', $placeindex = 0) 
+    {
         if (!extension_loaded('gd')) return false;
         $r = $diameter / 2;
         $w = deg2rad((360 + $start + ($end - $start) / 2) % 360);
         
-        if (function_exists("imagefilledarc")) {
+        if (function_exists("imagefilledarc")) 
+        {
             
             // exists only if GD 2.0.1 is avaliable
             imagefilledarc($im, $centerX + 1, $centerY + 1, $diameter, $diameter, $start, $end, $color1, IMG_ARC_PIE);
             imagefilledarc($im, $centerX, $centerY, $diameter, $diameter, $start, $end, $color2, IMG_ARC_PIE);
             imagefilledarc($im, $centerX, $centerY, $diameter, $diameter, $start, $end, $color1, IMG_ARC_NOFILL | IMG_ARC_EDGED);
-        } else {
+        } else
+        {
             imagearc($im, $centerX, $centerY, $diameter, $diameter, $start, $end, $color2);
             imageline($im, $centerX, $centerY, $centerX + cos(deg2rad($start)) * $r, $centerY + sin(deg2rad($start)) * $r, $color2);
             imageline($im, $centerX, $centerY, $centerX + cos(deg2rad($start + 1)) * $r, $centerY + sin(deg2rad($start)) * $r, $color2);
@@ -202,29 +224,36 @@ class APCUHelper
             imageline($im, $centerX, $centerY, $centerX + cos(deg2rad($end)) * $r, $centerY + sin(deg2rad($end)) * $r, $color2);
             imagefill($im, $centerX + $r * cos($w) / 2, $centerY + $r * sin($w) / 2, $color2);
         }
-        if ($text) {
-            if ($placeindex > 0) {
+        if ($text) 
+        {
+            if ($placeindex > 0) 
+            {
                 imageline($im, $centerX + $r * cos($w) / 2, $centerY + $r * sin($w) / 2, $diameter, $placeindex * 12, $color1);
                 imagestring($im, 4, $diameter, $placeindex * 12, $text, $color1);
-            } else {
+            } else
+            {
                 imagestring($im, 4, $centerX + $r * cos($w) / 2, $centerY + $r * sin($w) / 2, $text, $color1);
             }
         }
     }
     
-    public static function text_arc($im, $centerX, $centerY, $diameter, $start, $end, $color1, $text, $placeindex = 0) {
+    public static function text_arc($im, $centerX, $centerY, $diameter, $start, $end, $color1, $text, $placeindex = 0) 
+    {
         $r = $diameter / 2;
         $w = deg2rad((360 + $start + ($end - $start) / 2) % 360);
         
-        if ($placeindex > 0) {
+        if ($placeindex > 0) 
+        {
             imageline($im, $centerX + $r * cos($w) / 2, $centerY + $r * sin($w) / 2, $diameter, $placeindex * 12, $color1);
             imagestring($im, 4, $diameter, $placeindex * 12, $text, $color1);
-        } else {
+        } else
+        {
             imagestring($im, 4, $centerX + $r * cos($w) / 2, $centerY + $r * sin($w) / 2, $text, $color1);
         }
     }
     
-    public static function fill_box($im, $x, $y, $w, $h, $color1, $color2, $text = '', $placeindex = '') {
+    public static function fill_box($im, $x, $y, $w, $h, $color1, $color2, $text = '', $placeindex = '') 
+    {
         global $col_black;
         $x1 = $x + $w - 1;
         $y1 = $y + $h - 1;
@@ -233,20 +262,26 @@ class APCUHelper
         if ($y1 > $y) imagefilledrectangle($im, $x, $y, $x1, $y1, $color2);
         else imagefilledrectangle($im, $x, $y1, $x1, $y, $color2);
         imagerectangle($im, $x, $y1, $x1, $y, $color1);
-        if ($text) {
-            if ($placeindex > 0) {
+        if ($text) 
+        {
+            if ($placeindex > 0) 
+            {
                 
-                if ($placeindex < 16) {
+                if ($placeindex < 16) 
+                {
                     $px = 5;
                     $py = $placeindex * 12 + 6;
                     imagefilledrectangle($im, $px + 90, $py + 3, $px + 90 - 4, $py - 3, $color2);
                     imageline($im, $x, $y + $h / 2, $px + 90, $py, $color2);
                     imagestring($im, 2, $px, $py - 6, $text, $color1);
-                } else {
-                    if ($placeindex < 31) {
+                } else
+                {
+                    if ($placeindex < 31) 
+                    {
                         $px = $x + 40 * 2;
                         $py = ($placeindex - 15) * 12 + 6;
-                    } else {
+                    } else
+                    {
                         $px = $x + 40 * 2 + 100 * intval(($placeindex - 15) / 15);
                         $py = ($placeindex % 15) * 12 + 6;
                     }
@@ -254,7 +289,8 @@ class APCUHelper
                     imageline($im, $x + $w, $y + $h / 2, $px, $py, $color2);
                     imagestring($im, 2, $px + 2, $py - 6, $text, $color1);
                 }
-            } else {
+            } else
+            {
                 imagestring($im, 4, $x + 5, $y1 - 16, $text, $color1);
             }
         }
@@ -262,13 +298,15 @@ class APCUHelper
     
     // pretty printer for byte values
     //
-    public static function bsize($s) {
+    public static function bsize($s) 
+    {
         foreach (array(
             '',
             'K',
             'M',
             'G'
-        ) as $i => $k) {
+        ) as $i => $k) 
+        {
             if ($s < 1024) break;
 
             
@@ -278,57 +316,72 @@ class APCUHelper
     }
     
     // sortable table header in "scripts for this host" view
-    public static function sortheader($key, $name, $extra = '') {
+    public static function sortheader($key, $name, $extra = '') 
+    {
         global $MYREQUEST, $MY_SELF_WO_SORT;
         
-        if ($MYREQUEST['SORT1'] == $key) {
+        if ($MYREQUEST['SORT1'] == $key) 
+        {
             $MYREQUEST['SORT2'] = $MYREQUEST['SORT2'] == 'A' ? 'D' : 'A';
         }
         return "<a class=sortable href=\"$MY_SELF_WO_SORT$extra&SORT1=$key&SORT2=" . $MYREQUEST['SORT2'] . "\">$name</a>";
     }
     
     // create menu entry
-    public static function menu_entry($ob, $title) {
+    public static function menu_entry($ob, $title) 
+    {
         global $MYREQUEST, $MY_SELF;
-        if ($MYREQUEST['OB'] != $ob) {
+        if ($MYREQUEST['OB'] != $ob) 
+        {
             return "<li><a href=\"$MY_SELF&OB=$ob\">$title</a></li>";
-        } else if (empty($MYREQUEST['SH'])) {
+        } else if (empty($MYREQUEST['SH'])) 
+        {
             return "<li><span class=active>$title</span></li>";
-        } else {
+        } else
+        {
             return "<li><a class=\"child_active\" href=\"$MY_SELF&OB=$ob\">$title</a></li>";
         }
     }
     
-    public static function nice_size($number) {
-        if ($number > (1024 * 1024)) {
+    public static function nice_size($number) 
+    {
+        if ($number > (1024 * 1024)) 
+        {
             return intval($number / (1024 * 1024)) . 'M';
-        } else if ($number > 1024) {
+        } else if ($number > 1024) 
+        {
             return intval($number / 1024) . 'K';
-        } else {
+        } else
+        {
             return $number;
         }
     }
     
-    public static function put_login_link($s = "Login") {
+    public static function put_login_link($s = "Login") 
+    {
         global $MY_SELF, $MYREQUEST, $AUTHENTICATED;
         
         // needs ADMIN_PASSWORD to be changed!
         //
-        if (!USE_AUTHENTICATION) {
+        if (!USE_AUTHENTICATION) 
+        {
             return;
-        } else if (ADMIN_PASSWORD == 'password') {
+        } else if (ADMIN_PASSWORD == 'password') 
+        {
             print <<<EOB
             <a href="#" onClick="javascript:alert('You need to set a password at the top of apc.php before this will work!');return false";>$s</a>
 EOB;
             
             
-        } else if ($AUTHENTICATED) {
+        } else if ($AUTHENTICATED) 
+        {
             print <<<EOB
             '{$_SERVER['PHP_AUTH_USER']}'&nbsp;logged&nbsp;in!
 EOB;
             
             
-        } else {
+        } else
+        {
             print <<<EOB
             <a href="$MY_SELF&LO=1&OB={$MYREQUEST['OB']}">$s</a>
 EOB;
@@ -337,15 +390,19 @@ EOB;
         }
     }
     
-    public static function block_sort($array1, $array2) {
-        if ($array1['offset'] > $array2['offset']) {
+    public static function block_sort($array1, $array2) 
+    {
+        if ($array1['offset'] > $array2['offset']) 
+        {
             return 1;
-        } else {
+        } else
+        {
             return -1;
         }
     }
     
-    public static function createimg($imgid, $output = 'img') {
+    public static function createimg($imgid, $output = 'img') 
+    {
         define('GRAPH_SIZE', 200);
         
         // Image size
@@ -363,158 +420,178 @@ EOB;
         $col_black = imagecolorallocate($image, 0, 0, 0);
         imagecolortransparent($image, $col_white);
         
-        switch ($imgid) {
-            case 1:
-                $s = $mem['num_seg'] * $mem['seg_size'];
-                $a = $mem['avail_mem'];
-                $x = $y = $size / 2;
-                $fuzz = 0.000001;
-                $json_array = [];
+        switch ($imgid) 
+        {
+        case 1:
+            $s = $mem['num_seg'] * $mem['seg_size'];
+            $a = $mem['avail_mem'];
+            $x = $y = $size / 2;
+            $fuzz = 0.000001;
+            $json_array = [];
+            
+            // This block of code creates the pie chart.  It is a lot more complex than you
+            // would expect because we try to visualize any memory fragmentation as well.
+            $angle_from = 0;
+            $string_placement = array();
+            for ($i = 0; $i < $mem['num_seg']; $i++) 
+            {
+                $ptr = 0;
+                $free = $mem['block_lists'][$i];
+                uasort($free, 'self::block_sort');
                 
-                // This block of code creates the pie chart.  It is a lot more complex than you
-                // would expect because we try to visualize any memory fragmentation as well.
-                $angle_from = 0;
-                $string_placement = array();
-                for ($i = 0; $i < $mem['num_seg']; $i++) {
-                    $ptr = 0;
-                    $free = $mem['block_lists'][$i];
-                    uasort($free, 'self::block_sort');
-                    
-                    foreach ($free as $block) {
-                        if ($block['offset'] != $ptr) {
-                            
-                            // Used block
-                            $angle_to = $angle_from + ($block['offset'] - $ptr) / $s;
-                            if (($angle_to + $fuzz) > 1) $angle_to = 1;
-                            if (($angle_to * 360) - ($angle_from * 360) >= 1) {
-                                self::fill_arc($image, $x, $y, $size, $angle_from * 360, $angle_to * 360, $col_black, $col_red);
-                                if (($angle_to - $angle_from) > 0.05) {
-                                    array_push($string_placement, array(
-                                        $angle_from,
-                                        $angle_to
-                                    ));
-                                }
-                                $json_array[] = ['value' => $block['size'], 'color' => '#D06030'];
-                            }
-                            $angle_from = $angle_to;
-                        }
-                        $angle_to = $angle_from + ($block['size']) / $s;
+                foreach ($free as $block) 
+                {
+                    if ($block['offset'] != $ptr) 
+                    {
+                        
+                        // Used block
+                        $angle_to = $angle_from + ($block['offset'] - $ptr) / $s;
                         if (($angle_to + $fuzz) > 1) $angle_to = 1;
-                        if (($angle_to * 360) - ($angle_from * 360) >= 1) {
-                            self::fill_arc($image, $x, $y, $size, $angle_from * 360, $angle_to * 360, $col_black, $col_green);
-                            if (($angle_to - $angle_from) > 0.05) {
+                        if (($angle_to * 360) - ($angle_from * 360) >= 1) 
+                        {
+                            self::fill_arc($image, $x, $y, $size, $angle_from * 360, $angle_to * 360, $col_black, $col_red);
+                            if (($angle_to - $angle_from) > 0.05) 
+                            {
                                 array_push($string_placement, array(
                                     $angle_from,
                                     $angle_to
                                 ));
                             }
-                            $json_array[] = ['value' => $block['size'], 'color' => '#60F060'];
+                            $json_array[] = ['value' => $block['size'], 'color' => '#D06030'];
                         }
                         $angle_from = $angle_to;
-                        $ptr = $block['offset'] + $block['size'];
                     }
-                    if ($ptr < $mem['seg_size']) {
-                        
-                        // memory at the end
-                        $angle_to = $angle_from + ($mem['seg_size'] - $ptr) / $s;
-                        if (($angle_to + $fuzz) > 1) $angle_to = 1;
-                        self::fill_arc($image, $x, $y, $size, $angle_from * 360, $angle_to * 360, $col_black, $col_red);
-                        if (($angle_to - $angle_from) > 0.05) {
+                    $angle_to = $angle_from + ($block['size']) / $s;
+                    if (($angle_to + $fuzz) > 1) $angle_to = 1;
+                    if (($angle_to * 360) - ($angle_from * 360) >= 1) 
+                    {
+                        self::fill_arc($image, $x, $y, $size, $angle_from * 360, $angle_to * 360, $col_black, $col_green);
+                        if (($angle_to - $angle_from) > 0.05) 
+                        {
                             array_push($string_placement, array(
                                 $angle_from,
                                 $angle_to
                             ));
                         }
-                        $json_array[] = ['value' => $block['size'], 'color' => '#D06030'];
+                        $json_array[] = ['value' => $block['size'], 'color' => '#60F060'];
                     }
+                    $angle_from = $angle_to;
+                    $ptr = $block['offset'] + $block['size'];
                 }
-                
-                foreach ($string_placement as $angle) {
-                    self::text_arc($image, $x, $y, $size, $angle[0] * 360, $angle[1] * 360, $col_black, self::bsize($s * ($angle[1] - $angle[0])));
+                if ($ptr < $mem['seg_size']) 
+                {
+                    
+                    // memory at the end
+                    $angle_to = $angle_from + ($mem['seg_size'] - $ptr) / $s;
+                    if (($angle_to + $fuzz) > 1) $angle_to = 1;
+                    self::fill_arc($image, $x, $y, $size, $angle_from * 360, $angle_to * 360, $col_black, $col_red);
+                    if (($angle_to - $angle_from) > 0.05) 
+                    {
+                        array_push($string_placement, array(
+                            $angle_from,
+                            $angle_to
+                        ));
+                    }
+                    $json_array[] = ['value' => $block['size'], 'color' => '#D06030'];
                 }
-                break;
+            }
+            
+            foreach ($string_placement as $angle) 
+            {
+                self::text_arc($image, $x, $y, $size, $angle[0] * 360, $angle[1] * 360, $col_black, self::bsize($s * ($angle[1] - $angle[0])));
+            }
+            break;
 
-            case 2:
-                $cache['num_hits'] = isset($cache['num_hits']) ? $cache['num_hits'] : $cache['nhits'];
-                $cache['num_misses'] = isset($cache['num_misses']) ? $cache['num_misses'] : $cache['nmisses'];
-                $s = $cache['num_hits'] + $cache['num_misses'];
-                $a = $cache['num_hits'];
-                
-                self::fill_box($image, 30, $size, 50, $s ? (-$a * ($size - 21) / $s) : 0, $col_black, $col_green, sprintf("%.1f%%", $s ? $cache['num_hits'] * 100 / $s : 0));
-                self::fill_box($image, 130, $size, 50, $s ? -max(4, ($s - $a) * ($size - 21) / $s) : 0, $col_black, $col_red, sprintf("%.1f%%", $s ? $cache['num_misses'] * 100 / $s : 0));
-                break;
+        case 2:
+            $cache['num_hits'] = isset($cache['num_hits']) ? $cache['num_hits'] : $cache['nhits'];
+            $cache['num_misses'] = isset($cache['num_misses']) ? $cache['num_misses'] : $cache['nmisses'];
+            $s = $cache['num_hits'] + $cache['num_misses'];
+            $a = $cache['num_hits'];
+            
+            self::fill_box($image, 30, $size, 50, $s ? (-$a * ($size - 21) / $s) : 0, $col_black, $col_green, sprintf("%.1f%%", $s ? $cache['num_hits'] * 100 / $s : 0));
+            self::fill_box($image, 130, $size, 50, $s ? -max(4, ($s - $a) * ($size - 21) / $s) : 0, $col_black, $col_red, sprintf("%.1f%%", $s ? $cache['num_misses'] * 100 / $s : 0));
+            break;
 
-            case 3:
-                $s = $mem['num_seg'] * $mem['seg_size'];
-                $a = $mem['avail_mem'];
-                $x = 130;
-                $y = 1;
-                $j = 1;
-                
-                // This block of code creates the bar chart.  It is a lot more complex than you
-                // would expect because we try to visualize any memory fragmentation as well.
-                for ($i = 0; $i < $mem['num_seg']; $i++) {
-                    $ptr = 0;
-                    $free = $mem['block_lists'][$i];
-                    uasort($free, 'self::block_sort');
-                    foreach ($free as $block) {
-                        if ($block['offset'] != $ptr) {
-                            
-                            // Used block
-                            $h = (GRAPH_SIZE - 5) * ($block['offset'] - $ptr) / $s;
-                            if ($h > 0) {
-                                $j++;
-                                if ($j < 75) self::fill_box($image, $x, $y, 50, $h, $col_black, $col_red, self::bsize($block['offset'] - $ptr) , $j);
-                                else self::fill_box($image, $x, $y, 50, $h, $col_black, $col_red);
-                            }
-                            $y+= $h;
-                        }
-                        $h = (GRAPH_SIZE - 5) * ($block['size']) / $s;
-                        if ($h > 0) {
+        case 3:
+            $s = $mem['num_seg'] * $mem['seg_size'];
+            $a = $mem['avail_mem'];
+            $x = 130;
+            $y = 1;
+            $j = 1;
+            
+            // This block of code creates the bar chart.  It is a lot more complex than you
+            // would expect because we try to visualize any memory fragmentation as well.
+            for ($i = 0; $i < $mem['num_seg']; $i++) 
+            {
+                $ptr = 0;
+                $free = $mem['block_lists'][$i];
+                uasort($free, 'self::block_sort');
+                foreach ($free as $block) 
+                {
+                    if ($block['offset'] != $ptr) 
+                    {
+                        
+                        // Used block
+                        $h = (GRAPH_SIZE - 5) * ($block['offset'] - $ptr) / $s;
+                        if ($h > 0) 
+                        {
                             $j++;
-                            if ($j < 75) self::fill_box($image, $x, $y, 50, $h, $col_black, $col_green, self::bsize($block['size']) , $j);
-                            else self::fill_box($image, $x, $y, 50, $h, $col_black, $col_green);
+                            if ($j < 75) self::fill_box($image, $x, $y, 50, $h, $col_black, $col_red, self::bsize($block['offset'] - $ptr) , $j);
+                            else self::fill_box($image, $x, $y, 50, $h, $col_black, $col_red);
                         }
                         $y+= $h;
-                        $ptr = $block['offset'] + $block['size'];
                     }
-                    if ($ptr < $mem['seg_size']) {
-                        
-                        // memory at the end
-                        $h = (GRAPH_SIZE - 5) * ($mem['seg_size'] - $ptr) / $s;
-                        if ($h > 0) {
-                            self::fill_box($image, $x, $y, 50, $h, $col_black, $col_red, self::bsize($mem['seg_size'] - $ptr) , $j++);
-                        }
+                    $h = (GRAPH_SIZE - 5) * ($block['size']) / $s;
+                    if ($h > 0) 
+                    {
+                        $j++;
+                        if ($j < 75) self::fill_box($image, $x, $y, 50, $h, $col_black, $col_green, self::bsize($block['size']) , $j);
+                        else self::fill_box($image, $x, $y, 50, $h, $col_black, $col_green);
+                    }
+                    $y+= $h;
+                    $ptr = $block['offset'] + $block['size'];
+                }
+                if ($ptr < $mem['seg_size']) 
+                {
+                    
+                    // memory at the end
+                    $h = (GRAPH_SIZE - 5) * ($mem['seg_size'] - $ptr) / $s;
+                    if ($h > 0) 
+                    {
+                        self::fill_box($image, $x, $y, 50, $h, $col_black, $col_red, self::bsize($mem['seg_size'] - $ptr) , $j++);
                     }
                 }
-                break;
+            }
+            break;
 
-            case 4:
-                $s = $cache['num_hits'] + $cache['num_misses'];
-                $a = $cache['num_hits'];
-                
-                self::fill_box($image, 30, $size, 50, $s ? -$a * ($size - 21) / $s : 0, $col_black, $col_green, sprintf("%.1f%%", $s ? $cache['num_hits'] * 100 / $s : 0));
-                self::fill_box($image, 130, $size, 50, $s ? -max(4, ($s - $a) * ($size - 21) / $s) : 0, $col_black, $col_red, sprintf("%.1f%%", $s ? $cache['num_misses'] * 100 / $s : 0));
-                break;
-            }
-            if ($output == 'img') {
-                header("Content-type: image/png");
-                imagepng($image);
-                exit;
-            } else {
-                return json_encode($json_array);
-            }
-        }
-        
-        /**
-         * Gets the memory info formatted to build a graph
-         *
-         * @return string JSON encoded memory info
-         */
-        public function getGraphMemoryInfo() {
-            $memory = $this->statusData['memory_usage'];
+        case 4:
+            $s = $cache['num_hits'] + $cache['num_misses'];
+            $a = $cache['num_hits'];
             
-            return json_encode([['value' => $memory['wasted_memory'], 'color' => '#e0642e', ], ['value' => $memory['used_memory'], 'color' => '#2e97e0', ], ['value' => $memory['free_memory'], 'color' => '#bce02e', ], ]);
+            self::fill_box($image, 30, $size, 50, $s ? -$a * ($size - 21) / $s : 0, $col_black, $col_green, sprintf("%.1f%%", $s ? $cache['num_hits'] * 100 / $s : 0));
+            self::fill_box($image, 130, $size, 50, $s ? -max(4, ($s - $a) * ($size - 21) / $s) : 0, $col_black, $col_red, sprintf("%.1f%%", $s ? $cache['num_misses'] * 100 / $s : 0));
+            break;
+        }
+        if ($output == 'img') 
+        {
+            header("Content-type: image/png");
+            imagepng($image);
+            exit;
+        } else
+        {
+            return json_encode($json_array);
         }
     }
     
+    /**
+     * Gets the memory info formatted to build a graph
+     *
+     * @return string JSON encoded memory info
+     */
+    public function getGraphMemoryInfo() 
+    {
+        $memory = $this->statusData['memory_usage'];
+        
+        return json_encode([['value' => $memory['wasted_memory'], 'color' => '#e0642e', ], ['value' => $memory['used_memory'], 'color' => '#2e97e0', ], ['value' => $memory['free_memory'], 'color' => '#bce02e', ], ]);
+    }
+}
