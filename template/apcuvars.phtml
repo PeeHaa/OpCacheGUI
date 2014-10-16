@@ -117,8 +117,8 @@ $MY_SELF_WO_SORT=
         echo '</td>';
 
 
-        echo '<td class="td-n center">',APCUHelper::nice_size($entry['num_hits']),'</td>',
-          '<td class="td-n right">',APCUHelper::nice_size($entry['mem_size']),'</td>',
+        echo '<td class="td-n center">',APCUHelper::niceSize($entry['num_hits']),'</td>',
+          '<td class="td-n right">',APCUHelper::niceSize($entry['mem_size']),'</td>',
           '<td class="td-n center">',date(DATE_FORMAT,$entry['access_time']),'</td>',
           '<td class="td-n center">',date(DATE_FORMAT,$entry['mtime']),'</td>',
           '<td class="td-n center">',date(DATE_FORMAT,$entry['creation_time']),'</td>';
