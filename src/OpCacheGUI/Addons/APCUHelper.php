@@ -647,5 +647,4 @@ class APCUHelper
             return json_encode($json_array);
         }
     }
-
 }
