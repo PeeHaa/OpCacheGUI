@@ -105,6 +105,11 @@ class Request implements RequestData
         return $this->postVariables[$name];
     }
 
+    /**
+     * Gets the current URL
+     *
+     * @return string The current URL
+     */
     public function getUrl()
     {
         $scheme = 'http';
