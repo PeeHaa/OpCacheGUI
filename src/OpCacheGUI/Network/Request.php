@@ -104,4 +104,9 @@ class Request implements RequestData
     {
         return $this->postVariables[$name];
     }
+
+    public function getPath()
+    {
+        return $this->serverVariables['REQUEST_URI'];
+    }
 }
