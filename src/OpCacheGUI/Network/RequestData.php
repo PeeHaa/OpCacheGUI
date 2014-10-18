@@ -42,4 +42,20 @@ interface RequestData
      * @return string The verb used by the request
      */
     public function getVerb();
+
+    /**
+     * Gets a post variable
+     *
+     * @param string $name The name of the post variable to get
+     *
+     * @return mixed The value
+     */
+    public function post($name);
+
+    /**
+     * Gets the current URL
+     *
+     * @return string The current URL
+     */
+    public function getUrl();
 }
