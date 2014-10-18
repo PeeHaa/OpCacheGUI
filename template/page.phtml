@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, user-scalable=no">
         <title><?= ucfirst($this->title).' - '; ?>OpCache <?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?></title>
-        <link rel="stylesheet" href="style/main.css">
+        <link rel="stylesheet" href="<?= $this->url->get('maincss'); ?>">
     </head>
     <body>
         <div id="wrap">
@@ -65,6 +65,6 @@
                 </section>
             </section>
         </div>
-        <script src="js/main.js"></script>
+        <script src="<?= $this->url->get('mainjs'); ?>"></script>
     </body>
 </html>
