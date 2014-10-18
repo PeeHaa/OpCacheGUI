@@ -114,4 +114,37 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('bar', $request->post('foo'));
     }
+
+    /**
+     * @covers OpCacheGUI\Network\Request::__construct
+     * @covers OpCacheGUI\Network\Request::getUrl
+     */
+    public function testGetUrlSslEnabled()
+    {
+        $request = new Request([], [], ['HTTPS' => 'on', 'HTTP_HOST' => 'foo.com', 'REQUEST_URI' => '/bar']);
+
+        $this->assertSame('https://foo.com/bar', $request->getUrl());
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Request::__construct
+     * @covers OpCacheGUI\Network\Request::getUrl
+     */
+    public function testGetUrlSslDisabled()
+    {
+        $request = new Request([], [], ['HTTP_HOST' => 'foo.com', 'REQUEST_URI' => '/bar']);
+
+        $this->assertSame('http://foo.com/bar', $request->getUrl());
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Request::__construct
+     * @covers OpCacheGUI\Network\Request::getUrl
+     */
+    public function testGetUrlSslDisabledIIS()
+    {
+        $request = new Request([], [], ['HTTPS' => 'off', 'HTTP_HOST' => 'foo.com', 'REQUEST_URI' => '/bar']);
+
+        $this->assertSame('http://foo.com/bar', $request->getUrl());
+    }
 }
