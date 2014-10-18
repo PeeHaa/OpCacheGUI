@@ -105,8 +105,14 @@ class Request implements RequestData
         return $this->postVariables[$name];
     }
 
-    public function getPath()
+    public function getUrl()
     {
-        return $this->serverVariables['REQUEST_URI'];
+        $scheme = 'http';
+
+        if (isset($this->serverVariables['HTTPS']) && $this->serverVariables['HTTPS'] === 'on') {
+            $scheme .= 's';
+        }
+
+        return $scheme . '://' . $this->serverVariables['HTTP_HOST'] . $this->serverVariables['REQUEST_URI'];
     }
 }
