@@ -10,53 +10,10 @@ If you are looking for a simple single file status GUI please see [Rasmus' one-p
 Installation
 -
 
-###Installation Steps
+For installation instructions and example configuration see the [installation wiki page](https://github.com/PeeHaa/OpCacheGUI/wiki/Installation).
 
-####Get the source
-
-######Git clone
-
-    git clone https://github.com/PeeHaa/OpCacheGUI.git
-
-######Manual download a release
-
-Download the latest tagged [release][releases].
-
-######Composer
-
-    php composer.phar require peehaa/opcachegui:0.0.*
-
-####Setting up the project
-
-1. Set the vhost's document root to the `public` folder
-2. In case of using apache create an `.htaccess` file in the `public/` directory with the following content:
-
-```
-RewriteEngine on
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} !=/favicon.ico
-RewriteRule ^ index.php [L]
-```
-
-Status
+Contributing
 -
-
-###Implemented
-
-- OpCache status
-- OpCache statistics
-- Cached scripts overview
-- Cached scripts invalidation
-- Shiny graphs
-
-Some features that will be implemented soon are:
-
-- Authentication
-- Auto refresh
-- Sorting of columns
-- Changing of graph types
-- Fix design of cached scripts and config pages
 
 If you would like to see a feature please add [an issue][issues]. If you want to contribute please feel free to send a PR.
 
@@ -68,12 +25,19 @@ License
 Screenshots
 -
 
-[![OpCacheGUI status][1]][1][![OpCacheGUI graphs][2]][2]
+[![OpCacheGUI status][1]][1]
+[![OpCacheGUI cached scripts][2]][2]
+[![OpCacheGUI graphs][3]][3]
+[![OpCacheGUI staus mobile][4]][4]
+[![OpCacheGUI cached scripts mobile][4]][5]
 
 [rasmus]: https://github.com/rlerdorf/opcache-status
 [releases]: https://github.com/PeeHaa/OpCacheGUI/releases
 [issues]: https://github.com/PeeHaa/OpCacheGUI/issues
 [MIT]: http://spdx.org/licenses/MIT
 
-[1]: https://opcachegui.pieterhordijk.com/style/opcachegui-home.png
-[2]: https://opcachegui.pieterhordijk.com/style/opcachegui-graphs.png
+[1]: http://i.imgur.com/Py4YtsC.png
+[2]: http://i.imgur.com/buzbl8V.png
+[3]: http://i.imgur.com/mEhfhDA.png
+[4]: http://i.imgur.com/Mi3JegX.png
+[5]: http://i.imgur.com/4tMSEWD.png
