@@ -29,7 +29,7 @@ Screenshots
 [![OpCacheGUI cached scripts][2]][2]
 [![OpCacheGUI graphs][3]][3]
 [![OpCacheGUI staus mobile][4]][4]
-[![OpCacheGUI cached scripts mobile][4]][5]
+[![OpCacheGUI cached scripts mobile][5]][5]
 
 [rasmus]: https://github.com/rlerdorf/opcache-status
 [releases]: https://github.com/PeeHaa/OpCacheGUI/releases
