@@ -25,10 +25,24 @@ License
 Screenshots
 -
 
+###### Status page
+
 [![OpCacheGUI status][1]][1]
+
+###### Cached scripts
+
 [![OpCacheGUI cached scripts][2]][2]
+
+###### Graphs
+
 [![OpCacheGUI graphs][3]][3]
+
+###### Status page on mobile devices
+
 [![OpCacheGUI staus mobile][4]][4]
+
+###### Cached scripts page on mobile devices
+
 [![OpCacheGUI cached scripts mobile][5]][5]
 
 [rasmus]: https://github.com/rlerdorf/opcache-status
