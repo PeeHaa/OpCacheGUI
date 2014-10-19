@@ -139,17 +139,32 @@ class APCUHelper
         $this->diagram[1]['free_memory'] = self::bsize($mem_avail);
         $this->diagram[1]['used_memory'] = self::bsize($mem_used);
         $this->diagram[1]['free'] = '<span class="green box">&nbsp;</span>Free: ';
-        $this->diagram[1]['free'] .= self::bsize($mem_avail) . sprintf(" (%.1f%%)", $mem_avail * 100 / $mem_size);
+        $this->diagram[1]['free'] .= self::bsize($mem_avail) . sprintf(
+            " (%.1f%%)",
+            $mem_size>0? ($mem_avail * 100 / $mem_size):0
+        );
         $this->diagram[1]['used'] = '<span class="red box">&nbsp;</span>Used: ';
-        $this->diagram[1]['used'] .= self::bsize($mem_used) . sprintf(" (%.1f%%)", $mem_used * 100 / $mem_size);
+        $this->diagram[1]['used'] .= self::bsize($mem_used) . sprintf(
+            " (%.1f%%)",
+            $mem_size>0? ($mem_used * 100 / $mem_size):0
+        );
         $this->diagram[2]['image'] = 'Hits and Misses <img alt="" width="230" height="210"  src="/apcuimg2">';
 
-        $percent_hit=$cache['num_hits'] * 100 / ($cache['num_hits'] + $cache['num_misses']);
-        $percent_miss=$cache['num_misses'] * 100 / ($cache['num_hits'] + $cache['num_misses']);
+
         $this->diagram[2]['hits'] = '<span class="green box">&nbsp;</span>Hits: '. $cache['num_hits'];
-        $this->diagram[2]['hits'] .= @sprintf(" (%.1f%%)", $percent_hit);
+
+        $this->diagram[2]['hits'] .= @sprintf(
+            " (%.1f%%)",
+            ($cache['num_hits'] + $cache['num_misses']) >0 ?
+            $cache['num_hits'] * 100 / ($cache['num_hits'] + $cache['num_misses']):0
+        );
         $this->diagram[2]['misses'] = '<span class="red box">&nbsp;</span>Misses: ' . $cache['num_misses'];
-        $this->diagram[2]['misses'] .= @sprintf(" (%.1f%%)", $percent_miss);
+
+        $this->diagram[2]['misses'] .= @sprintf(
+            " (%.1f%%)",
+            ($cache['num_hits'] + $cache['num_misses']) >0 ?
+            $cache['num_misses'] * 100 / ($cache['num_hits'] + $cache['num_misses']):0
+        );
         $this->diagram[3]['image'] = '<div class="fragmentationgraph"><img alt=""  src="/apcuimg3"></div>';
         $this->diagram[3]['image'] .=
         $this->diagram[3]['fragmentation'] = "Fragmentation: $frag";
