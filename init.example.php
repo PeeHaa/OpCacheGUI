@@ -45,6 +45,9 @@ $uriScheme = Router::URL_REWRITE;
 
 /**
  * Login credentials
+ * 
+ * The password can be any password hash which contains the hash algorithm, the cost and the salt
+ * (e.g as returned by password_hash() or crypt())
  */
 $login = [
     'username' => 'peehaa',
