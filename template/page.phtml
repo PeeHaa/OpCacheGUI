@@ -42,15 +42,15 @@
                                 </li>
 
                                 <?php if (extension_loaded('apcu')) { ?>
-                                <li<?= $this->active == 'apcustatus' ? ' class="lna"' : null ?>>
-                                    <a href="<?= $this->url->get('apcustatus'); ?>"><span class="fa fa-bar-chart"></span><?= $this->translator->translate('menu.apcustatus'); ?></a>
-                                </li>
-                                <li<?= $this->active == 'apcuconfig' ? ' class="lna"' : null ?>>
-                                    <a href="<?= $this->url->get('apcuconfig'); ?>"><span class="fa fa-gears"></span><?= $this->translator->translate('menu.apcuconfig'); ?></a>
-                                </li>
-                                <li<?= $this->active == 'apcuvars' ? ' class="lna"' : null ?>>
-                                    <a href="<?= $this->url->get('apcuvars'); ?>"><span class="fa fa-user"></span><?= $this->translator->translate('menu.apcuvars'); ?></a>
-                                </li>
+                                    <li<?= $this->active == 'apcustatus' ? ' class="lna"' : null ?>>
+                                        <a href="<?= $this->url->get('apcustatus'); ?>"><span class="fa fa-bar-chart"></span><?= $this->translator->translate('menu.apcustatus'); ?></a>
+                                    </li>
+                                    <li<?= $this->active == 'apcuconfig' ? ' class="lna"' : null ?>>
+                                        <a href="<?= $this->url->get('apcuconfig'); ?>"><span class="fa fa-gears"></span><?= $this->translator->translate('menu.apcuconfig'); ?></a>
+                                    </li>
+                                    <li<?= $this->active == 'apcuvars' ? ' class="lna"' : null ?>>
+                                        <a href="<?= $this->url->get('apcuvars'); ?>"><span class="fa fa-user"></span><?= $this->translator->translate('menu.apcuvars'); ?></a>
+                                    </li>
                                 <?php } ?>
                             </ul>
                         </nav>
