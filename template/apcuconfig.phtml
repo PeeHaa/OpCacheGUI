@@ -11,7 +11,7 @@
             <?php foreach ($config->getIniDirectives() as $key => $directiveItem) { ?>
                 <tr>
                     <td><?= $this->translator->translate('config.' . $key); ?></td>
-                    <?php if (in_array($key, ['apc.enabled', 'apc.enable_cli', 'apc.coredump_unmap', 'apc.use_request_time', 'rfc1867'])) { ?>
+                    <?php if (in_array($key, ['apc.enabled', 'apc.enable_cli', 'apc.coredump_unmap', 'apc.use_request_time', 'apc.rfc1867'])) { ?>
                         <td><span class="<?= $directiveItem ? 'g' : 'r'; ?>s"></span></td>
                     <?php } else { ?>
                         <td><?= htmlspecialchars($directiveItem); ?></td>
