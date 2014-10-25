@@ -142,9 +142,10 @@ $texts = [
     'apcu.insert_rate_user'=> 'Insert Rate',
     'apcu.num_expunges'=> 'Cache full count',
 
+    'apcu.config.title'                                     => 'APCu configuration',
     'apcu.apcuconfig' => 'APCu Runtime Settings',
     'apcu.runtimesettings' => 'APCu Runtime Settings',
-    
+
     'apcu.hoststatusdiagrams'=>'APCu Host Status Diagrams',
     'apcu.detailedmemoryusage'=>'APCu Detailed Memory Usage and Fragmentation',
 
