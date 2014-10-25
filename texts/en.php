@@ -184,10 +184,6 @@ $texts = [
     'config.apc.rfc1867_ttl'                                => 'File upload progress TTL',
     'config.apc.rfc1867_ttl.description'                    => 'TTL for rfc1867 entries.',
 
-
-    'apcu.apcuconfig' => 'APCu Runtime Settings',
-    'apcu.runtimesettings' => 'APCu Runtime Settings',
-
     'apcu.hoststatusdiagrams'=>'APCu Host Status Diagrams',
     'apcu.detailedmemoryusage'=>'APCu Detailed Memory Usage and Fragmentation',
 ];
