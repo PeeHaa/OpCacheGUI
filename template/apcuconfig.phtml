@@ -1,18 +1,18 @@
-<?php
-$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
-$apcuHelper=new OpCacheGUI\Addons\APCUHelper();
-?>
-
+<?php $apcuHelper=new OpCacheGUI\Addons\APCUHelper(); ?>
 <section id="apcuconfig-tabs" class="tabs">
+    <nav id="sub-nav">
+        <ul>
+            <li class="sna"><a href="#" data-tab="cached-scripts"><?= $this->translator->translate('apcu.config.title'); ?></a></li>
+        </ul>
+    </nav>
     <section data-content="Runtime Settings">
         <table class="apcu">
-            <?php $classCycler->rewind(); ?>
             <?php foreach ($apcuHelper->getRuntimeSettings() as $key => $settingItem) { ?>
-            <tr class="<?= $classCycler->next(); ?>">
-                <td><?= $key; ?></td>
-                <td><?php print_r($settingItem); ?></td>
-                <td><?= $this->translator->translate($key); ?></td>
-            </tr>
+                <tr>
+                    <td><?= $key; ?></td>
+                    <td><?php print_r($settingItem); ?></td>
+                    <td><?= $this->translator->translate($key); ?></td>
+                </tr>
             <?php } ?>
             <tr><td>&nbsp;</td></tr>
         </table>
