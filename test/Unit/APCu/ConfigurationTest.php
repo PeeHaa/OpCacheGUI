@@ -25,7 +25,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
             'apc.shm_segments'     => 1,
             'apc.shm_size'         => '32M',
             'apc.coredump_unmap'   => 0,
-            'apc.mmap_file_mask'   => null,
+            'apc.mmap_file_mask'   => '/tmp/apc.XXXXXX',
             'apc.rfc1867'          => 0,
             'apc.rfc1867_freq'     => 0,
             'apc.rfc1867_name'     => 'APC_UPLOAD_PROGRESS',
