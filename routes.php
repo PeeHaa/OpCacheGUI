@@ -155,11 +155,9 @@ $router->get('apcuvars', function() use ($htmlTemplate, $byteFormatter,$csrfToke
     ]);
 });
 
-$router->get('apcuconfig', function() use ($htmlTemplate, $byteFormatter,$csrfToken,$translator) {
+$router->get('apcuconfig', function() use ($htmlTemplate, $translator) {
     return $htmlTemplate->render('apcuconfig.phtml', [
-        'byteFormatter' => $byteFormatter,
-        'csrfToken'     => $csrfToken,
-        'active'        => 'graphs',
-        'title'         => $translator->translate('apcu.runtimesettings'),
+        'active'        => 'apcuconfig',
+        'title'         => $translator->translate('apcu.config.title'),
     ]);
 });
