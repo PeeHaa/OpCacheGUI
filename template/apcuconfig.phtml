@@ -1,21 +1,24 @@
-<?php $apcuHelper=new OpCacheGUI\Addons\APCUHelper(); ?>
+<?php $config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false)); ?>
+
 <section id="apcuconfig-tabs" class="tabs">
     <nav id="sub-nav">
         <ul>
-            <li class="sna"><a href="#" data-tab="cached-scripts"><?= $this->translator->translate('apcu.config.title'); ?></a></li>
+            <li class="sna"><a href="#" data-tab="configuration"><?= $this->translator->translate('apcu.config.title'); ?></a></li>
         </ul>
     </nav>
-    <section data-content="Runtime Settings">
-        <table class="apcu">
-            <?php foreach ($apcuHelper->getRuntimeSettings() as $key => $settingItem) { ?>
+    <section data-content="configuration">
+        <table>
+            <?php foreach ($config->getIniDirectives() as $key => $directiveItem) { ?>
                 <tr>
-                    <td><?= $key; ?></td>
-                    <td><?php print_r($settingItem); ?></td>
-                    <td><?= $this->translator->translate($key); ?></td>
+                    <td><?= $this->translator->translate('config.' . $key); ?></td>
+                    <?php if (in_array($key, ['apc.enabled', 'apc.enable_cli', 'apc.coredump_unmap', 'apc.use_request_time', 'rfc1867'])) { ?>
+                        <td><span class="<?= $directiveItem ? 'g' : 'r'; ?>s"></span></td>
+                    <?php } else { ?>
+                        <td><?= htmlspecialchars($directiveItem); ?></td>
+                    <?php } ?>
+                    <td><p><?= $this->translator->translate('config.' . $key . '.description'); ?></p></td>
                 </tr>
             <?php } ?>
-            <tr><td>&nbsp;</td></tr>
         </table>
     </section>
-
 </section>
