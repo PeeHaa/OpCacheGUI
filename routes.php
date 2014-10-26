@@ -137,11 +137,11 @@ $router->post('resetapcu', function() use ($jsonTemplate, $csrfToken) {
     ]);
 });
 
-$router->get('apcustatus', function() use ($htmlTemplate, $byteFormatter,$csrfToken,$translator) {
+$router->get('apcustatus', function() use ($htmlTemplate, $byteFormatter, $csrfToken, $translator) {
     return $htmlTemplate->render('apcustatus.phtml', [
         'byteFormatter' => $byteFormatter,
         'csrfToken'     => $csrfToken,
-        'active'        => 'graphs',
+        'active'        => 'apcustatus',
         'title'         => $translator->translate('apcu.status'),
     ]);
 });
