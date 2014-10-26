@@ -131,12 +131,6 @@ $router->get('apcuimg3', function() {
     OpCacheGUI\Addons\APCUHelper::createimg(3);
 });
 
-$router->post('resetapcu', function() use ($jsonTemplate, $csrfToken) {
-    return $jsonTemplate->render('resetapcu.pjson', [
-        'csrfToken' => $csrfToken,
-    ]);
-});
-
 $router->get('apcustatus', function() use ($htmlTemplate, $byteFormatter, $csrfToken, $translator) {
     return $htmlTemplate->render('apcustatus.phtml', [
         'byteFormatter' => $byteFormatter,
@@ -159,5 +153,11 @@ $router->get('apcuconfig', function() use ($htmlTemplate, $translator) {
     return $htmlTemplate->render('apcuconfig.phtml', [
         'active'        => 'apcuconfig',
         'title'         => $translator->translate('apcu.config.title'),
+    ]);
+});
+
+$router->post('resetapcu', function() use ($jsonTemplate, $csrfToken, $request) {
+    return $jsonTemplate->render('resetapcu.pjson', [
+        'result'    => ($csrfToken->validate($request->post('csrfToken')) && apcu_clear_cache()) ? 'success' : 'failed',
     ]);
 });

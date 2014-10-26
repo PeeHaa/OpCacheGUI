@@ -1,7 +1,3 @@
 <?php
 
-if (!$this->csrfToken->validate($_POST['csrfToken']) || !apcu_clear_cache()) {
-    return json_encode(['result' => 'failed']);
-}
-
-return json_encode(['result' => 'success']);
+return json_encode(['result' => $this->result]);

@@ -27,7 +27,7 @@ apc_delete('to_delete');
                 </tr>
             <?php } ?>
         </table>
-        <form action="<?= $this->url->get('reset'); ?>" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
+        <form action="<?= $this->url->get('resetapcu'); ?>" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
             <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
             <button type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>" class="cnfbtn cnfbtn--fn js-confirm reset-btn">Reset</button>
         </form>
