@@ -214,15 +214,84 @@ class Status
      */
     public function getStatsInfo()
     {
+        $cachedSize = $this->byteFormatter->format($this->cacheStatus['mem_size']);
+
         return [
-            'cached_vars'      => '0 (0 bytes)',
-            'num_hits'         => 0,
-            'num_misses'       => 0,
-            'req_rate_user'    => '0.00',
-            'hit_rate_user'    => '0.00',
-            'miss_rate_user'   => '0.00',
-            'insert_rate_user' => '0.00',
-            'num_expunges'     => '0.00',
+            'cached_vars'      => $this->cacheStatus['num_entries'] . ' (' . $cachedSize . ')',
+            'num_hits'         => $this->cacheStatus['num_hits'],
+            'num_misses'       => $this->cacheStatus['num_misses'],
+            'req_rate_user'    => number_format($this->getRequestRate(), 2),
+            'hit_rate_user'    => number_format($this->getHitRate(), 2),
+            'miss_rate_user'   => number_format($this->getMissRate(), 2),
+            'insert_rate_user' => number_format($this->getInsertRate(), 2),
+            'num_expunges'     => $this->cacheStatus['num_expunges'],
         ];
+    }
+
+    /**
+     * Gets the request rate
+     *
+     * @return int|float The request rate
+     */
+    private function getRequestRate()
+    {
+        if (!$this->cacheStatus['num_hits']) {
+            return 0;
+        }
+
+        $datetime = new \DateTime();
+
+        $requestRate = $this->cacheStatus['num_hits'] + $this->cacheStatus['num_misses'];
+        $requestRate /= $datetime->format('U') - $this->cacheStatus['start_time'];
+
+        return $requestRate;
+    }
+
+    /**
+     * Gets the hit rate
+     *
+     * @return int|float The hit rate
+     */
+    private function getHitRate()
+    {
+        if (!$this->cacheStatus['num_hits']) {
+            return 0;
+        }
+
+        $datetime = new \DateTime();
+
+        return $this->cacheStatus['num_hits'] / ($datetime->format('U') - $this->cacheStatus['start_time']);
+    }
+
+    /**
+     * Gets the miss rate
+     *
+     * @return int|float The miss rate
+     */
+    private function getMissRate()
+    {
+        if (!$this->cacheStatus['num_misses']) {
+            return 0;
+        }
+
+        $datetime = new \DateTime();
+
+        return $this->cacheStatus['num_misses'] / ($datetime->format('U') - $this->cacheStatus['start_time']);
+    }
+
+    /**
+     * Gets the insert rate
+     *
+     * @return int|float The insert rate
+     */
+    private function getInsertRate()
+    {
+        if (!$this->cacheStatus['num_inserts']) {
+            return 0;
+        }
+
+        $datetime = new \DateTime();
+
+        return $this->cacheStatus['num_inserts'] / ($datetime->format('U') - $this->cacheStatus['start_time']);
     }
 }
