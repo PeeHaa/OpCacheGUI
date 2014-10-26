@@ -84,35 +84,31 @@ class Status
      */
     private function getTimeAgo(\DateTime $datetime)
     {
-        $new  = new \DateTime();
-        $diff = $new->diff($datetime);
+        $now = new \DateTime('now', new \DateTimeZone(date_default_timezone_get()));
+        $up  = clone $datetime;
+
+        $up->setTimeZone(new \DateTimeZone(date_default_timezone_get()));
+
+        $diff = $now->diff($up);
+
+        $optionalUnits = [
+            'y' => [' year ', ' years '],
+            'm' => [' month ', ' months '],
+            'd' => [' day ', ' days '],
+            'h' => [' hour and ', ' hours and '],
+        ];
 
         $timeAgo = '';
 
-        if ($diff->y) {
-            $timeAgo .= $diff->y . ' year ';
-            $timeAgo .= $diff->y > 1 ? 's ' : ' ';
-        }
-
-        if ($diff->m) {
-            $timeAgo .= $diff->m . ' month ';
-            $timeAgo .= $diff->m > 1 ? 's ' : ' ';
-        }
-
-        if ($diff->d) {
-            $timeAgo .= $diff->d . ' day ';
-            $timeAgo .= $diff->d > 1 ? 's ' : ' ';
-        }
-
-        if ($diff->h) {
-            $timeAgo .= $diff->h . ' hour';
-            $timeAgo .= $diff->h > 1 ? 's ' : ' ';
-
-            $timeAgo .= 'and ';
+        foreach ($optionalUnits as $unit => $values) {
+            if ($diff->$unit) {
+                $timeAgo .= $diff->$unit;
+                $timeAgo .= $diff->$unit > 1 ? $values[1] : $values[0];
+            }
         }
 
         $timeAgo .= $diff->i . ' minute';
-        $timeAgo .= $diff->h > 1 ? 's ' : '';
+        $timeAgo .= $diff->i > 1 ? 's' : '';
 
         return $timeAgo;
     }
