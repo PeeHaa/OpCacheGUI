@@ -8,12 +8,28 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 {
     protected $statusData;
 
+    protected $memStatus;
+
     protected $testData;
 
     protected function setUp()
     {
         $this->statusData = [
             'start_time' => 1,
+        ];
+
+        $this->memStatus = [
+            'num_seg'     => 1,
+            'seg_size'    => 33554336,
+            'avail_mem'   => 33536608,
+            'block_lists' => [
+                [
+                    [
+                        'size'   => 33536592,
+                        'offset' => 17808,
+                    ],
+                ],
+            ],
         ];
 
         $this->testData = [
@@ -40,7 +56,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             'apc.rfc1867' => 0,
         ]);
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame($this->testData['enabled'], $config->getStatusInfo()['enabled']);
     }
@@ -61,7 +82,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             'apc.rfc1867' => 1,
         ]);
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame($this->testData['file_upload_support'], $config->getStatusInfo()['file_upload_support']);
     }
@@ -82,7 +108,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             'apc.rfc1867' => 1,
         ]);
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame($this->testData['start_time'], $config->getStatusInfo()['start_time']);
     }
@@ -109,7 +140,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('1 minute', $config->getStatusInfo()['uptime']);
     }
@@ -136,7 +172,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('5 minutes', $config->getStatusInfo()['uptime']);
     }
@@ -163,7 +204,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('1 hour and 5 minutes', $config->getStatusInfo()['uptime']);
     }
@@ -190,7 +236,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('3 hours and 5 minutes', $config->getStatusInfo()['uptime']);
     }
@@ -217,7 +268,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('1 month 3 hours and 5 minutes', $config->getStatusInfo()['uptime']);
     }
@@ -244,7 +300,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('2 months 3 hours and 5 minutes', $config->getStatusInfo()['uptime']);
     }
@@ -271,7 +332,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('1 year 2 months 3 hours and 5 minutes', $config->getStatusInfo()['uptime']);
     }
@@ -298,7 +364,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->statusData['start_time'] = $startTime->format('U');
 
-        $config = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $configuration, $this->statusData);
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
 
         $this->assertSame('5 years 2 months 3 hours and 5 minutes', $config->getStatusInfo()['uptime']);
     }
