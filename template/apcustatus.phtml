@@ -1,6 +1,6 @@
 <?php
 $config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false));
-$status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, apcu_cache_info());
+$status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, apcu_cache_info(), apcu_sma_info());
 ?>
 <?php $apcuHelper=new OpCacheGUI\Addons\APCUHelper(); ?>
 
@@ -34,9 +34,9 @@ apc_delete('to_delete');
     </div>
 
     <div class="data-block">
-        <h2><?= $this->translator->translate('apcu.status.stats'); ?></h2>
+        <h2><?= $this->translator->translate('apcu.status.memory'); ?></h2>
         <table>
-            <?php foreach ($status->getStatsInfo() as $key => $statusItem) { ?>
+            <?php foreach ($status->getMemoryInfo() as $key => $statusItem) { ?>
                 <tr>
                     <td><?= $this->translator->translate('apcu.status.' . $key); ?></td>
                     <td><?= htmlspecialchars($statusItem); ?></td>

@@ -137,6 +137,14 @@ $texts = [
     'apcu.status.insert_rate_user'                          => 'Insert rate',
     'apcu.status.num_expunges'                              => 'Cache full count',
 
+    'apcu.status.memory'                                    => 'Memory usage',
+    'apcu.status.total_memory'                              => 'Total memory',
+    'apcu.status.used_memory'                               => 'Used memory',
+    'apcu.status.free_memory'                               => 'Free memory',
+    'apcu.status.fragmentation_percent'                     => 'Fragmentation %',
+    'apcu.status.fragmentation_bytes'                       => 'Fragmentation (bytes)',
+    'apcu.status.fragmentation_fragments'                   => 'Fragmentation (fragments)',
+
     'apcu.status' => 'APCu Status',
     'apcu.generalinfo' => 'General APCu Information',
     'apcu.apcversion' => 'APCu Version',
