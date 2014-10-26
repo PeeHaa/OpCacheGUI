@@ -15,7 +15,13 @@ class StatusTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->statusData = [
-            'start_time' => 1,
+            'start_time'   => 1,
+            'mem_size'     => 1168,
+            'num_entries'  => 2,
+            'num_hits'     => 40,
+            'num_misses'   => 10,
+            'num_inserts'  => 2,
+            'num_expunges' => 1,
         ];
 
         $this->memStatus = [
@@ -572,5 +578,341 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertSame(1, $config->getMemoryInfo()['fragmentation_fragments']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     */
+    public function testGetStatsInfoCachedVars()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('2 (1168)', $config->getStatsInfo()['cached_vars']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     */
+    public function testGetStatsInfoNumHits()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame($this->statusData['num_hits'], $config->getStatsInfo()['num_hits']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     */
+    public function testGetStatsInfoNumMisses()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame($this->statusData['num_misses'], $config->getStatsInfo()['num_misses']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getRequestRate
+     */
+    public function testGetStatsInfoRequestRateZero()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $this->statusData['num_hits'] = 0;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.00', $config->getStatsInfo()['req_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getRequestRate
+     */
+    public function testGetStatsInfoRequestRateFilled()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $datetime = new \DateTime();
+        $datetime->sub(new \DateInterval('PT1M'));
+
+        $this->statusData['start_time'] = $datetime->format('U');
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.83', $config->getStatsInfo()['req_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getHitRate
+     */
+    public function testGetStatsInfoHitRateZero()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $this->statusData['num_hits'] = 0;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.00', $config->getStatsInfo()['hit_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getHitRate
+     */
+    public function testGetStatsInfoHitRateFilled()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $datetime = new \DateTime();
+        $datetime->sub(new \DateInterval('PT1M'));
+
+        $this->statusData['start_time'] = $datetime->format('U');
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.67', $config->getStatsInfo()['hit_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getMissRate
+     */
+    public function testGetStatsInfoMissRateZero()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $this->statusData['num_misses'] = 0;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.00', $config->getStatsInfo()['miss_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getMissRate
+     */
+    public function testGetStatsInfoMissRateFilled()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $datetime = new \DateTime();
+        $datetime->sub(new \DateInterval('PT1M'));
+
+        $this->statusData['start_time'] = $datetime->format('U');
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.17', $config->getStatsInfo()['miss_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getInsertRate
+     */
+    public function testGetStatsInfoInsertRateZero()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $this->statusData['num_inserts'] = 0;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.00', $config->getStatsInfo()['insert_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     * @covers OpCacheGUI\APCu\Status::getInsertRate
+     */
+    public function testGetStatsInfoInsertRateFilled()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $datetime = new \DateTime();
+        $datetime->sub(new \DateInterval('PT1M'));
+
+        $this->statusData['start_time'] = $datetime->format('U');
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.03', $config->getStatsInfo()['insert_rate_user']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatsInfo
+     */
+    public function testGetStatsInfoNumExpunges()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame($this->statusData['num_expunges'], $config->getStatsInfo()['num_expunges']);
     }
 }
