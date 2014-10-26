@@ -77,6 +77,7 @@ class Status
         return [
             'enabled'             => $this->config->getIniDirectives()['apc.enabled'],
             'file_upload_support' => $this->config->getIniDirectives()['apc.rfc1867'],
+            'version'             => $this->cacheStatus['version'],
             'start_time'          => (new \DateTime('@' . $this->cacheStatus['start_time']))->format('d-m-Y H:i:s'),
             'uptime'              => $this->getTimeAgo(new \DateTime('@' . $this->cacheStatus['start_time'])),
         ];

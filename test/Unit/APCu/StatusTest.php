@@ -22,6 +22,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             'num_misses'   => 10,
             'num_inserts'  => 2,
             'num_expunges' => 1,
+            'version'      => '4.0.7',
         ];
 
         $this->memStatus = [
@@ -43,6 +44,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             'file_upload_support' => 1,
             'start_time'          => '01-01-1970 00:00:01',
             'uptime'              => '1',
+            'version'             => '4.0.7',
         ];
     }
 
@@ -96,6 +98,32 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertSame($this->testData['file_upload_support'], $config->getStatusInfo()['file_upload_support']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatusInfo
+     */
+    public function testGetStatusInfoVersion()
+    {
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $configuration->method('getIniDirectives')->willReturn([
+            'apc.enabled' => 1,
+            'apc.rfc1867' => 1,
+        ]);
+
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame($this->testData['version'], $config->getStatusInfo()['version']);
     }
 
     /**
