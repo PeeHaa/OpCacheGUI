@@ -74,10 +74,15 @@ class Status
      */
     public function getStatusInfo()
     {
+        $sharedMemory = $this->memoryStatus['num_seg'] . ' segment(s) with ';
+        $sharedMemory.= $this->byteFormatter->format($this->memoryStatus['seg_size']) . ' ';
+        $sharedMemory.= '(' . $this->cacheStatus['memory_type'] . ' memory' . ')';
+
         return [
             'enabled'             => $this->config->getIniDirectives()['apc.enabled'],
             'file_upload_support' => $this->config->getIniDirectives()['apc.rfc1867'],
             'version'             => $this->cacheStatus['version'],
+            'shared_memory'       => $sharedMemory,
             'start_time'          => (new \DateTime('@' . $this->cacheStatus['start_time']))->format('d-m-Y H:i:s'),
             'uptime'              => $this->getTimeAgo(new \DateTime('@' . $this->cacheStatus['start_time'])),
         ];

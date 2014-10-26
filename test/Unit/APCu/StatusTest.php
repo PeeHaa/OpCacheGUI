@@ -23,6 +23,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             'num_inserts'  => 2,
             'num_expunges' => 1,
             'version'      => '4.0.7',
+            'memory_type'  => 'IPC shared',
         ];
 
         $this->memStatus = [
@@ -124,6 +125,38 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertSame($this->testData['version'], $config->getStatusInfo()['version']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getStatusInfo
+     */
+    public function testGetStatusInfoSharedMemory()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $configuration->method('getIniDirectives')->willReturn([
+            'apc.enabled' => 1,
+            'apc.rfc1867' => 1,
+        ]);
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $result = $this->memStatus['num_seg'] . ' segment(s) with ' . $this->memStatus['seg_size'] . ' (' . $this->statusData['memory_type'] . ' memory)';
+
+        $this->assertSame($result, $config->getStatusInfo()['shared_memory']);
     }
 
     /**

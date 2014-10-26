@@ -125,6 +125,7 @@ $texts = [
     'apcu.status.enabled'                                   => 'Enabled',
     'apcu.status.file_upload_support'                       => 'File upload support',
     'apcu.status.version'                                   => 'Version',
+    'apcu.status.shared_memory'                             => 'Shared info',
     'apcu.status.start_time'                                => 'Start time',
     'apcu.status.uptime'                                    => 'Uptime',
 
