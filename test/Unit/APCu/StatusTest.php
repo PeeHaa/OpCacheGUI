@@ -373,4 +373,204 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('5 years 2 months 3 hours and 5 minutes', $config->getStatusInfo()['uptime']);
     }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     */
+    public function testGetMemoryInfoTotalMemory()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame($this->memStatus['seg_size'], $config->getMemoryInfo()['total_memory']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     */
+    public function testGetMemoryInfoUsedMemory()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame(
+            $config->getMemoryInfo()['total_memory'] - $this->memStatus['avail_mem'],
+            $config->getMemoryInfo()['used_memory']
+        );
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     */
+    public function testGetMemoryInfoFreeMemory()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame($this->memStatus['avail_mem'], $config->getMemoryInfo()['free_memory']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     * @covers OpCacheGUI\APCu\Status::getFragmentationPercent
+     */
+    public function testGetMemoryInfoFragmentationPercent()
+    {
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('0.00%', $config->getMemoryInfo()['fragmentation_percent']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     * @covers OpCacheGUI\APCu\Status::getFragmentationPercent
+     */
+    public function testGetMemoryInfoFragmentationPercentBlockSmallerThenMinimum()
+    {
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $this->memStatus['block_lists'][0][0]['size'] = 3353;
+
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame('100.00%', $config->getMemoryInfo()['fragmentation_percent']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     * @covers OpCacheGUI\APCu\Status::getFragmentationBytes
+     */
+    public function testGetMemoryInfoFragmentationBytes()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame(0, $config->getMemoryInfo()['fragmentation_bytes']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     * @covers OpCacheGUI\APCu\Status::getFragmentationBytes
+     */
+    public function testGetMemoryInfoFragmentationBytesBlockSmallerThenMinimum()
+    {
+        $byteFormatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+
+        $byteFormatter->method('format')->will($this->returnArgument(0));
+
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $this->memStatus['block_lists'][0][0]['size'] = 3353;
+
+        $config = new Status(
+            $byteFormatter,
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame(3353, $config->getMemoryInfo()['fragmentation_bytes']);
+    }
+
+    /**
+     * @covers OpCacheGUI\APCu\Status::__construct
+     * @covers OpCacheGUI\APCu\Status::getMemoryInfo
+     * @covers OpCacheGUI\APCu\Status::getFragmentationSegments
+     */
+    public function testGetMemoryInfoFragmentationSegments()
+    {
+        $configuration = $this->getMockBuilder('\\OpCacheGUI\\APCu\\Configuration')
+            ->disableOriginalConstructor()
+            ->getMock()
+        ;
+
+        $config = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $configuration,
+            $this->statusData,
+            $this->memStatus
+        );
+
+        $this->assertSame(1, $config->getMemoryInfo()['fragmentation_fragments']);
+    }
 }
