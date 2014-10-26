@@ -121,6 +121,22 @@ $texts = [
     'graph.hits.misses.%'                                   => '%s misses',
     'graph.hits.blacklist.%'                                => '%s blacklist',
 
+    'apcu.status.title'                                     => 'Status',
+    'apcu.status.enabled'                                   => 'Enabled',
+    'apcu.status.file_upload_support'                       => 'File upload support',
+    'apcu.status.start_time'                                => 'Start time',
+    'apcu.status.uptime'                                    => 'Uptime',
+
+    'apcu.status.stats'                                     => 'Statistics',
+    'apcu.status.cached_vars'                               => 'Cache variables',
+    'apcu.status.num_hits'                                  => 'Hits',
+    'apcu.status.num_misses'                                => 'Misses',
+    'apcu.status.req_rate_user'                             => 'Request rate (hits, misses)',
+    'apcu.status.hit_rate_user'                             => 'Hit rate',
+    'apcu.status.miss_rate_user'                            => 'Miss rate',
+    'apcu.status.insert_rate_user'                          => 'Insert rate',
+    'apcu.status.num_expunges'                              => 'Cache full count',
+
     'apcu.status' => 'APCu Status',
     'apcu.generalinfo' => 'General APCu Information',
     'apcu.apcversion' => 'APCu Version',

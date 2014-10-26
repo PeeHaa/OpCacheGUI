@@ -1,4 +1,63 @@
+<?php
+$config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false));
+$status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, apcu_cache_info());
+?>
 <?php $apcuHelper=new OpCacheGUI\Addons\APCUHelper(); ?>
+
+<?php
+apc_store('foo', 'bar');
+apc_fetch('foo');
+apc_add('new', 'My awesome data \o/');
+apc_add('to_delete', 'My awesome data \o/');
+apc_delete('to_delete');
+?>
+
+<section id="status-tabs" class="tabs">
+    <div class="data-block clear">
+        <h2><?= $this->translator->translate('apcu.status.title'); ?></h2>
+        <table>
+            <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
+                <tr>
+                    <td><?= $this->translator->translate('apcu.status.' . $key); ?></td>
+                    <?php if (in_array($key, ['enabled', 'file_upload_support'], true)) { ?>
+                        <td><span class="<?= $statusItem ? 'g' : 'r'; ?>s"></span></td>
+                    <?php } else { ?>
+                        <td><?= htmlspecialchars($statusItem); ?></td>
+                    <?php } ?>
+                </tr>
+            <?php } ?>
+        </table>
+        <form action="<?= $this->url->get('reset'); ?>" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
+            <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
+            <button type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>" class="cnfbtn cnfbtn--fn js-confirm reset-btn">Reset</button>
+        </form>
+    </div>
+
+    <div class="data-block">
+        <h2><?= $this->translator->translate('apcu.status.stats'); ?></h2>
+        <table>
+            <?php foreach ($status->getStatsInfo() as $key => $statusItem) { ?>
+                <tr>
+                    <td><?= $this->translator->translate('apcu.status.' . $key); ?></td>
+                    <td><?= htmlspecialchars($statusItem); ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
+
+    <div class="data-block">
+        <h2><?= $this->translator->translate('apcu.status.stats'); ?></h2>
+        <table>
+            <?php foreach ($status->getStatsInfo() as $key => $statusItem) { ?>
+                <tr>
+                    <td><?= $this->translator->translate('apcu.status.' . $key); ?></td>
+                    <td><?= htmlspecialchars($statusItem); ?></td>
+                </tr>
+            <?php } ?>
+        </table>
+    </div>
+</section>
+
 
 <section id="apcustatus-tabs" class="tabs">
 
