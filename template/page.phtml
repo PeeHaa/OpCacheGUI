@@ -69,6 +69,17 @@
                             <option value="<?= $this->url->get('graphs'); ?>"<?php if ($this->active === 'graphs') echo ' selected="selected"' ?>>
                                 <?= $this->translator->translate('menu.graphs'); ?>
                             </option>
+                            <?php if (extension_loaded('apcu')) { ?>
+                                <option value="<?= $this->url->get('apcustatus'); ?>"<?php if ($this->active === 'apcustatus') echo ' selected="selected"' ?>>
+                                    <?= $this->translator->translate('menu.apcustatus'); ?>
+                                </option>
+                                <option value="<?= $this->url->get('apcuconfig'); ?>"<?php if ($this->active === 'apcuconfig') echo ' selected="selected"' ?>>
+                                    <?= $this->translator->translate('menu.apcuconfig'); ?>
+                                </option>
+                                <option value="<?= $this->url->get('apcuvars'); ?>"<?php if ($this->active === 'apcuvars') echo ' selected="selected"' ?>>
+                                    <?= $this->translator->translate('menu.apcuvars'); ?>
+                                </option>
+                            <?php } ?>
                         </select>
                     </div>
                 <?php } ?>
