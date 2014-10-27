@@ -140,19 +140,19 @@ $router->get('apcustatus', function() use ($htmlTemplate, $byteFormatter, $csrfT
     ]);
 });
 
-$router->get('apcuvars', function() use ($htmlTemplate, $byteFormatter,$csrfToken,$translator) {
-    return $htmlTemplate->render('apcuvars.phtml', [
-        'byteFormatter' => $byteFormatter,
-        'csrfToken'     => $csrfToken,
-        'active'        => 'graphs',
-        'title'         => $translator->translate('apcu.cached_vars'),
-    ]);
-});
-
 $router->get('apcuconfig', function() use ($htmlTemplate, $translator) {
     return $htmlTemplate->render('apcuconfig.phtml', [
         'active'        => 'apcuconfig',
         'title'         => $translator->translate('apcu.config.title'),
+    ]);
+});
+
+$router->get('apcuvars', function() use ($htmlTemplate, $byteFormatter,$csrfToken,$translator) {
+    return $htmlTemplate->render('apcuvars.phtml', [
+        'byteFormatter' => $byteFormatter,
+        'csrfToken'     => $csrfToken,
+        'active'        => 'apcuvars',
+        'title'         => $translator->translate('apcu.cached_vars'),
     ]);
 });
 
