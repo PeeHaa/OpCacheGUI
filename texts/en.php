@@ -189,7 +189,9 @@ $texts = [
     'config.apc.rfc1867_ttl'                                => 'File upload progress TTL',
     'config.apc.rfc1867_ttl.description'                    => 'TTL for rfc1867 entries.',
 
-    'apcu.vars.title'                                       => 'Variables',
+    'apcu.vars.title'                                       => 'APCu variables',
+    'apcu.vars.tabs.cached'                                 => 'Cached variables',
+    'apcu.vars.tabs.deleted'                                => 'Deleted variables',
     'apcu.vars.name'                                        => 'Name',
     'apcu.vars.hits'                                        => 'Hits',
     'apcu.vars.size'                                        => 'Size',

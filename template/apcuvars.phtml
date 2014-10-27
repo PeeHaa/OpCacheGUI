@@ -1,7 +1,13 @@
+<?php
+$config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false));
+$status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, array_merge(apcu_cache_info(), ['version' => phpversion('apcu')]), apcu_sma_info());
+?>
+
 <section id="apcuvars-tabs" class="tabs">
     <nav id="sub-nav">
         <ul>
-            <li class="sna"><a href="#" data-tab="apcu-variables"><?= $this->translator->translate('apcu.vars.title'); ?></a></li>
+            <li class="sna"><a href="#" data-tab="apcu-variables"><?= $this->translator->translate('apcu.vars.tabs.cached'); ?></a></li>
+            <li><a href="#" data-tab="apcu-deleted"><?= $this->translator->translate('apcu.vars.tabs.deleted'); ?></a></li>
         </ul>
     </nav>
     <section data-content="apcu-variables">
