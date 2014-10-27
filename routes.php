@@ -152,7 +152,7 @@ $router->get('apcuvars', function() use ($htmlTemplate, $byteFormatter,$csrfToke
         'byteFormatter' => $byteFormatter,
         'csrfToken'     => $csrfToken,
         'active'        => 'apcuvars',
-        'title'         => $translator->translate('apcu.cached_vars'),
+        'title'         => $translator->translate('apcu.vars.title'),
     ]);
 });
 
