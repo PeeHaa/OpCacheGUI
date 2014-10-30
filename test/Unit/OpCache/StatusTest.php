@@ -319,6 +319,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers OpCacheGUI\OpCache\Status::__construct
      * @covers OpCacheGUI\OpCache\Status::getCachedScripts
+     * @covers OpCacheGUI\OpCache\Status::sortCachedScripts
      */
     public function testGetCachedScriptsFilled()
     {
@@ -328,6 +329,13 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $status = new Status($formatter, $this->statusData);
 
         $data = [
+            [
+                'full_path'           => '/var/www/vhosts/NoTimeStamp/src/Psr/Autoloader.php',
+                'hits'                => 12876,
+                'memory_consumption'  => '6KB',
+                'last_used_timestamp' => '14:25:15 09-10-2014',
+                'timestamp'           => 'N/A',
+            ],
             [
                 'full_path'           => '/var/www/vhosts/OpcacheGUI/src/OpCacheGUI/Network/Request.php',
                 'hits'                => 1,
@@ -343,13 +351,6 @@ class StatusTest extends \PHPUnit_Framework_TestCase
                 'timestamp'           => '16:20:53 07-10-2014',
             ],
             [
-                'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Foo.php',
-                'hits'                => 19,
-                'memory_consumption'  => '3KB',
-                'last_used_timestamp' => '15:31:55 09-10-2014',
-                'timestamp'           => '20:07:33 08-10-2014',
-            ],
-            [
                 'full_path'           => '/var/www/vhosts/RedTube/template/humiliation/germany-vs-brazil.phtml',
                 'hits'                => 71,
                 'memory_consumption'  => '4KB',
@@ -357,18 +358,18 @@ class StatusTest extends \PHPUnit_Framework_TestCase
                 'timestamp'           => '20:01:15 08-10-2014',
             ],
             [
+                'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Foo.php',
+                'hits'                => 19,
+                'memory_consumption'  => '3KB',
+                'last_used_timestamp' => '15:31:55 09-10-2014',
+                'timestamp'           => '20:07:33 08-10-2014',
+            ],
+            [
                 'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Psr/Autoloader.php',
                 'hits'                => 32,
                 'memory_consumption'  => '5KB',
                 'last_used_timestamp' => '14:25:15 09-10-2014',
                 'timestamp'           => '20:01:15 08-10-2014',
-            ],
-            [
-                'full_path'           => '/var/www/vhosts/NoTimeStamp/src/Psr/Autoloader.php',
-                'hits'                => 12876,
-                'memory_consumption'  => '6KB',
-                'last_used_timestamp' => '14:25:15 09-10-2014',
-                'timestamp'           => 'N/A',
             ],
         ];
 

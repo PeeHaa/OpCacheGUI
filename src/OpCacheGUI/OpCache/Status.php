@@ -260,6 +260,21 @@ class Status
             ];
         }
 
+        usort($scripts, [$this, 'sortCachedScripts']);
+
         return $scripts;
+    }
+
+    /**
+     * Sorts the lists of cached scripts
+     *
+     * @param array $a Array to compare
+     * @param array $b Array to compare
+     *
+     * @return int The direction of the sort
+     */
+    private function sortCachedScripts(array $a, array $b)
+    {
+        return strcmp($a['full_path'], $b['full_path']);
     }
 }
