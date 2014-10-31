@@ -49,7 +49,7 @@ class User
     public function __construct(Session $sessionStorage, $username, $password)
     {
         $this->sessionStorage = $sessionStorage;
-        $this->username       = strtolower($username);
+        $this->username       = $username;
         $this->password       = $password;
     }
 
@@ -83,7 +83,7 @@ class User
      */
     public function login($username, $password)
     {
-        if (strtolower($username) === $this->username && password_verify($password, $this->password)) {
+        if ($username === $this->username && password_verify($password, $this->password)) {
             $this->sessionStorage->set('user', $this->username);
 
             return true;
