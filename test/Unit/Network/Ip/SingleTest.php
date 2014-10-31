@@ -4,7 +4,7 @@ namespace OpCacheGUITest\Unit\Network\Ip;
 
 use OpCacheGUI\Network\Ip\Single;
 
-class SingleTest extends \PHPUnit_Framework_TestCase// implements Converter
+class SingleTest extends \PHPUnit_Framework_TestCase
 {
     /**
      */
