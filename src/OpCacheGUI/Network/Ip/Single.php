@@ -29,10 +29,13 @@ class Single implements Converter
      *
      * @param string The IP address / range
      *
-     * @return int[] Array containing the first and last ip in the range
+     * @return float[] Array containing the first and last ip in the range
      */
     public function convert($address)
     {
-        return [$address, $address];
+        return [
+            (float) sprintf('%u', ip2long($address)),
+            (float) sprintf('%u', ip2long($address)),
+        ];
     }
 }

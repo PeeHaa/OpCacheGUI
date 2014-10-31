@@ -22,6 +22,6 @@ class SingleTest extends \PHPUnit_Framework_TestCase
     {
         $ipRange = new Single();
 
-        $this->assertSame(['127.0.0.1', '127.0.0.1'], $ipRange->convert('127.0.0.1'));
+        $this->assertSame([2130706433.0, 2130706433.0], $ipRange->convert('127.0.0.1'));
     }
 }
