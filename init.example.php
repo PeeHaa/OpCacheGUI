@@ -46,8 +46,7 @@ $uriScheme = Router::URL_REWRITE;
 /**
  * Login credentials
  *
- * The password can be any password hash which contains the hash algorithm, the cost and the salt
- * (e.g as returned by password_hash() or crypt())
+ * The password is a password compatible with PHP's password hashing functions (password_hash())
  *
  * Only addresses on the whitelist are allowed to log in
  * The whitelist can contain a list of IP addresses of ranges in one of the following formats:
