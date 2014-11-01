@@ -82,6 +82,6 @@ class AnyTest extends \PHPUnit_Framework_TestCase
     {
         $ipRange = new Any();
 
-        $this->assertSame([0.0, 4294967295], $ipRange->convert('*'));
+        $this->assertSame([0.0, 4294967295.0], $ipRange->convert('*'));
     }
 }
