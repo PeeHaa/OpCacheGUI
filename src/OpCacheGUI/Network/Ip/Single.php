@@ -25,6 +25,18 @@ namespace OpCacheGUI\Network\Ip;
 class Single implements Converter
 {
     /**
+     * Checks whether is certain address is valid for the converter implementation
+     *
+     * @param string $address The address to check
+     *
+     * @return boolean True when the address is valid
+     */
+    public function isValid($address)
+    {
+        return !!filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
+    }
+
+    /**
      * Converts an IP address or range into a range to easily check for access
      *
      * @param string The IP address / range

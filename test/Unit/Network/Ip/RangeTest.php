@@ -16,6 +16,66 @@ class RangeTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers OpCacheGUI\Network\Ip\Range::isValid
+     */
+    public function testIsValidValidWithoutSpaces()
+    {
+        $ipRange = new Range();
+
+        $this->assertTrue($ipRange->isValid('10.0.0.1-10.0.0.5'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Range::isValid
+     */
+    public function testIsValidValidWithSpaces()
+    {
+        $ipRange = new Range();
+
+        $this->assertTrue($ipRange->isValid('10.0.0.1 - 10.0.0.5'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Range::isValid
+     */
+    public function testIsValidNotValidCidr()
+    {
+        $ipRange = new Range();
+
+        $this->assertFalse($ipRange->isValid('127.0.0.1/32'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Range::isValid
+     */
+    public function testIsValidNotValidLocalhost()
+    {
+        $ipRange = new Range();
+
+        $this->assertFalse($ipRange->isValid('localhost'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Range::isValid
+     */
+    public function testIsValidNotValidSingle()
+    {
+        $ipRange = new Range();
+
+        $this->assertFalse($ipRange->isValid('127.0.0.1'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Range::isValid
+     */
+    public function testIsValidNotValidWildcard()
+    {
+        $ipRange = new Range();
+
+        $this->assertFalse($ipRange->isValid('10.0.0.*'));
+    }
+
+    /**
      * @covers OpCacheGUI\Network\Ip\Range::convert
      */
     public function testConvert()

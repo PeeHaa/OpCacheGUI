@@ -25,6 +25,22 @@ namespace OpCacheGUI\Network\Ip;
 class Wildcard implements Converter
 {
     /**
+     * Checks whether is certain address is valid for the converter implementation
+     *
+     * @param string $address The address to check
+     *
+     * @return boolean True when the address is valid
+     */
+    public function isValid($address)
+    {
+        if (!preg_match('/^\d+\.(\d+|\*)\.(\d+|\*)\.(\d+|\*)$/', $address)) {
+            return false;
+        }
+
+        return substr_count($address, '*') > 0 && substr_count($address, '*') < 4;
+    }
+
+    /**
      * Converts an IP address or range into a range to easily check for access
      *
      * @param string The IP address / range

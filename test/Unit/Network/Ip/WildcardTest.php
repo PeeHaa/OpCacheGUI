@@ -16,6 +16,86 @@ class WildcardTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidValidWithOneWildcard()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertTrue($ipRange->isValid('10.0.0.*'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidValidWithTwoWildcards()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertTrue($ipRange->isValid('10.0.*.*'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidValidWithThreeWildcards()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertTrue($ipRange->isValid('10.*.*.*'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidNotValidCidr()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertFalse($ipRange->isValid('127.0.0.1/32'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidNotValidLocalhost()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertFalse($ipRange->isValid('localhost'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidNotValidSingle()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertFalse($ipRange->isValid('127.0.0.1'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidNotValidRange()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertFalse($ipRange->isValid('10.0.0.1-10.0.0.5'));
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Ip\Wildcard::isValid
+     */
+    public function testIsValidNotValidAllWildcards()
+    {
+        $ipRange = new Wildcard();
+
+        $this->assertFalse($ipRange->isValid('*.*.*.*'));
+    }
+
+    /**
      * @covers OpCacheGUI\Network\Ip\Wildcard::convert
      */
     public function testConvertOneWildcard()
