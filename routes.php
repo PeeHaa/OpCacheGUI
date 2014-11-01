@@ -55,7 +55,7 @@ if ($user->requiresLogin()) {
     });
 
     $router->post('', function() use ($htmlTemplate, $csrfToken, $request, $user, $request) {
-        if ($csrfToken->validate($request->post('csrfToken')) && $user->login($request->post('username'), $request->post('password'))) {
+        if ($csrfToken->validate($request->post('csrfToken')) && $user->login($request->post('username'), $request->post('password'), $request->getIp())) {
             header('Location: ' . $request->getUrl());
             exit;
         }

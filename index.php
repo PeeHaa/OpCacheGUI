@@ -11,6 +11,7 @@
  */
 use OpCacheGUI\Format\Byte as ByteFormatter;
 use OpCacheGUI\Storage\Session;
+use OpCacheGUI\Auth\Ip;
 use OpCacheGUI\Security\Generator\Factory;
 use OpCacheGUI\Security\CsrfToken;
 use OpCacheGUI\Auth\User;
@@ -48,9 +49,22 @@ $sessionStorage = new Session();
 $csrfToken      = new CsrfToken($sessionStorage, new Factory());
 
 /**
+ * Setup the IP whitelist
+ */
+$whitelist = new Ip([
+    new \OpCacheGUI\Network\Ip\Any(),
+    new \OpCacheGUI\Network\Ip\Localhost(),
+    new \OpCacheGUI\Network\Ip\Single(),
+    new \OpCacheGUI\Network\Ip\Wildcard(),
+    new \OpCacheGUI\Network\Ip\Range(),
+    new \OpCacheGUI\Network\Ip\Cidr(),
+]);
+$whitelist->buildWhitelist($login['whitelist']);
+
+/**
  * Setup the authentication object
  */
-$user = new User($sessionStorage, $login['username'], $login['password']);
+$user = new User($sessionStorage, $login['username'], $login['password'], $whitelist);
 
 /**
  * Setup URL renderer
