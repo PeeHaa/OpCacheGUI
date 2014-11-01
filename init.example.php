@@ -49,7 +49,7 @@ $uriScheme = Router::URL_REWRITE;
  * The password is a password compatible with PHP's password hashing functions (password_hash())
  *
  * Only addresses on the whitelist are allowed to log in
- * The whitelist can contain a list of IP addresses of ranges in one of the following formats:
+ * The whitelist can contain a list of IP addresses or ranges in one of the following formats:
  *
  * * allows any IP address to log in (effectively disabling the whitelist and allowing access from any IP)
  * localhost or 127.0.0.1 allows only log ins from the machine on which the application runs
