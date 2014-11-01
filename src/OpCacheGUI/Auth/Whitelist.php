@@ -26,6 +26,8 @@ interface Whitelist
      * Builds the whitelist
      *
      * @param array $addresses List of addresses which form the whitelist
+     *
+     * @return void
      */
     public function buildWhitelist(array $addresses);
 

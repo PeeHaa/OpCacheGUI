@@ -39,9 +39,9 @@ class Single implements Converter
     /**
      * Converts an IP address or range into a range to easily check for access
      *
-     * @param string The IP address / range
+     * @param string $address The IP address / range
      *
-     * @return float[] Array containing the first and last ip in the range
+     * @return double[] Array containing the first and last ip in the range
      */
     public function convert($address)
     {
