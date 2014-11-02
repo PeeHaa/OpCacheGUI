@@ -1,7 +1,7 @@
 OpCacheGUI
 ==========
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/badges/quality-score.png?b=v1.0.0.dev)](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/badges/coverage.png?b=v1.0.0.dev)](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/badges/build.png?b=v1.0.0.dev)](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/?branch=master) [![Build Status](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/badges/build.png?b=master)](https://scrutinizer-ci.com/g/PeeHaa/OpCacheGUI/build-status/master)
 
 GUI for PHP's OpCache. I started this project to see what you can do with PHP's OpCache. There are already a couple of projects who implement something like this, but they are either a "one file to rule them all" or just not very nice looking.
 
