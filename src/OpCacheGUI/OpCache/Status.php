@@ -14,6 +14,7 @@
 namespace OpCacheGUI\OpCache;
 
 use OpCacheGUI\Format\Byte;
+use OpCacheGUI\I18n\FileTranslator;
 
 /**
  * Container for the current status of OpCache
@@ -93,22 +94,23 @@ class Status
     public function getGraphMemoryInfo()
     {
         $memory = $this->statusData['memory_usage'];
+        global $translator;
 
         return json_encode([
             [
                 'value' => $memory['used_memory'],
                 'color' => self::RED,
-                'label' => 'Used',
+                'label' => $translator->translate('graph.memory.used'),
             ],
             [
                 'value' => $memory['free_memory'],
                 'color' => self::GREEN,
-                'label' => 'Free',
+                'label' => $translator->translate('graph.memory.free'),
             ],
             [
                 'value' => $memory['wasted_memory'],
                 'color' => self::DARK_GREEN,
-                'label' => 'Wasted',
+                'label' => $translator->translate('graph.memory.wasted'),
             ],
         ]);
     }
@@ -179,22 +181,23 @@ class Status
     public function getGraphKeyStatsInfo()
     {
         $stats = $this->statusData['opcache_statistics'];
+        global $translator;
 
         return json_encode([
             [
                 'value' => $stats['num_cached_scripts'],
                 'color' => self::RED,
-                'label' => 'Used',
+                'label' => $translator->translate('graph.keys.scripts'),
             ],
             [
                 'value' => $stats['max_cached_keys'] - $stats['num_cached_keys'],
                 'color' => self::GREEN,
-                'label' => 'Free',
+                'label' => $translator->translate('graph.keys.free'),
             ],
             [
                 'value' => $stats['num_cached_keys'] - $stats['num_cached_scripts'],
                 'color' => self::DARK_GREEN,
-                'label' => 'Wasted',
+                'label' => $translator->translate('graph.keys.wasted'),
             ],
         ]);
     }
@@ -207,22 +210,23 @@ class Status
     public function getGraphHitStatsInfo()
     {
         $stats = $this->statusData['opcache_statistics'];
+        global $translator;
 
         return json_encode([
             [
                 'value' => $stats['hits'],
                 'color' => self::RED,
-                'label' => 'Hits',
+                'label' => $translator->translate('graph.hits.hits'),
             ],
             [
                 'value' => $stats['misses'],
                 'color' => self::GREEN,
-                'label' => 'Misses',
+                'label' => $translator->translate('graph.hits.misses'),
             ],
             [
                 'value' => $stats['blacklist_misses'],
                 'color' => self::DARK_GREEN,
-                'label' => 'Blacklisted',
+                'label' => $translator->translate('graph.hits.blacklist'),
             ],
         ]);
     }
