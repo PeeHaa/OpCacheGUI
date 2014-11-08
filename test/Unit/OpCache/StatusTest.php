@@ -94,7 +94,11 @@ class StatusTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetStatusInfo()
     {
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->statusData);
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $this->statusData
+        );
 
         $data = [];
 
@@ -118,7 +122,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $formatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
         $formatter->method('format')->will($this->onConsecutiveCalls('1KB', '2KB', '3KB'));
 
-        $status = new Status($formatter, $this->statusData);
+        $status = new Status($formatter, $this->getMock('\\OpCacheGUI\\I18n\\Translator'), $this->statusData);
 
         $data = $this->statusData;
 
@@ -136,7 +140,14 @@ class StatusTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetGraphMemoryInfo()
     {
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->statusData);
+        $translator = $this->getMock('\\OpCacheGUI\\I18n\\Translator');
+        $translator->method('translate')->will($this->onConsecutiveCalls('Used', 'Free', 'Wasted'));
+
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $translator,
+            $this->statusData
+        );
 
         $data = [
             [
@@ -168,7 +179,11 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $statusData = $this->statusData;
         $statusData['opcache_enabled'] = false;
 
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $statusData);
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $statusData
+        );
 
         $data = [
             [
@@ -199,7 +214,11 @@ class StatusTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetStatsInfoWithOpCacheEnabled()
     {
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->statusData);
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $this->statusData
+        );
 
         $data = $this->statusData['opcache_statistics'];
 
@@ -226,7 +245,11 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $statusData['opcache_statistics']['last_restart_time'] = 0;
 
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $statusData);
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $statusData
+        );
 
         $data = $this->statusData['opcache_statistics'];
 
@@ -249,7 +272,10 @@ class StatusTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetGraphKeyStatsInfo()
     {
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->statusData);
+        $translator = $this->getMock('\\OpCacheGUI\\I18n\\Translator');
+        $translator->method('translate')->will($this->onConsecutiveCalls('Used', 'Free', 'Wasted'));
+
+        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $translator, $this->statusData);
 
         $data = [
             [
@@ -278,7 +304,10 @@ class StatusTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetGraphHitStatsInfo()
     {
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->statusData);
+        $translator = $this->getMock('\\OpCacheGUI\\I18n\\Translator');
+        $translator->method('translate')->will($this->onConsecutiveCalls('Hits', 'Misses', 'Blacklisted'));
+
+        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $translator, $this->statusData);
 
         $data = [
             [
@@ -311,7 +340,11 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         unset($statusData['scripts']);
 
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $statusData);
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $statusData
+        );
 
         $this->assertSame([], $status->getCachedScripts());
     }
@@ -326,7 +359,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $formatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
         $formatter->method('format')->will($this->onConsecutiveCalls('1KB', '2KB', '3KB', '4KB', '5KB', '6KB'));
 
-        $status = new Status($formatter, $this->statusData);
+        $status = new Status($formatter, $this->getMock('\\OpCacheGUI\\I18n\\Translator'), $this->statusData);
 
         $data = [
             [
@@ -395,7 +428,11 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             ],
         ];
 
-        $status = new Status($this->getMock('\\OpCacheGUI\\Format\\Byte'), $statusData);
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $statusData
+        );
 
         $this->assertSame([], $status->getCachedScripts());
     }
