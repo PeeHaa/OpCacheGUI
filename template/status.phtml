@@ -1,5 +1,5 @@
 <?php
-$status      = new OpCacheGUI\OpCache\Status($this->byteFormatter, opcache_get_status());
+$status      = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
 $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
 ?>
 
