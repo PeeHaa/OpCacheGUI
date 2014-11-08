@@ -1,6 +1,8 @@
 <?php
 
 $texts = [
+    'project.link'                                          => 'Project on GitHub',
+
     'menu.status'                                           => 'Status',
     'menu.config'                                           => 'Configuration',
     'menu.scripts'                                          => 'Cached Scripts',
