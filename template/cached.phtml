@@ -65,6 +65,7 @@ foreach($status->getCachedScripts() as $data) {
     </section>
     <section data-content="overview-scripts">
         <div class="show-cs-table cs-table-overview">
+            <input type="search" name="filter" placeholder="<?= $this->translator->translate('scripts.filter.placeholder'); ?>" autofocus>
             <table>
                 <thead>
                     <tr>

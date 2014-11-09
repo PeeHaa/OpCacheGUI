@@ -106,6 +106,7 @@ $texts = [
     'scripts.timestamp'                                     => 'Aangemaakt',
     'scripts.actions'                                       => 'Acties',
     'script.invalidate'                                     => 'Invalideer',
+    'scripts.filter.placeholder'                            => 'Filter opgeslagen scripts',
 
     'graph.title'                                           => 'Grafieken',
     'graph.memory.title'                                    => 'Geheugen',

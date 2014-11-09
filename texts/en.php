@@ -106,6 +106,7 @@ $texts = [
     'scripts.timestamp'                                     => 'Created',
     'scripts.actions'                                       => 'Actions',
     'script.invalidate'                                     => 'Invalidate',
+    'scripts.filter.placeholder'                            => 'Filter cached scripts',
 
     'graph.title'                                           => 'Graphs',
     'graph.memory.title'                                    => 'Memory',

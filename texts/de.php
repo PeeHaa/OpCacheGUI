@@ -106,6 +106,7 @@ $texts = [
     'scripts.timestamp'                                     => 'Erstellt',
     'scripts.actions'                                       => 'Aktionen',
     'script.invalidate'                                     => 'Aus dem Cache löschen',
+    'scripts.filter.placeholder'                            => 'Filter Datei im Cache',
 
     'graph.title'                                           => 'Diagramme',
     'graph.memory.title'                                    => 'Speicher',

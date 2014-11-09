@@ -73,6 +73,14 @@ ul {
     display: table;
 }
 
+input[type="search"] {
+    width: 100%;
+    margin-bottom: 25px;
+    font-size: 25px;
+    padding: 5px;
+    border: 1px solid #eee;
+}
+
 /* Login Page Styles */
 #login {
     position: absolute;
