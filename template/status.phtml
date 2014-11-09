@@ -1,8 +1,4 @@
-<?php
-$status      = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
-$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
-?>
-
+<?php $status = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status()); ?>
 <section id="status-tabs" class="tabs">
     <div class="data-block clear">
         <h2><?= $this->translator->translate('status.title'); ?></h2>
