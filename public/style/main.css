@@ -7,10 +7,10 @@
 
 /* Base Resets */
 * {
-	margin: 0;
-	padding: 0;
-	outline: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    box-sizing: border-box;
 }
 
 /* Text Highlight Color */
@@ -37,191 +37,191 @@ body::-webkit-scrollbar-thumb {
 
 /* Tag Level Styles */
 html, body {
-	height: 100%;
+    height: 100%;
 }
 
 body {
-	font-family: Open Sans, Arial;
-	font-weight: 400;
-	background-color: #f9f9f9;
-	color: #212121;
-	font-size: 14px;
+    font-family: Open Sans, Arial;
+    font-weight: 400;
+    background-color: #f9f9f9;
+    color: #212121;
+    font-size: 14px;
 }
 
 a {
-	text-decoration: none;
-	color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 a img {
-	border: 0;
+    border: 0;
 }
 
 input[button], 
 button {
-	cursor: pointer;
+    cursor: pointer;
 }
 
 ul {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 /* Clear Fix */
 .clear:after {
-	clear: both;
-	content: "";
-	display: table;
+    clear: both;
+    content: "";
+    display: table;
 }
 
 /* Login Page Styles */
 #login {
-	position: absolute;
-	width: 100%;
-	max-width: 300px;
-	left: 50%;
-	top: 50%;
-	margin-top: -60px;
-	margin-left: -150px;
+    position: absolute;
+    width: 100%;
+    max-width: 300px;
+    left: 50%;
+    top: 50%;
+    margin-top: -60px;
+    margin-left: -150px;
 }
 
 #login input[type=submit] {
-	border: 1px solid #eee;
-	padding: 6px 15px;
-	background-color: transparent;
-	font-size: 12px;
-	color: #E74C3C;
-	margin-top: 20px;
-	border: 1px solid #E74C3C;
-	float: right;
-	margin-right: 30px;
-	cursor: pointer;
+    border: 1px solid #eee;
+    padding: 6px 15px;
+    background-color: transparent;
+    font-size: 12px;
+    color: #E74C3C;
+    margin-top: 20px;
+    border: 1px solid #E74C3C;
+    float: right;
+    margin-right: 30px;
+    cursor: pointer;
 }
 
 #login input[type=submit]:not([disabled]):hover {
-	background-color: #E74C3C;
-	color: #fff;
+    background-color: #E74C3C;
+    color: #fff;
 }
 
 #login input[type=submit]:disabled {
-	color: #ddd;
-	cursor: default;
-	border: 1px solid #ddd;
+    color: #ddd;
+    cursor: default;
+    border: 1px solid #ddd;
 }
 
 /* Placeholder Styles */
 #login input[type=text]:focus::-webkit-input-placeholder,
 #login input[type=password]:focus::-webkit-input-placeholder {
-	opacity: .4;
+    opacity: .4;
 }
 
 #login input[type=text]:focus::-moz-placeholder,
 #login input[type=password]:focus::-moz-placeholder {
-	opacity: .4;
+    opacity: .4;
 }
 
 #login input[type=text]:-ms-input-placeholder,
 #login input[type=password]:-ms-input-placeholder {  
-	opacity: .4;
+    opacity: .4;
 }
 
 #login input[type=text],
 #login input[type=password] {
-	border: 0;
-	background-color: transparent;
-	border-bottom: 1px solid #ddd;
-	padding: 15px;
-	width: 90%;
-	max-width: 300px;
-	font-weight: inherit;
-	font-family: inherit;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    width: 90%;
+    max-width: 300px;
+    font-weight: inherit;
+    font-family: inherit;
 }
 
 /* Header Styles */
 header {
-	position: fixed;
-	width: 100%;
-	top: 0;
-	background-color: #e74c3c;
-	z-index: 999;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    background-color: #e74c3c;
+    z-index: 999;
 }
 
 
 /* Navigation */
 header nav {
-	transition: line-height .5s;
-	line-height: 80px;
+    transition: line-height .5s;
+    line-height: 80px;
 }
 
 header nav ul li {
-	float: left;
-	text-transform: uppercase;
-	font-size: 18px;
-	color: #fff;
-	padding: 0 20px;
-	transition: font-size .5s;
+    float: left;
+    text-transform: uppercase;
+    font-size: 18px;
+    color: #fff;
+    padding: 0 20px;
+    transition: font-size .5s;
 }
 
 header nav ul li:last-child {
-	float: right;
-	font-size: 25px;
+    float: right;
+    font-size: 25px;
 }
 
 #logo {
-	width: 220px;
-	text-align: center;
-	background-color: #db3e30;
-	font-size: 25px;
-	text-transform: none;
-	transition: font-size .5s;
+    width: 220px;
+    text-align: center;
+    background-color: #db3e30;
+    font-size: 25px;
+    text-transform: none;
+    transition: font-size .5s;
 }
 
 #logo a {
-	display: block;
-	height: 100%;
-	width: 100%;
-	color: #770900;
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: #770900;
 }
 
 #logo span {
-	color: #96251b;
+    color: #96251b;
 }
 
 #logo sup {
-	font-size: 11px;
-	position: absolute;
-	margin-top: -12px;
-	margin-left: -10px;
-	transition: font-size .5s;
+    font-size: 11px;
+    position: absolute;
+    margin-top: -12px;
+    margin-left: -10px;
+    transition: font-size .5s;
 }
 
 /* Top Band Resizing */
 .resize-main-menu {
-	line-height: 40px;
+    line-height: 40px;
 }
 
 .resize-main-menu ul li {
-	font-size: 14px;
+    font-size: 14px;
 }
 
 .resize-main-menu #logo {
-	font-size: 20px;
+    font-size: 20px;
 }
 
 .resize-main-menu sup {
-	font-size: 10px;
-	margin-top: -12px;
+    font-size: 10px;
+    margin-top: -12px;
 }
 
 
 /* Super Wrapper */
 #wrap {
-	max-width: 1400px;
-	min-width: 319px;
+    max-width: 1400px;
+    min-width: 319px;
 }
 
 /* Main Wrapper */
 #main-wrap {
-	padding-top: 80px;
+    padding-top: 80px;
 }
 
 
@@ -229,94 +229,94 @@ header nav ul li:last-child {
 
 /* Side Bar */
 aside {
-	background-color: #f2f2f2;
-	float: left;
-	width: 220px;
+    background-color: #f2f2f2;
+    float: left;
+    width: 220px;
 }
 
 aside nav {
-	width: 220px;
-	position: fixed;
-	transition: top .5s;
+    width: 220px;
+    position: fixed;
+    transition: top .5s;
 }
 
 aside nav ul li a {
-	padding: 20px;
-	text-transform: uppercase;
-	text-align: center;
-	font-size: 12px;
-	color: #515151;
-	display: block;
+    padding: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 12px;
+    color: #515151;
+    display: block;
 }
 
 aside nav ul li span.fa {
-	display: block;
-	font-size: 30px;
-	padding-bottom: 5px;
+    display: block;
+    font-size: 30px;
+    padding-bottom: 5px;
 }
 
 
 /* Aside Menu For Mobile Screens */
 #left-responsive-nav {
-	display: none;
-	padding: 0 20px;
-	margin-top: 100px;
+    display: none;
+    padding: 0 20px;
+    margin-top: 100px;
 }
 
 #left-responsive-nav select {
-	border: 1px solid #f2f2f2;
-	width: 100%;
-	padding: 10px;
+    border: 1px solid #f2f2f2;
+    width: 100%;
+    padding: 10px;
 }
 
 /* Tabs on Pages - For now only usable on Configuration Page*/
 #sub-nav ul li {
-	display: inline-block;
-	padding: 20px;
-	position: relative;
-	text-transform: uppercase;
-	font-size: 13px;
+    display: inline-block;
+    padding: 20px;
+    position: relative;
+    text-transform: uppercase;
+    font-size: 13px;
 }
 
 #sub-nav ul li:first-child {
-	padding-left: 0;
+    padding-left: 0;
 }
 
 #sub-nav ul li:before {
-	content: "/";
-	position: absolute;
-	left: -5px;
-	margin-top: -8px;
-	font-size: 24px;
-	font-weight: 300;
-	color: #212121 !important;
+    content: "/";
+    position: absolute;
+    left: -5px;
+    margin-top: -8px;
+    font-size: 24px;
+    font-weight: 300;
+    color: #212121 !important;
 }
 
 #sub-nav ul li:first-child:before {
-	content: "";
+    content: "";
 }
 
 
 /* Sub Navigation Active */
 .sna,
 #sub-nav ul li a:hover {
-	color: #E74C3C;
+    color: #E74C3C;
 }
 
 
 /* Left Navigation Active */
 .lna,
 aside nav ul li a:hover {
-	background-color: #eee;
+    background-color: #eee;
 }
 
 
 
 /* Content Area */
 #content {
-	width: calc(100% - 260px);
-	float: left;
-	margin-left: 20px;
+    width: calc(100% - 260px);
+    float: left;
+    margin-left: 20px;
 }
 
 
@@ -324,178 +324,178 @@ aside nav ul li a:hover {
 
 /* Table Designs */
 .tabs > section {
-	display: none;
+    display: none;
 }
 
 .tabs > section:first-of-type {
-	display: block;
+    display: block;
 }
 
 .tabs table {
-	border-collapse: collapse;
-	width: 100%;
-	table-layout: fixed;
+    border-collapse: collapse;
+    width: 100%;
+    table-layout: fixed;
 }
 
 .tabs > section > table tr > td,
 #status-tabs .data-block td {
-	padding: 15px 0;
-	border-bottom: 1px solid #eee;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
 }
 
 /* Page Specific Table Styles */
 
 /* Status Page */
 #status-tabs .data-block {
-	width: 33%;
-	float: left;
-	padding-right: 40px;
+    width: 33%;
+    float: left;
+    padding-right: 40px;
 }
 
 #status-tabs form {
-	float: right;
-	margin-top: 10px;
+    float: right;
+    margin-top: 10px;
 }
 
 #status-tabs .data-block:last-of-type {
-	padding-right: 0;
+    padding-right: 0;
 }
 
 #status-tabs .data-block td:nth-child(2) {
-	text-align: right;
+    text-align: right;
 }
 
 #status-tabs .data-block h2,
 #graphs h2 {
-	font-size: 14px;
-	color: #E74C3C;
-	padding: 20px 0;
-	padding-bottom: 10px;
-	font-weight: 400;
-	text-transform: uppercase;
+    font-size: 14px;
+    color: #E74C3C;
+    padding: 20px 0;
+    padding-bottom: 10px;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 
 /* Configuration Page */
 #configuration-tabs table tr td:nth-child(1) {
-	width: 30%;
+    width: 30%;
 }
 
 #configuration-tabs table tr td:nth-child(2) {
-	width: 20%;
-	padding: 0 10px;
+    width: 20%;
+    padding: 0 10px;
 }
 
 
 /* Cached Scripts Page */
 #cached-scripts-tabs p {
-	position: relative;
-	padding-left: 20px;
+    position: relative;
+    padding-left: 20px;
 }
 
 #cached-scripts-tabs p span {
-	position: absolute;
-	top: 3px;
-	left: 0;
+    position: absolute;
+    top: 3px;
+    left: 0;
 }
 
 #cached-scripts-tabs table thead th {
-	padding: 10px 5px;
-	font-weight: 600;
-	background-color: #f5f5f5;
-	font-size: 13px;
-	text-align: left;
+    padding: 10px 5px;
+    font-weight: 600;
+    background-color: #f5f5f5;
+    font-size: 13px;
+    text-align: left;
 }
 
 #cached-scripts-tabs table table tbody td {
-	font-size: 13px;
-	padding: 10px 5px;
+    font-size: 13px;
+    padding: 10px 5px;
 }
 
 #cached-scripts-tabs table table tbody tr:last-child td {
-	border-bottom: 0;
+    border-bottom: 0;
 }
 
 #cached-scripts-tabs table table thead th:last-child,
 #cached-scripts-tabs table table tbody td:last-child {
-	text-align: center;
+    text-align: center;
 }
 
 #cached-scripts-tabs table,
 #configuration-tabs table {
-	word-wrap: break-word;
+    word-wrap: break-word;
 }
 
 #cached-scripts-tabs table p a:hover,
 #cached-scripts-tabs .csat { /* Cached Scripts Active Tab */
-	color: #E74C3C;
+    color: #E74C3C;
 }
 
 .cs-data-table {
-	display: none;
-	margin-top: 20px;
+    display: none;
+    margin-top: 20px;
 }
 
 .show-cs-table {
-	display: block;
+    display: block;
 }
 
 .remove-spacer {
-	padding-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 /* Confirm Button */
 
 .cnfbtn {
-	border-radius: 3px;
-	border: none;
-	box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
-	box-sizing: border-box;
-	color: #fff;
-	cursor: pointer;
-	display: inline-block;
-	font-weight: 600;
-	height: 30px;
-	line-height: 30px;
-	outline: none;
-	padding: 0 20px;
-	text-decoration: none;
-	vertical-align: middle;
-	white-space: nowrap;
+    border-radius: 3px;
+    border: none;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 600;
+    height: 30px;
+    line-height: 30px;
+    outline: none;
+    padding: 0 20px;
+    text-decoration: none;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 .cnfbtn:hover, 
 .cnfbtn:focus {
-	box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15), inset 0 -8em 0 rgba(255, 255, 255, 0.15);
-	color: #fff;
+    box-shadow: inset 0 -2px 0 rgba(0, 0, 0, 0.15), inset 0 -8em 0 rgba(255, 255, 255, 0.15);
+    color: #fff;
 }
 
 .cnfbtn:active {
-	box-shadow: inset 0 -90px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 -90px 0 rgba(0, 0, 0, 0.1);
 }
 
 .cnfbtn--fn,
 .cnfbtn--positive {
-	background: #E74C3C;
+    background: #E74C3C;
 }
 
 .cnfbtn--negative {
-	background: #2ECC71;
+    background: #2ECC71;
 }
 
 .cnfbtn-group :first-child {
-	border-radius: 3px 0 0 3px;
+    border-radius: 3px 0 0 3px;
 }
 
 .cnfbtn-group :first-child ~ * {
-	border-radius: 0;
+    border-radius: 0;
 }
 
 .cnfbtn-group :last-child {
-	border-radius: 0 3px 3px 0;
+    border-radius: 0 3px 3px 0;
 }
 
 .reset-btn  +  .cnfbtn-group .cnfbtn {
-	padding: 0 13px;
+    padding: 0 13px;
 }
 
 
@@ -503,17 +503,17 @@ aside nav ul li a:hover {
 
 /* Status Switches */
 .gs, .rs {
-	height: 10px;
-	width: 10px;
-	display: inline-block;
+    height: 10px;
+    width: 10px;
+    display: inline-block;
 }
 
 .gs { /* Green Switch */
-	background-color: #2ECC71;
+    background-color: #2ECC71;
 }
 
 .rs { /* Red Switch */
-	background-color: #E74C3C;
+    background-color: #E74C3C;
 }
 
 
@@ -535,31 +535,31 @@ aside nav ul li a:hover {
 }
 
 #graphs > ul > li {
-	float: left;
-	width: 33%;
-	position: relative;
+    float: left;
+    width: 33%;
+    position: relative;
 }
 
 #graphs > ul > li canvas {
-	margin-left: 50px;
+    margin-left: 50px;
 }
 
 #graphs > ul > li > div div {
-	position: absolute;
-	top: 50px;
-	padding: 5px;
-	background-color: #F9F9F9;
-	border: 1px solid #eee;
-	opacity: 1;
-	transition: opacity .5s;
+    position: absolute;
+    top: 50px;
+    padding: 5px;
+    background-color: #F9F9F9;
+    border: 1px solid #eee;
+    opacity: 1;
+    transition: opacity .5s;
 }
 
 #graphs > ul > li:hover > div div {
-	opacity: 0;
+    opacity: 0;
 }
 
 #graphs > ul > li h2 {
-	padding-bottom: 20px;
+    padding-bottom: 20px;
 }
 
 #cached-scripts-tabs i.count {
@@ -577,255 +577,255 @@ aside nav ul li a:hover {
 
 
 @media (max-width: 1200px)  {
-	/* Status Page Styles */
-	#status-tabs .data-block {
-		width: 50%;
-	}
+    /* Status Page Styles */
+    #status-tabs .data-block {
+        width: 50%;
+    }
 
-	#status-tabs > div:nth-of-type(1),
-	#status-tabs > div:nth-of-type(3) > div:nth-of-type(1) {
-		padding-right: 20px;
-	}
-	#status-tabs > div:nth-of-type(2),
-	#status-tabs > div:nth-of-type(3) > div:nth-of-type(2) {
-		padding-left: 20px;
-	}
+    #status-tabs > div:nth-of-type(1),
+    #status-tabs > div:nth-of-type(3) > div:nth-of-type(1) {
+        padding-right: 20px;
+    }
+    #status-tabs > div:nth-of-type(2),
+    #status-tabs > div:nth-of-type(3) > div:nth-of-type(2) {
+        padding-left: 20px;
+    }
 
-	#status-tabs > div:nth-of-type(3) {
-		width: 100%;
-		margin-top: 20px;
-	}
+    #status-tabs > div:nth-of-type(3) {
+        width: 100%;
+        margin-top: 20px;
+    }
 
-	#status-tabs > div:nth-of-type(2),
-	#status-tabs > div:nth-of-type(3) > div:nth-of-type(2) {
-		padding-right: 0;
-	}
+    #status-tabs > div:nth-of-type(2),
+    #status-tabs > div:nth-of-type(3) > div:nth-of-type(2) {
+        padding-right: 0;
+    }
 
-	#status-tabs > div:nth-of-type(3) > div {
-		width: 50%;
-		float: left;
-	}
+    #status-tabs > div:nth-of-type(3) > div {
+        width: 50%;
+        float: left;
+    }
 }
 
 
 @media (max-width: 1024px)  {
-	aside nav {
-		position: static;
-	}
+    aside nav {
+        position: static;
+    }
 
-	aside,
-	#content {
-		float: none;
-	}
+    aside,
+    #content {
+        float: none;
+    }
 
-	aside,
-	aside nav,
-	#content {
-		width: 100%;
-	}
+    aside,
+    aside nav,
+    #content {
+        width: 100%;
+    }
 
-	#content {
-		margin-left: 0;
-		padding: 0 20px;
-	}
+    #content {
+        margin-left: 0;
+        padding: 0 20px;
+    }
 
-	aside nav ul li {
-		float: left;
-		width: 25%;
-	}
+    aside nav ul li {
+        float: left;
+        width: 25%;
+    }
 
-	#graphs > ul > li {
-		text-align: center;
-		width: 50%;
-	}
+    #graphs > ul > li {
+        text-align: center;
+        width: 50%;
+    }
 
-	#graphs > ul > li h2,
-	#graphs > ul > li > div div {
-		text-align: left;
-	}
+    #graphs > ul > li h2,
+    #graphs > ul > li > div div {
+        text-align: left;
+    }
 
-	.chart-wrapper {
-		width: 280px;
-		margin: auto;
-	}
+    .chart-wrapper {
+        width: 280px;
+        margin: auto;
+    }
 
-	#graphs > ul > li:last-of-type {
-		float: none;
-		clear: both;
-		margin: auto;
-		width: 280px;
-	}
+    #graphs > ul > li:last-of-type {
+        float: none;
+        clear: both;
+        margin: auto;
+        width: 280px;
+    }
 }
 
 @media (max-width: 768px)  {
-	#cached-scripts-tabs table table, 
-	#cached-scripts-tabs table table thead, 
-	#cached-scripts-tabs table table tbody, 
-	#cached-scripts-tabs table table th, 
-	#cached-scripts-tabs table table td, 
-	#cached-scripts-tabs table table tr { 
-		display: block; 
-	}
-	
-	#cached-scripts-tabs table table thead tr { 
-		position: absolute;
-		top: -999999px;
-		left: -999999px;
-	}
+    #cached-scripts-tabs table table, 
+    #cached-scripts-tabs table table thead, 
+    #cached-scripts-tabs table table tbody, 
+    #cached-scripts-tabs table table th, 
+    #cached-scripts-tabs table table td, 
+    #cached-scripts-tabs table table tr { 
+        display: block; 
+    }
+    
+    #cached-scripts-tabs table table thead tr { 
+        position: absolute;
+        top: -999999px;
+        left: -999999px;
+    }
 
-	#cached-scripts-tabs table table tbody td { 
-		border: none;
-		border-bottom: 1px solid #eee; 
-		position: relative;
-		padding-left: 50%; 
-	}
+    #cached-scripts-tabs table table tbody td { 
+        border: none;
+        border-bottom: 1px solid #eee; 
+        position: relative;
+        padding-left: 50%; 
+    }
 
-	#cached-scripts-tabs table table tr td:last-child {
-		border-bottom: 0;
-	}
-	
-	#cached-scripts-tabs table table td:before {
-		position: absolute;
-		top: 10px;
-		left: 12px;
-		width: 45%; 
-		padding-right: 10px; 
-		white-space: nowrap;
-		font-weight: 600;
-	}
+    #cached-scripts-tabs table table tr td:last-child {
+        border-bottom: 0;
+    }
+    
+    #cached-scripts-tabs table table td:before {
+        position: absolute;
+        top: 10px;
+        left: 12px;
+        width: 45%; 
+        padding-right: 10px; 
+        white-space: nowrap;
+        font-weight: 600;
+    }
 
-	#cached-scripts-tabs table table thead th:last-child,
-	#cached-scripts-tabs table table tbody td:last-child {
-		text-align: left;
-	}
+    #cached-scripts-tabs table table thead th:last-child,
+    #cached-scripts-tabs table table tbody td:last-child {
+        text-align: left;
+    }
 
-	#cached-scripts-tabs table table tr td:last-child {
-		border-bottom: 1px solid #ccc;
-	}
+    #cached-scripts-tabs table table tr td:last-child {
+        border-bottom: 1px solid #ccc;
+    }
 
-	#cached-scripts-tabs table table td:nth-of-type(1):before {
-	    content:"Filename";
-	}
+    #cached-scripts-tabs table table td:nth-of-type(1):before {
+        content:"Filename";
+    }
 
-	#cached-scripts-tabs table table td:nth-of-type(2):before {
-	    content:"Hits";
-	}
+    #cached-scripts-tabs table table td:nth-of-type(2):before {
+        content:"Hits";
+    }
 
-	#cached-scripts-tabs table table td:nth-of-type(3):before {
-	    content:"Memory";
-	}
+    #cached-scripts-tabs table table td:nth-of-type(3):before {
+        content:"Memory";
+    }
 
-	#cached-scripts-tabs table table td:nth-of-type(4):before {
-	    content:"Last Used";
-	}
+    #cached-scripts-tabs table table td:nth-of-type(4):before {
+        content:"Last Used";
+    }
 
-	#cached-scripts-tabs table table td:nth-of-type(5):before {
-	    content:"Created";
-	}
+    #cached-scripts-tabs table table td:nth-of-type(5):before {
+        content:"Created";
+    }
 
-	#cached-scripts-tabs table table td:nth-of-type(6):before {
-	    content:"Actions";
-	}
+    #cached-scripts-tabs table table td:nth-of-type(6):before {
+        content:"Actions";
+    }
 
-	#cached-scripts-tabs table table tbody tr:last-child td {
-		border-bottom: 1px solid #eee;
-	}
+    #cached-scripts-tabs table table tbody tr:last-child td {
+        border-bottom: 1px solid #eee;
+    }
 
-	#cached-scripts-tabs table table tbody tr:last-child td:last-child {
-		border-bottom: 0;
-	}
+    #cached-scripts-tabs table table tbody tr:last-child td:last-child {
+        border-bottom: 0;
+    }
 }
 
 @media (max-width: 600px)  {
-	body {
-		font-size: 13px;
-	}
+    body {
+        font-size: 13px;
+    }
 
-	aside {
-		display: none;
-	}
+    aside {
+        display: none;
+    }
 
-	#left-responsive-nav {
-		margin-top: 20px;
-		display: block;
-	}
+    #left-responsive-nav {
+        margin-top: 20px;
+        display: block;
+    }
 
-	#cached-scripts-tabs table table tbody td {
-		padding-left: 40%;
-	}
+    #cached-scripts-tabs table table tbody td {
+        padding-left: 40%;
+    }
 
-	#cached-scripts-tabs p {
-		font-size: 14px;
-	}
+    #cached-scripts-tabs p {
+        font-size: 14px;
+    }
 
-	#status-tabs div.data-block {
-		float: none;
-		width: 100%;
-		padding: 0;
-	}
+    #status-tabs div.data-block {
+        float: none;
+        width: 100%;
+        padding: 0;
+    }
 
-	#status-tabs > div:nth-of-type(2) {
-		margin-top: 20px;
-	}
+    #status-tabs > div:nth-of-type(2) {
+        margin-top: 20px;
+    }
 
-	#status-tabs > div:nth-of-type(3) > div {
-		width: 100%;
-		float: none;
-	}
+    #status-tabs > div:nth-of-type(3) > div {
+        width: 100%;
+        float: none;
+    }
 
-	#status-tabs > div:nth-of-type(3) > div:nth-of-type(1),
-	#status-tabs > div:nth-of-type(3) > div:nth-of-type(2) {
-		padding: 0;
-	}
+    #status-tabs > div:nth-of-type(3) > div:nth-of-type(1),
+    #status-tabs > div:nth-of-type(3) > div:nth-of-type(2) {
+        padding: 0;
+    }
 
-	#graphs > ul > li {
-		float: none;
-		width: 100%;
-		text-align: center;
-	}
+    #graphs > ul > li {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
 }
 
 
 @media (max-width: 400px)  {
-	header {
-		position: static;
-	}
+    header {
+        position: static;
+    }
 
-	header nav {
-		line-height: 40px;
-	}
+    header nav {
+        line-height: 40px;
+    }
 
-	header nav ul li:first-child {
-		float: none;
-	}
+    header nav ul li:first-child {
+        float: none;
+    }
 
-	header nav ul li {
-		font-size: 14px;
-	}
+    header nav ul li {
+        font-size: 14px;
+    }
 
-	header nav ul li:last-child {
-		font-size: 20px;
-	}
+    header nav ul li:last-child {
+        font-size: 20px;
+    }
 
-	#logo {
-		width: 100%;
-		font-size: 20px;
-	}
+    #logo {
+        width: 100%;
+        font-size: 20px;
+    }
 
-	#logo sup {
-		font-size: 10px;
-	}
+    #logo sup {
+        font-size: 10px;
+    }
 
-	#main-wrap {
-		padding-top: 0;
-	}
+    #main-wrap {
+        padding-top: 0;
+    }
 
-	#sub-nav ul li {
-		padding: 20px 10px;
-		font-size: 11px;
-	}
+    #sub-nav ul li {
+        padding: 20px 10px;
+        font-size: 11px;
+    }
 
-	#sub-nav ul li:before {
-		font-size: 20px;
-	}
+    #sub-nav ul li:before {
+        font-size: 20px;
+    }
 }
