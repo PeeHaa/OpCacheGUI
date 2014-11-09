@@ -63,4 +63,36 @@ foreach($status->getCachedScripts() as $data) {
             </table>
         <?php } ?>
     </section>
+    <section data-content="overview-scripts">
+        <div class="cs-data-table show-cs-table cs-table-overview">
+            <table>
+                <thead>
+                    <tr>
+                        <th><?= $this->translator->translate('scripts.full_path'); ?></th>
+                        <th><?= $this->translator->translate('scripts.hits'); ?></th>
+                        <th><?= $this->translator->translate('scripts.memory_consumption'); ?></th>
+                        <th><?= $this->translator->translate('scripts.last_used_timestamp'); ?></th>
+                        <th><?= $this->translator->translate('scripts.actions'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($status->getCachedScriptsForOverview() as $script) { ?>
+                        <tr>
+                            <td><?= htmlspecialchars($script['full_path']); ?></td>
+                            <td><?= $script['hits']; ?></td>
+                            <td><?= $script['memory_consumption']; ?></td>
+                            <td><?= $script['last_used_timestamp']; ?></td>
+                            <td>
+                                <form action="<?= $this->url->get('invalidate'); ?>" method="post">
+                                    <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
+                                    <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
+                                    <button type="submit" name="submit" value="Invalidate" class="cnfbtn cnfbtn--fn js-confirm inv" title="<?= $this->translator->translate('script.invalidate'); ?>"><?= $this->translator->translate('script.invalidate'); ?></button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
 </section>

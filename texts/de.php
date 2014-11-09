@@ -96,6 +96,7 @@ $texts = [
     'blacklist.empty'                                       => 'Es befindet sich keine Datei auf der Negativliste.',
 
     'scripts.title'                                         => 'Dateien im Cache',
+    'scripts.overview.title'                                => 'Überblick',
     'scripts.empty'                                         => 'Es befindet sich keine Datei im Cache.',
     'scripts.directory.script_count'                        => ' (<i class="count">%s</i> Dateien)',
     'scripts.full_path'                                     => 'Dateiname',

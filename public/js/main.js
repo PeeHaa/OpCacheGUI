@@ -256,3 +256,11 @@ var Confirm = function(selector) {
 };
 
 Confirm('.js-confirm');
+
+$('.cs-table-overview table').tablesorter({
+    headers: {
+        4: {
+            sorter: false
+        }
+    }
+});

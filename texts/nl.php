@@ -96,6 +96,7 @@ $texts = [
     'blacklist.empty'                                       => 'Er zijn geen scripts geblacklist',
 
     'scripts.title'                                         => 'Cached Scripts',
+    'scripts.overview.title'                                => 'Overzicht',
     'scripts.empty'                                         => 'Er zijn geen scripts gecached',
     'scripts.directory.script_count'                        => ' (<i class="count">%s</i> bestanden)',
     'scripts.full_path'                                     => 'Bestandnaam',

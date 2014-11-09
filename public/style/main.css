@@ -337,7 +337,12 @@ aside nav ul li a:hover {
     table-layout: fixed;
 }
 
+.cs-table-overview table {
+    table-layout: auto;
+}
+
 .tabs > section > table tr > td,
+.tabs > section > div.cs-table-overview > table tr > td,
 #status-tabs .data-block td {
     padding: 15px 0;
     border-bottom: 1px solid #eee;
@@ -406,17 +411,19 @@ aside nav ul li a:hover {
     text-align: left;
 }
 
-#cached-scripts-tabs table table tbody td {
+#cached-scripts-tabs table table tbody td, #cached-scripts-tabs .cs-table-overview table tbody td {
     font-size: 13px;
     padding: 10px 5px;
 }
 
-#cached-scripts-tabs table table tbody tr:last-child td {
+#cached-scripts-tabs table table tbody tr:last-child td, #cached-scripts-tabs .cs-table-overview table tbody tr:last-child td {
     border-bottom: 0;
 }
 
 #cached-scripts-tabs table table thead th:last-child,
-#cached-scripts-tabs table table tbody td:last-child {
+#cached-scripts-tabs table table tbody td:last-child,
+#cached-scripts-tabs .cs-table-overview table thead th:last-child,
+#cached-scripts-tabs .cs-table-overview table tbody td:last-child {
     text-align: center;
 }
 
