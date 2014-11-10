@@ -210,6 +210,13 @@ $('#cached-scripts-tabs form').on('submit', function(e) {
 
     $.post($form.attr('action'), $(this).serialize(), function(data) {
         if (data.result === 'success') {
+            // overview tab
+            if ($form.parents('.cs-table-overview').length) {
+                $form.closest('tr').remove();
+
+                return;
+            }
+
             var $count   = $form.closest('.remove-spacer').children('p').find('i');
             var newCount = parseInt($count.text(), 10) - 1;
 
