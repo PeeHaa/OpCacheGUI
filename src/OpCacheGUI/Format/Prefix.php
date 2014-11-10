@@ -76,12 +76,18 @@ class Prefix implements Trimmer
      */
     private function findLongestPrefix($prefix, $path)
     {
-        $prefixChars = str_split($prefix);
-        $pathChars   = str_split($path);
+        $prefixChars = str_split(str_replace('\\', '/', $prefix));
+        $pathChars   = str_split(str_replace('\\', '/', $path));
+
+        $lastSlash = 0;
 
         foreach ($prefixChars as $index => $char) {
+            if ($char === '/') {
+                $lastSlash = $index;
+            }
+
             if ($char !== $pathChars[$index]) {
-                return mb_substr($prefix, 0, $index);
+                return mb_substr($prefix, 0, $lastSlash);
             }
         }
 
