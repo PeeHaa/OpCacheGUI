@@ -678,28 +678,38 @@ aside nav ul li a:hover {
     #cached-scripts-tabs table table tbody, 
     #cached-scripts-tabs table table th, 
     #cached-scripts-tabs table table td, 
-    #cached-scripts-tabs table table tr { 
+    #cached-scripts-tabs table table tr,
+    #cached-scripts-tabs .cs-table-overview table, 
+    #cached-scripts-tabs .cs-table-overview table thead, 
+    #cached-scripts-tabs .cs-table-overview table tbody, 
+    #cached-scripts-tabs .cs-table-overview table th, 
+    #cached-scripts-tabs .cs-table-overview table td, 
+    #cached-scripts-tabs .cs-table-overview table tr { 
         display: block; 
     }
     
-    #cached-scripts-tabs table table thead tr { 
+    #cached-scripts-tabs table table thead tr,
+    #cached-scripts-tabs .cs-table-overview table thead tr { 
         position: absolute;
         top: -999999px;
         left: -999999px;
     }
 
-    #cached-scripts-tabs table table tbody td { 
+    #cached-scripts-tabs table table tbody td,
+    #cached-scripts-tabs .cs-table-overview table tbody td { 
         border: none;
         border-bottom: 1px solid #eee; 
         position: relative;
         padding-left: 50%; 
     }
 
-    #cached-scripts-tabs table table tr td:last-child {
+    #cached-scripts-tabs table table tr td:last-child,
+    #cached-scripts-tabs .cs-table-overview table tr td:last-child {
         border-bottom: 0;
     }
     
-    #cached-scripts-tabs table table td:before {
+    #cached-scripts-tabs table table td:before,
+    #cached-scripts-tabs .cs-table-overview table td:before {
         position: absolute;
         top: 10px;
         left: 12px;
@@ -710,43 +720,54 @@ aside nav ul li a:hover {
     }
 
     #cached-scripts-tabs table table thead th:last-child,
-    #cached-scripts-tabs table table tbody td:last-child {
+    #cached-scripts-tabs table table tbody td:last-child,
+    #cached-scripts-tabs .cs-table-overview table thead th:last-child,
+    #cached-scripts-tabs .cs-table-overview table tbody td:last-child {
         text-align: left;
     }
 
-    #cached-scripts-tabs table table tr td:last-child {
+    #cached-scripts-tabs table table tr td:last-child,
+    #cached-scripts-tabs .cs-table-overview table tr td:last-child {
         border-bottom: 1px solid #ccc;
     }
 
-    #cached-scripts-tabs table table td:nth-of-type(1):before {
+    #cached-scripts-tabs table table td:nth-of-type(1):before,
+    #cached-scripts-tabs .cs-table-overview table td:nth-of-type(1):before {
         content:"Filename";
     }
 
-    #cached-scripts-tabs table table td:nth-of-type(2):before {
+    #cached-scripts-tabs table table td:nth-of-type(2):before,
+    #cached-scripts-tabs .cs-table-overview table td:nth-of-type(2):before {
         content:"Hits";
     }
 
-    #cached-scripts-tabs table table td:nth-of-type(3):before {
+    #cached-scripts-tabs table table td:nth-of-type(3):before,
+    #cached-scripts-tabs .cs-table-overview table td:nth-of-type(3):before {
         content:"Memory";
     }
 
-    #cached-scripts-tabs table table td:nth-of-type(4):before {
+    #cached-scripts-tabs table table td:nth-of-type(4):before,
+    #cached-scripts-tabs .cs-table-overview table td:nth-of-type(4):before {
         content:"Last Used";
     }
 
-    #cached-scripts-tabs table table td:nth-of-type(5):before {
+    #cached-scripts-tabs table table td:nth-of-type(5):before,
+    #cached-scripts-tabs .cs-table-overview table td:nth-of-type(5):before {
         content:"Created";
     }
 
-    #cached-scripts-tabs table table td:nth-of-type(6):before {
+    #cached-scripts-tabs table table td:nth-of-type(6):before,
+    #cached-scripts-tabs .cs-table-overview table td:nth-of-type(6):before {
         content:"Actions";
     }
 
-    #cached-scripts-tabs table table tbody tr:last-child td {
+    #cached-scripts-tabs table table tbody tr:last-child td,
+    #cached-scripts-tabs .cs-table-overview table tbody tr:last-child td {
         border-bottom: 1px solid #eee;
     }
 
-    #cached-scripts-tabs table table tbody tr:last-child td:last-child {
+    #cached-scripts-tabs table table tbody tr:last-child td:last-child,
+    #cached-scripts-tabs .cs-table-overview table tbody tr:last-child td:last-child {
         border-bottom: 0;
     }
 }
