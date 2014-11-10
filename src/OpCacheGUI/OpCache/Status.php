@@ -15,6 +15,7 @@ namespace OpCacheGUI\OpCache;
 
 use OpCacheGUI\Format\Byte;
 use OpCacheGUI\I18n\Translator;
+use OpCacheGUI\Format\Trimmer;
 
 /**
  * Container for the current status of OpCache
@@ -273,55 +274,9 @@ class Status
         return $scripts;
     }
 
-    public function getCachedScriptsForOverview()
+    public function getCachedScriptsForOverview(Trimmer $trimmer)
     {
-        $scripts = $this->getCachedScripts();
-        $prefix  = $this->getCommonPrefix($scripts);
-
-        foreach ($scripts as $index => $script) {
-            $scripts[$index]['full_path'] = mb_substr($script['full_path'], $prefix);
-        }
-
-        return $scripts;
-    }
-
-    private function getCommonPrefix(array $scripts)
-    {
-        $prefix = null;
-
-        foreach ($scripts as $script) {
-            if ($prefix === null) {
-                $prefix = $script['full_path'];
-
-                continue;
-            }
-
-            if ($prefix === '') {
-                return 0;
-            }
-
-            if (strpos($script['full_path'], $prefix) === 0) {
-                continue;
-            }
-
-            $prefix = $this->findLongestPrefix($prefix, $script['full_path']);
-        }
-
-        return mb_strlen($prefix);
-    }
-
-    private function findLongestPrefix($prefix, $path)
-    {
-        $prefixChars = str_split($prefix);
-        $pathChars   = str_split($path);
-
-        foreach ($prefixChars as $index => $char) {
-            if ($char !== $pathChars[$index]) {
-                return mb_substr($prefix, 0, $index);
-            }
-        }
-
-        return $prefix;
+        return $trimmer->trim($this->getCachedScripts());
     }
 
     /**

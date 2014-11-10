@@ -77,7 +77,7 @@ foreach($status->getCachedScripts() as $data) {
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach($status->getCachedScriptsForOverview() as $script) { ?>
+                    <?php foreach($status->getCachedScriptsForOverview(new \OpCacheGUI\Format\Prefix) as $script) { ?>
                         <tr>
                             <td><?= htmlspecialchars($script['full_path']); ?></td>
                             <td><?= $script['hits']; ?></td>
