@@ -274,6 +274,13 @@ class Status
         return $scripts;
     }
 
+    /**
+     * Gets the cached scripts for the overview (with trimmed prefix)
+     *
+     * @param \OpCacheGUI\Format\Trimmer $trimmer The prefix trimmer
+     *
+     * @return array List of the cached scripts
+     */
     public function getCachedScriptsForOverview(Trimmer $trimmer)
     {
         return $trimmer->trim($this->getCachedScripts());
