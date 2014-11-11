@@ -90,7 +90,5 @@ class Prefix implements Trimmer
                 return mb_substr($prefix, 0, $lastSlash);
             }
         }
-
-        return $prefix;
     }
 }
