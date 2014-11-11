@@ -436,4 +436,69 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame([], $status->getCachedScripts());
     }
+
+    /**
+     * @covers OpCacheGUI\OpCache\Status::__construct
+     * @covers OpCacheGUI\OpCache\Status::getCachedScriptsForOverview
+     * @covers OpCacheGUI\OpCache\Status::getCachedScripts
+     * @covers OpCacheGUI\OpCache\Status::sortCachedScripts
+     */
+    public function testGetCachedScriptsForOverviewFilled()
+    {
+        $formatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+        $formatter->method('format')->will($this->onConsecutiveCalls('1KB', '2KB', '3KB', '4KB', '5KB', '6KB'));
+
+        $status = new Status($formatter, $this->getMock('\\OpCacheGUI\\I18n\\Translator'), $this->statusData);
+
+        $data = [
+            [
+                'full_path'           => '/var/www/vhosts/NoTimeStamp/src/Psr/Autoloader.php',
+                'hits'                => 12876,
+                'memory_consumption'  => '6KB',
+                'last_used_timestamp' => '14:25:15 09-10-2014',
+                'timestamp'           => 'N/A',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/OpcacheGUI/src/OpCacheGUI/Network/Request.php',
+                'hits'                => 1,
+                'memory_consumption'  => '1KB',
+                'last_used_timestamp' => '14:08:35 09-10-2014',
+                'timestamp'           => '16:20:53 07-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/OpcacheGUI/template/cached.phtml',
+                'hits'                => 4,
+                'memory_consumption'  => '2KB',
+                'last_used_timestamp' => '14:08:35 09-10-2014',
+                'timestamp'           => '16:20:53 07-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/RedTube/template/humiliation/germany-vs-brazil.phtml',
+                'hits'                => 71,
+                'memory_consumption'  => '4KB',
+                'last_used_timestamp' => '14:25:15 09-10-2014',
+                'timestamp'           => '20:01:15 08-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Foo.php',
+                'hits'                => 19,
+                'memory_consumption'  => '3KB',
+                'last_used_timestamp' => '15:31:55 09-10-2014',
+                'timestamp'           => '20:07:33 08-10-2014',
+            ],
+            [
+                'full_path'           => '/var/www/vhosts/SomeOtherProject/src/Psr/Autoloader.php',
+                'hits'                => 32,
+                'memory_consumption'  => '5KB',
+                'last_used_timestamp' => '14:25:15 09-10-2014',
+                'timestamp'           => '20:01:15 08-10-2014',
+            ],
+        ];
+
+        $trimmer = $this->getMock('\\OpCacheGUI\\Format\\Trimmer');
+        $trimmer->method('trim')->will($this->returnArgument(0));
+
+        $this->assertSame($data, $status->getCachedScriptsForOverview($trimmer));
+    }
+
 }
