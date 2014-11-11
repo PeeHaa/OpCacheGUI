@@ -15,7 +15,7 @@ For installation instructions and example configuration see the [installation wi
 Contributing
 -
 
-[How to contribute][https://github.com/PeeHaa/OpCacheGUI/wiki/Contributing]
+[How to contribute](https://github.com/PeeHaa/OpCacheGUI/wiki/Contributing)
 
 License
 -
