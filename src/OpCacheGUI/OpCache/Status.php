@@ -106,7 +106,7 @@ class Status
         return json_encode([
             [
                 'value' => $memory['used_memory'],
-                'color' => self::RED,
+                'color' => self::DARK_GREEN,
                 'label' => $this->translator->translate('graph.memory.used'),
             ],
             [
@@ -116,7 +116,7 @@ class Status
             ],
             [
                 'value' => $memory['wasted_memory'],
-                'color' => self::DARK_GREEN,
+                'color' => self::RED,
                 'label' => $this->translator->translate('graph.memory.wasted'),
             ],
         ]);
@@ -192,7 +192,7 @@ class Status
         return json_encode([
             [
                 'value' => $stats['num_cached_scripts'],
-                'color' => self::RED,
+                'color' => self::DARK_GREEN,
                 'label' => $this->translator->translate('graph.keys.scripts'),
             ],
             [
@@ -202,7 +202,7 @@ class Status
             ],
             [
                 'value' => $stats['num_cached_keys'] - $stats['num_cached_scripts'],
-                'color' => self::DARK_GREEN,
+                'color' => self::RED,
                 'label' => $this->translator->translate('graph.keys.wasted'),
             ],
         ]);
@@ -220,12 +220,12 @@ class Status
         return json_encode([
             [
                 'value' => $stats['hits'],
-                'color' => self::RED,
+                'color' => self::GREEN,
                 'label' => $this->translator->translate('graph.hits.hits'),
             ],
             [
                 'value' => $stats['misses'],
-                'color' => self::GREEN,
+                'color' => self::RED,
                 'label' => $this->translator->translate('graph.hits.misses'),
             ],
             [

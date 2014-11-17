@@ -16,12 +16,12 @@
 /* Text Highlight Color */
 ::-moz-selection {
     color: #fff;
-    background: #34495E;
+    background: #E74C3C;
 }
 
 ::selection {
     color: #fff; 
-    background: #34495E;
+    background: #E74C3C;
 }
 
 /* Custom Scrollbars for Chrome */
@@ -97,16 +97,16 @@ input[type="search"] {
     padding: 6px 15px;
     background-color: transparent;
     font-size: 12px;
-    color: #34495E;
+    color: #E74C3C;
     margin-top: 20px;
-    border: 1px solid #34495E;
+    border: 1px solid #E74C3C;
     float: right;
     margin-right: 30px;
     cursor: pointer;
 }
 
 #login input[type=submit]:not([disabled]):hover {
-    background-color: #34495E;
+    background-color: #E74C3C;
     color: #fff;
 }
 
@@ -149,7 +149,7 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    background-color: #34495e;
+    background-color: #e74c3c;
     z-index: 999;
 }
 
@@ -177,7 +177,7 @@ header nav ul li:last-child {
 #logo {
     width: 220px;
     text-align: center;
-    background-color: #2c3e50;
+    background-color: #db3e30;
     font-size: 25px;
     text-transform: none;
     transition: font-size .5s;
@@ -187,11 +187,11 @@ header nav ul li:last-child {
     display: block;
     height: 100%;
     width: 100%;
-    color: #657b91;
+    color: #770900;
 }
 
 #logo span {
-    color: #4b6075;
+    color: #96251b;
 }
 
 #logo sup {
@@ -308,7 +308,7 @@ aside nav ul li span.fa {
 /* Sub Navigation Active */
 .sna,
 #sub-nav ul li a:hover {
-    color: #34495E;
+    color: #E74C3C;
 }
 
 
@@ -381,7 +381,7 @@ aside nav ul li a:hover {
 #status-tabs .data-block h2,
 #graphs h2 {
     font-size: 14px;
-    color: #34495E;
+    color: #E74C3C;
     padding: 20px 0;
     padding-bottom: 10px;
     font-weight: 400;
@@ -442,7 +442,7 @@ aside nav ul li a:hover {
 
 #cached-scripts-tabs table p a:hover,
 #cached-scripts-tabs .csat { /* Cached Scripts Active Tab */
-    color: #34495E;
+    color: #E74C3C;
 }
 
 .cs-data-table {
@@ -581,36 +581,6 @@ aside nav ul li a:hover {
     font-style: normal;
 }
 
-
-
-/* Search Filter Styles */
-input[type=search][name=filter] {
-	font-weight: 300;
-	color: #aaa;
-	padding: 10px 5px;
-	font-family: inherit;
-}
-
-input[type=search][name=filter]:focus {
-	color: #515151;
-}
-
-input[type=search][name=filter]::-webkit-input-placeholder {
-	font-weight: 300;
-	font-family: Open Sans;
-	color: #ccc;
-}
-
-
-/*#login input[type=text]:focus::-moz-placeholder,
-#login input[type=password]:focus::-moz-placeholder {
-    opacity: .4;
-}
-
-#login input[type=text]:-ms-input-placeholder,
-#login input[type=password]:-ms-input-placeholder {  
-    opacity: .4;
-}*/
 
 
 
