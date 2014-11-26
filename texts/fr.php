@@ -2,6 +2,7 @@
 
 $texts = [
     'project.link'                                          => 'Projet sur GitHub',
+	'project.log_in'										=> 'Laissez moi entrer !',
 
     'menu.status'                                           => 'Statut',
     'menu.config'                                           => 'Configuration',
@@ -120,5 +121,5 @@ $texts = [
     'graph.hits.title'                                      => 'Accès',
     'graph.hits.hits'                                       => 'accès',
     'graph.hits.misses'                                     => 'ratés',
-    'graph.hits.blacklist'                                  => 'liste noire',
+    'graph.hits.blacklist'                                  => 'liste noire'
 ];
