@@ -2,7 +2,12 @@
 
 $texts = [
     'project.link'                                          => 'Projet sur GitHub',
-	'project.log_in'										=> 'Laissez moi entrer !',
+    'project.log_in'                                        => 'Laissez moi entrer !',
+
+    'error.not.installed.title'                             => 'Non installé',
+    'error.not.installed.description'                       => 'Il semble qu\'OpCache ne soit pas installé.',
+    'error.not.enabled.title'                               => 'Non activé',
+    'error.not.enabled.description'                         => 'Il semble qu\'OpCache ne soit pas activé.',
 
     'menu.status'                                           => 'Statut',
     'menu.config'                                           => 'Configuration',
@@ -93,7 +98,7 @@ $texts = [
     'config.opcache.optimization_level'                     => 'Niveau d\'optimisation',
     'config.opcache.optimization_level.description'         => 'Un masque de bits, où chaque bit active ou désactive le passage OPCache approprié.',
 
-	'blacklist.title'                                       => 'Liste noire',
+    'blacklist.title'                                       => 'Liste noire',
     'blacklist.empty'                                       => 'Aucun script n\'a été mit sur liste noire.',
 
     'scripts.title'                                         => 'Scripts mis en cache',
