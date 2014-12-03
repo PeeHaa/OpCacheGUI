@@ -2,6 +2,7 @@
 
 $texts = [
     'project.link'                                          => 'Project on GitHub',
+	'project.log_in'										=> 'Let me in!',
 
     'error.not.installed.title'                             => 'Not installed',
     'error.not.installed.description'                       => 'It looks like OpCache is not installed.',
@@ -47,9 +48,9 @@ $texts = [
 
     'config.title'                                          => 'Configuration',
     'config.opcache.enable'                                 => 'Enabled',
-    'config.opcache.enable.description'                     => 'Determines if Zend OPCache is enabled',
+    'config.opcache.enable.description'                     => 'Determines if Zend OPCache is enabled.',
     'config.opcache.enable_cli'                             => 'Enabled for CLI',
-    'config.opcache.enable_cli.description'                 => 'Determines if Zend OPCache is enabled for the CLI version of PHP',
+    'config.opcache.enable_cli.description'                 => 'Determines if Zend OPCache is enabled for the CLI version of PHP.',
     'config.opcache.use_cwd'                                => 'Keys based on current working dir',
     'config.opcache.use_cwd.description'                    => 'When this directive is enabled, the OPcache appends the current working directory to the script key, thus eliminating possible collisions between files with the same name (basename). Disabling the directive improves performance, but may break existing applications.',
     'config.opcache.validate_timestamps'                    => 'Validate timestamps',
@@ -59,7 +60,7 @@ $texts = [
     'config.opcache.dups_fix'                               => 'Dups fix',
     'config.opcache.dups_fix.description'                   => '',
     'config.opcache.revalidate_path'                        => 'Revalidate path',
-    'config.opcache.revalidate_path.description'            => 'Enables or disables file search in include_path optimization',
+    'config.opcache.revalidate_path.description'            => 'Enables or disables file search in include_path optimization.',
     'config.opcache.log_verbosity_level'                    => 'Log verbosity level',
     'config.opcache.log_verbosity_level.description'        => 'All OPcache errors go to the Web server log. By default, only fatal errors (level 0) or errors (level 1) are logged. You can also enable warnings (level 2), info messages (level 3) or debug messages (level 4).',
     'config.opcache.memory_consumption'                     => 'Opcache memory size',
@@ -74,8 +75,8 @@ $texts = [
     'config.opcache.consistency_checks.description'         => 'Check the cache checksum each N requests. The default value of "0" means that the checks are disabled.',
     'config.opcache.force_restart_timeout'                  => 'Force restart timeout',
     'config.opcache.force_restart_timeout.description'      => 'How long to wait (in seconds) for a scheduled restart to begin if the cache is not being accessed.',
-    'config.opcache.revalidate_freq'                        => 'Frenquency to check for changes',
-    'config.opcache.revalidate_freq.description'            => 'How often (in seconds) to check file timestamps for changes to the shared memory storage allocation. ("1" means validate once per second, but only once per request. "0" means always validate)',
+    'config.opcache.revalidate_freq'                        => 'Frequency to check for changes',
+    'config.opcache.revalidate_freq.description'            => 'How often (in seconds) to check file timestamps for changes to the shared memory storage allocation. "1" means validate once per second, but only once per request. "0" means always validate.',
     'config.opcache.preferred_memory_model'                 => '',
     'config.opcache.preferred_memory_model.description'     => 'Preferred Shared Memory back-end. Leave empty and let the system decide.',
     'config.opcache.blacklist_filename'                     => 'Blacklist',
@@ -91,11 +92,11 @@ $texts = [
     'config.opcache.load_comments'                          => 'Load comments',
     'config.opcache.load_comments.description'              => 'If disabled, PHPDoc comments are not loaded from SHM, so "Doc Comments" may be always stored (save_comments=1), but not loaded by applications that don\'t need them anyway.',
     'config.opcache.fast_shutdown'                          => 'Fast shutdown',
-    'config.opcache.fast_shutdown.description'              => 'If enabled, a fast shutdown sequence is used for the accelerated code',
+    'config.opcache.fast_shutdown.description'              => 'If enabled, a fast shutdown sequence is used for the accelerated code.',
     'config.opcache.enable_file_override'                   => 'File override',
     'config.opcache.enable_file_override.description'       => 'Allow file existence override (file_exists, etc.) performance feature.',
     'config.opcache.optimization_level'                     => 'Optimization level',
-    'config.opcache.optimization_level.description'         => 'A bitmask, where each bit enables or disables the appropriate OPcache passes',
+    'config.opcache.optimization_level.description'         => 'A bitmask, where each bit enables or disables the appropriate OPcache passes.',
 
     'blacklist.title'                                       => 'Blacklist',
     'blacklist.empty'                                       => 'No scripts are blacklisted',
@@ -125,5 +126,5 @@ $texts = [
     'graph.hits.title'                                      => 'Hits',
     'graph.hits.hits'                                       => 'hits',
     'graph.hits.misses'                                     => 'misses',
-    'graph.hits.blacklist'                                  => 'blacklist',
+    'graph.hits.blacklist'                                  => 'blacklist'
 ];
