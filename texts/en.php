@@ -3,6 +3,11 @@
 $texts = [
     'project.link'                                          => 'Project on GitHub',
 
+    'error.not.installed.title'                             => 'Not installed',
+    'error.not.installed.description'                       => 'It looks like OpCache is not installed.',
+    'error.not.enabled.title'                               => 'Not enabled',
+    'error.not.enabled.description'                         => 'It looks like OpCache is not enabled.',
+
     'menu.status'                                           => 'Status',
     'menu.config'                                           => 'Configuration',
     'menu.scripts'                                          => 'Cached Scripts',

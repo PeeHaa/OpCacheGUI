@@ -93,16 +93,25 @@ $routeFactory = new RouteFactory();
 $router       = new Router($request, $routeFactory, $uriScheme);
 
 /**
+ * Load public routes
+ */
+require_once __DIR__ . '/public-routes.php';
+
+/**
  * Load the routes
  */
-if (!extension_loaded('Zend OPcache')) {
-    if ($router->getIdentifier() !== 'error') {
+if (!extension_loaded('Zend OPcache') || opcache_get_status() === false) {
+    if (!in_array($router->getIdentifier(), ['error', 'mainjs', 'maincss', 'fontawesome-webfont_eot', 'fontawesome-webfont_woff', 'fontawesome-webfont_ttf', 'fontawesome-webfont_svg'], true)) {
         header('Location: ' . $urlRenderer->get('error'));
         exit;
     }
 
     $router->get('error', function() use ($htmlTemplate) {
-        return $htmlTemplate->render('error.phtml');
+        return $htmlTemplate->render('error.phtml', [
+            'login' => true,
+            'title' => 'Error',
+            'type'  => !extension_loaded('Zend OPcache') ? 'installed' : 'enabled',
+        ]);
     });
 } else {
     require_once __DIR__ . '/routes.php';
