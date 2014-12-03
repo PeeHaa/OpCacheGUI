@@ -2,6 +2,7 @@
 
 $texts = [
     'project.link'                                          => 'Project auf GitHub',
+    'project.log_in'                                        => 'Let me in',
 
     'error.not.installed.title'                             => 'Not installed',
     'error.not.installed.description'                       => 'It looks like OpCache is not installed.',
