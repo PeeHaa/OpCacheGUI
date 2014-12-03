@@ -6,7 +6,11 @@
             <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
                 <tr>
                     <td><?= $this->translator->translate('status.' . $key); ?></td>
-                    <td><span class="<?= $statusItem ? 'g' : 'r'; ?>s"></span></td>
+                    <?php if ($key === 'opcache_enabled') { ?>
+                        <td><span class="<?= $statusItem ? 'g' : 'r'; ?>s"></span></td>
+                    <?php } else { ?>
+                        <td><span class="<?= $statusItem ? 'r' : 'g'; ?>s"></span></td>
+                    <?php } ?>
                 </tr>
             <?php } ?>
         </table>
