@@ -12,7 +12,7 @@
                 <nav class="clear">
                     <ul>
                         <li title="OpCache <?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?>" id="logo">
-                            <a href="#">Op<span>Cache</span><sup><?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?></sup></a>
+                            <a href="<?= $this->url->get(''); ?>">Op<span>Cache</span><sup><?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?></sup></a>
                         </li>
                         <li><?= $this->title; ?></li>
                         <li>
