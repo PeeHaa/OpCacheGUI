@@ -152,7 +152,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $data = [
             [
                 'value' => $this->statusData['memory_usage']['used_memory'],
-                'color' => '#e74c3c',
+                'color' => '#16a085',
                 'label' => 'Used',
             ],
             [
@@ -162,7 +162,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'value' => $this->statusData['memory_usage']['wasted_memory'],
-                'color' => '#16a085',
+                'color' => '#e74c3c',
                 'label' => 'Wasted',
             ],
         ];
@@ -280,7 +280,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $data = [
             [
                 'value' => 38,
-                'color' => '#e74c3c',
+                'color' => '#16a085',
                 'label' => 'Used',
             ],
             [
@@ -290,7 +290,7 @@ class StatusTest extends \PHPUnit_Framework_TestCase
             ],
             [
                 'value' => 14,
-                'color' => '#16a085',
+                'color' => '#e74c3c',
                 'label' => 'Wasted',
             ],
         ];
@@ -312,12 +312,12 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $data = [
             [
                 'value' => 1160,
-                'color' => '#e74c3c',
+                'color' => '#2ecc71',
                 'label' => 'Hits',
             ],
             [
                 'value' => 59,
-                'color' => '#2ecc71',
+                'color' => '#e74c3c',
                 'label' => 'Misses',
             ],
             [
