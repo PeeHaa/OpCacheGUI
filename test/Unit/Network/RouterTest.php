@@ -61,6 +61,30 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      * @covers OpCacheGUI\Network\Router::run
      * @covers OpCacheGUI\Network\Router::getMainPage
      */
+    public function testRunNoRoutes()
+    {
+        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock->method('getVerb')->willReturn('GET');
+        $requestMock->method('path')->willReturn('somepath');
+
+        //$routeMock = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        //$routeMock->method('matchesRequest')->will($this->onConsecutiveCalls(false, true));
+        //$routeMock->method('run')->willReturn('main route');
+
+        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        //$factoryMock->method('build')->willReturn($routeMock);
+
+        $router = new Router($requestMock, $factoryMock);
+        //$router->get('id', function () {});
+
+        $this->assertNull($router->run());
+    }
+
+    /**
+     * @covers OpCacheGUI\Network\Router::__construct
+     * @covers OpCacheGUI\Network\Router::run
+     * @covers OpCacheGUI\Network\Router::getMainPage
+     */
     public function testRunNoMatchFirstMatchMain()
     {
         $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
