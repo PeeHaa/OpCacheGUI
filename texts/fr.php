@@ -103,7 +103,7 @@ $texts = [
 
     'scripts.title'                                         => 'Scripts mis en cache',
     'scripts.overview.title'                                => 'Vue d\'ensemble',
-    'scripts.empty'                                         => 'Aucun script ont été mis en cache',
+    'scripts.empty'                                         => 'Aucun script n\'a été mis en cache',
     'scripts.directory.script_count'                        => ' (<i class="count">%s</i> fichiers)',
     'scripts.full_path'                                     => 'Nom du fichier',
     'scripts.hits'                                          => 'Accès',
