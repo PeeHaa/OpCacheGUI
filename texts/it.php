@@ -1,29 +1,36 @@
 <?php
+
 $texts = [
     'project.link'                                          => 'Progetto su GitHub',
     'project.log_in'                                        => 'Accedi',
+
     'error.not.installed.title'                             => 'Non installato',
     'error.not.installed.description'                       => 'Sembra che OPCache non sia installato.',
     'error.not.enabled.title'                               => 'Non abilitato',
     'error.not.enabled.description'                         => 'Sembra che OPCache non sia abilitato.',
+
     'menu.status'                                           => 'Stato',
     'menu.config'                                           => 'Configurazione',
     'menu.scripts'                                          => 'Script nella cache',
     'menu.graphs'                                           => 'Grafici',
+
     'reset.submit'                                          => 'Azzera',
     'confirmation.reset'                                    => 'Sei sicuro di voler azzerare le statistiche?',
     'confirmation.yes'                                      => 'Sì',
     'confirmation.no'                                       => 'No',
+
     'status.title'                                          => 'Stato',
     'status.opcache_enabled'                                => 'Abilitato',
     'status.cache_full'                                     => 'Cache satura',
     'status.restart_pending'                                => 'Riavvio in attesa',
     'status.restart_in_progress'                            => 'Riavvio in corso',
+
     'memory.title'                                          => 'Utilizzo memoria',
     'memory.used_memory'                                    => 'Memoria utilizzata',
     'memory.free_memory'                                    => 'Memoria libera',
     'memory.wasted_memory'                                  => 'Memoria sprecata',
     'memory.current_wasted_percentage'                      => 'Memoria attualmente sprecata',
+
     'stats.title'                                           => 'Statistiche',
     'stats.num_cached_scripts'                              => 'Tot. script nella cache',
     'stats.num_cached_keys'                                 => 'Tot. key nella cache',
@@ -38,6 +45,7 @@ $texts = [
     'stats.blacklist_misses'                                => 'Saltati in base a blacklist',
     'stats.blacklist_miss_ratio'                            => 'Percentuale saltati',
     'stats.opcache_hit_rate'                                => 'OPCache percentuale successi',
+
     'config.title'                                          => 'Configurazione',
     'config.opcache.enable'                                 => 'Abilitato',
     'config.opcache.enable.description'                     => 'Determina se Zend OPCache è abilitata.',
@@ -89,8 +97,10 @@ $texts = [
     'config.opcache.enable_file_override.description'       => 'Ridefinisce la funzione "file_exists()" e simili per migliori prestazioni.',
     'config.opcache.optimization_level'                     => 'Livello di ottimizzazione',
     'config.opcache.optimization_level.description'         => 'Una bitmask dove ogni bit abilita o disabilita i relativi passaggi della OPCache.',
+
     'blacklist.title'                                       => 'Lista nera',
     'blacklist.empty'                                       => 'Nessuno script è in lista nera',
+
     'scripts.title'                                         => 'Script nella cache',
     'scripts.overview.title'                                => 'Riepilogo',
     'scripts.empty'                                         => 'Nessuno script è nella cache',
@@ -103,6 +113,7 @@ $texts = [
     'scripts.actions'                                       => 'Azioni',
     'script.invalidate'                                     => 'Invalida',
     'scripts.filter.placeholder'                            => 'Filtra script nella cache',
+
     'graph.title'                                           => 'Grafici',
     'graph.memory.title'                                    => 'Memoria',
     'graph.memory.free'                                     => 'libera',
