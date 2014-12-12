@@ -13,9 +13,6 @@ $texts = [
     'menu.config'                                           => 'Configuration',
     'menu.scripts'                                          => 'Cached Scripts',
     'menu.graphs'                                           => 'Graphs',
-    'menu.apcustatus'                                        => 'APCU Status',
-    'menu.apcuconfig'                                       => 'APCU Settings',
-    'menu.apcuvars'                                          => 'APCU Variables',
 
     'reset.submit'                                          => 'Reset',
     'confirmation.reset'                                    => 'Are you sure you want to reset the cache?',
@@ -130,6 +127,10 @@ $texts = [
     'graph.hits.hits'                                       => 'hits',
     'graph.hits.misses'                                     => 'misses',
     'graph.hits.blacklist'                                  => 'blacklist',
+
+    'menu.apcustatus'                                        => 'APCU Status',
+    'menu.apcuconfig'                                       => 'APCU Settings',
+    'menu.apcuvars'                                          => 'APCU Variables',
 
     'apcu.status' => 'APCu Status',
     'apcu.generalinfo' => 'General APCu Information',
