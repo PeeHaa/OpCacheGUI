@@ -1,7 +1,6 @@
 <?php
 use  OpCacheGUI\Addons\APCUHelper;
-$status = new OpCacheGUI\OpCache\Status($this->byteFormatter, opcache_get_status());
-$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
+
 
 $apcuHelper=new APCUHelper();
 
@@ -108,7 +107,7 @@ $SELF_WO_SORT=
 
 
          ?>
-         <tr class="<?= $classCycler->next(); ?>">
+         <tr>
          <?php
         echo  "<td class=\"td-0 directory\" data-directoryid=\"".$i."\">";
         //<a href=\"$MY_SELF&OB=",$MYREQUEST['OB'],"&SH=",$sh,"\"><span class=\"fa fa-plus\"></span>&nbsp; ";

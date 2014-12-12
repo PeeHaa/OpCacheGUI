@@ -129,7 +129,7 @@ $texts = [
     'graph.hits.title'                                      => 'Hits',
     'graph.hits.hits'                                       => 'hits',
     'graph.hits.misses'                                     => 'misses',
-    'graph.hits.blacklist'                                  => 'blacklist'
+    'graph.hits.blacklist'                                  => 'blacklist',
 
     'apcu.status' => 'APCu Status',
     'apcu.generalinfo' => 'General APCu Information',
