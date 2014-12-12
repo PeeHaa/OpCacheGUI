@@ -16,12 +16,12 @@
 /* Text Highlight Color */
 ::-moz-selection {
     color: #fff;
-    background: #34495E;
+    background: #E74C3C;
 }
 
 ::selection {
     color: #fff; 
-    background: #34495E;
+    background: #E74C3C;
 }
 
 /* Custom Scrollbars for Chrome */
@@ -97,16 +97,16 @@ input[type="search"] {
     padding: 6px 15px;
     background-color: transparent;
     font-size: 12px;
-    color: #34495E;
+    color: #E74C3C;
     margin-top: 20px;
-    border: 1px solid #34495E;
+    border: 1px solid #E74C3C;
     float: right;
     margin-right: 30px;
     cursor: pointer;
 }
 
 #login input[type=submit]:not([disabled]):hover {
-    background-color: #34495E;
+    background-color: #E74C3C;
     color: #fff;
 }
 
@@ -149,7 +149,7 @@ header {
     position: fixed;
     width: 100%;
     top: 0;
-    background-color: #34495e;
+    background-color: #e74c3c;
     z-index: 999;
 }
 
@@ -177,7 +177,7 @@ header nav ul li:last-child {
 #logo {
     width: 220px;
     text-align: center;
-    background-color: #2c3e50;
+    background-color: #db3e30;
     font-size: 25px;
     text-transform: none;
     transition: font-size .5s;
@@ -187,11 +187,11 @@ header nav ul li:last-child {
     display: block;
     height: 100%;
     width: 100%;
-    color: #657b91;
+    color: #770900;
 }
 
 #logo span {
-    color: #4b6075;
+    color: #96251b;
 }
 
 #logo sup {
@@ -308,7 +308,7 @@ aside nav ul li span.fa {
 /* Sub Navigation Active */
 .sna,
 #sub-nav ul li a:hover {
-    color: #34495E;
+    color: #E74C3C;
 }
 
 
@@ -351,16 +351,11 @@ aside nav ul li a:hover {
 
 .tabs > section > table tr > td,
 .tabs > section > div.cs-table-overview > table tr > td,
-#apcustatus-tabs .data-block td,
 #status-tabs .data-block td {
     padding: 15px 0;
     border-bottom: 1px solid #eee;
 }
 
-#apcustatus-tabs .data-block td {
-	padding: 10px 0;
-	border-bottom: 1px solid #eee;
-}
 /* Page Specific Table Styles */
 
 /* Status Page */
@@ -370,7 +365,6 @@ aside nav ul li a:hover {
     padding-right: 40px;
 }
 
-#apcustatus-tabs form,
 #status-tabs form {
     float: right;
     margin-top: 10px;
@@ -383,11 +377,11 @@ aside nav ul li a:hover {
 #status-tabs .data-block td:nth-child(2) {
     text-align: right;
 }
-#apcustatus-tabs .data-block h2,
+
 #status-tabs .data-block h2,
 #graphs h2 {
     font-size: 14px;
-    color: #34495E;
+    color: #E74C3C;
     padding: 20px 0;
     padding-bottom: 10px;
     font-weight: 400;
@@ -395,12 +389,10 @@ aside nav ul li a:hover {
 }
 
 /* Configuration Page */
-#apcuconfig-tabs table tr td:nth-child(1),
 #configuration-tabs table tr td:nth-child(1) {
     width: 30%;
 }
 
-#apcuconfig-tabs table tr td:nth-child(2),
 #configuration-tabs table tr td:nth-child(2) {
     width: 20%;
     padding: 0 10px;
@@ -444,14 +436,13 @@ aside nav ul li a:hover {
 }
 
 #cached-scripts-tabs table,
-#configuration-tabs table,
-#apcuconfig-tabs table, {
+#configuration-tabs table {
     word-wrap: break-word;
 }
 
 #cached-scripts-tabs table p a:hover,
 #cached-scripts-tabs .csat { /* Cached Scripts Active Tab */
-    color: #34495E;
+    color: #E74C3C;
 }
 
 .cs-data-table {
@@ -590,36 +581,6 @@ aside nav ul li a:hover {
     font-style: normal;
 }
 
-
-
-/* Search Filter Styles */
-input[type=search][name=filter] {
-	font-weight: 300;
-	color: #aaa;
-	padding: 10px 5px;
-	font-family: inherit;
-}
-
-input[type=search][name=filter]:focus {
-	color: #515151;
-}
-
-input[type=search][name=filter]::-webkit-input-placeholder {
-	font-weight: 300;
-	font-family: Open Sans;
-	color: #ccc;
-}
-
-
-/*#login input[type=text]:focus::-moz-placeholder,
-#login input[type=password]:focus::-moz-placeholder {
-    opacity: .4;
-}
-
-#login input[type=text]:-ms-input-placeholder,
-#login input[type=password]:-ms-input-placeholder {  
-    opacity: .4;
-}*/
 
 
 
@@ -904,85 +865,3 @@ input[type=search][name=filter]::-webkit-input-placeholder {
         font-size: 20px;
     }
 }
-
-#apcustatus-tabs .data-block:first-child {
-width: 40%;
-float: left;
-padding-right: 40px;
-}
-
-#apcustatus-tabs .data-block:last-of-type {
-width: 60%;
-float: left;
-padding-left: 40px;
-}
-
-
-.apcu_cachedscripts a {
-    color: #0088cc;
-}
-
-.apcu_cachedscripts td {
-    padding:5px 4px;
-    border:1px solid #EEE;
-}
-
-.apcu_cachedscripts tr th:first-child {
-	white-space: nowrap;
-}
-
-
-.apcu_cachedscripts td.td-n {
-    font-size:0.75em;
-}
-
-.apcu_cachedscripts td.td-0 {
-    font-size:0.9em;
-    text-decoration: none;
-    padding-left: 5px;
-}
-
-.apcu_cachedscripts td.td-last a {
-    font-size:0.9em;
-    text-decoration: none;
-}
-
-
-.apcu_cachedscripts td.td-0 a {
-    text-decoration: none;
-}
-
-.apcu_cachedscripts tr.script {
-    display:none;
-}
-
-.apcu_cachedscripts th a {
-    text-decoration:none;
-    font-size:0.9em;
-    font-weight:bold;
-}
-
-.apcu_cachedscripts th.thin {
-    padding:2px 1px;
-    width:58px;
-}
-.fragmentationgraph {
-    width:565px;
-    overflow:hidden;
-}
-
-table.apcu {
-    font-size: 0.95em;
-}
-
-span.box {
-    border: black solid 1px;
-    border-right:solid black 2px;
-    border-bottom:solid black 2px;
-    padding:0 0.5em 0 0.5em;
-    margin-right:1em;
-}
-span.green { background:#60F060; padding:0 0.5em 0 0.5em}
-span.red { background:#D06030; padding:0 0.5em 0 0.5em }
-
-#apcustatus-tabs .data-block h2 {margin-top:20px;}

@@ -30,6 +30,8 @@ interface KeyValuePair
      *
      * @param string $key   The key in which to store the value
      * @param mixed  $value The value to store
+     *
+     * @return void
      */
     public function set($key, $value);
 

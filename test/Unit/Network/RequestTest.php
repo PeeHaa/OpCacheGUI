@@ -147,4 +147,15 @@ class RequestTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame('http://foo.com/bar', $request->getUrl());
     }
+
+    /**
+     * @covers OpCacheGUI\Network\Request::__construct
+     * @covers OpCacheGUI\Network\Request::getIp
+     */
+    public function testGetIp()
+    {
+        $request = new Request([], [], ['REQUEST_URI' => '/bar', 'REMOTE_ADDR' => '10.0.0.2']);
+
+        $this->assertSame('10.0.0.2', $request->getIp());
+    }
 }
