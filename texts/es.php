@@ -128,9 +128,12 @@ $texts = [
     'graph.hits.misses'                                     => 'desaciertos',
     'graph.hits.blacklist'                                  => 'lista negra',
 
-    'menu.apcustatus'                                        => 'Status de APCU',
+    'menu.apcustatus'                                       => 'Status de APCU',
+    'apcu.status.title'                                     => 'Status de APCU',
     'menu.apcuconfig'                                       => 'Parámetros de APCU',
-    'menu.apcuvars'                                          => 'Variables de APCU',
+    'apcu.config.title'                                     => 'Parámetros de APCU',
+    'menu.apcuvars'                                         => 'Variables de APCU',
+    'apcu.vars.title'                                       => 'Variables de APCU',
 
     'apcu.status' => 'Estatus APCu',
     'apcu.generalinfo' => 'Información General APCu',

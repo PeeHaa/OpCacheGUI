@@ -129,8 +129,11 @@ $texts = [
     'graph.hits.blacklist'                                  => 'blacklist',
 
     'menu.apcustatus'                                        => 'APCU Status',
+    'apcu.status.title'                                      => 'APCU Status',
     'menu.apcuconfig'                                       => 'APCU Settings',
+    'apcu.config.title'                                       => 'APCU Settings',
     'menu.apcuvars'                                          => 'APCU Variables',
+    'apcu.vars.title'                                          => 'APCU Variables',
 
     'apcu.status' => 'APCu Status',
     'apcu.generalinfo' => 'General APCu Information',
