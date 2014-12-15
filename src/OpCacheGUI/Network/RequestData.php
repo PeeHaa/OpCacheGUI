@@ -58,4 +58,11 @@ interface RequestData
      * @return string The current URL
      */
     public function getUrl();
+
+    /**
+     * Gets the user's IP address
+     *
+     * @return string The IP of the user
+     */
+    public function getIp();
 }

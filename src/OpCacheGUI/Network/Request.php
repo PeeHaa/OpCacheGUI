@@ -120,4 +120,14 @@ class Request implements RequestData
 
         return $scheme . '://' . $this->serverVariables['HTTP_HOST'] . $this->serverVariables['REQUEST_URI'];
     }
+
+    /**
+     * Gets the user's IP address
+     *
+     * @return string The IP of the user
+     */
+    public function getIp()
+    {
+        return $this->serverVariables['REMOTE_ADDR'];
+    }
 }

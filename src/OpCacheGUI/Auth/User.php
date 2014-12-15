@@ -40,17 +40,23 @@ class User
     private $password;
 
     /**
+     * @var \OpCacheGUI\Auth\Whitelist Instance of a IP whitelist
+     */
+    private $whitelist;
+
+    /**
      * Creates instance
      *
      * @param \OpCacheGUI\Storage\Session $sessionStorage The session
      * @param string                      $username       The username
      * @param string                      $password       The password
      */
-    public function __construct(Session $sessionStorage, $username, $password)
+    public function __construct(Session $sessionStorage, $username, $password, Whitelist $whitelist)
     {
         $this->sessionStorage = $sessionStorage;
         $this->username       = strtolower($username);
         $this->password       = $password;
+        $this->whitelist      = $whitelist;
     }
 
     /**
@@ -78,11 +84,16 @@ class User
      *
      * @param string $username The user supplied username
      * @param string $password The user supplied password
+     * @param string $ip       The IP of the user
      *
      * @return boolean True when the user successfully authenticated
      */
-    public function login($username, $password)
+    public function login($username, $password, $ip)
     {
+        if (!$this->whitelist->isAllowed($ip)) {
+            return false;
+        }
+
         if (strtolower($username) === $this->username && password_verify($password, $this->password)) {
             $this->sessionStorage->set('user', $this->username);
 

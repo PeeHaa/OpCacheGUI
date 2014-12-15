@@ -1,8 +1,4 @@
-<?php
-$config = new OpCacheGUI\OpCache\Configuration($this->byteFormatter, opcache_get_configuration());
-$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
-?>
-
+<?php $config = new OpCacheGUI\OpCache\Configuration($this->byteFormatter, opcache_get_configuration()); ?>
 <section id="configuration-tabs" class="tabs">
     <nav id="sub-nav">
         <ul>

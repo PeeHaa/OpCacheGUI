@@ -4,7 +4,7 @@
        <ul>
            <li><input type="text" name="username" value="<?= htmlspecialchars($this->username); ?>" placeholder="Username"></li>
            <li><input type="password" name="password" placeholder="Password"></li>
-           <li><input type="submit" value="Let me in" disabled></li>
+           <li><input type="submit" value="<?= $this->translator->translate('project.log_in'); ?>" disabled></li>
        </ul>
    </form>
 </div>

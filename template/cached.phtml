@@ -1,6 +1,5 @@
 <?php
-$status = new OpCacheGUI\OpCache\Status($this->byteFormatter, opcache_get_status());
-$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
+$status = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
 
 $directories = [];
 foreach($status->getCachedScripts() as $data) {
@@ -12,6 +11,7 @@ foreach($status->getCachedScripts() as $data) {
     <nav id="sub-nav">
         <ul>
             <li class="sna"><a href="#" data-tab="cached-scripts"><?= $this->translator->translate('scripts.title'); ?></a></li>
+            <li><a href="#" data-tab="overview-scripts"><?= $this->translator->translate('scripts.overview.title'); ?></a></li>
         </ul>
     </nav>
     <section data-content="cached-scripts">
@@ -49,7 +49,7 @@ foreach($status->getCachedScripts() as $data) {
                                                     <form action="<?= $this->url->get('invalidate'); ?>" method="post">
                                                         <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
                                                         <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
-                                                        <button type="submit" name="submit" value="<?= $this->translator->translate('script.invalidate'); ?>" class="cnfbtn cnfbtn--fn js-confirm inv" title="Invalidate"><?= $this->translator->translate('script.invalidate'); ?></button>
+                                                        <button type="submit" name="submit" value="Invalidate" class="cnfbtn cnfbtn--fn js-confirm inv" title="<?= $this->translator->translate('script.invalidate'); ?>"><?= $this->translator->translate('script.invalidate'); ?></button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -60,6 +60,40 @@ foreach($status->getCachedScripts() as $data) {
                         </td>
                     </tr>
                 <?php } ?>
+            </table>
         <?php } ?>
+    </section>
+    <section data-content="overview-scripts">
+        <div class="show-cs-table cs-table-overview">
+            <input type="search" name="filter" placeholder="<?= $this->translator->translate('scripts.filter.placeholder'); ?>" autofocus>
+            <table>
+                <thead>
+                    <tr>
+                        <th><?= $this->translator->translate('scripts.full_path'); ?></th>
+                        <th><?= $this->translator->translate('scripts.hits'); ?></th>
+                        <th><?= $this->translator->translate('scripts.memory_consumption'); ?></th>
+                        <th><?= $this->translator->translate('scripts.last_used_timestamp'); ?></th>
+                        <th><?= $this->translator->translate('scripts.actions'); ?></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach($status->getCachedScriptsForOverview(new \OpCacheGUI\Format\Prefix) as $script) { ?>
+                        <tr>
+                            <td><?= htmlspecialchars($script['full_path']); ?></td>
+                            <td><?= $script['hits']; ?></td>
+                            <td><?= $script['memory_consumption']; ?></td>
+                            <td><?= $script['last_used_timestamp']; ?></td>
+                            <td>
+                                <form action="<?= $this->url->get('invalidate'); ?>" method="post">
+                                    <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
+                                    <input type="hidden" name="key" value="<?= $script['full_path']; ?>">
+                                    <button type="submit" name="submit" value="Invalidate" class="cnfbtn cnfbtn--fn js-confirm inv" title="<?= $this->translator->translate('script.invalidate'); ?>"><?= $this->translator->translate('script.invalidate'); ?></button>
+                                </form>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 </section>
