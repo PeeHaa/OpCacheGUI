@@ -12,11 +12,11 @@
                 <nav class="clear">
                     <ul>
                         <li title="OpCache <?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?>" id="logo">
-                            <a href="#">Op<span>Cache</span><sup><?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?></sup></a>
+                            <a href="<?= $this->url->get(''); ?>">Op<span>Cache</span><sup><?= htmlspecialchars(opcache_get_configuration()['version']['version']); ?></sup></a>
                         </li>
                         <li><?= $this->title; ?></li>
                         <li>
-                            <a href="https://github.com/PeeHaa/OpCacheGUI" target="_blank" title="Project on GitHub">
+                            <a href="https://github.com/PeeHaa/OpCacheGUI" target="_blank" title="<?= $this->translator->translate('project.link'); ?>">
                                 <span class="fa fa-github"></span>
                             </a>
                         </li>

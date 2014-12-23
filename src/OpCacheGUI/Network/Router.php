@@ -99,7 +99,7 @@ class Router
             return $route->run();
         }
 
-        return 'No route matches';
+        return $this->getMainPage();
     }
 
     /**
@@ -114,5 +114,21 @@ class Router
         }
 
         return $this->request->get();
+    }
+
+    /**
+     * Gets the main page (either the status page or the login page)
+     *
+     * @return mixed The result of the callback
+     */
+    private function getMainPage()
+    {
+        foreach ($this->routes as $route) {
+            if (!$route->matchesRequest('', 'GET')) {
+                continue;
+            }
+
+            return $route->run();
+        }
     }
 }

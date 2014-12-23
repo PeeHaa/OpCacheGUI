@@ -1,63 +1,6 @@
 <?php
-$config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false));
-$status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, array_merge(apcu_cache_info(), ['version' => phpversion('apcu')]), apcu_sma_info());
+$apcuHelper=new OpCacheGUI\Addons\APCUHelper();
 ?>
-<?php $apcuHelper=new OpCacheGUI\Addons\APCUHelper(); ?>
-
-<?php
-apc_store('foo', 'bar');
-apc_fetch('foo');
-apc_add('new', 'My awesome data \o/');
-apc_add('to_delete', 'My awesome data \o/');
-apc_delete('to_delete');
-?>
-
-<section id="status-tabs" class="tabs">
-    <div class="data-block clear">
-        <h2><?= $this->translator->translate('apcu.status.title'); ?></h2>
-        <table>
-            <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
-                <tr>
-                    <td><?= $this->translator->translate('apcu.status.' . $key); ?></td>
-                    <?php if (in_array($key, ['enabled', 'file_upload_support'], true)) { ?>
-                        <td><span class="<?= $statusItem ? 'g' : 'r'; ?>s"></span></td>
-                    <?php } else { ?>
-                        <td><?= htmlspecialchars($statusItem); ?></td>
-                    <?php } ?>
-                </tr>
-            <?php } ?>
-        </table>
-        <form action="<?= $this->url->get('resetapcu'); ?>" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
-            <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
-            <button type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>" class="cnfbtn cnfbtn--fn js-confirm reset-btn">Reset</button>
-        </form>
-    </div>
-
-    <div class="data-block">
-        <h2><?= $this->translator->translate('apcu.status.memory'); ?></h2>
-        <table>
-            <?php foreach ($status->getMemoryInfo() as $key => $statusItem) { ?>
-                <tr>
-                    <td><?= $this->translator->translate('apcu.status.' . $key); ?></td>
-                    <td><?= htmlspecialchars($statusItem); ?></td>
-                </tr>
-            <?php } ?>
-        </table>
-    </div>
-
-    <div class="data-block">
-        <h2><?= $this->translator->translate('apcu.status.stats'); ?></h2>
-        <table>
-            <?php foreach ($status->getStatsInfo() as $key => $statusItem) { ?>
-                <tr>
-                    <td><?= $this->translator->translate('apcu.status.' . $key); ?></td>
-                    <td><?= htmlspecialchars($statusItem); ?></td>
-                </tr>
-            <?php } ?>
-        </table>
-    </div>
-</section>
-
 
 <section id="apcustatus-tabs" class="tabs">
 
@@ -79,6 +22,7 @@ apc_delete('to_delete');
 
     <h2><?= $this->translator->translate('apcu.cacheinfo'); ?></h2>
     <table class="apcu">
+        
         <?php foreach ($apcuHelper->getCacheInfo() as $key => $cacheItem) { ?>
         <tr>
             <td><?= $this->translator->translate('apcu.' . $key); ?></td>
@@ -90,11 +34,15 @@ apc_delete('to_delete');
  <div class="data-block">
     <h2><?= $this->translator->translate('apcu.hoststatusdiagrams'); ?></h2>
     <table class="apcu">
+       
+        
         <tr class="even">
             <td style="text-align:center;"><?= $apcuHelper->getDiagrams(1)['image'] ?></td>
             <td style="text-align:center;"><?= $apcuHelper->getDiagrams(2)['image'] ?></td>
-        </tr>
+                
 
+        </tr>
+        
         <tr>
             <td ><?= $apcuHelper->getDiagrams(1)['free'] ?></td>
             <td ><?= $apcuHelper->getDiagrams(2)['hits'] ?></td>
@@ -103,9 +51,12 @@ apc_delete('to_delete');
             <td ><?= $apcuHelper->getDiagrams(1)['used'] ?></td>
             <td ><?= $apcuHelper->getDiagrams(2)['misses'] ?></td>
         </tr>
+
     </table>
     <h2><?= $this->translator->translate('apcu.detailedmemoryusage'); ?></h2>
     <table class="apcu">
+        
+       
         <tr class="even">
             <td colspan="2" ><?= $apcuHelper->getDiagrams(3)['image'] ?></td>
         </tr>

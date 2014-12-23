@@ -1,8 +1,4 @@
-<?php
-$status      = new OpCacheGUI\OpCache\Status($this->byteFormatter, opcache_get_status());
-$classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
-?>
-
+<?php $status = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status()); ?>
 <section id="status-tabs" class="tabs">
     <div class="data-block clear">
         <h2><?= $this->translator->translate('status.title'); ?></h2>
@@ -10,13 +6,17 @@ $classCycler = new OpCacheGUI\Presentation\ClassCycler(['odd', 'even']);
             <?php foreach ($status->getStatusInfo() as $key => $statusItem) { ?>
                 <tr>
                     <td><?= $this->translator->translate('status.' . $key); ?></td>
-                    <td><span class="<?= $statusItem ? 'g' : 'r'; ?>s"></span></td>
+                    <?php if ($key === 'opcache_enabled') { ?>
+                        <td><span class="<?= $statusItem ? 'g' : 'r'; ?>s"></span></td>
+                    <?php } else { ?>
+                        <td><span class="<?= $statusItem ? 'r' : 'g'; ?>s"></span></td>
+                    <?php } ?>
                 </tr>
             <?php } ?>
         </table>
         <form action="<?= $this->url->get('reset'); ?>" method="post" id="reset" data-confirmation="<?= $this->translator->translate('confirmation.reset'); ?>" data-yes="<?= $this->translator->translate('confirmation.yes'); ?>" data-no="<?= $this->translator->translate('confirmation.no'); ?>">
             <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
-            <button type="submit" name="submit" value="<?= $this->translator->translate('reset.submit'); ?>" class="cnfbtn cnfbtn--fn js-confirm reset-btn">Reset</button>
+            <button type="submit" name="submit" value="Reset" class="cnfbtn cnfbtn--fn js-confirm reset-btn"><?= $this->translator->translate('reset.submit'); ?></button>
         </form>
     </div>
 

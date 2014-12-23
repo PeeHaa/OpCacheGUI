@@ -14,6 +14,8 @@
 namespace OpCacheGUI\OpCache;
 
 use OpCacheGUI\Format\Byte;
+use OpCacheGUI\I18n\Translator;
+use OpCacheGUI\Format\Trimmer;
 
 /**
  * Container for the current status of OpCache
@@ -37,6 +39,11 @@ class Status
     private $byteFormatter;
 
     /**
+     * @var \OpCacheGUI\I18n\Translator A translator
+     */
+    private $translator;
+
+    /**
      * @var array The (unfiltered) output of opcache_get_status()
      */
     private $statusData;
@@ -44,12 +51,14 @@ class Status
     /**
      * Creates instance
      *
-     * @param \OpCacheGUI\Format\Byte $byteFormatter Formatter of byte values
-     * @param array                   $statusData    The (unfiltered) output of opcache_get_status()
+     * @param \OpCacheGUI\Format\Byte     $byteFormatter Formatter of byte values
+     * @param \OpCacheGUI\I18n\Translator $translator    A translator
+     * @param array                       $statusData    The (unfiltered) output of opcache_get_status()
      */
-    public function __construct(Byte $byteFormatter, array $statusData)
+    public function __construct(Byte $byteFormatter, Translator $translator, array $statusData)
     {
         $this->byteFormatter = $byteFormatter;
+        $this->translator    = $translator;
         $this->statusData    = $statusData;
     }
 
@@ -97,18 +106,18 @@ class Status
         return json_encode([
             [
                 'value' => $memory['used_memory'],
-                'color' => self::RED,
-                'label' => 'Used',
+                'color' => self::DARK_GREEN,
+                'label' => $this->translator->translate('graph.memory.used'),
             ],
             [
                 'value' => $memory['free_memory'],
                 'color' => self::GREEN,
-                'label' => 'Free',
+                'label' => $this->translator->translate('graph.memory.free'),
             ],
             [
                 'value' => $memory['wasted_memory'],
-                'color' => self::DARK_GREEN,
-                'label' => 'Wasted',
+                'color' => self::RED,
+                'label' => $this->translator->translate('graph.memory.wasted'),
             ],
         ]);
     }
@@ -183,18 +192,18 @@ class Status
         return json_encode([
             [
                 'value' => $stats['num_cached_scripts'],
-                'color' => self::RED,
-                'label' => 'Used',
+                'color' => self::DARK_GREEN,
+                'label' => $this->translator->translate('graph.keys.scripts'),
             ],
             [
                 'value' => $stats['max_cached_keys'] - $stats['num_cached_keys'],
                 'color' => self::GREEN,
-                'label' => 'Free',
+                'label' => $this->translator->translate('graph.keys.free'),
             ],
             [
                 'value' => $stats['num_cached_keys'] - $stats['num_cached_scripts'],
-                'color' => self::DARK_GREEN,
-                'label' => 'Wasted',
+                'color' => self::RED,
+                'label' => $this->translator->translate('graph.keys.wasted'),
             ],
         ]);
     }
@@ -211,18 +220,18 @@ class Status
         return json_encode([
             [
                 'value' => $stats['hits'],
-                'color' => self::RED,
-                'label' => 'Hits',
+                'color' => self::GREEN,
+                'label' => $this->translator->translate('graph.hits.hits'),
             ],
             [
                 'value' => $stats['misses'],
-                'color' => self::GREEN,
-                'label' => 'Misses',
+                'color' => self::RED,
+                'label' => $this->translator->translate('graph.hits.misses'),
             ],
             [
                 'value' => $stats['blacklist_misses'],
                 'color' => self::DARK_GREEN,
-                'label' => 'Blacklisted',
+                'label' => $this->translator->translate('graph.hits.blacklist'),
             ],
         ]);
     }
@@ -260,6 +269,33 @@ class Status
             ];
         }
 
+        usort($scripts, [$this, 'sortCachedScripts']);
+
         return $scripts;
+    }
+
+    /**
+     * Gets the cached scripts for the overview (with trimmed prefix)
+     *
+     * @param \OpCacheGUI\Format\Trimmer $trimmer The prefix trimmer
+     *
+     * @return array List of the cached scripts
+     */
+    public function getCachedScriptsForOverview(Trimmer $trimmer)
+    {
+        return $trimmer->trim($this->getCachedScripts());
+    }
+
+    /**
+     * Sorts the lists of cached scripts
+     *
+     * @param array $a Array to compare
+     * @param array $b Array to compare
+     *
+     * @return int The direction of the sort
+     */
+    private function sortCachedScripts(array $a, array $b)
+    {
+        return strcmp($a['full_path'], $b['full_path']);
     }
 }
