@@ -3,14 +3,19 @@ $apcuHelper=new OpCacheGUI\Addons\APCUHelper();
 ?>
 
 <section id="apcuconfig-tabs" class="tabs">
-    <section data-content="Runtime Settings">
+    <nav id="sub-nav">
+        <ul>
+            <li class="sna"><a href="#" data-tab="configuration"><?= $this->translator->translate('apcu.config.title'); ?></a></li>
+        </ul>
+    </nav>
+    <section data-content="configuration">
         <table class="apcu">
-            
+
             <?php foreach ($apcuHelper->getRuntimeSettings() as $key => $settingItem) { ?>
             <tr>
-                <td><?= $key; ?></td>
+                <td><?= $this->translator->translate('config.' . $key); ?></td>
                 <td><?php print_r($settingItem); ?></td>
-                <td><?= $this->translator->translate($key); ?></td>
+                <td><?= $this->translator->translate('config.' . $key . '.description'); ?></td>
             </tr>
             <?php } ?>
             <tr><td>&nbsp;</td></tr>

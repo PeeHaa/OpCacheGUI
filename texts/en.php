@@ -154,6 +154,7 @@ $texts = [
     'apcu.status.fragmentation_percent'                     => 'Fragmentation %',
     'apcu.status.fragmentation_bytes'                       => 'Fragmentation (bytes)',
     'apcu.status.fragmentation_fragments'                   => 'Fragmentation (fragments)',
+
     'apcu.config.title'                                     => 'APCu configuration',
     'config.apc.enabled'                                    => 'Enabled',
     'config.apc.enabled.description'                        => 'Determines if APCu is enabled',
@@ -195,6 +196,7 @@ $texts = [
     'config.apc.rfc1867_freq.description'                   => 'The frequency that updates should be made to the user cache entry for upload progress. This can take the form of a percentage of the total file size or a size in bytes optionally suffixed with "k", "m", or "g". 0 updates as often as possible, which may cause slower uploads.',
     'config.apc.rfc1867_ttl'                                => 'File upload progress TTL',
     'config.apc.rfc1867_ttl.description'                    => 'TTL for rfc1867 entries.',
+
     'apcu.vars.title'                                       => 'Variables',
     'apcu.vars.name'                                        => 'Name',
     'apcu.vars.hits'                                        => 'Hits',
