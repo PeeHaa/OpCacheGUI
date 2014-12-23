@@ -92,7 +92,7 @@ $router->get('apcustatus', function() use ($htmlTemplate, $byteFormatter, $csrfT
         'byteFormatter' => $byteFormatter,
         'csrfToken'     => $csrfToken,
         'active'        => 'apcustatus',
-        'title'         => $translator->translate('apcu.status'),
+        'title'         => $translator->translate('apcu.status.title'),
     ]);
 });
 
