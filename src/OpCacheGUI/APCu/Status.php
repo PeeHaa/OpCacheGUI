@@ -300,4 +300,53 @@ class Status
 
         return $this->cacheStatus['num_inserts'] / ($datetime->format('U') - $this->cacheStatus['start_time']);
     }
+
+    /**
+     * Gets all cached variables
+     *
+     * @return array List of all stored variables
+     */
+    public function getVariables()
+    {
+        if (!$this->cacheStatus['cache_list']) {
+            return [];
+        }
+
+        $entries = [];
+
+        foreach ($this->cacheStatus['cache_list'] as $index => $variable) {
+            $variable['mem_size'] = $this->byteFormatter->format($variable['mem_size']);
+
+            $variable['access_time'] = null;
+            if ($this->cacheStatus['cache_list'][$index]['access_time']) {
+                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['access_time']);
+
+                $variable['access_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
+            }
+
+            $variable['modification_time'] = null;
+            if ($this->cacheStatus['cache_list'][$index]['modification_time']) {
+                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['modification_time']);
+
+                $variable['modification_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
+            }
+
+            $variable['creation_time'] = null;
+            if ($this->cacheStatus['cache_list'][$index]['creation_time']) {
+                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['creation_time']);
+                $variable['creation_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
+            }
+
+            $variable['deletion_time'] = null;
+            if ($this->cacheStatus['cache_list'][$index]['deletion_time']) {
+                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['deletion_time']);
+
+                $variable['deletion_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
+            }
+
+            $entries[] = $variable;
+        }
+
+        return $entries;
+    }
 }

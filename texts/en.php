@@ -198,14 +198,22 @@ $texts = [
     'config.apc.rfc1867_ttl.description'                    => 'TTL for rfc1867 entries.',
 
     'apcu.vars.title'                                       => 'Variables',
+    'apcu.vars.empty'                                       => 'No variables are cached',
+    'apcu.vars.filter.placeholder'                          => 'Filter APCu variables',
     'apcu.vars.name'                                        => 'Name',
     'apcu.vars.hits'                                        => 'Hits',
     'apcu.vars.size'                                        => 'Size',
-    'apcu.vars.accessed'                                    => 'Last accessed',
-    'apcu.vars.modified'                                    => 'Modified at',
-    'apcu.vars.created'                                     => 'Created at',
+    'apcu.vars.accessed'                                    => 'Last access',
+    'apcu.vars.modified'                                    => 'Modified',
+    'apcu.vars.created'                                     => 'Created',
     'apcu.vars.timeout'                                     => 'TTL',
     'apcu.vars.deleted'                                     => 'Deleted',
+    'apcu.vars.invalidate'                                  => 'Invalidate',
+
+
+
+
+
     'apcu.hoststatusdiagrams'=>'APCu Host Status Diagrams',
     'apcu.detailedmemoryusage'=>'APCu Detailed Memory Usage and Fragmentation',
 

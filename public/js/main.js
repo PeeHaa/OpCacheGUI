@@ -283,6 +283,14 @@ $('.cs-table-overview table').tablesorter({
     }
 });
 
-$('.cs-table-overview table').filterTable({
+$('#apc-variables-tabs table').tablesorter({
+    headers: {
+        8: {
+            sorter: false
+        }
+    }
+});
+
+$('.cs-table-overview table, #apc-variables-tabs table').filterTable({
     inputSelector: 'input[type="search"]'
 });
