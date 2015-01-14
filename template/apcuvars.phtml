@@ -15,7 +15,7 @@ $status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, apcu_cache_i
             <p><?= $this->translator->translate('apcu.vars.empty'); ?></p>
         <?php } else { ?>
             <input type="search" name="filter" placeholder="<?= $this->translator->translate('apcu.vars.filter.placeholder'); ?>" autofocus>
-            <table class="testingfoo">
+            <table>
                 <thead>
                     <tr>
                         <th><?= $this->translator->translate('apcu.vars.name'); ?></th>
