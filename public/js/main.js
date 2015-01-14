@@ -231,6 +231,21 @@ $('#cached-scripts-tabs form').on('submit', function(e) {
     }, 'json');
 });
 
+// handle apcu variable invalidation form
+$('#apc-variables-tabs form').on('submit', function(e) {
+    e.preventDefault();
+
+    $form = $(this);
+
+    $.post($form.attr('action'), $(this).serialize(), function(data) {
+        if (data.result === 'success') {
+            $form.closest('tr').remove();
+
+            return;
+        }
+    }, 'json');
+});
+
 /*
  * Confirm Boxes
  * Credits (Thanks) : Kasper Mikiewicz - http://codepen.io/Idered/pen/vrHkm

@@ -117,3 +117,10 @@ $router->post('resetapcu', function() use ($jsonTemplate, $csrfToken, $request) 
         'result'    => ($csrfToken->validate($request->post('csrfToken')) && apcu_clear_cache()) ? 'success' : 'failed',
     ]);
 });
+
+$router->post('invalidateapcu', function() use ($jsonTemplate, $csrfToken, $request) {
+    return $jsonTemplate->render('apcuinvalidate.pjson', [
+        'csrfToken' => $csrfToken,
+        'result'    => ($csrfToken->validate($request->post('csrfToken')) && apc_delete($request->post('key'))) ? 'success' : 'failed',
+    ]);
+});

@@ -41,9 +41,9 @@ $status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, apcu_cache_i
                             <td><?= $variable['ttl']; ?></td>
                             <td><?= $variable['deletion_time']; ?></td>
                             <td>
-                                <form action="<?= $this->url->get('invalidate'); ?>" method="post">
+                                <form action="<?= $this->url->get('invalidateapcu'); ?>" method="post">
                                     <input type="hidden" name="csrfToken" value="<?= $this->csrfToken->get(); ?>">
-                                    <input type="hidden" name="key" value="<?= 'NEEDS IDENTIFIER!'; ?>">
+                                    <input type="hidden" name="key" value="<?= htmlspecialchars($variable['info']); ?>">
                                     <button type="submit" name="submit" value="Invalidate" class="cnfbtn cnfbtn--fn js-confirm inv" title="<?= $this->translator->translate('apcu.vars.invalidate'); ?>"><?= $this->translator->translate('apcu.vars.invalidate'); ?></button>
                                 </form>
                             </td>
