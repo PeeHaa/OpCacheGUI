@@ -1,6 +1,4 @@
-<?php
-$apcuHelper=new OpCacheGUI\Addons\APCUHelper();
-?>
+<?php $config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu')); ?>
 
 <section id="apcuconfig-tabs" class="tabs">
     <nav id="sub-nav">
@@ -11,7 +9,7 @@ $apcuHelper=new OpCacheGUI\Addons\APCUHelper();
     <section data-content="configuration">
         <table class="apcu">
 
-            <?php foreach ($apcuHelper->getRuntimeSettings() as $key => $settingItem) { ?>
+            <?php foreach ($config->getIniDirectives() as $key => $settingItem) { ?>
             <tr>
                 <td><?= $this->translator->translate('config.' . $key); ?></td>
                 <td><?php print_r($settingItem); ?></td>
