@@ -1,5 +1,5 @@
 <?php
-$config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu'));
+$config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false));
 $status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, apcu_cache_info(), apcu_sma_info());
 ?>
 
