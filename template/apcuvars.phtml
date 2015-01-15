@@ -1,6 +1,12 @@
 <?php
 $config = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false));
-$status = new OpCacheGUI\APCu\Status($this->byteFormatter, $config, apcu_cache_info(), apcu_sma_info());
+$status = new OpCacheGUI\APCu\Status(
+    $this->byteFormatter,
+    $config,
+    $this->translator,
+    apcu_cache_info(),
+    apcu_sma_info()
+);
 ?>
 
 <section id="apc-variables-tabs" class="tabs">
