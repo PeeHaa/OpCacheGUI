@@ -74,6 +74,10 @@ $router->post('invalidate', function() use ($jsonTemplate, $csrfToken, $request)
     ]);
 });
 
+if (!extension_loaded('Zend OPcache')) {
+    return;
+}
+
 $router->get('apcuimg1', function() {
     OpCacheGUI\Addons\APCUHelper::createimg(1);
 });
