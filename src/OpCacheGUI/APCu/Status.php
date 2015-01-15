@@ -14,6 +14,7 @@
 namespace OpCacheGUI\APCu;
 
 use OpCacheGUI\Format\Byte;
+use OpCacheGUI\I18n\Translator;
 
 /**
  * Container for the current status of APCu
@@ -42,6 +43,11 @@ class Status
     private $config;
 
     /**
+     * @var \OpCacheGUI\I18n\Translator A translator
+     */
+    private $translator;
+
+    /**
      * @var array The (unfiltered) output of apcu_cache_info()
      */
     private $cacheStatus;
@@ -56,13 +62,20 @@ class Status
      *
      * @param \OpCacheGUI\Format\Byte        $byteFormatter Formatter of byte values
      * @param \OpCacheGUI\APCu\Configuration $config        The config of APCu
+     * @param \OpCacheGUI\I18n\Translator    $translator    A translator
      * @param array                          $cacheStatus   The (unfiltered) output of apcu_cache_info()
      * @param array                          $memoryStatus  The (unfiltered) output of apcu_sma_info()
      */
-    public function __construct(Byte $byteFormatter, Configuration $config, array $cacheStatus, array $memoryStatus)
+    public function __construct(
+        Byte $byteFormatter,
+        Configuration $config,
+        Translator $translator,
+        array $cacheStatus,
+        array $memoryStatus)
     {
         $this->byteFormatter = $byteFormatter;
         $this->config        = $config;
+        $this->translator    = $translator;
         $this->cacheStatus   = $cacheStatus;
         $this->memoryStatus  = $memoryStatus;
     }
@@ -214,6 +227,29 @@ class Status
     }
 
     /**
+     * Gets the memory info formatted to build a graph
+     *
+     * @return string JSON encoded memory info
+     */
+    public function getGraphMemoryInfo()
+    {
+        $size = $this->memoryStatus['num_seg'] * $this->memoryStatus['seg_size'];
+
+        return json_encode([
+            [
+                'value' => $size - $this->memoryStatus['avail_mem'],
+                'color' => self::DARK_GREEN,
+                'label' => $this->translator->translate('apcu.graph.memory.used'),
+            ],
+            [
+                'value' => $this->memoryStatus['avail_mem'],
+                'color' => self::GREEN,
+                'label' => $this->translator->translate('apcu.graph.memory.free'),
+            ],
+        ]);
+    }
+
+    /**
      * Gets the statistics info
      *
      * @return array The statistics info
@@ -232,6 +268,32 @@ class Status
             'insert_rate_user' => number_format($this->getInsertRate(), 2),
             'num_expunges'     => $this->cacheStatus['num_expunges'],
         ];
+    }
+
+    /**
+     * Gets the hit info formatted to build a graph
+     *
+     * @return string JSON encoded memory info
+     */
+    public function getGraphHitStatsInfo()
+    {
+        return json_encode([
+            [
+                'value' => $this->cacheStatus['num_expunges'],
+                'color' => self::DARK_GREEN,
+                'label' => $this->translator->translate('apcu.graph.hits.expunges'),
+            ],
+            [
+                'value' => $this->cacheStatus['num_hits'],
+                'color' => self::GREEN,
+                'label' => $this->translator->translate('apcu.graph.hits.hits'),
+            ],
+            [
+                'value' => $this->cacheStatus['num_misses'],
+                'color' => self::RED,
+                'label' => $this->translator->translate('apcu.graph.hits.misses'),
+            ],
+        ]);
     }
 
     /**

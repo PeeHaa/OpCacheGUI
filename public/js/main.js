@@ -133,6 +133,18 @@ if ($('section#graphs').length) {
     var hitsDataChart = new Chart(hits).Doughnut(hitsData, doughnutOptions);
     var hitsDataChartLegend = hitsDataChart.generateLegend();
     $("#hitsDataChartLegend").html(hitsDataChartLegend);
+
+    if (typeof apcMemData !== 'undefined') {
+        var apcMemory = document.getElementById('apcMemory').getContext('2d');
+        var apcMemDataChart = new Chart(apcMemory).Doughnut(apcMemData, doughnutOptions);
+        var apcMemDataChartLegend = apcMemDataChart.generateLegend();
+        $("#apcMemDataChartLegend").html(apcMemDataChartLegend);
+
+        var apcHits = document.getElementById('apcHits').getContext('2d');
+        var apcHitsDataChart = new Chart(apcHits).Doughnut(hitsData, doughnutOptions);
+        var apcHitsDataChartLegend = apcHitsDataChart.generateLegend();
+        $("#apcHitsDataChartLegend").html(apcHitsDataChartLegend);
+    }
 }
 
 //resizing top bar on scroll

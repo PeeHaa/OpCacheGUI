@@ -1,5 +1,16 @@
 <?php
-$status = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
+$status    = new OpCacheGUI\OpCache\Status($this->byteFormatter, $this->translator, opcache_get_status());
+
+if (extension_loaded('Zend OPcache')) {
+    $apcConfig = new OpCacheGUI\APCu\Configuration(ini_get_all('apcu', false));
+    $apcStatus = new OpCacheGUI\APCu\Status(
+        $this->byteFormatter,
+        $apcConfig,
+        $this->translator,
+        apcu_cache_info(),
+        apcu_sma_info()
+    );
+}
 
 $memoryInfo = $status->getMemoryInfo();
 $statsInfo  = $status->getStatsInfo();
@@ -28,6 +39,30 @@ $statsInfo  = $status->getStatsInfo();
                 <div id="hitsDataChartLegend"></div>
             </div>
         </li>
+
+        <?php if (extension_loaded('Zend OPcache')) { ?>
+            <li>
+                <div class="chart-wrapper">
+                    <h2><?= $this->translator->translate('apcu.graph.memory.title'); ?></h2>
+                    <canvas id="apcMemory" width="230" height="230"></canvas>
+                    <div id="apcMemDataChartLegend"></div>
+                </div>
+            </li>
+            <li>
+                <div class="chart-wrapper">
+                    <h2><?= $this->translator->translate('apcu.graph.fragmentation.title'); ?></h2>
+                    <canvas id="keys" width="230" height="230"></canvas>
+                    <div id="keysDataChartLegend"></div>
+                </div>
+            </li>
+            <li>
+                <div class="chart-wrapper">
+                    <h2><?= $this->translator->translate('apcu.graph.hits.title'); ?></h2>
+                    <canvas id="apcHits" width="230" height="230"></canvas>
+                    <div id="apcHitsDataChartLegend"></div>
+                </div>
+            </li>
+        <?php } ?>
     </ul>
 </section>
 
@@ -36,3 +71,11 @@ $statsInfo  = $status->getStatsInfo();
     var keysData = <?= $status->getGraphKeyStatsInfo(); ?>;
     var hitsData = <?= $status->getGraphHitStatsInfo(); ?>;
 </script>
+
+<?php if (extension_loaded('Zend OPcache')) { ?>
+    <script>
+        var apcMemData  = <?= $apcStatus->getGraphMemoryInfo(); ?>;
+        //var keysData = <?= $status->getGraphKeyStatsInfo(); ?>;
+        var apcHitsData = <?= $status->getGraphHitStatsInfo(); ?>;
+    </script>
+<?php } ?>
