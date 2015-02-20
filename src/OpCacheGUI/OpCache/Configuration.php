@@ -47,7 +47,7 @@ class Configuration
     }
 
     /**
-     * Gets the ini direcyivesof OpCache
+     * Gets the ini directives of OpCache
      *
      * @return array The ini directives
      */

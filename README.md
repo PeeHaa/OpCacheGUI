@@ -39,7 +39,7 @@ Screenshots
 
 ###### Status page on mobile devices
 
-[![OpCacheGUI staus mobile][4]][4]
+[![OpCacheGUI status mobile][4]][4]
 
 ###### Cached scripts page on mobile devices
 
