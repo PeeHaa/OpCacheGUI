@@ -29,8 +29,8 @@ class Status
      * @var string The colors of the graphs
      */
     const DARK_GREEN = '#16a085';
-    const RED        = '#e74c3c';
-    const GREEN      = '#2ecc71';
+    const RED = '#e74c3c';
+    const GREEN = '#2ecc71';
 
     /**
      * @var \OpCacheGUI\Format\Byte Formatter of byte values
@@ -71,13 +71,12 @@ class Status
         Configuration $config,
         Translator $translator,
         array $cacheStatus,
-        array $memoryStatus)
-    {
+        array $memoryStatus) {
         $this->byteFormatter = $byteFormatter;
-        $this->config        = $config;
-        $this->translator    = $translator;
-        $this->cacheStatus   = $cacheStatus;
-        $this->memoryStatus  = $memoryStatus;
+        $this->config = $config;
+        $this->translator = $translator;
+        $this->cacheStatus = $cacheStatus;
+        $this->memoryStatus = $memoryStatus;
     }
 
     /**
@@ -88,16 +87,16 @@ class Status
     public function getStatusInfo()
     {
         $sharedMemory = $this->memoryStatus['num_seg'] . ' segment(s) with ';
-        $sharedMemory.= $this->byteFormatter->format($this->memoryStatus['seg_size']) . ' ';
-        $sharedMemory.= '(' . $this->cacheStatus['memory_type'] . ' memory' . ')';
-
+        $sharedMemory .= $this->byteFormatter->format($this->memoryStatus['seg_size']) . ' ';
+        $sharedMemory .= '(' . $this->cacheStatus['memory_type'] . ' memory' . ')';
+        //var_dump($this->cacheStatus);
         return [
-            'enabled'             => $this->config->getIniDirectives()['apc.enabled'],
+            'enabled' => $this->config->getIniDirectives()['apc.enabled'],
             'file_upload_support' => $this->config->getIniDirectives()['apc.rfc1867'],
-            'version'             => $this->cacheStatus['version'],
-            'shared_memory'       => $sharedMemory,
-            'start_time'          => (new \DateTime('@' . $this->cacheStatus['start_time']))->format('d-m-Y H:i:s'),
-            'uptime'              => $this->getTimeAgo(new \DateTime('@' . $this->cacheStatus['start_time'])),
+            'version' => $this->cacheStatus['version'],
+            'shared_memory' => $sharedMemory,
+            'start_time' => (new \DateTime('@' . $this->cacheStatus['stime']))->format('d-m-Y H:i:s'),
+            'uptime' => $this->getTimeAgo(new \DateTime('@' . $this->cacheStatus['stime'])),
         ];
     }
 
@@ -111,7 +110,7 @@ class Status
     private function getTimeAgo(\DateTime $datetime)
     {
         $now = new \DateTime('now', new \DateTimeZone(date_default_timezone_get()));
-        $up  = clone $datetime;
+        $up = clone $datetime;
 
         $up->setTimeZone(new \DateTimeZone(date_default_timezone_get()));
 
@@ -149,11 +148,11 @@ class Status
         $size = $this->memoryStatus['num_seg'] * $this->memoryStatus['seg_size'];
 
         return [
-            'total_memory'            => $this->byteFormatter->format($size),
-            'used_memory'             => $this->byteFormatter->format($size - $this->memoryStatus['avail_mem']),
-            'free_memory'             => $this->byteFormatter->format($this->memoryStatus['avail_mem']),
-            'fragmentation_percent'   => $this->getFragmentationPercent() . '%',
-            'fragmentation_bytes'     => $this->byteFormatter->format($this->getFragmentationBytes()),
+            'total_memory' => $this->byteFormatter->format($size),
+            'used_memory' => $this->byteFormatter->format($size - $this->memoryStatus['avail_mem']),
+            'free_memory' => $this->byteFormatter->format($this->memoryStatus['avail_mem']),
+            'fragmentation_percent' => $this->getFragmentationPercent() . '%',
+            'fragmentation_bytes' => $this->byteFormatter->format($this->getFragmentationBytes()),
             'fragmentation_fragments' => $this->getFragmentationSegments(),
         ];
     }
@@ -168,7 +167,7 @@ class Status
     private function getFragmentationPercent()
     {
         $fragmentationSize = 0;
-        $freeTotal         = 0;
+        $freeTotal = 0;
 
         for ($i = 0; $i < $this->memoryStatus['num_seg']; $i++) {
             foreach ($this->memoryStatus['block_lists'][$i] as $block) {
@@ -193,7 +192,7 @@ class Status
     private function getFragmentationBytes()
     {
         $fragmentationSize = 0;
-        $freeTotal         = 0;
+        $freeTotal = 0;
 
         for ($i = 0; $i < $this->memoryStatus['num_seg']; $i++) {
             foreach ($this->memoryStatus['block_lists'][$i] as $block) {
@@ -257,16 +256,16 @@ class Status
     public function getStatsInfo()
     {
         $cachedSize = $this->byteFormatter->format($this->cacheStatus['mem_size']);
-
+        //echo '<pre>';        print_r($this->cacheStatus);        echo '</pre>';
         return [
-            'cached_vars'      => $this->cacheStatus['num_entries'] . ' (' . $cachedSize . ')',
-            'num_hits'         => $this->cacheStatus['num_hits'],
-            'num_misses'       => $this->cacheStatus['num_misses'],
-            'req_rate_user'    => number_format($this->getRequestRate(), 2),
-            'hit_rate_user'    => number_format($this->getHitRate(), 2),
-            'miss_rate_user'   => number_format($this->getMissRate(), 2),
+            'cached_vars' => $this->cacheStatus['nentries'] . ' (' . $cachedSize . ')',
+            'num_hits' => $this->cacheStatus['nhits'],
+            'num_misses' => $this->cacheStatus['nmisses'],
+            'req_rate_user' => number_format($this->getRequestRate(), 2),
+            'hit_rate_user' => number_format($this->getHitRate(), 2),
+            'miss_rate_user' => number_format($this->getMissRate(), 2),
             'insert_rate_user' => number_format($this->getInsertRate(), 2),
-            'num_expunges'     => $this->cacheStatus['num_expunges'],
+            'num_expunges' => $this->cacheStatus['nexpunges'],
         ];
     }
 
@@ -303,14 +302,14 @@ class Status
      */
     private function getRequestRate()
     {
-        if (!$this->cacheStatus['num_hits']) {
+        if (!$this->cacheStatus['nhits']) {
             return 0;
         }
 
         $datetime = new \DateTime();
 
-        $requestRate = $this->cacheStatus['num_hits'] + $this->cacheStatus['num_misses'];
-        $requestRate /= $datetime->format('U') - $this->cacheStatus['start_time'];
+        $requestRate = $this->cacheStatus['nhits'] + $this->cacheStatus['nmisses'];
+        $requestRate /= $datetime->format('U') - $this->cacheStatus['stime'];
 
         return $requestRate;
     }
@@ -322,13 +321,13 @@ class Status
      */
     private function getHitRate()
     {
-        if (!$this->cacheStatus['num_hits']) {
+        if (!$this->cacheStatus['nhits']) {
             return 0;
         }
 
         $datetime = new \DateTime();
 
-        return $this->cacheStatus['num_hits'] / ($datetime->format('U') - $this->cacheStatus['start_time']);
+        return $this->cacheStatus['nhits'] / ($datetime->format('U') - $this->cacheStatus['stime']);
     }
 
     /**
@@ -338,13 +337,13 @@ class Status
      */
     private function getMissRate()
     {
-        if (!$this->cacheStatus['num_misses']) {
+        if (!$this->cacheStatus['nmisses']) {
             return 0;
         }
 
         $datetime = new \DateTime();
 
-        return $this->cacheStatus['num_misses'] / ($datetime->format('U') - $this->cacheStatus['start_time']);
+        return $this->cacheStatus['nmisses'] / ($datetime->format('U') - $this->cacheStatus['stime']);
     }
 
     /**
@@ -354,13 +353,13 @@ class Status
      */
     private function getInsertRate()
     {
-        if (!$this->cacheStatus['num_inserts']) {
+        if (!$this->cacheStatus['ninserts']) {
             return 0;
         }
 
         $datetime = new \DateTime();
 
-        return $this->cacheStatus['num_inserts'] / ($datetime->format('U') - $this->cacheStatus['start_time']);
+        return $this->cacheStatus['ninserts'] / ($datetime->format('U') - $this->cacheStatus['stime']);
     }
 
     /**
@@ -375,33 +374,42 @@ class Status
         }
 
         $entries = [];
-
+        /*echo '<pre>';
+        print_r($this->cacheStatus['cache_list']);
+        echo '</pre>';
+        die();*/
         foreach ($this->cacheStatus['cache_list'] as $index => $variable) {
+
+            $entry = $this->cacheStatus['cache_list'][$index];
+
             $variable['mem_size'] = $this->byteFormatter->format($variable['mem_size']);
 
+            $variable['num_hits'] = $entry['nhits'];
+            $variable['info'] = $entry['key'];
+
             $variable['access_time'] = null;
-            if ($this->cacheStatus['cache_list'][$index]['access_time']) {
-                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['access_time']);
+            if ($entry['atime']) {
+                $dateTime = new \DateTime('@' . $entry['atime']);
 
                 $variable['access_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
             }
 
             $variable['modification_time'] = null;
-            if ($this->cacheStatus['cache_list'][$index]['modification_time']) {
-                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['modification_time']);
+            if ($entry['mtime']) {
+                $dateTime = new \DateTime('@' . $entry['mtime']);
 
                 $variable['modification_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
             }
 
             $variable['creation_time'] = null;
-            if ($this->cacheStatus['cache_list'][$index]['creation_time']) {
-                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['creation_time']);
+            if ($entry['ctime']) {
+                $dateTime = new \DateTime('@' . $entry['ctime']);
                 $variable['creation_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
             }
 
             $variable['deletion_time'] = null;
-            if ($this->cacheStatus['cache_list'][$index]['deletion_time']) {
-                $dateTime = new \DateTime('@' . $this->cacheStatus['cache_list'][$index]['deletion_time']);
+            if ($entry['dtime']) {
+                $dateTime = new \DateTime('@' . $entry['dtime']);
 
                 $variable['deletion_time'] = $dateTime->format('H:i:s') . '<br>' . $dateTime->format('d-m-Y');
             }
