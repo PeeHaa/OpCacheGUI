@@ -76,6 +76,7 @@ Timeline
 | Development                                        | 01-06-2015 | 31-07-2015 |
 | RC1 release                                        | 01-08-2015 | 15-08-2015 |
 | RC2 release                                        | 15-08-2015 | 31-08-2015 |
+| Update documentation                               | 22-08-2015 | 31-08-2015 |
 | Stable  (when no blocking issues are found in RC1) | 01-09-2015 | 01-09-2015 |
 
 Screenshots
