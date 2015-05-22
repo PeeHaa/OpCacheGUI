@@ -69,6 +69,15 @@ Timeline
 
 ###### v2.0.0
 
+| Phase                                              | Start      | End        |
+| -------------------------------------------------- | ---------- | ---------- |
+| Finalize roadmap                                   | 23-05-2015 | 24-05-2015 |
+| Create v1.1.0 branch                               | 24-05-2015 | 24-05-2015 |     
+| Development                                        | 01-06-2015 | 31-07-2015 |
+| RC1 release                                        | 01-08-2015 | 15-08-2015 |
+| RC2 release                                        | 15-08-2015 | 31-08-2015 |
+| Stable  (when no blocking issues are found in RC1) | 01-09-2015 | 01-09-2015 |
+
 Screenshots
 -
 
