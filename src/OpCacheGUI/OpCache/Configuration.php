@@ -79,7 +79,6 @@ class Configuration
             'opcache.error_log'               => $directives['opcache.error_log'],
             'opcache.protect_memory'          => $directives['opcache.protect_memory'],
             'opcache.save_comments'           => $directives['opcache.save_comments'],
-            'opcache.load_comments'           => $directives['opcache.load_comments'],
             'opcache.fast_shutdown'           => $directives['opcache.fast_shutdown'],
             'opcache.enable_file_override'    => $directives['opcache.enable_file_override'],
             'opcache.optimization_level'      => $directives['opcache.optimization_level'],
