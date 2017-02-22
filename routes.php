@@ -73,3 +73,49 @@ $router->post('invalidate', function() use ($jsonTemplate, $csrfToken, $request)
         'result'    => ($csrfToken->validate($request->post('csrfToken')) && opcache_invalidate($request->post('key'), true)) ? 'success' : 'failed',
     ]);
 });
+
+$router->get('apcuimg1', function() {
+    OpCacheGUI\Addons\APCUHelper::createimg(1);
+});
+
+$router->get('apcuimg2', function() {
+    OpCacheGUI\Addons\APCUHelper::createimg(2);
+});
+
+
+$router->get('apcuimg3', function() {
+    OpCacheGUI\Addons\APCUHelper::createimg(3);
+});
+
+$router->post('resetapcu', function() use ($jsonTemplate, $csrfToken) {
+    return $jsonTemplate->render('resetapcu.pjson', [
+        'csrfToken' => $csrfToken,
+    ]);
+});
+
+$router->get('apcustatus', function() use ($htmlTemplate, $byteFormatter,$csrfToken,$translator) {
+    return $htmlTemplate->render('apcustatus.phtml', [
+        'byteFormatter' => $byteFormatter,
+        'csrfToken'     => $csrfToken,
+        'active'        => 'graphs',
+        'title'         => $translator->translate('apcu.status'),
+    ]);
+});
+
+$router->get('apcuvars', function() use ($htmlTemplate, $byteFormatter,$csrfToken,$translator) {
+    return $htmlTemplate->render('apcuvars.phtml', [
+        'byteFormatter' => $byteFormatter,
+        'csrfToken'     => $csrfToken,
+        'active'        => 'graphs',
+        'title'         => $translator->translate('apcu.cached_vars'),
+    ]);
+});
+
+$router->get('apcuconfig', function() use ($htmlTemplate, $byteFormatter,$csrfToken,$translator) {
+    return $htmlTemplate->render('apcuconfig.phtml', [
+        'byteFormatter' => $byteFormatter,
+        'csrfToken'     => $csrfToken,
+        'active'        => 'graphs',
+        'title'         => $translator->translate('apcu.runtimesettings'),
+    ]);
+});

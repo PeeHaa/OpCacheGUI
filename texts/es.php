@@ -126,5 +126,64 @@ $texts = [
     'graph.hits.title'                                      => 'Aciertos',
     'graph.hits.hits'                                       => 'aciertos',
     'graph.hits.misses'                                     => 'desaciertos',
-    'graph.hits.blacklist'                                  => 'lista negra'
+    'graph.hits.blacklist'                                  => 'lista negra',
+
+    'menu.apcustatus'                                        => 'Status de APCU',
+    'menu.apcuconfig'                                       => 'Parámetros de APCU',
+    'menu.apcuvars'                                          => 'Variables de APCU',
+
+    'apcu.status' => 'Estatus APCu',
+    'apcu.generalinfo' => 'Información General APCu',
+    'apcu.apcversion' => 'Versión APCu',
+    'apcu.phpversion' => 'Versión PHP',
+    'apcu.server_name' => 'Servidor APCu',
+    'apcu.server_software' => 'Software de Servidor',
+    'apcu.sharedmemory' => 'Memoria Compartida',
+    'apcu.start_time' => 'Fecha Inicio',
+    'apcu.uptime' => 'Tiempo en línea',
+    'apcu.file_upload_progress' => 'Soporte para carga de archivos',
+
+    'apcu.cacheinfo' => 'Información de Caché APCu',
+    'apcu.cached_vars'=> 'Variables en Caché',
+    'apcu.num_hits'=> 'Aciertos',
+    'apcu.num_misses'=> 'Desaciertos',
+    'apcu.req_rate_user'=> 'Tasa de peticiones (aciertos, desaciertos)',
+    'apcu.hit_rate_user'=> 'Tasa de Aciertos',
+    'apcu.miss_rate_user'=> 'Tasa de Desaciertos',
+    'apcu.insert_rate_user'=> 'Tasa de inserciones',
+    'apcu.num_expunges'=> 'Conteo total de Caché',
+
+    'apcu.apcuconfig' => 'Configuración de Tiempo de Ejecución de APCu',
+    'apcu.runtimesettings' => 'Configuración de Tiempo de Ejecución de APCu',
+    
+    'apcu.hoststatusdiagrams'=>'Diagramas de Estado de Servidor APCu',
+    'apcu.detailedmemoryusage'=>'Uso detallado de memoria y fragmentación APCu',
+
+
+    'apc.enabled' => 'apc.enabled si se deja en 0 se deshabilita APCu. Sirve para apagar APCu cuando se ha compilado estáticamente. Si está compilado como librería de PHP, basta comentar la línea donde se le incluye',
+    'apc.enable_cli' => 'Más que nada para probar y debuggear, ya que esto habilita el APCu para PHP en línea de comando, En circunstancias normales no tiene sentido crear o destruir variables de caché entre ejecuciones de línea de comando, pero para casos especiales es bueno poder habilitarlo.',
+    'apc.coredump_unmap' => 'Permite que APCu maneje señales del sistema operativo como SIGSEGV, que escribe archivos del núcleo cuando se emite. Al recibir la señal, APCu intentará deshacer el segmento de memoria mapeada, para excluirlos del dump. Esta configuración podría mejorar la estabilidad del server cuando se mata el proceso y hay mucha memoria destinada a APCu.',
+    'apc.entries_hint' => 'Es una sugerencia respecto a cuantas variables se deben almacenar. Dejarlo en cero para no usar sugerencia.',
+    'apc.gc_ttl' => 'Cuántos segundos permanece una entrada de caché en la lista de recolección de basura. Sirve como respaldo en caso de que el server se caiga mientras ejecuta un archivo de caché. Si ese archivo se modifica, la memoria destinada a resguardar la versión previa de ese archivo no se va a liberar hasta cumplir tantos segundos como dice este setting. Si se deja en cero, no se usa.',
+    'apc.mmap_file_mask' => 'Cuando APCu se compiló co soporte MMAP usando --enable-mmap, esta es la máscara de archivos que se para al módulo mmap para saber si una región se aloja en RAM o en archivos. Cuando se usan sólo archivos, fije este parámetro en algo como /tmp/apc.XXXXXX (hay que usar exactamente 6 caracteres en las X). Si se desea usar shm_open/mmap al estilo POSIX, incluya la cadena ".shm" en la máscara. Por ejemplo: /apc.shm.XXXXXX. También puede fijarse a "/dev/zero" para usar la interfaz /dev/zero del kernel para usar un mapa anónimo. Si el parámetro no se define, se usa un mapa anónimo.',
+    'apc.preload_path' => 'Opcionalmente, si se define esta ruta, APC va a precargar estos archivos en memoria (No aplica en APCu)',
+    'apc.rfc1867' => 'Si se compiló APC con PHP 5.2.0 o posterior, está disponible un hook para subida de archivos según el RFC1867. Significa que cualquier subida de archivos que incluye un campo APC_UPLOAD_PROGRESS antes del campo de archivo (en un formulario de subida de archivos) va a crear una entrada en APCu con el mismo nombre que el valor dado a ese campo.',
+    'apc.use_request_time'=> 'Usar el tiempo en que se registró el request SAPI como TTL',
+    'apc.file_md5'=> 'Guarda un hash md5 de los archivos en caché (no se usa en APCu)',
+    'apc.lazy_functions'=> 'Permite lazy loading de funciones (no se cargan hasta que se invocan)',
+    'apc.lazy_classes'=> 'Permite lazy loading de clases (no se cargan hasta que se invocan)',
+    'apc.rfc1867_prefix'=> 'Prefijo para la llave de caché que se genera cuando un usuario sube un archivo y está activo apc.rfc1867',
+    'apc.rfc1867_name'=> 'Especifica el nombre del input que se debe poner en un formulario para activar el progreso de upload de APC upload progress. Este valor se usa también como sufijo en la llave',
+    'apc.rfc1867_freq' => 'Frecuencia con que se actualiza el progreso de la subida de un archivo si está activo el apc.rfc1867.',
+    'apc.rfc1867_ttl'=> 'TTL para llaves generadas por rfc1867.',
+    'apc.localcache'=> 'Esto habilita una copia local del caché, sin bloqueo, que reduce los bloqueos de lectura cuando se está escribiendo al caché.',
+    'apc.ttl' => 'Los segundos que una entrada de caché permanece en memoria cuando no es utilizada y otra entrada necesita usar esa memoria. Si se pone este setting en cero, APCu podría llenar el caché con entradas que no se usan, y quedarse sin memoria. Cualquier valor mayor a 0 significa que APCu intentará quitar las entradas obsoletas de la memoria',
+    'apc.serializer' => 'Se usa para conectar APCu a un serializador externo.',
+    'apc.writable' => '(sin documentación) Suponemos que permite hacer que el caché sea escribible o de sólo lectura.',
+    'apc.smart' => '(sin documentación)',
+    'apc.slam_defense' => 'Si el servidor tiene mucha carga (o al encender el servicio) podría pasar que muchos procesos quisieran escribir a memoria simultáneamente.  Este parámetro determina el porcentaje de requests que no intentarán escribir al caché. Si se fija en cero se deshabilita la opción.',
+    'apc.shm_segments' => 'La cantidad de segmentos de memoria destinados al caché de compilador. Si APC se está quedando sin memoria, pero apc.shm_size es tan alto como el sistema permite, fijar este parámetro podría prevenir que APC se quedara sin memoria.',
+    'apc.shm_size' => 'El tamaño de cada segmento de memoria, en MB. Por defecto, algunos sistemas operativos (incluyendo los derivados de BSD), tienen límites muy bajos en el tamaño de cada segmento. (Por eso es necesario destinar N segmentos en vez de un solo segmento grande)'
+
+
 ];

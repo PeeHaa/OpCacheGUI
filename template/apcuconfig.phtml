@@ -1,0 +1,20 @@
+<?php
+$apcuHelper=new OpCacheGUI\Addons\APCUHelper();
+?>
+
+<section id="apcuconfig-tabs" class="tabs">
+    <section data-content="Runtime Settings">
+        <table class="apcu">
+            
+            <?php foreach ($apcuHelper->getRuntimeSettings() as $key => $settingItem) { ?>
+            <tr>
+                <td><?= $key; ?></td>
+                <td><?php print_r($settingItem); ?></td>
+                <td><?= $this->translator->translate($key); ?></td>
+            </tr>
+            <?php } ?>
+            <tr><td>&nbsp;</td></tr>
+        </table>
+    </section>
+
+</section>
