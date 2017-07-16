@@ -2,9 +2,11 @@
 
 namespace OpCacheGUITest\Unit\Network;
 
+use PHPUnit\Framework\TestCase;
+
 use OpCacheGUI\Network\Route;
 
-class RouteTest extends \PHPUnit_Framework_TestCase
+class RouteTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Network\Route::__construct

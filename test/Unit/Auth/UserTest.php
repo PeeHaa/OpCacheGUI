@@ -2,9 +2,13 @@
 
 namespace OpCacheGUITest\Unit\Auth;
 
-use OpCacheGUI\Auth\User;
+use PHPUnit\Framework\TestCase;
 
-class UserTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Auth\User;
+use OpCacheGUI\Auth\Whitelist;
+use OpCacheGUI\Storage\Session;
+
+class UserTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Auth\User::__construct
@@ -12,10 +16,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsloggedInTrue()
     {
-        $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
+        $session = $this->getMockBuilder(Session::class)->getMock();
         $session->method('isKeyValid')->willReturn(true);
 
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
 
         $user = new User($session, 'user', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
@@ -28,10 +32,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsloggedInFalse()
     {
-        $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
+        $session = $this->getMockBuilder(Session::class)->getMock();
         $session->method('isKeyValid')->willReturn(false);
 
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
 
         $user = new User($session, 'user', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
@@ -44,9 +48,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRequiresLoginLoginNotEnabledInConfig()
     {
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
 
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), '', '', $whitelist);
+        $user = new User($this->getMockBuilder(Session::class)->getMock(), '', '', $whitelist);
 
         $this->assertFalse($user->requiresLogin());
     }
@@ -58,10 +62,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRequiresLoginRequiredButNotLoggedIn()
     {
-        $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
+        $session = $this->getMockBuilder(Session::class)->getMock();
         $session->method('isKeyValid')->willReturn(false);
 
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
 
         $user = new User($session, 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
@@ -75,10 +79,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testRequiresLoginRequiredAndLoggedIn()
     {
-        $session = $this->getMock('\\OpCacheGUI\\Storage\\Session');
+        $session = $this->getMockBuilder(Session::class)->getMock();
         $session->method('isKeyValid')->willReturn(true);
 
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
 
         $user = new User($session, 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
@@ -91,10 +95,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginFailedIncorrectPassword()
     {
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
         $whitelist->method('isAllowed')->will($this->returnValue(true));
 
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
+        $user = new User($this->getMockBuilder(Session::class)->getMock(), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
         $this->assertFalse($user->login('foo', 'nothashedbar', '127.0.0.1'));
     }
@@ -105,10 +109,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginFailedIncorrectUsername()
     {
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
         $whitelist->method('isAllowed')->will($this->returnValue(true));
 
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
+        $user = new User($this->getMockBuilder(Session::class)->getMock(), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
         $this->assertFalse($user->login('incorrect', 'bar', '127.0.0.1'));
     }
@@ -119,10 +123,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginFailedIncorrectPasswordAndUsername()
     {
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
         $whitelist->method('isAllowed')->will($this->returnValue(true));
 
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
+        $user = new User($this->getMockBuilder(Session::class)->getMock(), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
         $this->assertFalse($user->login('incorrect', 'incorrect', '127.0.0.1'));
     }
@@ -133,10 +137,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginFailedIpNotWhitelisted()
     {
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
         $whitelist->method('isAllowed')->will($this->returnValue(false));
 
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
+        $user = new User($this->getMockBuilder(Session::class)->getMock(), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
         $this->assertFalse($user->login('foo', 'bar', '127.0.0.1'));
     }
@@ -147,10 +151,10 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoginSuccess()
     {
-        $whitelist = $this->getMock('\\OpCacheGUI\\Auth\\Whitelist');
+        $whitelist = $this->getMockBuilder(Whitelist::class)->getMock();
         $whitelist->method('isAllowed')->will($this->returnValue(true));
 
-        $user = new User($this->getMock('\\OpCacheGUI\\Storage\\Session'), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
+        $user = new User($this->getMockBuilder(Session::class)->getMock(), 'foo', '$2y$14$Gh5y/MR130J3V1xhH5eGWOvpTMgLu9Er82o3ZNrhxMuyZm6Sdx96q', $whitelist);
 
         $this->assertTrue($user->login('foo', 'bar', '127.0.0.1'));
     }

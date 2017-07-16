@@ -2,9 +2,12 @@
 
 namespace OpCacheGUITest\OpCache;
 
-use OpCacheGUI\OpCache\Configuration;
+use PHPUnit\Framework\TestCase;
 
-class ConfigurationTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\OpCache\Configuration;
+use OpCacheGUI\Format\Byte;
+
+class ConfigurationTest extends TestCase
 {
     protected $configData;
 
@@ -54,7 +57,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetIniDirectives()
     {
-        $formatter = $this->getMock('\\OpCacheGUI\\Format\\Byte');
+        $formatter = $this->getMockBuilder(Byte::class)->getMock();
         $formatter->method('format')->willReturn('1KB');
 
         $config = new Configuration($formatter, $this->configData);
@@ -70,7 +73,7 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetBlackList()
     {
-        $config = new Configuration($this->getMock('\\OpCacheGUI\\Format\\Byte'), $this->configData);
+        $config = new Configuration($this->getMockBuilder(Byte::class)->getMock(), $this->configData);
 
         $this->assertSame($this->configData['blacklist'], $config->getBlackList());
     }

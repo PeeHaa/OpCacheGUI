@@ -2,9 +2,12 @@
 
 namespace OpCacheGUITest\Unit\Network;
 
-use OpCacheGUI\Network\Request;
+use PHPUnit\Framework\TestCase;
 
-class RequestTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Network\Request;
+use OpCacheGUI\Network\RequestData;
+
+class RequestTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Network\Request::__construct
@@ -13,7 +16,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
     {
         $request = new Request([], [], ['REQUEST_URI' => '']);
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\RequestData', $request);
+        $this->assertInstanceOf(RequestData::class, $request);
     }
 
     /**

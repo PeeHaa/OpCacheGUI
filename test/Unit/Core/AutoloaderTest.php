@@ -2,9 +2,11 @@
 
 namespace OpCacheGUITest\Unit\Core;
 
+use PHPUnit\Framework\TestCase;
+
 use OpCacheGUI\Core\Autoloader;
 
-class AutoloaderTest extends \PHPUnit_Framework_TestCase
+class AutoloaderTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Core\Autoloader::__construct
@@ -13,7 +15,7 @@ class AutoloaderTest extends \PHPUnit_Framework_TestCase
     {
         $autoloader = new Autoloader('Test', '/');
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Core\\Autoloader', $autoloader);
+        $this->assertInstanceOf(Autoloader::class, $autoloader);
     }
 
     /**

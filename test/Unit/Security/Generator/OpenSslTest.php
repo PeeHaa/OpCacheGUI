@@ -2,9 +2,13 @@
 
 namespace OpCacheGUITest\Unit\Security\Generator;
 
-use OpCacheGUI\Security\Generator\OpenSsl;
+use PHPUnit\Framework\TestCase;
 
-class OpenSslTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Security\Generator;
+use OpCacheGUI\Security\Generator\OpenSsl;
+use OpCacheGUI\Security\Generator\UnsupportedAlgorithmException;
+
+class OpenSslTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Security\Generator\OpenSsl::__construct
@@ -17,7 +21,7 @@ class OpenSslTest extends \PHPUnit_Framework_TestCase
 
         $generator = new OpenSsl();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator', $generator);
+        $this->assertInstanceOf(Generator::class, $generator);
     }
 
     /**
@@ -29,7 +33,7 @@ class OpenSslTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('The OpenSSL extension is available.');
         }
 
-        $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\UnsupportedAlgorithmException');
+        $this->expectException(UnsupportedAlgorithmException::class);
 
         new OpenSsl();
     }

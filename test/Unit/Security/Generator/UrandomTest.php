@@ -2,9 +2,13 @@
 
 namespace OpCacheGUITest\Unit\Security\Generator;
 
-use OpCacheGUI\Security\Generator\Urandom;
+use PHPUnit\Framework\TestCase;
 
-class UrandomTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Security\Generator;
+use OpCacheGUI\Security\Generator\Urandom;
+use OpCacheGUI\Security\Generator\UnsupportedAlgorithmException;
+
+class UrandomTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Security\Generator\Urandom::__construct
@@ -17,7 +21,7 @@ class UrandomTest extends \PHPUnit_Framework_TestCase
 
         $generator = new Urandom();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator', $generator);
+        $this->assertInstanceOf(Generator::class, $generator);
     }
 
     /**
@@ -29,7 +33,7 @@ class UrandomTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('The current operating system does support /dev/urandom');
         }
 
-        $this->setExpectedException('\\OpCacheGUI\\Security\Generator\\UnsupportedAlgorithmException');
+        $this->expectException(UnsupportedAlgorithmException::class);
 
         new Urandom();
     }
