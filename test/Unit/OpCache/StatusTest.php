@@ -10,6 +10,8 @@ class StatusTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
+        date_default_timezone_set('UTC');
+
         $this->statusData = [
             'opcache_enabled'     => true,
             'cache_full'          => false,
@@ -226,6 +228,35 @@ class StatusTest extends \PHPUnit_Framework_TestCase
         $data['opcache_hit_rate']     = '95.16%';
         $data['start_time']           = '13:41:33 08-10-2014';
         $data['last_restart_time']    = '17:40:00 08-10-2014';
+
+        $formattedData = [
+            array_slice($data, 0, 7, true),
+            array_slice($data, 7, null, true),
+        ];
+
+        $this->assertSame($formattedData, $status->getStatsInfo());
+    }
+
+    /**
+     * @covers OpCacheGUI\OpCache\Status::__construct
+     * @covers OpCacheGUI\OpCache\Status::getStatsInfo
+     */
+    public function testGetStatsInfoWithOpCacheEnabledTakesIntoAccountTimeZones()
+    {
+        date_default_timezone_set('Europe/Amsterdam');
+
+        $status = new Status(
+            $this->getMock('\\OpCacheGUI\\Format\\Byte'),
+            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
+            $this->statusData
+        );
+
+        $data = $this->statusData['opcache_statistics'];
+
+        $data['blacklist_miss_ratio'] = 0.0;
+        $data['opcache_hit_rate']     = '95.16%';
+        $data['start_time']           = '15:41:33 08-10-2014';
+        $data['last_restart_time']    = '19:40:00 08-10-2014';
 
         $formattedData = [
             array_slice($data, 0, 7, true),
