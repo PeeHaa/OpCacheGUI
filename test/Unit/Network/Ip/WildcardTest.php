@@ -2,9 +2,12 @@
 
 namespace OpCacheGUITest\Unit\Network\Ip;
 
-use OpCacheGUI\Network\Ip\Wildcard;
+use PHPUnit\Framework\TestCase;
 
-class WildcardTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Network\Ip\Wildcard;
+use OpCacheGUI\Network\Ip\Converter;
+
+class WildcardTest extends TestCase
 {
     /**
      */
@@ -12,7 +15,7 @@ class WildcardTest extends \PHPUnit_Framework_TestCase
     {
         $ipRange = new Wildcard();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Ip\\Converter', $ipRange);
+        $this->assertInstanceOf(Converter::class, $ipRange);
     }
 
     /**

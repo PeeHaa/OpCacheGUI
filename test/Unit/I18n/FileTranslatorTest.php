@@ -2,9 +2,14 @@
 
 namespace OpCacheGUITest\Unit\I18n;
 
-use OpCacheGUI\I18n\FileTranslator;
+use PHPUnit\Framework\TestCase;
 
-class FileTranslatorTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\I18n\FileTranslator;
+use OpCacheGUI\I18n\Translator;
+
+use \Exception;
+
+class FileTranslatorTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\I18n\FileTranslator::__construct
@@ -13,7 +18,7 @@ class FileTranslatorTest extends \PHPUnit_Framework_TestCase
     {
         $translator = new FileTranslator(__DIR__ . '/../../Data/texts', 'en');
 
-        $this->assertInstanceOf('\\OpCacheGUI\\I18n\\Translator', $translator);
+        $this->assertInstanceOf(Translator::class, $translator);
     }
 
     /**
@@ -21,7 +26,8 @@ class FileTranslatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructThrowsUpOnUnsupportedLanguage()
     {
-        $this->setExpectedException('Exception', 'Unsupported language (`abcdef`).');
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('Unsupported language (`abcdef`).');
 
         new FileTranslator(__DIR__ . '/../../Data/texts', 'abcdef');
     }
@@ -31,7 +37,8 @@ class FileTranslatorTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructThrowsUpOnInvalidTranslationFile()
     {
-        $this->setExpectedException('Exception', 'The translation file (`' . __DIR__ . '/../../Data/texts/invalid.php`) has an invalid format.');
+        $this->expectException(Exception::class);
+        $this->expectExceptionMessage('The translation file (`' . __DIR__ . '/../../Data/texts/invalid.php`) has an invalid format.');
 
         new FileTranslator(__DIR__ . '/../../Data/texts', 'invalid');
     }

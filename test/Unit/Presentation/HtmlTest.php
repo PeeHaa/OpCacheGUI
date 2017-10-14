@@ -2,9 +2,15 @@
 
 namespace OpCacheGUITest\Unit\Presentation;
 
-use OpCacheGUI\Presentation\Html;
+use PHPUnit\Framework\TestCase;
 
-class HtmlTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Presentation\Html;
+use OpCacheGUI\I18n\Translator;
+use OpCacheGUI\Presentation\UrlRenderer;
+use OpCacheGUI\Presentation\Renderer;
+use OpCacheGUI\Presentation\Template;
+
+class HtmlTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Presentation\Html::__construct
@@ -14,11 +20,11 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__,
             'page.phtml',
-            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
+            $this->getMockBuilder(Translator::class)->getMock(),
+            $this->getMockBuilder(UrlRenderer::class)->getMock()
         );
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Renderer', $html);
+        $this->assertInstanceOf(Renderer::class, $html);
     }
 
     /**
@@ -29,11 +35,11 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__,
             'page.phtml',
-            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
+            $this->getMockBuilder(Translator::class)->getMock(),
+            $this->getMockBuilder(UrlRenderer::class)->getMock()
         );
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Template', $html);
+        $this->assertInstanceOf(Template::class, $html);
     }
 
     /**
@@ -46,8 +52,8 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__ . '/../../Data/templates/',
             'skeleton.phtml',
-            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
+            $this->getMockBuilder(Translator::class)->getMock(),
+            $this->getMockBuilder(UrlRenderer::class)->getMock()
         );
 
         $this->assertSame('<skeleton>content</skeleton>', $html->render('example.phtml'));

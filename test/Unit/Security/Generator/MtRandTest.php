@@ -2,9 +2,12 @@
 
 namespace OpCacheGUITest\Unit\Security\Generator;
 
+use PHPUnit\Framework\TestCase;
+
+use OpCacheGUI\Security\Generator;
 use OpCacheGUI\Security\Generator\MtRand;
 
-class MtRandTest extends \PHPUnit_Framework_TestCase
+class MtRandTest extends TestCase
 {
     /**
      */
@@ -12,7 +15,7 @@ class MtRandTest extends \PHPUnit_Framework_TestCase
     {
         $generator = new MtRand();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator', $generator);
+        $this->assertInstanceOf(Generator::class, $generator);
     }
 
     /**

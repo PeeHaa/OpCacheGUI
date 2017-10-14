@@ -2,18 +2,22 @@
 
 namespace OpCacheGUITest\Unit\Presentation;
 
-use OpCacheGUITest\Mocks\Presentation\TemplateMock;
+use PHPUnit\Framework\TestCase;
 
-class TemplateTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUITest\Mocks\Presentation\TemplateMock;
+use OpCacheGUI\I18n\Translator;
+use OpCacheGUI\Presentation\Renderer;
+
+class TemplateTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Presentation\Template::__construct
      */
     public function testConstructCorrectInterface()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->getMockBuilder(Translator::class)->getMock());
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Renderer', $template);
+        $this->assertInstanceOf(Renderer::class, $template);
     }
 
     /**
@@ -22,7 +26,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicGetExists()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->getMockBuilder(Translator::class)->getMock());
 
         $template->set('foo', 'bar');
 
@@ -35,7 +39,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicGetDoesNotExist()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->getMockBuilder(Translator::class)->getMock());
 
         $this->assertNull($template->foo);
     }
@@ -46,7 +50,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicIssetExists()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->getMockBuilder(Translator::class)->getMock());
 
         $template->set('foo', 'bar');
 
@@ -59,7 +63,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicIssetDoesNotExist()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->getMockBuilder(Translator::class)->getMock());
 
         $this->assertFalse(isset($template->foo));
     }

@@ -2,10 +2,13 @@
 
 namespace OpCacheGUITest\Unit\Presentation;
 
+use PHPUnit\Framework\TestCase;
+
 use OpCacheGUI\Presentation\Url;
 use OpCacheGUI\Network\Router;
+use OpCacheGUI\Presentation\UrlRenderer;
 
-class UrlTest extends \PHPUnit_Framework_TestCase
+class UrlTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Presentation\Url::__construct
@@ -14,7 +17,7 @@ class UrlTest extends \PHPUnit_Framework_TestCase
     {
         $url = new Url(Router::URL_REWRITE);
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\UrlRenderer', $url);
+        $this->assertInstanceOf(UrlRenderer::class, $url);
     }
 
     /**

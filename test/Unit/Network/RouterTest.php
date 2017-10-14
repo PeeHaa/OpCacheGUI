@@ -2,9 +2,14 @@
 
 namespace OpCacheGUITest\Unit\Network;
 
-use OpCacheGUI\Network\Router;
+use PHPUnit\Framework\TestCase;
 
-class RouterTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Network\RequestData;
+use OpCacheGUI\Network\Route;
+use OpCacheGUI\Network\Router;
+use OpCacheGUI\Network\RouteBuilder;
+
+class RouterTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Network\Router::__construct
@@ -14,15 +19,15 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testPost()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('getVerb')->willReturn('POST');
         $requestMock->method('path')->willReturn('somepath');
 
-        $routeMock = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMock = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMock->method('matchesRequest')->willReturn(true);
         $routeMock->method('run')->willReturn('foo');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
         $factoryMock->method('build')->willReturn($routeMock);
 
         $router = new Router($requestMock, $factoryMock);
@@ -39,15 +44,15 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testGet()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('getVerb')->willReturn('GET');
         $requestMock->method('path')->willReturn('somepath');
 
-        $routeMock = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMock = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMock->method('matchesRequest')->willReturn(true);
         $routeMock->method('run')->willReturn('foo');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
         $factoryMock->method('build')->willReturn($routeMock);
 
         $router = new Router($requestMock, $factoryMock);
@@ -63,15 +68,15 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunNoRoutes()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('getVerb')->willReturn('GET');
         $requestMock->method('path')->willReturn('somepath');
 
-        //$routeMock = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        //$routeMock = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         //$routeMock->method('matchesRequest')->will($this->onConsecutiveCalls(false, true));
         //$routeMock->method('run')->willReturn('main route');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
         //$factoryMock->method('build')->willReturn($routeMock);
 
         $router = new Router($requestMock, $factoryMock);
@@ -87,15 +92,15 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunNoMatchFirstMatchMain()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('getVerb')->willReturn('GET');
         $requestMock->method('path')->willReturn('somepath');
 
-        $routeMock = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMock = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMock->method('matchesRequest')->will($this->onConsecutiveCalls(false, true));
         $routeMock->method('run')->willReturn('main route');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
         $factoryMock->method('build')->willReturn($routeMock);
 
         $router = new Router($requestMock, $factoryMock);
@@ -111,15 +116,15 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunNoMatchSecondMatchMain()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('getVerb')->willReturn('GET');
         $requestMock->method('path')->willReturn('somepath');
 
-        $routeMock = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMock = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMock->method('matchesRequest')->will($this->onConsecutiveCalls(false, false, false, true));
         $routeMock->method('run')->willReturn('main route');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
         $factoryMock->method('build')->willReturn($routeMock);
 
         $router = new Router($requestMock, $factoryMock);
@@ -137,19 +142,19 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunMatchesFirst()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('getVerb')->willReturn('POST');
         $requestMock->method('path')->willReturn('somepath');
 
-        $routeMockMatch = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMockMatch = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMockMatch->method('matchesRequest')->willReturn(true);
         $routeMockMatch->method('run')->willReturn('match');
 
-        $routeMockNoMatch = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMockNoMatch = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMockNoMatch->method('matchesRequest')->willReturn(false);
         $routeMockNoMatch->method('run')->willReturn('nomatch');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
         $factoryMock->method('build')->will($this->onConsecutiveCalls($routeMockMatch, $routeMockNoMatch));
 
         $router = new Router($requestMock, $factoryMock);
@@ -166,19 +171,19 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testRunMatchesLast()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('getVerb')->willReturn('POST');
         $requestMock->method('path')->willReturn('somepath');
 
-        $routeMockMatch = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMockMatch = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMockMatch->method('matchesRequest')->willReturn(true);
         $routeMockMatch->method('run')->willReturn('match');
 
-        $routeMockNoMatch = $this->getMockBuilder('\\OpCacheGUI\\Network\\Route')->disableOriginalConstructor()->getMock();
+        $routeMockNoMatch = $this->getMockBuilder(Route::class)->disableOriginalConstructor()->getMock();
         $routeMockNoMatch->method('matchesRequest')->willReturn(false);
         $routeMockNoMatch->method('run')->willReturn('nomatch');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
         $factoryMock->method('build')->will($this->onConsecutiveCalls($routeMockNoMatch, $routeMockMatch));
 
         $router = new Router($requestMock, $factoryMock);
@@ -194,10 +199,10 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testIdentifierWithImplicitUrlRewrite()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('path')->willReturn('somepath');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
 
         $router = new Router($requestMock, $factoryMock);
 
@@ -210,10 +215,10 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testIdentifierWithExplicitUrlRewrite()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('path')->willReturn('somepath');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
 
         $router = new Router($requestMock, $factoryMock, Router::URL_REWRITE);
 
@@ -226,10 +231,10 @@ class RouterTest extends \PHPUnit_Framework_TestCase
      */
     public function testIdentifierWithQueryString()
     {
-        $requestMock = $this->getMock('\\OpCacheGUI\\Network\\RequestData');
+        $requestMock = $this->getMockBuilder(RequestData::class)->getMock();
         $requestMock->method('get')->willReturn('somepath');
 
-        $factoryMock = $this->getMock('\\OpCacheGUI\\Network\\RouteBuilder');
+        $factoryMock = $this->getMockBuilder(RouteBuilder::class)->getMock();
 
         $router = new Router($requestMock, $factoryMock, Router::QUERY_STRING);
 

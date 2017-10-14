@@ -2,18 +2,23 @@
 
 namespace OpCacheGUITest\Unit\Presentation;
 
-use OpCacheGUI\Presentation\Json;
+use PHPUnit\Framework\TestCase;
 
-class JsonTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Presentation\Json;
+use OpCacheGUI\I18n\Translator;
+use OpCacheGUI\Presentation\Renderer;
+use OpCacheGUI\Presentation\Template;
+
+class JsonTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Presentation\Json::__construct
      */
     public function testConstructCorrectInterface()
     {
-        $json = new Json(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $json = new Json(__DIR__, $this->getMockBuilder(Translator::class)->getMock());
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Renderer', $json);
+        $this->assertInstanceOf(Renderer::class, $json);
     }
 
     /**
@@ -21,9 +26,9 @@ class JsonTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructCorrectInstance()
     {
-        $json = new Json(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $json = new Json(__DIR__, $this->getMockBuilder(Translator::class)->getMock());
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Template', $json);
+        $this->assertInstanceOf(Template::class, $json);
     }
 
     /**
@@ -32,7 +37,7 @@ class JsonTest extends \PHPUnit_Framework_TestCase
      */
     public function testRender()
     {
-        $json = new Json(__DIR__ . '/../../Data/templates', $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $json = new Json(__DIR__ . '/../../Data/templates', $this->getMockBuilder(Translator::class)->getMock());
 
         $this->assertSame('content', $json->render('example.pjson'));
     }

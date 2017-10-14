@@ -2,9 +2,14 @@
 
 namespace OpCacheGUITest\Unit\Storage;
 
-use OpCacheGUI\Storage\Session;
+use PHPUnit\Framework\TestCase;
 
-class SessionTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Storage\Session;
+use OpCacheGUI\Storage\InvalidKeyException;
+use OpCacheGUI\Storage\KeyValuePair;
+use OpCacheGUI\Storage\Regeneratable;
+
+class SessionTest extends TestCase
 {
     /**
      */
@@ -12,16 +17,17 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     {
         $session = new Session();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Storage\\KeyValuePair', $session);
+        $this->assertInstanceOf(KeyValuePair::class, $session);
     }
 
     /**
      */
     public function testCorrectInterfaceRegeneratable()
     {
+        // @TODO Really Session, not Regeneratable???
         $session = new Session();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Storage\\Regeneratable', $session);
+        $this->assertInstanceOf(Regeneratable::class, $session);
     }
 
     /**
@@ -55,7 +61,7 @@ class SessionTest extends \PHPUnit_Framework_TestCase
     public function testGetInvalid()
     {
         $session = new Session();
-        $this->setExpectedException('\\OpCacheGUI\\Storage\\InvalidKeyException');
+        $this->expectException(InvalidKeyException::class);
 
         $session->get('key');
     }

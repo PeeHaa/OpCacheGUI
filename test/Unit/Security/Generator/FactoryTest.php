@@ -2,9 +2,14 @@
 
 namespace OpCacheGUITest\Unit\Security\Generator;
 
-use OpCacheGUI\Security\Generator\Factory;
+use PHPUnit\Framework\TestCase;
 
-class FactoryTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Security\Generator;
+use OpCacheGUI\Security\Generator\Factory;
+use OpCacheGUI\Security\Generator\InvalidGeneratorException;
+use OpCacheGUI\Security\Generator\Builder;
+
+class FactoryTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Security\Generator\Factory::build
@@ -13,7 +18,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new Factory();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator\\Builder', $factory);
+        $this->assertInstanceOf(Builder::class, $factory);
     }
 
     /**
@@ -24,7 +29,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
         $factory = new Factory();
 
         $this->assertInstanceOf(
-            '\\OpCacheGUI\\Security\\Generator', $factory->build('\\OpCacheGUITest\\Mocks\\Security\\Generator\\Fake')
+            Generator::class, $factory->build('\\OpCacheGUITest\\Mocks\\Security\\Generator\\Fake')
         );
     }
 
@@ -35,7 +40,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new Factory();
 
-        $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\InvalidGeneratorException');
+        $this->expectException(InvalidGeneratorException::class);
 
         $factory->build('\\OpCacheGUIUnknown\\UnknownGenerator');
     }
@@ -47,7 +52,7 @@ class FactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new Factory();
 
-        $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\InvalidGeneratorException');
+        $this->expectException(InvalidGeneratorException::class);
 
         $factory->build('\\OpCacheGUITest\\Mocks\\Security\\Generator\\Invalid');
     }

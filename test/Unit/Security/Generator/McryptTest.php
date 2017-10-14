@@ -2,9 +2,13 @@
 
 namespace OpCacheGUITest\Unit\Security\Generator;
 
-use OpCacheGUI\Security\Generator\Mcrypt;
+use PHPUnit\Framework\TestCase;
 
-class McryptTest extends \PHPUnit_Framework_TestCase
+use OpCacheGUI\Security\Generator;
+use OpCacheGUI\Security\Generator\Mcrypt;
+use OpCacheGUI\Security\Generator\UnsupportedAlgorithmException;
+
+class McryptTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Security\Generator\Mcrypt::__construct
@@ -17,7 +21,7 @@ class McryptTest extends \PHPUnit_Framework_TestCase
 
         $generator = new Mcrypt();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Security\\Generator', $generator);
+        $this->assertInstanceOf(Generator::class, $generator);
     }
 
     /**
@@ -29,7 +33,7 @@ class McryptTest extends \PHPUnit_Framework_TestCase
             $this->markTestSkipped('The Mcrypt extension is available.');
         }
 
-        $this->setExpectedException('\\OpCacheGUI\\Security\\Generator\\UnsupportedAlgorithmException');
+        $this->expectException(UnsupportedAlgorithmException::class);
 
         new Mcrypt();
     }

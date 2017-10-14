@@ -2,9 +2,11 @@
 
 namespace OpCacheGUITest\Unit\Format;
 
+use PHPUnit\Framework\TestCase;
+
 use OpCacheGUI\Format\Byte;
 
-class ByteTest extends \PHPUnit_Framework_TestCase
+class ByteTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Format\Byte::format
