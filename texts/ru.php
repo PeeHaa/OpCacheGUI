@@ -89,8 +89,6 @@ $texts = [
     'config.opcache.protect_memory.description'             => 'Защищать разделяемую память от неожиданной записи во время исполнения. Полезно только для отладки.',
     'config.opcache.save_comments'                          => 'Сохранять комментарии',
     'config.opcache.save_comments.description'              => 'Если выключено, все PHPDoc комментарии будут исключены из кода для снижения размера оптимизированного кода.',
-    'config.opcache.load_comments'                          => 'Загружать комментарии',
-    'config.opcache.load_comments.description'              => 'Если выключено, то PHPDoc комментарии не будут загружены из разделяемой памяти, в следствии "Doc" могут быть сохранены (save_comments=1), но не загружены приложениями которым не требуются.',
     'config.opcache.fast_shutdown'                          => 'Быстрая остановка',
     'config.opcache.fast_shutdown.description'              => 'Если включено, используется быстрая остановка ускоренных скриптов.',
     'config.opcache.enable_file_override'                   => 'Переопределение файлов',

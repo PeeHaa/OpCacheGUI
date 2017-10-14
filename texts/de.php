@@ -89,8 +89,6 @@ $texts = [
     'config.opcache.protect_memory.description'             => 'Schützt den Speicher vor unerwarteten Schreibzugriffen während der Skriptausführung. Sinnvoll nur bei der Fehlersuche.',
     'config.opcache.save_comments'                          => 'save_comments',
     'config.opcache.save_comments.description'              => 'Ist diese Einstellung deaktiviert, werden alle PHPDoc-Kommentare aus dem Code gelöscht, um Speicherplatz zu sparen.',
-    'config.opcache.load_comments'                          => 'load_comments',
-    'config.opcache.load_comments.description'              => 'Ist diese Einstellung deaktiviert, werden PHPDoc-Kommentare nicht geladen. Auf diese Weise können die Kommentare zwar gespeichert (save_comments=1) werden, müssen aber, von Anwendungen die sie ohnehin nicht benötigen, nicht geladen werden.',
     'config.opcache.fast_shutdown'                          => 'fast_shutdown',
     'config.opcache.fast_shutdown.description'              => 'Ermöglicht eine schnelle Shutdown-Sequenz, die nicht jeden Speicherblock leert sondern den Speichermanager der Zend-Engine nutzt.',
     'config.opcache.enable_file_override'                   => 'enable_file_override',

@@ -89,8 +89,6 @@ $texts = [
     'config.opcache.protect_memory.description'             => 'Protéger la mémoire partagée d\'écritures inattendues lors de l\'exécution de scripts. Uniquement utile à des fins de débogage interne.',
     'config.opcache.save_comments'                          => 'Sauvegarder les commentaires',
     'config.opcache.save_comments.description'              => 'Si activé, tous les commentaires PHPDoc sont supprimés pour réduire la taille du code optimisé.',
-    'config.opcache.load_comments'                          => 'Activer les commentaires',
-    'config.opcache.load_comments.description'              => 'Si désactivé, les commentaires PHPDoc ne sont pas chargés à partir des SHM, donc les « commentaires documentatifs » devraient toujours être stockés (save_comments=1), mais pas chargés par les applications qui n\'en ont pas besoin de toute façon.',
     'config.opcache.fast_shutdown'                          => 'Extinction rapide',
     'config.opcache.fast_shutdown.description'              => 'Si activé, une séquence d\'arrêt rapide est utilisée pour le code accéléré.',
     'config.opcache.enable_file_override'                   => 'Coutournement de fichiers',
