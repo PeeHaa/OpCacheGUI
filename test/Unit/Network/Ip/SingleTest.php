@@ -2,9 +2,11 @@
 
 namespace OpCacheGUITest\Unit\Network\Ip;
 
+use OpCacheGUI\Network\Ip\Converter;
 use OpCacheGUI\Network\Ip\Single;
+use PHPUnit\Framework\TestCase;
 
-class SingleTest extends \PHPUnit_Framework_TestCase
+class SingleTest extends TestCase
 {
     /**
      */
@@ -12,7 +14,7 @@ class SingleTest extends \PHPUnit_Framework_TestCase
     {
         $ipRange = new Single();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Ip\\Converter', $ipRange);
+        $this->assertInstanceOf(Converter::class, $ipRange);
     }
 
     /**

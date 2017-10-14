@@ -2,16 +2,18 @@
 
 namespace OpCacheGUITest\Unit\Presentation;
 
+use OpCacheGUI\I18n\Translator;
 use OpCacheGUITest\Mocks\Presentation\TemplateMock;
+use PHPUnit\Framework\TestCase;
 
-class TemplateTest extends \PHPUnit_Framework_TestCase
+class TemplateTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Presentation\Template::__construct
      */
     public function testConstructCorrectInterface()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->createMock(Translator::class));
 
         $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Renderer', $template);
     }
@@ -22,7 +24,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicGetExists()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->createMock(Translator::class));
 
         $template->set('foo', 'bar');
 
@@ -35,7 +37,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicGetDoesNotExist()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->createMock(Translator::class));
 
         $this->assertNull($template->foo);
     }
@@ -46,7 +48,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicIssetExists()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->createMock(Translator::class));
 
         $template->set('foo', 'bar');
 
@@ -59,7 +61,7 @@ class TemplateTest extends \PHPUnit_Framework_TestCase
      */
     public function testMagicIssetDoesNotExist()
     {
-        $template = new TemplateMock(__DIR__, $this->getMock('\\OpCacheGUI\\I18n\\Translator'));
+        $template = new TemplateMock(__DIR__, $this->createMock(Translator::class));
 
         $this->assertFalse(isset($template->foo));
     }

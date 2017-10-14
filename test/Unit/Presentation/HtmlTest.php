@@ -2,9 +2,14 @@
 
 namespace OpCacheGUITest\Unit\Presentation;
 
+use OpCacheGUI\I18n\Translator;
 use OpCacheGUI\Presentation\Html;
+use OpCacheGUI\Presentation\Renderer;
+use OpCacheGUI\Presentation\Template;
+use OpCacheGUI\Presentation\UrlRenderer;
+use PHPUnit\Framework\TestCase;
 
-class HtmlTest extends \PHPUnit_Framework_TestCase
+class HtmlTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Presentation\Html::__construct
@@ -14,11 +19,11 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__,
             'page.phtml',
-            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
+            $this->createMock(Translator::class),
+            $this->createMock(UrlRenderer::class)
         );
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Renderer', $html);
+        $this->assertInstanceOf(Renderer::class, $html);
     }
 
     /**
@@ -29,11 +34,11 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__,
             'page.phtml',
-            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
+            $this->createMock(Translator::class),
+            $this->createMock(UrlRenderer::class)
         );
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Presentation\\Template', $html);
+        $this->assertInstanceOf(Template::class, $html);
     }
 
     /**
@@ -46,8 +51,8 @@ class HtmlTest extends \PHPUnit_Framework_TestCase
         $html = new Html(
             __DIR__ . '/../../Data/templates/',
             'skeleton.phtml',
-            $this->getMock('\\OpCacheGUI\\I18n\\Translator'),
-            $this->getMock('\\OpCacheGUI\\Presentation\\UrlRenderer')
+            $this->createMock(Translator::class),
+            $this->createMock(UrlRenderer::class)
         );
 
         $this->assertSame('<skeleton>content</skeleton>', $html->render('example.phtml'));

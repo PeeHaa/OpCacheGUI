@@ -13,7 +13,6 @@
          stopOnFailure="false"
          stopOnIncomplete="false"
          stopOnSkipped="false"
-         testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
          strict="false"
          verbose="false">
     <testsuites>
@@ -27,6 +26,7 @@
             <exclude>
                 <file>src/OpCacheGUI/bootstrap.php</file>
                 <file>src/OpCacheGUI/Storage/InvalidKeyException.php</file>
+                <file>src/OpCacheGUI/Security/InsufficientRandomData.php</file>
             </exclude>
         </whitelist>
     </filter>

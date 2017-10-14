@@ -2,9 +2,12 @@
 
 namespace OpCacheGUITest\Unit\Network;
 
+use OpCacheGUI\Network\Route;
+use OpCacheGUI\Network\RouteBuilder;
 use OpCacheGUI\Network\RouteFactory;
+use PHPUnit\Framework\TestCase;
 
-class RouteFactoryTest extends \PHPUnit_Framework_TestCase
+class RouteFactoryTest extends TestCase
 {
     /**
      */
@@ -12,7 +15,7 @@ class RouteFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new RouteFactory;
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\RouteBuilder', $factory);
+        $this->assertInstanceOf(RouteBuilder::class, $factory);
     }
 
     /**
@@ -22,6 +25,6 @@ class RouteFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $factory = new RouteFactory;
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Route', $factory->build('id', 'GET', function () {}));
+        $this->assertInstanceOf(Route::class, $factory->build('id', 'GET', function () {}));
     }
 }

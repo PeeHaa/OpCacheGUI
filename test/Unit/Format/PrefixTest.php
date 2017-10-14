@@ -3,8 +3,10 @@
 namespace OpCacheGUITest\Unit\Format;
 
 use OpCacheGUI\Format\Prefix;
+use OpCacheGUI\Format\Trimmer;
+use PHPUnit\Framework\TestCase;
 
-class PrefixTest extends \PHPUnit_Framework_TestCase
+class PrefixTest extends TestCase
 {
     /**
      */
@@ -12,7 +14,7 @@ class PrefixTest extends \PHPUnit_Framework_TestCase
     {
         $prefix = new Prefix;
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Format\\Trimmer', $prefix);
+        $this->assertInstanceOf(Trimmer::class, $prefix);
     }
 
     /**
