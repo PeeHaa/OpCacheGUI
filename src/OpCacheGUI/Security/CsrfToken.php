@@ -14,9 +14,6 @@
 namespace OpCacheGUI\Security;
 
 use OpCacheGUI\Storage\KeyValuePair;
-use OpCacheGUI\Security\Generator\Builder;
-use OpCacheGUI\Security\Generator\UnsupportedAlgorithmException;
-use OpCacheGUI\Security\Generator\InvalidLengthException;
 
 /**
  * CSRF token
@@ -38,43 +35,13 @@ class CsrfToken
     private $storage;
 
     /**
-     * @var \OpCacheGUI\Security\Generator\Builder Instance of a generator builder
-     */
-    private $factory;
-
-    /**
-     * @var array List of supported algorithms sorted by strength (strongest first)
-     */
-    private $algos = [
-        '\\OpCacheGUI\\Security\\Generator\\Mcrypt',
-        '\\OpCacheGUI\\Security\\Generator\\OpenSsl',
-        '\\OpCacheGUI\\Security\\Generator\\Urandom',
-        '\\OpCacheGUI\\Security\\Generator\\MtRand',
-    ];
-
-    /**
-     * Create sinstance
+     * Creates instance
      *
-     * @param \OpCacheGUI\Storage\KeyValuePair       $storage Instance of a key value storage
-     * @param \OpCacheGUI\Security\Generator\Builder $factory Instance of a generator builder
+     * @param \OpCacheGUI\Storage\KeyValuePair $storage Instance of a key value storage
      */
-    public function __construct(KeyValuePair $storage, Builder $factory)
+    public function __construct(KeyValuePair $storage)
     {
         $this->storage = $storage;
-        $this->factory = $factory;
-    }
-
-    /**
-     * Adds an algorithm to the list of supported algo's
-     *
-     * Note: this method will add the new algorithm at teh top of the stack meaning it will be presumed to be stronger
-     *       than the default ones!
-     *
-     * @param string $algo The algo to add to the stack
-     */
-    public function addAlgo($algo)
-    {
-        array_unshift($this->algos, $algo);
     }
 
     /**
@@ -107,36 +74,16 @@ class CsrfToken
      * Generates a new secure CSRF token
      *
      * @return string The generated CSRF token
+     * @throws InsufficientRandomData
      */
     private function generate()
     {
-        $length = (int) (self::LENGTH * 3 / 4 + 1);
-        $buffer = '';
-
-        foreach ($this->algos as $algo) {
-            try {
-                $generator = $this->factory->build($algo);
-            } catch (UnsupportedAlgorithmException $e) {
-                continue;
-            }
-
-            $buffer .= $generator->generate($length);
-
-            if (strlen($buffer) >= $length) {
-                break;
-            }
+        try {
+            $token = random_bytes(self::LENGTH);
+        } catch (\Throwable $e) {
+            throw new InsufficientRandomData($e->getMessage(), $e->getCode(), $e);
         }
 
-        if (strlen($buffer) < $length) {
-            throw new InvalidLengthException(
-                'The generated token didn\'t met the required length (`'
-                . $length
-                . '`). Actual length is: `'
-                . strlen($buffer)
-                . '`.'
-            );
-        }
-
-        return str_replace(array('+', '"', '\'', '\\', '/', '=', '?', '&'), '', base64_encode($buffer));
+        return bin2hex($token);
     }
 }
