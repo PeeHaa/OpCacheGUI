@@ -11,7 +11,6 @@
  */
 use OpCacheGUI\Auth\Ip;
 use OpCacheGUI\Auth\User;
-use OpCacheGUI\Security\Generator\Factory;
 use OpCacheGUI\Security\CsrfToken;
 use OpCacheGUI\Storage\Session;
 use OpCacheGUI\Network\Request;
@@ -69,7 +68,7 @@ $byteFormatter = new ByteFormatter;
  * Setup CSRF token
  */
 $sessionStorage = new Session();
-$csrfToken      = new CsrfToken($sessionStorage, new Factory());
+$csrfToken      = new CsrfToken($sessionStorage);
 
 /**
  * Setup the IP whitelist
