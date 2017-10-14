@@ -24,6 +24,11 @@ use OpCacheGUI\I18n\FileTranslator;
 use OpCacheGUI\Format\Byte as ByteFormatter;
 
 /**
+ * Load password compat lib
+ */
+require_once __DIR__ . '/lib/password_compat.php';
+
+/**
  * Bootstrap the library
  */
 require_once __DIR__ . '/src/OpCacheGUI/bootstrap.php';
