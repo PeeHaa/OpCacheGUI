@@ -2,9 +2,12 @@
 
 namespace OpCacheGUITest\Unit\Network\Ip;
 
+use OpCacheGUI\Network\Ip\Converter;
 use OpCacheGUI\Network\Ip\Localhost;
+use OpCacheGUI\Network\Ip\Single;
+use PHPUnit\Framework\TestCase;
 
-class LocalhostTest extends \PHPUnit_Framework_TestCase
+class LocalhostTest extends TestCase
 {
     /**
      */
@@ -12,7 +15,7 @@ class LocalhostTest extends \PHPUnit_Framework_TestCase
     {
         $ipRange = new Localhost();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Ip\\Converter', $ipRange);
+        $this->assertInstanceOf(Converter::class, $ipRange);
     }
 
     /**
@@ -21,7 +24,7 @@ class LocalhostTest extends \PHPUnit_Framework_TestCase
     {
         $ipRange = new Localhost();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Ip\\Single', $ipRange);
+        $this->assertInstanceOf(Single::class, $ipRange);
     }
 
     /**

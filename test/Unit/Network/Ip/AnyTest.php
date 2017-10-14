@@ -3,8 +3,10 @@
 namespace OpCacheGUITest\Unit\Network\Ip;
 
 use OpCacheGUI\Network\Ip\Any;
+use OpCacheGUI\Network\Ip\Converter;
+use PHPUnit\Framework\TestCase;
 
-class AnyTest extends \PHPUnit_Framework_TestCase
+class AnyTest extends TestCase
 {
     /**
      */
@@ -12,7 +14,7 @@ class AnyTest extends \PHPUnit_Framework_TestCase
     {
         $ipRange = new Any();
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Network\\Ip\\Converter', $ipRange);
+        $this->assertInstanceOf(Converter::class, $ipRange);
     }
 
     /**

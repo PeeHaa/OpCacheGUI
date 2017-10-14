@@ -3,8 +3,11 @@
 namespace OpCacheGUI\Unit\Security;
 
 use OpCacheGUI\Security\CsrfToken;
+use OpCacheGUI\Security\Generator;
+use OpCacheGUI\Storage\KeyValuePair;
+use PHPUnit\Framework\TestCase;
 
-class CsrfTokenTest extends \PHPUnit_Framework_TestCase
+class CsrfTokenTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Security\CsrfToken::__construct
@@ -12,7 +15,8 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetWhenAlreadyStored()
     {
-        $storage = $this->getMock('\\OpCacheGUI\\Storage\\KeyValuePair');
+        /** @var KeyValuePair|\PHPUnit_Framework_MockObject_MockObject $storage */
+        $storage = $this->createMock(KeyValuePair::class);
         $storage->method('isKeyValid')->willReturn(true);
         $storage->method('get')->will($this->returnArgument(0));
 
@@ -28,11 +32,12 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetWhenNotStored()
     {
-        $storage = $this->getMock('\\OpCacheGUI\\Storage\\KeyValuePair');
+        /** @var KeyValuePair|\PHPUnit_Framework_MockObject_MockObject $storage */
+        $storage = $this->createMock(KeyValuePair::class);
         $storage->method('isKeyValid')->willReturn(false);
         $storage->method('get')->will($this->returnArgument(0));
 
-        $generator = $this->getMock('\\OpCacheGUI\\Security\\Generator');
+        $generator = $this->createMock(Generator::class);
         $generator->method('generate')->willReturn('12345678901234567890123456789012345678901234567890123456');
 
         $token = new CsrfToken($storage);
@@ -47,7 +52,8 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateValid()
     {
-        $storage = $this->getMock('\\OpCacheGUI\\Storage\\KeyValuePair');
+        /** @var KeyValuePair|\PHPUnit_Framework_MockObject_MockObject $storage */
+        $storage = $this->createMock(KeyValuePair::class);
         $storage->method('isKeyValid')->willReturn(true);
         $storage->method('get')->will($this->returnArgument(0));
 
@@ -63,7 +69,8 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
      */
     public function testValidateNotValid()
     {
-        $storage = $this->getMock('\\OpCacheGUI\\Storage\\KeyValuePair');
+        /** @var KeyValuePair|\PHPUnit_Framework_MockObject_MockObject $storage */
+        $storage = $this->createMock(KeyValuePair::class);
         $storage->method('isKeyValid')->willReturn(true);
         $storage->method('get')->will($this->returnArgument(0));
 

@@ -3,8 +3,11 @@
 namespace OpCacheGUITest\Unit\Auth;
 
 use OpCacheGUI\Auth\Ip;
+use OpCacheGUI\Auth\Whitelist;
+use OpCacheGUI\Network\Ip\Converter;
+use PHPUnit\Framework\TestCase;
 
-class IpTest extends \PHPUnit_Framework_TestCase
+class IpTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Auth\Ip::__construct
@@ -13,7 +16,7 @@ class IpTest extends \PHPUnit_Framework_TestCase
     {
         $whitelist = new Ip([]);
 
-        $this->assertInstanceOf('\\OpCacheGUI\\Auth\\Whitelist', $whitelist);
+        $this->assertInstanceOf(Whitelist::class, $whitelist);
     }
 
     /**
@@ -46,7 +49,7 @@ class IpTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildListWithValidConverter()
     {
-        $converter = $this->getMock('\\OpCacheGUI\\Network\\Ip\\Converter');
+        $converter = $this->createMock(Converter::class);
         $converter->method('isValid')->will($this->returnValue(true));
 
         $whitelist = new Ip([$converter]);
@@ -61,7 +64,7 @@ class IpTest extends \PHPUnit_Framework_TestCase
      */
     public function testBuildListWithInvalidConverter()
     {
-        $converter = $this->getMock('\\OpCacheGUI\\Network\\Ip\\Converter');
+        $converter = $this->createMock(Converter::class);
         $converter->method('isValid')->will($this->returnValue(false));
 
         $whitelist = new Ip([$converter]);
@@ -77,7 +80,7 @@ class IpTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsAllowedTrue()
     {
-        $converter = $this->getMock('\\OpCacheGUI\\Network\\Ip\\Converter');
+        $converter = $this->createMock(Converter::class);
         $converter->method('isValid')->will($this->returnValue(true));
         $converter->method('convert')->will($this->returnValue([167772161, 167772165]));
 
@@ -96,7 +99,7 @@ class IpTest extends \PHPUnit_Framework_TestCase
      */
     public function testIsAllowedFalse()
     {
-        $converter = $this->getMock('\\OpCacheGUI\\Network\\Ip\\Converter');
+        $converter = $this->createMock(Converter::class);
         $converter->method('isValid')->will($this->returnValue(true));
         $converter->method('convert')->will($this->returnValue([167772161, 167772161]));
 

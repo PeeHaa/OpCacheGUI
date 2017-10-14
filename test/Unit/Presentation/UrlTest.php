@@ -4,8 +4,9 @@ namespace OpCacheGUITest\Unit\Presentation;
 
 use OpCacheGUI\Presentation\Url;
 use OpCacheGUI\Network\Router;
+use PHPUnit\Framework\TestCase;
 
-class UrlTest extends \PHPUnit_Framework_TestCase
+class UrlTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Presentation\Url::__construct

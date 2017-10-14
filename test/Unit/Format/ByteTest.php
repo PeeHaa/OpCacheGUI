@@ -3,8 +3,9 @@
 namespace OpCacheGUITest\Unit\Format;
 
 use OpCacheGUI\Format\Byte;
+use PHPUnit\Framework\TestCase;
 
-class ByteTest extends \PHPUnit_Framework_TestCase
+class ByteTest extends TestCase
 {
     /**
      * @covers OpCacheGUI\Format\Byte::format
