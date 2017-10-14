@@ -89,8 +89,6 @@ $texts = [
     'config.opcache.protect_memory.description'             => 'Beskyt delt hukommelse fra uventet skrivning under udførsel af script. Kun nyttigt ved intern debugging.',
     'config.opcache.save_comments'                          => 'Gem kommentarer',
     'config.opcache.save_comments.description'              => 'Hvis deaktiveret, er alle PHPDoc kommentar fjernet fra koden for at reducere størrelsen af den optimerede kode.',
-    'config.opcache.load_comments'                          => 'Indlæs kommentarer',
-    'config.opcache.load_comments.description'              => 'Hvis deaktiveret, er PHPDoc kommentar ikke indlæst fra SHM, så "Doc kommentar" kan altid opbevares (save_comments=1), men ikke indlæst af applikationer som alligevel ikke har brug for dem.',
     'config.opcache.fast_shutdown'                          => 'Hurtig lukning',
     'config.opcache.fast_shutdown.description'              => 'Hvis aktiveret, bruges en hurtig nedluknings sekvens for accelereret kode.',
     'config.opcache.enable_file_override'                   => 'Fil tilsidesættelse',
