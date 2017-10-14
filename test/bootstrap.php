@@ -16,6 +16,8 @@ date_default_timezone_set('UTC');
 
 session_start();
 
+require_once __DIR__ . '/../lib/password_compat.php';
+
 /**
  * Simple SPL autoloader for the OpCacheGUITest libraries.
  *
