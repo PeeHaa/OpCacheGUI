@@ -33,7 +33,6 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                 'opcache.error_log'               => '',
                 'opcache.protect_memory'          => false,
                 'opcache.save_comments'           => false,
-                'opcache.load_comments'           => true,
                 'opcache.fast_shutdown'           => true,
                 'opcache.enable_file_override'    => true,
                 'opcache.optimization_level'      => 2147483647,
