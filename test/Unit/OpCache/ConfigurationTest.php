@@ -16,7 +16,6 @@ class ConfigurationTest extends \PHPUnit_Framework_TestCase
                 'opcache.enable_cli'              => false,
                 'opcache.use_cwd'                 => true,
                 'opcache.validate_timestamps'     => true,
-                'opcache.inherited_hack'          => true,
                 'opcache.dups_fix'                => false,
                 'opcache.revalidate_path'         => false,
                 'opcache.log_verbosity_level'     => 1,

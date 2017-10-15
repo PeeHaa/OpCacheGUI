@@ -11,7 +11,7 @@
             <?php foreach ($config->getIniDirectives() as $key => $directiveItem) { ?>
                 <tr>
                     <td><?= $this->translator->translate('config.' . $key); ?></td>
-                    <?php if (in_array($key, ['opcache.enable', 'opcache.enable_cli', 'opcache.use_cwd', 'opcache.validate_timestamps', 'opcache.inherited_hack', 'opcache.dups_fix', 'opcache.revalidate_path', 'opcache.save_comments', 'opcache.load_comments', 'opcache.fast_shutdown', 'opcache.enable_file_override'])) { ?>
+                    <?php if (in_array($key, ['opcache.enable', 'opcache.enable_cli', 'opcache.use_cwd', 'opcache.validate_timestamps', 'opcache.dups_fix', 'opcache.revalidate_path', 'opcache.save_comments', 'opcache.fast_shutdown', 'opcache.enable_file_override'])) { ?>
                         <td><span class="<?= $directiveItem ? 'g' : 'r'; ?>s"></span></td>
                     <?php } else { ?>
                         <td><?= htmlspecialchars($directiveItem); ?></td>

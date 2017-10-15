@@ -57,6 +57,8 @@ class Configuration
 
         $directives['opcache.memory_consumption'] = $this->byteFormatter->format($directives['opcache.memory_consumption']);
 
+        unset($directives['opcache.inherited_hack']);
+
         return $directives;
     }
 
