@@ -11,19 +11,36 @@
             <?php foreach ($config->getIniDirectives() as $key => $directiveItem) { ?>
                 <tr>
                     <td><?= $this->translator->translate('config.' . $key); ?></td>
-                    <?php if (in_array($key, ['opcache.enable', 'opcache.enable_cli', 'opcache.use_cwd', 'opcache.validate_timestamps', 'opcache.dups_fix', 'opcache.revalidate_path', 'opcache.save_comments', 'opcache.fast_shutdown', 'opcache.enable_file_override'])) { ?>
+                    <?php if (in_array($key, [
+                        'opcache.enable',
+                        'opcache.enable_cli',
+                        'opcache.use_cwd',
+                        'opcache.validate_timestamps',
+                        'opcache.dups_fix',
+                        'opcache.revalidate_path',
+                        'opcache.save_comments',
+                        'opcache.fast_shutdown',
+                        'opcache.enable_file_override',
+                        'opcache.file_cache_only',
+                        'opcache.file_cache_consistency_checks',
+                        'opcache.file_cache_fallback',
+                        'opcache.validate_permission',
+                        'opcache.validate_root'
+                    ])) { ?>
                         <td><span class="<?= $directiveItem ? 'g' : 'r'; ?>s"></span></td>
                     <?php } else { ?>
                         <td><?= htmlspecialchars($directiveItem); ?></td>
                     <?php } ?>
-                    <td><p><?= $this->translator->translate('config.' . $key . '.description'); ?></p></td>
+                    <td>
+                        <p><?= $this->translator->translate('config.' . $key . '.description'); ?></p>
+                    </td>
                 </tr>
             <?php } ?>
         </table>
     </section>
     <section data-content="blacklist">
         <?php if (!count($config->getBlackList())) { ?>
-            <br />
+            <br/>
             <p><?= $this->translator->translate('blacklist.empty'); ?></p>
         <?php } else { ?>
             <table>
