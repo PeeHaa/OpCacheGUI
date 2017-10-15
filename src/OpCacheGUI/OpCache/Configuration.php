@@ -55,35 +55,9 @@ class Configuration
     {
         $directives = $this->configData['directives'];
 
-        $memory_consumption = $this->byteFormatter->format($directives['opcache.memory_consumption']);
+        $directives['opcache.memory_consumption'] = $this->byteFormatter->format($directives['opcache.memory_consumption']);
 
-        return [
-            'opcache.enable'                  => $directives['opcache.enable'],
-            'opcache.enable_cli'              => $directives['opcache.enable_cli'],
-            'opcache.use_cwd'                 => $directives['opcache.use_cwd'],
-            'opcache.validate_timestamps'     => $directives['opcache.validate_timestamps'],
-            'opcache.inherited_hack'          => $directives['opcache.inherited_hack'],
-            'opcache.dups_fix'                => $directives['opcache.dups_fix'],
-            'opcache.revalidate_path'         => $directives['opcache.revalidate_path'],
-            'opcache.log_verbosity_level'     => $directives['opcache.log_verbosity_level'],
-            'opcache.memory_consumption'      => $memory_consumption,
-            'opcache.interned_strings_buffer' => $directives['opcache.interned_strings_buffer'],
-            'opcache.max_accelerated_files'   => $directives['opcache.max_accelerated_files'],
-            'opcache.max_wasted_percentage'   => $directives['opcache.max_wasted_percentage'],
-            'opcache.consistency_checks'      => $directives['opcache.consistency_checks'],
-            'opcache.force_restart_timeout'   => $directives['opcache.force_restart_timeout'],
-            'opcache.revalidate_freq'         => $directives['opcache.revalidate_freq'],
-            'opcache.preferred_memory_model'  => $directives['opcache.preferred_memory_model'],
-            'opcache.blacklist_filename'      => $directives['opcache.blacklist_filename'],
-            'opcache.max_file_size'           => $directives['opcache.max_file_size'],
-            'opcache.error_log'               => $directives['opcache.error_log'],
-            'opcache.protect_memory'          => $directives['opcache.protect_memory'],
-            'opcache.save_comments'           => $directives['opcache.save_comments'],
-            'opcache.load_comments'           => $directives['opcache.load_comments'],
-            'opcache.fast_shutdown'           => $directives['opcache.fast_shutdown'],
-            'opcache.enable_file_override'    => $directives['opcache.enable_file_override'],
-            'opcache.optimization_level'      => $directives['opcache.optimization_level'],
-        ];
+        return $directives;
     }
 
     /**
