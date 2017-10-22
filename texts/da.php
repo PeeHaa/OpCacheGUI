@@ -111,11 +111,11 @@ $texts = [
     'config.opcache.file_cache_consistency_checks.description' => 'Aktiverer eller deaktiverer checksumvalidering, når script hentes fra fil cachen.',
     'config.opcache.file_cache_fallback'                       => 'fil cache fallback',
     'config.opcache.file_cache_fallback.description'           => 'Indikerer opcache.file_cache_only = 1 for en bestemt proces der har fejlet genhæfte sig til den delte hukommelse (Windows kun). Eksplicit aktiveret filcache er påkrævet.',
-    'config.opcache.validate_permission'                       => 'Validate permission',
-    'config.opcache.validate_permission.description'           => 'Validates the cached file permissions against the current user.',
-    'config.opcache.validate_root'                             => 'Validate root',
-    'config.opcache.validate_root.description'                 => 'Prevents name collisions in chroot\'ed environments. This should be enabled in all chroot\'ed environments to prevent access to files outside the chroot.',
-
+    'config.opcache.validate_permission'                       => 'Valider tilladelse',
+    'config.opcache.validate_permission.description'           => 'Validerer den cachelagrede fil tilladelser mod den nuværende bruger.',
+    'config.opcache.validate_root'                             => 'Validér rod',
+    'config.opcache.validate_root.description'                 => 'Forhindrer navne kollisioner i chroot\'ed miljøer. Dette bør aktiveres i alle chroot\'ed miljøer for at forhindre adgang til filer uden for chrooten.',
+  
     'blacklist.title'                                          => 'Blacklist',
     'blacklist.empty'                                          => 'Ingen scripts er blacklisted',
 
