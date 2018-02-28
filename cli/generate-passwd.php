@@ -12,4 +12,4 @@ if (empty($password)) {
     exit;
 }
 
-echo password_hash($argv[0], PASSWORD_DEFAULT, ['cost' => 12]) . PHP_EOL;
+echo password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]) . PHP_EOL;
