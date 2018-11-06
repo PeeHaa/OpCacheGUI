@@ -40,6 +40,9 @@
                                 <li<?= $this->active === 'graphs' ? ' class="lna"' : null ?>>
                                     <a href="<?= $this->url->get('graphs'); ?>"><span class="fa fa-pie-chart"></span><?= $this->translator->translate('menu.graphs'); ?></a>
                                 </li>
+                              <li<?= $this->active === 'visualise' ? ' class="lna"' : null ?>>
+                                <a href="<?= $this->url->get('visualise'); ?>"><span class="fa fa-eye"></span><?= $this->translator->translate('menu.visualise'); ?></a>
+                              </li>
                             </ul>
                         </nav>
                     </aside>
