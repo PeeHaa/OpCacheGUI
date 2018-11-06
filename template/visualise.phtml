@@ -1,0 +1,61 @@
+<?php
+
+$dataModel = new OpCacheGUI\OpCache\DataModel();
+$dataModel->getScriptStatusRows();
+$d3Script = $dataModel->getD3Scripts();
+
+?>
+
+<section id="visualise-scripts-tabs" class="tabs">
+  <div class="visualise-zoom">
+    <button class="zoom-left" id="zoom_in">+</button>
+    <input type="number" id="zoom_value" class="zoom-middle" min="1" max="50"/>
+    <button class="zoom-right" id="zoom_out">-</button>
+  </div>
+  <div id="partition"></div>
+</section>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.0.1/d3.v3.min.js"></script>
+<script>
+  window.onload = function () {
+
+    var zoom = 1;
+    loadVisualise(zoom, JSON.parse('<?php echo json_encode($d3Script); ?>'));
+
+    $('#zoom_in').on('click', () => {
+      zoom++;
+      $('#partition').remove();
+      $('#visualise-scripts-tabs').append('<div id="partition"></div>');
+      loadVisualise(zoom, JSON.parse('<?php echo json_encode($d3Script); ?>'))
+    })
+
+    $('#zoom_out').on('click', () => {
+      if (zoom > 1) zoom--;
+      $('#partition').remove();
+      $('#visualise-scripts-tabs').append('<div id="partition"></div>');
+      loadVisualise(zoom, JSON.parse('<?php echo json_encode($d3Script); ?>'))
+    })
+
+    $("input[id=zoom_value]").on("keydown", function search(e) {
+      e.stopPropagation();
+      if (e.keyCode == 13) {
+        var val = $(this).val()
+        let patt = /^\d+$/;
+        if (!patt.test(val) || val < 1 || val > 50) {
+          alert('only accept number or range 1 and 50 or int');
+          return
+        }
+        zoom = val
+        $('input').val('');
+        $('input').blur();
+        $('#partition').remove();
+        $('#visualise-scripts-tabs').append('<div id="partition"></div>');
+        loadVisualise(zoom, JSON.parse('<?php echo json_encode($d3Script); ?>'))
+      }
+    });
+
+  }
+</script>
+
+
+

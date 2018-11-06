@@ -60,6 +60,14 @@ $router->get('graphs', function() use ($htmlTemplate, $byteFormatter, $translato
     ]);
 });
 
+$router->get('visualise', function() use ($htmlTemplate, $byteFormatter, $translator) {
+    return $htmlTemplate->render('visualise.phtml', [
+        'byteFormatter' => $byteFormatter,
+        'active'        => 'visualise',
+        'title'         => $translator->translate('visualise.title'),
+    ]);
+});
+
 $router->post('reset', function() use ($jsonTemplate, $csrfToken, $request) {
     return $jsonTemplate->render('reset.pjson', [
         'csrfToken' => $csrfToken,
@@ -73,3 +81,5 @@ $router->post('invalidate', function() use ($jsonTemplate, $csrfToken, $request)
         'result'    => ($csrfToken->validate($request->post('csrfToken')) && opcache_invalidate($request->post('key'), true)) ? 'success' : 'failed',
     ]);
 });
+
+
