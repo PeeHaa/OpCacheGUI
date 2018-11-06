@@ -53,6 +53,8 @@ Roadmap
   - [ ] Templating system
   - [ ] CSRF token generator
   - [ ] Simple session storage
+- [ ] Add Chinese language support `zh-cn`
+- [ ] Add [Visualise Partition](https://github.com/rlerdorf/opcache-status) tab
 
 Timeline
 -
@@ -77,7 +79,8 @@ Timeline
 | RC1 release                                        | 01-08-2015 | 15-08-2015 |
 | RC2 release                                        | 15-08-2015 | 31-08-2015 |
 | Update documentation                               | 22-08-2015 | 31-08-2015 |
-| Stable  (when no blocking issues are found in RC2) | 01-09-2015 | 01-09-2015 |
+| Chinese language support                           | 16-11-2018 | 16-11-2018 |
+| Visualise Partition                                | 16-11-2018 | 16-11-2018 |
 
 Screenshots
 -
@@ -93,6 +96,9 @@ Screenshots
 ###### Graphs
 
 [![OpCacheGUI graphs][3]][3]
+
+###### VISUALISE
+[![OpCacheGUI visualise][6]][6]
 
 ###### Status page on mobile devices
 
@@ -112,3 +118,4 @@ Screenshots
 [3]: http://i.imgur.com/mEhfhDA.png
 [4]: http://i.imgur.com/Mi3JegX.png
 [5]: http://i.imgur.com/4tMSEWD.png
+[6]: https://i.imgur.com/lrBA9tM.png
