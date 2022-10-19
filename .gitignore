@@ -2,3 +2,4 @@
 /public/.htaccess
 config.php
 vendor
+.phpunit.result.cache
