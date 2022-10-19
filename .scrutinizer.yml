@@ -24,8 +24,8 @@ tools:
     php_pdepend:
         enabled: true
         excluded_dirs: ["test", "vendor"]
-    php_analyzer: true
     php_analyzer:
+        enabled: true
         filter:
             paths: ["src/*", "test/*"]
     sensiolabs_security_checker: true

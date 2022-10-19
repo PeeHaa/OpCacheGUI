@@ -10,7 +10,7 @@ class ConfigurationTest extends TestCase
 {
     protected $configData;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->configData = [
             'directives' => [

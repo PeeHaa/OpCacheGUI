@@ -12,7 +12,7 @@ class StatusTest extends TestCase
 {
     protected $statusData;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         date_default_timezone_set('UTC');
 

@@ -7,27 +7,25 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          forceCoversAnnotation="false"
-         mapTestClassNameToCoveredClassName="false"
          processIsolation="false"
          stopOnError="false"
          stopOnFailure="false"
          stopOnIncomplete="false"
          stopOnSkipped="false"
-         strict="false"
          verbose="false">
+    <coverage>
+        <include>
+            <directory suffix=".php">./src</directory>
+        </include>
+        <exclude>
+            <file>src/OpCacheGUI/bootstrap.php</file>
+            <file>src/OpCacheGUI/Storage/InvalidKeyException.php</file>
+            <file>src/OpCacheGUI/Security/InsufficientRandomData.php</file>
+        </exclude>
+    </coverage>
     <testsuites>
         <testsuite name="Unit">
             <directory>test/Unit</directory>
         </testsuite>
     </testsuites>
-    <filter>
-        <whitelist>
-            <directory suffix=".php">src/</directory>
-            <exclude>
-                <file>src/OpCacheGUI/bootstrap.php</file>
-                <file>src/OpCacheGUI/Storage/InvalidKeyException.php</file>
-                <file>src/OpCacheGUI/Security/InsufficientRandomData.php</file>
-            </exclude>
-        </whitelist>
-    </filter>
 </phpunit>
